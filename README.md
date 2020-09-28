@@ -6,20 +6,18 @@ Node.js: The JavaScript runtime that you will use to run your frontend project.
 Yarn: A package and project manager for Node.js applications.
 Python: A recent Python 3 interpreter to run the Flask backend on.
 
-```
-$ pip install virtualenv
-$ pip install flask python-dotenv
-```
-
 ## Steps to setup this project
 1.  Clone repository.
 
-2.  In command-line, navigate to /blitz_gg/ directory of this project. Have two terminals open, for frontend and backend.
+2.  In command-line, navigate to `/front_end` directory of this project.
 
-3.  In the one terminal, start the frontend(React):
+3.  In one terminal, install Node packages:
+    $ npm install
+
+3.  To start the frontend (React):
     $ npm start
 
-4.  For the second terminal, activate the virtual environment for flask
+4.  In a second terminal, navigate to `/back_end/server` and activate the virtual environment for flask
     Mac/Linux:
     ```
     $ python3 -m venv venv
@@ -32,19 +30,18 @@ $ pip install flask python-dotenv
     $ venv\Scripts\activate
     ```
 
-5.  Start the flask(on second terminal) after frontend(React):
-    Mac/Linux:
+5. Install dependencies from `requirements.txt`:
     ```
-    $ cd api && venv/bin/flask run --no-debugger
+    $ pip install -r requirements.txt
     ```
 
-    Windows:
+6. To deactivate virtual environment:
     ```
-    $ cd api && venv\Scripts\flask run --no-debugger
+    $ deactivate
     ```
 
 ## Contributors
-Suchwinder Signh
-David Yuen
-Kent Zhang
-Rohan Tohaan
+- Suchwinder Singh
+- David Yuen
+- Kent Zhang
+- Rohan Tohaan
