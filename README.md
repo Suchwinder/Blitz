@@ -12,10 +12,14 @@ Python: A recent Python 3 interpreter to run the Flask backend on.
 2.  In command-line, navigate to `/front_end` directory of this project.
 
 3.  In one terminal, install Node packages:
+    ```
     $ npm install
+    ```
 
 3.  To start the frontend (React):
+    ```
     $ npm start
+    ```
 
 4.  In a second terminal, navigate to `/back_end/server` and activate the virtual environment for flask
     Mac/Linux:
