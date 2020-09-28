@@ -3,7 +3,7 @@
 ## Requirements for React + Flask
 
 Node.js: The JavaScript runtime that you will use to run your frontend project.
-Yarn: A package and project manager for Node.js applications.
+NPM: A package and project manager for Node.js applications.
 Python: A recent Python 3 interpreter to run the Flask backend on.
 
 ## Steps to setup this project
@@ -16,12 +16,12 @@ Python: A recent Python 3 interpreter to run the Flask backend on.
     $ npm install
     ```
 
-3.  To start the frontend (React):
+4.  To start the frontend (React):
     ```
     $ npm start
     ```
 
-4.  In a second terminal, navigate to `/back_end/server` and activate the virtual environment for flask
+5.  In a second terminal, navigate to `/back_end/server` and activate the virtual environment for flask
     Mac/Linux:
     ```
     $ python3 -m venv venv
@@ -34,12 +34,12 @@ Python: A recent Python 3 interpreter to run the Flask backend on.
     $ venv\Scripts\activate
     ```
 
-5. Install dependencies from `requirements.txt`:
+6. Install dependencies from `requirements.txt`:
     ```
     $ pip install -r requirements.txt
     ```
 
-6. To deactivate virtual environment:
+7. To deactivate virtual environment:
     ```
     $ deactivate
     ```
