@@ -8,3 +8,8 @@ pip freeze > requirements.txt
 ```
 Be sure to be in the venv. If you aren't in the venv the pip freeze will install all
 the python packages you have ever installed on the machine, when you only want the ones installed for this project.
+
+To run the backend make sure to be in the `Blitz/back_end` and then run the command:
+```
+python main.py
+```
