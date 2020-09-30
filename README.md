@@ -2,9 +2,9 @@
 
 ## Requirements for React + Flask
 
-Node.js: The JavaScript runtime that you will use to run your frontend project.
-NPM: A package and project manager for Node.js applications.
-Python: A recent Python 3 interpreter to run the Flask backend on.
+- Node.js: The JavaScript runtime that you will use to run your frontend project.
+- NPM: A package and project manager for Node.js applications.
+- Python: A recent Python 3 interpreter to run the Flask backend on.
 
 ## Steps to setup this project
 1.  Clone repository.
