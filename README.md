@@ -32,7 +32,7 @@
     $ python -m venv venv
     ```
     
-6.  Then navigate to the parent director using `cd ..` the file path should now be `Blitz/back_end` and now you can activate the virtual environment
+6.  Now you can activate the virtual environment
     
     Mac/Linux:
     ```
@@ -48,7 +48,7 @@
     $ pip install -r requirements.txt
     ```
     
-8.  To run the back end now run:
+8.  To run the back end first got to parent directory using `cd ..` the file path should now be `Blitz/back_end` then run:
     ```
     $ python main.py
     ```
