@@ -21,25 +21,39 @@
     $ npm start
     ```
 
-5.  In a second terminal, navigate to `/back_end/server` and activate the virtual environment for flask
+5.  In a second terminal, navigate to `/back_end/server` and set up the virtual environment for flask (this needs to be done only once)
+    
     Mac/Linux:
     ```
     $ python3 -m venv venv
-    $ source venv/bin/activate
     ```
-
     Windows:
     ```
     $ python -m venv venv
+    ```
+    
+6.  Then navigate to the parent director using `cd ..` the file path should now be `Blitz/back_end` and now you can activate the virtual environment
+    
+    Mac/Linux:
+    ```
+    $ source venv/bin/activate
+    ```
+    Windows:
+    ```
     $ venv\Scripts\activate
     ```
 
-6. Install dependencies from `requirements.txt`:
+7.  Install dependencies from `requirements.txt`:
     ```
     $ pip install -r requirements.txt
     ```
+    
+8.  To run the back end now run:
+    ```
+    $ python main.py
+    ```
 
-7. To deactivate virtual environment:
+9. To deactivate virtual environment:
     ```
     $ deactivate
     ```
