@@ -21,7 +21,7 @@
     $ npm start
     ```
 
-5.  In a second terminal, navigate to `/back_end/server` and set up the virtual environment for flask (this needs to be done only once)
+5.  In a second terminal, navigate to `/back_end` and set up the virtual environment for flask (this needs to be done only once)
     
     Mac/Linux:
     ```
@@ -48,7 +48,7 @@
     $ pip install -r requirements.txt
     ```
     
-8.  To run the back end first go to parent directory using `cd ..` the file path should now be `Blitz/back_end` then run:
+8.  To run the back end:
     ```
     $ python main.py
     ```
