@@ -48,7 +48,7 @@
     $ pip install -r requirements.txt
     ```
     
-8.  To run the back end first got to parent directory using `cd ..` the file path should now be `Blitz/back_end` then run:
+8.  To run the back end first go to parent directory using `cd ..` the file path should now be `Blitz/back_end` then run:
     ```
     $ python main.py
     ```
