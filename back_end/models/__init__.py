@@ -22,8 +22,8 @@ class Groups(Base):
     totalAdjustment = Column(Float)
     isDeleted = Column(bool)
 
-    # Relationship(s)
-    location = relationship('Locations', uselist=False, backref='groups')
+    # Relationship(s) not needed cause in Locations using back ref, so it sets this up as well
+    # location = relationship('Locations', back_populates='groups')
 
 class Locations(Base):
     __tablename__ = 'locations'
@@ -33,5 +33,5 @@ class Locations(Base):
     zipID = Column(Integer, ForeignKey('groups.groupID'))
     locationName = Column(String)
    
-    # Relationship(s) not needed cause in Groups using back ref, so it sets this up as well
-    # group = relationship('Groups', back_populates='locations')
+    # Relationship(s) 
+    group = relationship('Groups', uselist=False, backref='locations')
