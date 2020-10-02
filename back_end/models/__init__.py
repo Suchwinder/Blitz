@@ -107,3 +107,4 @@ class ItemAssignments(Base):
     # Relationships
     users = relationship('Users', backref='itemAssignments')
     items = relationship('Items', backref='itemAssignments')
+    
