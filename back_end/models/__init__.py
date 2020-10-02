@@ -30,8 +30,41 @@ class Locations(Base):
     locationID = Column(Integer, primary_key=True) 
     streetAddress = Column(String) 
     city = Column(String)
-    zipID = Column(Integer, ForeignKey('groups.groupID'))
+    zipID = Column(Integer, ForeignKey('zips.zipID'))
     locationName = Column(String)
    
     # Relationship(s) 
     group = relationship('Groups', uselist=False, backref='locations')
+
+class Zip(Base):
+    __tablename__ = 'zips'
+    zipID = Column(Integer, primary_key=True)
+    zipCode = Column(String)
+    stateID = Column(Integer, ForeignKey('state.stateID'))
+
+class State(Base):
+    __tablename__ = 'state'
+    stateID = Column(Integer, primary_key=True)
+    stateName = Column(String)
+    taxRate = Column(Float)
+
+class Users(Base):
+    __tablename__ = 'users'
+    userID = Column(Integer, primary_key=True)
+    nickname = Column(String)
+    amountOwer = Column(Float)
+    adjustedAmount = Column(Float)
+    groupID = Column(Integer, ForeignKey('groups.groupID'))
+
+class Items(Base):
+    __tablename__ = 'items'
+    itemID = Column(Integer, primary_key=True)
+    itemName = Column(String)
+    itemCost = Column(Float)
+    itemQuantity = Column(Integer)
+    groupID = Column(Integer, ForeignKey('groups.groupID'))
+
+class ItemAssignments(Base):
+    __tablename__ = 'itemAssignments'
+    userID = Column(Integer, ForeignKey('users.userID'))
+    itemID = Column(Integer, ForeignKey('items.itemsID'))
