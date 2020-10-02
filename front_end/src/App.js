@@ -1,5 +1,6 @@
 import React from 'react';
-import MainPage from './components/main_page/MainPage';
+import MainPage from './components/pages/main_page/MainPage';
+import CreateGroup from './components/pages/create_group/CreateGroup'
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
       <Switch> 
         <Route exact path="/" render={MainPageComponent}/>
         {
-        /*<Route path="/createGroup" component={CreateGroupComponent} />
+        /*
+        <Route path="/createGroup" component={CreateGroupComponent} />
         <Route path="/joinGroup" component={JoinGroupComponent} />
         <Route path="/splitBill" component={SplitBillComponent} /> */
         }
