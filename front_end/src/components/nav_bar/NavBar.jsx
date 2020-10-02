@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 
-const CreateGroup = () => {
+const NavBar = () => {
   return(
     <header>
       <Navbar bg="primary" variant="dark">
@@ -13,10 +13,8 @@ const CreateGroup = () => {
           <Nav.Link href="#join-group">Join Group</Nav.Link>
         </Nav>
       </Navbar>
-      
     </header>
-    
-)   
+  )   
 }
 
-export default CreateGroup;
+export default NavBar;

@@ -1,6 +1,6 @@
 import React from 'react';
-import MainPage from './components/pages/main_page/MainPage';
-import CreateGroup from './components/pages/create_group/CreateGroup'
+import MainPage from './components/main_page/MainPage';
+import CreateGroup from './components/create_group/CreateGroup'
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
