@@ -48,9 +48,15 @@
     $ pip install -r requirements.txt
     ```
     
-8.  To run the back end:
+8.  To run the back end normally do:
     ```
     $ python main.py
+    ```
+    but if we are working with environment variables and load it normally through the database create function
+    the env variable wont be loaded in fast enough, so it would be type None. To fix this load env variables before
+    hand through terminal, refer to github docs. THe command is:
+    ```
+    dotenv -f .env run python main.py
     ```
 
 9. To deactivate virtual environment:

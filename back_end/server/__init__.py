@@ -1,10 +1,8 @@
 from flask import Flask
+from models import bootDB
 
 def create_app():
-    app = Flask(__name__)
+    bootDB() #start database (good to do database boot before app to ensure it exists before app works)
+    app = Flask(__name__) #start app
 
-    @app.route('/')
-    def hello() :
-        return "Hello World! Welcome to Blitz"
-    
     return app
