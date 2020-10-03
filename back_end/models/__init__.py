@@ -67,7 +67,7 @@ class Zips(Base):
     stateID = Column(Integer, ForeignKey('state.stateID'))
 
     # Relationship(s)
-    locations = relationship('Locations', backref='zips')
+    location = relationship('Locations', backref='zips')
 
 class State(Base):
     __tablename__ = 'state'
@@ -78,7 +78,7 @@ class State(Base):
     taxRate = Column(Float)
 
     # Relationships
-    zips = relationship('Zips', backref='state')
+    # zips = relationship('Zips', backref='state')
 
 
 class Users(Base):
@@ -92,7 +92,7 @@ class Users(Base):
     groupID = Column(Integer, ForeignKey('groups.groupID'))
 
     # Relationships
-    groups = relationship('Groups', backref='users')
+    group = relationship('Groups', backref='users')
 
 class Items(Base):
     __tablename__ = 'items'
@@ -105,7 +105,7 @@ class Items(Base):
     groupID = Column(Integer, ForeignKey('groups.groupID'))
 
     # Relationships
-    groups = relationship('Groups', backref='items')
+    group = relationship('Groups', backref='items')
 
 class ItemAssignments(Base):
     __tablename__ = 'itemAssignments'
@@ -116,6 +116,6 @@ class ItemAssignments(Base):
     itemID = Column(Integer, ForeignKey('items.itemID'))
 
     # Relationships
-    users = relationship('Users', backref='itemAssignments')
-    items = relationship('Items', backref='itemAssignments')
+    user = relationship('Users', backref='itemAssignments')
+    item = relationship('Items', backref='itemAssignments')
     
