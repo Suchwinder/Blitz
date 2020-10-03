@@ -67,7 +67,7 @@ class Zips(Base):
     stateID = Column(Integer, ForeignKey('state.stateID'))
 
     # Relationship(s)
-    location = relationship('Locations', backref='zips')
+    locations = relationship('Locations', backref='zips')
 
 class State(Base):
     __tablename__ = 'state'
@@ -78,8 +78,7 @@ class State(Base):
     taxRate = Column(Float)
 
     # Relationships
-    # zips = relationship('Zips', backref='state')
-
+    zips = relationship('Zips', backref='state')
 
 class Users(Base):
     __tablename__ = 'users'
