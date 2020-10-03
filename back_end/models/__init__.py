@@ -1,19 +1,29 @@
 import sqlalchemy 
+import os # access the environment variables that were loaded
 from sqlalchemy import create_engine # create instance of database
-from sqlalchemy.ext.declarative import declarative_base # create a catalog of all classes connected to tables
 from sqlalchemy import Column, Integer, String, DateTime, Float, Boolean, ForeignKey # allows us to create columns, with datatypes, and aslo foreign keys
 from sqlalchemy.orm import relationship # set up the relationships between our tables
-from pathlib import Path # file path access
-from dotenv import load_dotenv # get the env variables loaded into system environment https://github.com/theskumar/python-dotenv#readme 
-import os # access the environment variables that were loaded
+from sqlalchemy_utils import create_database, database_exists # to create database, and check if exists
+from sqlalchemy.ext.declarative import declarative_base # create a catalog of all classes connected to tables
 
-# give path location
-env_path = Path('..')/'.env'
-load_dotenv(dotenv_path=env_path)
+# SQLALCHEMY is built on top of psyopg2, for some reason didnt install with sqlalchemy, it should by default, so need
+# install it, in order for sqlalchemy to be utilized
 
-DATABASE_URI = os.getenv('DATABASE_URI') # have saved variables 
 Base = declarative_base() # instantiating base catalog
-metadata = sqlalchemy.MetaData() # lets us use the information of the tables to create them later
+# os can load variables from the system environment, but to load variable in first 
+# need to use a specific comman in README.md -> reference: https://pypi.org/project/python-dotenv/
+DATABASE_URI = os.getenv('DATABASE_URI') 
+
+### Database Creation
+def bootDB():    
+    engine = create_engine(DATABASE_URI, echo=False) # need to connect to server
+    if not database_exists(engine.url):
+        create_database(engine.url)
+        print("Creating Database")
+        Base.metadata.create_all(engine)
+        print("Creating Tables")
+    else:
+        print("Database Already Exists")
 
 ### Database ORM Classes
 class Groups(Base):
@@ -30,7 +40,7 @@ class Groups(Base):
     linkExpiration = Column(DateTime)
     userCount = Column(Integer)
     totalAdjustment = Column(Float)
-    isDeleted = Column(bool)
+    isDeleted = Column(Boolean)
 
     # Relationship(s) not needed cause in Locations using back ref, so it sets this up as well
     # location = relationship('Locations', back_populates='groups')
@@ -101,8 +111,9 @@ class ItemAssignments(Base):
     __tablename__ = 'itemAssignments'
 
     # Columns
+    itemAssignmentID = Column(Integer, primary_key=True)
     userID = Column(Integer, ForeignKey('users.userID'))
-    itemID = Column(Integer, ForeignKey('items.itemsID'))
+    itemID = Column(Integer, ForeignKey('items.itemID'))
 
     # Relationships
     users = relationship('Users', backref='itemAssignments')
