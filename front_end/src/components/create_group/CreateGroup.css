@@ -1,0 +1,38 @@
+.boxed {
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+    font-size: small;
+}
+
+.body {
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+    font-size: small;
+}
+
+p2 {
+    font-size: x-small;
+}
+
+.form {
+    font-size: smaller;
+}
+
+.submitButton {
+    float: right;
+}
+
+@media screen and (max-width: 960px) {
+    .boxed {
+        width: 75%;
+        border: 3px solid red;
+        
+    }
+    .body {
+        width: auto;
+        border: 3px solid red;
+
+    }
+}
