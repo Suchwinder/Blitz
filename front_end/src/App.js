@@ -5,15 +5,15 @@ import JoinGroup from './components/join_group/JoinGroup'
 import { Route, Switch } from 'react-router-dom';
 
 function App() {
-  // const MainPageComponent = () => <MainPage/>
+  const MainPageComponent = () => <MainPage/>
   const CreateGroupComponent = () => <CreateGroup/>
-  // const JoinGroupComponent = () => <JoinGroup/>
+  const JoinGroupComponent = () => <JoinGroup/>
   //const SplitBillComponent = () => <SplitBill/>
   return (
     <div className="App">
       <Switch> 
-        {/* <Route exact path="/" render={MainPageComponent}/> */}
-        <Route path="/" component={CreateGroupComponent} />
+        <Route exact path="/" render={MainPageComponent}/>
+        {/* <Route path="/" component={CreateGroupComponent} /> */}
         {/* <Route path="/" component={JoinGroupComponent} /> */}
         {/*<Route path="/splitBill" component={SplitBillComponent} /> */}
       </Switch>

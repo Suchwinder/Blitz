@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "../nav_bar/NavBar";
 import { Button } from "reactstrap";
 import "./JoinGroup.css";
-import ChooseFile from "../upload_button/ChooseFile";
 
 const JoinGroup = () => {
   return (
@@ -18,7 +17,6 @@ const JoinGroup = () => {
           <input type="text" id="link" name="link"></input>
           <br></br>
           <Button className="button" variant="dark">Join Your Group</Button>
-          <ChooseFile/>
         </form>
       </div>
     </header>

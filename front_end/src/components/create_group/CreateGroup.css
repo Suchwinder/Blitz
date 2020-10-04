@@ -3,6 +3,7 @@
     border: 3px solid green;
     padding: 10px;
     font-size: small;
+
 }
 
 .body {
@@ -21,7 +22,7 @@ p2 {
 }
 
 .submitButton {
-    float: right;
+    margin-left: 30%;
 }
 
 @media screen and (max-width: 960px) {
