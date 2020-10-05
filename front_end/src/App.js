@@ -13,8 +13,8 @@ function App() {
     <div className="App">
       <Switch> 
         <Route exact path="/" render={MainPageComponent}/>
-        {/* <Route path="/" component={CreateGroupComponent} /> */}
-        {/* <Route path="/" component={JoinGroupComponent} /> */}
+        <Route exact path="/create_group" component={CreateGroupComponent} />
+        <Route exact path="/join_group" component={JoinGroupComponent} />
         {/*<Route path="/splitBill" component={SplitBillComponent} /> */}
       </Switch>
     </div>
