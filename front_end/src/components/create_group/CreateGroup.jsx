@@ -11,19 +11,19 @@ const CreateGroup = () => {
     <div className="create-group-page">
       <NavBar/>
       <div className="body">
-        <p1>This is your sharable link:
-          <h1 className="boxed"> https://bit.ly/2GyrlZh </h1>
-        </p1>
-        <p2>Your link expires in 1 day.</p2>
+        <div>This is your sharable link:
+          <div className="boxed"> https://bit.ly/2GyrlZh </div>
+        </div>
+        <div>Your link expires in 1 day.</div>
         <br></br>
         <form action="/BillSplitting.jsx">         
-          <label className="form" for="names">Input names for the split: </label>
+          <label className="form" htmlFor="names">Input names for the split: </label>
           <input type="text" id="names" name="names"></input>
           <br></br>
-          <label className="form" for="address">Address(optional): </label>
+          <label className="form" htmlFor="address">Address(optional): </label>
           <input type="text" id="address" name="address"></input>
           <br></br>
-          <label className="form" for="states">State(optional):</label>
+          <label className="form" htmlFor="states">State(optional):</label>
           <select>
             <option>Select</option>
             <option value="AL">AL</option>
@@ -82,7 +82,6 @@ const CreateGroup = () => {
           <ChooseFile/>
           <input className="submitButton" type="submit" value="Submit"></input>
         </form>
-
       </div>
     </div>
   )   

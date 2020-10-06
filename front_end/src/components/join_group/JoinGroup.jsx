@@ -10,8 +10,8 @@ const JoinGroup = () => {
         <NavBar />
       </div>
       <div className="center">
-        <form action="/.jsx">
-          <label className="form" for="link">
+        <form action="/BillSplitting.jsx">
+          <label className="form" htmlFor="link">
             This is your shareable link:{" "}
           </label>
           <input type="text" id="link" name="link"></input>
