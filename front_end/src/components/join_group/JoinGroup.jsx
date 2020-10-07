@@ -12,11 +12,13 @@ const JoinGroup = () => {
       <div className="center">
         <form action="/BillSplitting.jsx">
           <label className="form" htmlFor="link">
-            This is your shareable link:{" "}
+            Enter your shared link to join your group:{" "}
           </label>
           <input type="text" id="link" name="link"></input>
           <br></br>
-          <Button className="button" variant="dark">Join Your Group</Button>
+          <Button className="button" variant="dark">
+            Join Your Group
+          </Button>
         </form>
       </div>
     </header>

@@ -1,39 +1,37 @@
 .boxed {
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-    font-size: small;
-
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+  font-size: small;
 }
 
 .body {
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-    font-size: small;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+  font-size: small;
+  margin: auto;
 }
 
 p2 {
-    font-size: x-small;
+  font-size: x-small;
 }
 
 .form {
-    font-size: smaller;
+  font-size: smaller;
 }
 
 .submitButton {
-    margin-left: 30%;
+  margin-left: 30%;
 }
 
 @media screen and (max-width: 960px) {
-    .boxed {
-        width: 75%;
-        border: 3px solid red;
-        
-    }
-    .body {
-        width: auto;
-        border: 3px solid red;
-
-    }
+  .boxed {
+    width: 75%;
+    border: 3px solid red;
+  }
+  .body {
+    width: auto;
+    border: 3px solid red;
+  }
 }
