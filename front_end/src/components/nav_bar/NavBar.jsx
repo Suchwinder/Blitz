@@ -25,8 +25,8 @@ const NavBar = (props) => {
   
   return(
     <header>
-      <Navbar bg="primary" variant="dark">
-        <Navbar.Brand href="#home">Blitz</Navbar.Brand>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand>Blitz</Navbar.Brand>
         <Nav className="ml-auto">
           <button onClick={() => setPage("main")}> Home </button>
           <button onClick={() => setPage("create")}> Create </button>

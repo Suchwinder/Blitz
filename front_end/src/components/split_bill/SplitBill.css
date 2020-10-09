@@ -1,0 +1,28 @@
+.column {
+    float: left;
+    width: 33%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    margin: auto;
+}
+
+.peopleInput {
+    list-style-type:none;
+}
+
+.splitNames {
+    float: left;
+    width: 25%;
+}
+
+.receipt {
+    text-align: center;
+}
+
+.placeholder {
+    width: 200px;
+}

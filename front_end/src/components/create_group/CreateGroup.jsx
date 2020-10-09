@@ -1,7 +1,6 @@
 import React from 'react';
 import NavBar from '../nav_bar/NavBar'
 import ChooseFile from '../upload_button/ChooseFile';
-import UploadButton from '../upload_button/UploadButton'
 import './CreateGroup.css'
 
 // Todo: Have to move submit button
@@ -13,10 +12,11 @@ const CreateGroup = () => {
       <div className="body">
         <div>This is your sharable link:
           <div className="boxed"> https://bit.ly/2GyrlZh </div>
+          <copy-button target-element=".boxed"></copy-button>
         </div>
         <div>Your link expires in 1 day.</div>
         <br></br>
-        <form action="/BillSplitting.jsx">         
+        <form action="/split_bill.jsx">         
           <label className="form" htmlFor="names">Input names for the split: </label>
           <input type="text" id="names" name="names"></input>
           <br></br>
