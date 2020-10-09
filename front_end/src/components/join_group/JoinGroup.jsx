@@ -9,7 +9,7 @@ const JoinGroup = () => {
       <div className="join-group-page">
         <NavBar />
       </div>
-      <div className="center">
+      <div className="text">
         <form action="/BillSplitting.jsx">
           <label className="form" htmlFor="link">
             Enter your shared link to join your group:{" "}

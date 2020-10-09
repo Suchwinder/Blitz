@@ -2,7 +2,7 @@
   width: 50%;
   border: 3px solid green;
   padding: 10px;
-  font-size: small;
+  font-size: large;
 }
 
 .body {
@@ -15,7 +15,7 @@
 .create-group-page {
   background-image: url("../images/create.jpg");
   background-color: #cccccc;
-  height: 1200px;
+  height: 1350px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
