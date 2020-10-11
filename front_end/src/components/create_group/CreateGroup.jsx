@@ -1,11 +1,18 @@
 import React from 'react';
 import NavBar from '../nav_bar/NavBar'
 import ChooseFile from '../upload_button/ChooseFile';
+import { useHistory } from "react-router-dom";
 import './CreateGroup.css'
 
 // Todo: Have to move submit button
 
 const CreateGroup = () => {
+  const history = useHistory();
+
+  const routeChange = () =>{ 
+    let path = `split_bill`; 
+    history.push(path);
+  }
   return(
     <div className="create-group-page">
       <NavBar/>
@@ -16,7 +23,7 @@ const CreateGroup = () => {
         </div>
         <div>Your link expires in 1 day.</div>
         <br></br>
-        <form action="/split_bill.jsx">         
+        <form>         
           <label className="form" htmlFor="names">Input names for the split: </label>
           <input type="text" id="names" name="names"></input>
           <br></br>
@@ -80,7 +87,7 @@ const CreateGroup = () => {
           <br></br>
           <br></br>
           <ChooseFile/>
-          <input className="submitButton" type="submit" value="Submit"></input>
+          <input className="submitButton" type="submit" value="Submit" onClick={routeChange}></input>
         </form>
       </div>
     </div>
@@ -88,5 +95,3 @@ const CreateGroup = () => {
 }
 
 export default CreateGroup;
-
-
