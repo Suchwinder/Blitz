@@ -15,22 +15,29 @@ const CreateGroup = () => {
   }
   return(
     <div className="create-group-page">
-      <NavBar/>
-      <div className="body">
-        <div>This is your sharable link:
+      <NavBar />
+      <div className="text">
+        <div>
+          This is your sharable link:
           <div className="boxed"> https://bit.ly/2GyrlZh </div>
           <copy-button target-element=".boxed"></copy-button>
         </div>
         <div>Your link expires in 1 day.</div>
         <br></br>
-        <form>         
-          <label className="form" htmlFor="names">Input names for the split: </label>
+        <form>
+          <label className="form" htmlFor="names">
+            Input names for the split:{" "}
+          </label>
           <input type="text" id="names" name="names"></input>
           <br></br>
-          <label className="form" htmlFor="address">Address(optional): </label>
+          <label className="form" htmlFor="address">
+            Address(optional):{" "}
+          </label>
           <input type="text" id="address" name="address"></input>
           <br></br>
-          <label className="form" htmlFor="states">State(optional):</label>
+          <label className="form" htmlFor="states">
+            State(optional):
+          </label>
           <select>
             <option>Select</option>
             <option value="AL">AL</option>
@@ -91,7 +98,7 @@ const CreateGroup = () => {
         </form>
       </div>
     </div>
-  )   
-}
+  );
+};
 
 export default CreateGroup;
