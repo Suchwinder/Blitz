@@ -16,7 +16,7 @@ const CreateGroup = () => {
   return(
     <div className="create-group-page">
       <NavBar/>
-      <div className="body">
+      <div className="text">
         <div>This is your sharable link:
           <div className="boxed"> https://bit.ly/2GyrlZh </div>
           <copy-button target-element=".boxed"></copy-button>

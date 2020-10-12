@@ -1,40 +1,20 @@
+.create-group-page {
+    background-image: linear-gradient(rgba(128, 128, 128, 0.404), rgba(179, 171, 171, 0.63));
+    height: 100vh;
+    width: 100%;
+}
+
+.text {
+    font-size: 20px;
+    color: black;
+    position: static;
+    text-align: center;
+}
+
 .boxed {
-    width: 50%;
-    border: 3px solid green;
+    width: 100%;
     padding: 10px;
-    font-size: small;
-
-}
-
-.body {
-    margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
-    font-size: small;
-}
-
-p2 {
-    font-size: x-small;
-}
-
-.form {
-    font-size: smaller;
-}
-
-.submitButton {
-    margin-left: 30%;
-}
-
-@media screen and (max-width: 960px) {
-    .boxed {
-        width: 75%;
-        border: 3px solid red;
-        
-    }
-    .body {
-        width: auto;
-        border: 3px solid red;
-
-    }
+    font-size: larger;
+    margin: center;
+    font-style: italic;
 }

@@ -12,21 +12,19 @@ const JoinGroup = () => {
     history.push(path);
   }
   return (
-    <header>
       <div className="join-group-page">
         <NavBar />
+        <div className="text">
+          <form>
+            <label className="form" htmlFor="link">
+              Enter your invite link:{" "}
+            </label>
+            <input type="text" id="link" name="link"></input>
+            <br></br>
+            <Button className="button" variant="dark" onClick={routeChange}>Join Your Group</Button>
+          </form>
+        </div>
       </div>
-      <div className="center">
-        <form>
-          <label className="form" htmlFor="link">
-            This is your shareable link:{" "}
-          </label>
-          <input type="text" id="link" name="link"></input>
-          <br></br>
-          <Button className="button" variant="dark" onClick={routeChange}>Join Your Group</Button>
-        </form>
-      </div>
-    </header>
   );
 };
 

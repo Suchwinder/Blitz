@@ -1,15 +1,15 @@
-.center {
-    margin: auto;
-    width: 50%;
-    border: 3px solid green;
-    padding: 10px;
+.main-page {
+    background-image: linear-gradient(rgba(128, 128, 128, 0.404), rgba(179, 171, 171, 0.63));
+    height: 100vh;
+    width: 100%;
 }
 
-@media screen and (max-width: 960px) {
-    .center {
-        margin: auto;
-        width: 50%;
-        border: 3px solid red;
-        padding: 10px;
-    }
+.text {
+    font-size: 20px;
+    color: black;
+    position: static;
+    text-align: center;
 }
+
+ol{ padding-left:0; list-style-position:inside; }
+
