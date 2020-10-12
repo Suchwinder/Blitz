@@ -16,16 +16,14 @@ const JoinGroup = () => {
       <div className="join-group-page">
         <NavBar />
       </div>
-      <div className="text">
+      <div className="center">
         <form>
           <label className="form" htmlFor="link">
-            Enter your shared link to join your group:{" "}
+            This is your shareable link:{" "}
           </label>
           <input type="text" id="link" name="link"></input>
           <br></br>
-          <Button className="button" variant="dark" onClick={routeChange}>
-            Join Your Group
-          </Button>
+          <Button className="button" variant="dark" onClick={routeChange}>Join Your Group</Button>
         </form>
       </div>
     </header>

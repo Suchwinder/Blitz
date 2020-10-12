@@ -1,12 +1,12 @@
-import React from "react";
-import NavBar from "../nav_bar/NavBar";
-import "./MainPage.css";
+import React from 'react';
+import NavBar from '../nav_bar/NavBar'
+import './MainPage.css'
 
 const MainPage = () => {
-  return (
+  return(
     <div className="main-page">
-      <NavBar page="main" />
-      <div className="text">
+      <NavBar page="main"/>
+      <div className="center">
         <h1>What do we do?</h1>
         <p>We help people split the bill.</p>
         <h2>How it works:</h2>
@@ -18,7 +18,8 @@ const MainPage = () => {
         </ol>{" "}
       </div>
     </div>
-  );
-};
+    
+)   
+}
 
 export default MainPage;

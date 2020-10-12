@@ -1,23 +1,3 @@
-.split-bill-page {
-    background-image: url("../images/split_bill.jpg");
-    background-color: #cccccc;
-    height: 1350px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-.text {
-    font-size: 20px;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-}
-
 .column {
     float: left;
     width: 33%;
@@ -45,8 +25,4 @@
 
 .placeholder {
     width: 200px;
-}
-  
-.copy-button {
-    position: relative;
 }

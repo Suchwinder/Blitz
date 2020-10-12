@@ -7,7 +7,7 @@ const SplitBill = () => {
   return(
     <div className="split-bill-page">
       <NavBar/>
-      <div className="text">
+      <div className="body">
         <div>This is your sharable link:
             <div className="boxed"> https://bit.ly/2GyrlZh </div>
             <copy-button target-element=".boxed"></copy-button>
