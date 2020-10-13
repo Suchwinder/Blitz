@@ -5,12 +5,16 @@ import pytesseract, re
 # Uses PytesseractOCR to gather text from images
 # Returns string
 def retrieveStringFromImage(receipt_image):
-    pass
+    img = cv2.imread(receipt_image)
+    receipt_text = pytesseract.image_to_string(img)
+    return receipt_text
 
 # Uses regular expression to get prices
 # Returns list of prices of type string
 def getCosts(receipt_text):
-    pass
+    regex = re.compile('\d+\.\d{1,2}', re.IGNORECASE)
+    price_list = re.findall(regex, receipt_text)
+    return price_list
 
 # Uses regular expression to get items
 # Returns list of items of type string
