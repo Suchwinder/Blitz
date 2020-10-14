@@ -1,0 +1,38 @@
+.split-bill-page {
+    background-image: linear-gradient(rgba(128, 128, 128, 0.404), rgba(179, 171, 171, 0.63));
+    height: 100vh;
+    width: 100%;
+}
+
+.column {
+    float: left;
+    width: 33%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    margin: auto;
+}
+
+.peopleInput {
+    list-style-type:none;
+}
+
+.splitNames {
+    float: left;
+    width: 25%;
+}
+
+.receipt {
+    text-align: center;
+}
+
+.placeholder {
+    width: 300px;
+}
+
+hr {
+    width: 95%;
+}

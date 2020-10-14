@@ -5,8 +5,8 @@ import './MainPage.css'
 const MainPage = () => {
   return(
     <div className="main-page">
-      <NavBar page="main"/>
-      <div className="center">
+      <NavBar/>
+      <div className="text">
         <h1>What do we do?</h1>
         <p>We help people split the bill.</p>
         <h2>How it works:</h2>
