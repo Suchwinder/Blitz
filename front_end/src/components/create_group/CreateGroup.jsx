@@ -1,29 +1,33 @@
 import React from 'react';
 import NavBar from '../nav_bar/NavBar'
 import ChooseFile from '../upload_button/ChooseFile';
-import UploadButton from '../upload_button/UploadButton'
+import { useHistory } from "react-router-dom";
 import './CreateGroup.css'
 
 // Todo: Have to move submit button
 
 const CreateGroup = () => {
+  const history = useHistory();
+
+  const routeChange = () =>{ 
+    let path = `split_bill`; 
+    history.push(path);
+  }
   return(
     <div className="create-group-page">
       <NavBar/>
-      <div className="body">
-        <div>This is your sharable link:
-          <div className="boxed"> https://bit.ly/2GyrlZh </div>
-        </div>
-        <div>Your link expires in 1 day.</div>
+      <div className="text">
+  
+        <div>Creating Your Group</div>
         <br></br>
-        <form action="/BillSplitting.jsx">         
-          <label className="form" htmlFor="names">Input names for the split: </label>
+        <form>         
+          <label className="form" htmlFor="names">Input names for the split: {' '} </label>
           <input type="text" id="names" name="names"></input>
           <br></br>
-          <label className="form" htmlFor="address">Address(optional): </label>
+  <label className="form" htmlFor="address">Address(optional): {' '}</label>
           <input type="text" id="address" name="address"></input>
           <br></br>
-          <label className="form" htmlFor="states">State(optional):</label>
+  <label className="form" htmlFor="states">State(optional): {' '}</label>
           <select>
             <option>Select</option>
             <option value="AL">AL</option>
@@ -80,7 +84,7 @@ const CreateGroup = () => {
           <br></br>
           <br></br>
           <ChooseFile/>
-          <input className="submitButton" type="submit" value="Submit"></input>
+          <input className="submitButton" type="submit" value="Submit" onClick={routeChange}></input>
         </form>
       </div>
     </div>
@@ -88,5 +92,3 @@ const CreateGroup = () => {
 }
 
 export default CreateGroup;
-
-
