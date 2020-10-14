@@ -32,3 +32,7 @@
 .placeholder {
     width: 300px;
 }
+
+hr {
+    width: 95%;
+}
