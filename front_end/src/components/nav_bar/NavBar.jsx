@@ -8,18 +8,14 @@ const NavBar = (props) => {
   const [page, setPage] = useState("");
 
   useEffect(() => {
-    console.log("resetting", page);
     setPage("");
-  });
+  }, [page]);
 
   if (page === "main") {
-    console.log(page);
     return <Redirect to="/" />;
   } else if (page === "create") {
-    console.log(page);
     return <Redirect to="/create_group" />;
   } else if (page === "join") {
-    console.log(page);
     return <Redirect to="/join_group" />;
   }
 
