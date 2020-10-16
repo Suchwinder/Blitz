@@ -16,8 +16,9 @@
     margin: auto;
 }
 
-.peopleInput {
+.innerList {
     list-style-type:none;
+    padding:0%;
 }
 
 .splitNames {

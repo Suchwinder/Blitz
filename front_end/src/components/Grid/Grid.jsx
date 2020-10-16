@@ -34,20 +34,20 @@ export default function AutoGrid() {
         <Grid item xs>
             <Paper className={classes.paper}>
               Items
-                <ol>
+                <ul className="innerList">
                     <li>
                         5 Apples
                     </li>
                     <li>
                         3 Oranges
                     </li>
-                </ol>
+                </ul>
             </Paper>
         </Grid>
         <Grid item xs>
             <Paper className={classes.paper}>
                 Price per Unit
-                <ul className="peopleInput">
+                <ul className="innerList">
                     <li>
                         $3
                     </li>
@@ -60,7 +60,7 @@ export default function AutoGrid() {
         <Grid item xs>
           <Paper className={classes.paper}>
                 People
-                <ul className="peopleInput">
+                <ul className="innerList">
                     <li>
                         <input ></input>
                     </li>
@@ -80,7 +80,7 @@ export default function AutoGrid() {
         <Grid item xs>
           <Paper className={classes.paper}>
               User 1
-              <ul className="peopleInput">
+              <ul className="innerList">
                     <li>
                         1x Apple
                     </li>
@@ -94,7 +94,7 @@ export default function AutoGrid() {
         <Grid item xs>
           <Paper className={classes.paper}>
               User 2
-              <ul className="peopleInput">
+              <ul className="innerList">
                     <li>
                         2x Orange
                     </li>
@@ -108,7 +108,7 @@ export default function AutoGrid() {
         <Grid item xs>
           <Paper className={classes.paper}>
               User 3
-              <ul className="peopleInput">
+              <ul className="innerList">
                     <li>
                         4x Apple
                     </li>
@@ -125,7 +125,7 @@ export default function AutoGrid() {
         <Grid item xs>
           <Paper className={classes.paper}>
               Grand Total
-              <ul className="peopleInput">
+              <ul className="innerList">
                     <li>
                         5x Apple
                     </li>
