@@ -1,11 +1,15 @@
 import React from 'react';
 import NavBar from '../nav_bar/NavBar'
 // import ChooseFile from '../upload_button/ChooseFile';
+import UploadImage from '../upload_button/UploadImage'
 import './CreateGroup.css'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Formik } from 'formik'
 import * as Yup from 'yup';
+
+// https://react-bootstrap.github.io/components/forms/?#forms-validation-libraries
+// https://codesandbox.io/s/vxv6q4z5?file=/index.js
 
 const schema = Yup.object({
   input_users: Yup.string().required(),
@@ -49,7 +53,8 @@ const CreateGroup = () => {
                 onChange={handleChange}
                 value={values.input_users}
                 isValid={touched.input_users && !errors.input_users}
-                as="textarea" rows="1" />
+                as="textarea" rows="1" 
+              />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
@@ -63,7 +68,8 @@ const CreateGroup = () => {
                   name="input_address"
                   onChange={handleChange}
                   value={values.input_address}
-                  as="textarea" rows="1" />
+                  as="textarea" rows="1" 
+                />
               </Form.Group>
 
               <Form.Group className="form-group" controlId="form.select_state">
@@ -127,7 +133,7 @@ const CreateGroup = () => {
                   <option value="Wyoming">Wyoming</option>
                 </Form.Control>
                 <br></br>
-
+                <UploadImage/>
                 <br></br>
                 <Button type="submit"><a className="isDisabled" href="/split_bill">Submit form</a></Button>
               </Form.Group>
