@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
 import '../split_bill/SplitBill'
 
 const useStyles = makeStyles((theme) => ({
@@ -12,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+  },
+  fullWidth: {
+    width: '100%',
   },
 }));
 
@@ -46,7 +50,7 @@ export default function AutoGrid() {
         </Grid>
         <Grid item xs>
             <Paper className={classes.paper}>
-                Price per Unit
+                $/unit
                 <ul className="innerList">
                     <li>
                         $3
@@ -59,15 +63,21 @@ export default function AutoGrid() {
         </Grid>
         <Grid item xs>
           <Paper className={classes.paper}>
-                People
-                <ul className="innerList">
-                    <li>
-                        <input ></input>
-                    </li>
-                    <li>
-                        <input ></input>
-                    </li>
-                </ul>
+            <FormControl>
+                <InputLabel >User 1</InputLabel>
+                <Select>
+                    <MenuItem>Item 1</MenuItem>
+                    <MenuItem>Item 2</MenuItem>
+                </Select>
+            </FormControl>
+            <br></br>
+            <FormControl>
+                <InputLabel >User 2</InputLabel>
+                <Select>
+                    <MenuItem>Item 1</MenuItem>
+                    <MenuItem>Item 2</MenuItem>
+                </Select>
+            </FormControl>
           </Paper>
         </Grid>
       </Grid>
