@@ -19,7 +19,9 @@ def getCosts(receipt_text):
 # Uses regular expression to get items
 # Returns list of items of type string
 def getItems(receipt_text):
-    pass
+    regex = re.compile('([^\n]*\n+)', re.IGNORECASE)
+    items_list = re.findall(regex, receipt_text)
+    return items_list
 
 # Create item & price pairs
 # Returns list of pairs
