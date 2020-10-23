@@ -1,6 +1,6 @@
 from cv2 import cv2
 import numpy as np
-import pytesseract, re
+import pytesseract, re, json
 
 # Uses PytesseractOCR to gather text from images
 # Returns string
@@ -24,9 +24,10 @@ def getItems(receipt_text):
     return items_list
 
 # Create item & price pairs
-# Returns list of pairs
+# Returns dictionary of item: price
 def createItemCostPairs(items_list, price_list):
-    pass
+    res_dict = dict(zip(items_list, price_list))
+    return res_dict
 
 # Create pairs for subtotal, tax, total
 # Returns list of pairs
