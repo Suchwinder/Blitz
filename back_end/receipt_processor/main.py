@@ -18,7 +18,7 @@ Uses regular expression to get prices
 @return: list of prices of type string
 '''
 def getCosts(receipt_text):
-    regex = re.compile('\d+\.\d{1,2}', re.IGNORECASE)
+    regex = re.compile(r'\d+\.\d{1,2}', re.IGNORECASE)
     price_list = re.findall(regex, receipt_text)
     return price_list
 
@@ -58,7 +58,11 @@ Cleans up prices of extraneous characters and converts to float
 @return: list of prices of type float
 '''
 def cleanUpAndConvertPrices(prices_list):
-    pass
+    prices_ = []
+    for i in range(len(prices_list)):
+        prices_.append(float(re.sub(r'[^\d|\.]', '', prices_list[i])))
+    return prices_
+
 
 # Main function to run code
 def main():
