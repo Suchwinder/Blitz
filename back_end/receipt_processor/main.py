@@ -35,7 +35,7 @@ def getItems(receipt_text):
 '''
 Create item & price pairs
 @param: item_list is the list of items of type string
-@param: price_list is the list of prices of type string
+@param: price_list is the list of prices of type float
 @returns dictionary of "item": price
 '''
 def createItemCostPairs(items_list, price_list):
@@ -46,7 +46,7 @@ def createItemCostPairs(items_list, price_list):
 '''
 Create pairs for subtotal, tax, total
 @param: item_list is the list of items of type string
-@param: price_list is the list of prices of type string
+@param: price_list is the list of prices of type float
 @returns dictionary of "item": price
 '''
 def getTotalsPair(items_list, price_list):
