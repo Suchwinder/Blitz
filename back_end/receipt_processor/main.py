@@ -63,6 +63,14 @@ def cleanUpAndConvertPrices(prices_list):
         prices_.append(float(re.sub(r'[^\d|\.]', '', prices_list[i])))
     return prices_
 
+'''
+Creates JSON of the the item:price pairs
+@param: dictionary of "item": price
+@return: JSON of "item": price
+'''
+def createItemsJSON(res_dict):
+    json_res = json.dumps(res_dict)
+    return json_res
 
 # Main function to run code
 def main():
