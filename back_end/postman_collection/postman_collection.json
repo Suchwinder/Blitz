@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"imag\": \"/Users/Suchwinder/Downloads/david.jpeg\"\n}",
+					"raw": "{\n   \"image\": \"\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
