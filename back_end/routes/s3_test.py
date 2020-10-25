@@ -1,26 +1,23 @@
 from flask import Blueprint, request # create a blueprint for the routes to be registered to, not necessary but ood for modularization of routes
-from back_end.models import create_db_connection, Groups # calling our helper function to create a connection to the databse to execute a request
+from models import create_db_connection, Groups # calling our helper function to create a connection to the databse to execute a request
 from botocore.exceptions import ClientError # for exception handling
 import random, string, os, boto3, logging
 
 # used to group a bunch of relted views together
 # views in this case can count as code written to create various endpoints
-bp = Blueprint('create_group', __name__, url_prefix='/api')
+bp = Blueprint('upload', __name__, url_prefix='/api')
 
-@bp.route('/create', methods=("POST"))
-def create_group():
+@bp.route('/upload', methods=["POST"])
+def upload():
     db_connection = create_db_connection()
     if db_connection:
         data = request.get_json()
 
+        print(data)
+        print(data["imag"])
+
         # gather data
-        users = data.names
-        street_address = data.streetAddress
-        state = "NY"
-        city = data.city
-        location_name = data.locationName
-        zip = data.zip
-        image = data.image
+        img = data["imag"]
 
         # Need to use Boto3 to use AWS services
         AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
@@ -39,37 +36,23 @@ def create_group():
         # WE SHOULDNT NEED TO CREATE A S3 CONNECTION AND JUST STORE IN DB
         # ANY EMPTY STRING; COULD BE BETTER TO DO IF BEFORE SO ERROR HANDLING BETTER
 
-        if len(image) > 0:
+        if len(img) > 0:
             try:
                 # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html
-                response = s3.upload_file(image, BUCKET, image) # (our image, name of aws bucket, and no object url so use same image), returns true or false
-                object_url = f"https://{BUCKET}.s3.amazonaws.com/{image}"
+                response = s3.upload_file(img, BUCKET, "testingRohan.jpeg") # (our img, name of aws bucket, and no object url so use same img), returns true or false
+                object_url = f"https://{BUCKET}.s3.amazonaws.com/{img}"
 
             except ClientError as e:
                 logging.error(e)
                 result = {'error': 'Image Upload Failed'}
                 return result, 400
         
+        print(object_url)
+        db_connection.close()
+
+        return {"success":f"{object_url}"}, 200
         # image uploaded now can start doing all appropriate insertions
-        
-
-        # new_group = Groups()
-        # some means to store image 
-        # processing for items?
-
-        # get state info from zip, and id, and taxrate
-        # insert the information
-        # store image on CDN
-
-        #once stored need random link in response
-        letters = ''.join(random.choice(string.ascii_letters) for i in range(26))
-        digits = ''.join(random.choice(string.digits) for i in range(10))
-        result_string = letters + '_' + digits
-        response = {'link': result_string
-                    'id': }
 
     else:
         result = {'error': 'Connection to Dataabse Failed'}
         return result, 400
-    
-    db_connection.close()

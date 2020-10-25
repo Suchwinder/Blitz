@@ -1,6 +1,6 @@
 from flask import Flask
 from models import bootDB
-# from back_end.routes import create_group, join_group
+from routes import s3_test #create_group, join_group, s3_test
 
 def create_app():
     bootDB() #start database (good to do database boot before app to ensure it exists before app works)
@@ -8,5 +8,6 @@ def create_app():
 
     # app.register_blueprint(create_group.bp)
     # app.register_blueprint(join_group.bp)
+    app.register_blueprint(s3_test.bp)
 
     return app
