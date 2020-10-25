@@ -1,5 +1,5 @@
 from flask import Blueprint, request # create a blueprint for the routes to be registered to, not necessary but ood for modularization of routes
-from back_end.models import create_db_connection, Groups # calling our helper function to create a connection to the databse to execute a request
+from models import create_db_connection, Groups # calling our helper function to create a connection to the databse to execute a request
 
 bp = Blueprint('join_group', __name__, url_prefix='/api')
 
