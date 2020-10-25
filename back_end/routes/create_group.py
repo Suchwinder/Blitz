@@ -69,7 +69,7 @@ def create_group():
                     'id': }
 
     else:
-        result = {'error': 'Connection to Dataabse Failed'}
+        result = {'error': 'Connection to Database Failed'}
         return result, 400
     
     db_connection.close()

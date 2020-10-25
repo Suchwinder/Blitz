@@ -53,5 +53,5 @@ def upload():
         # image uploaded now can start doing all appropriate insertions
 
     else:
-        result = {'error': 'Connection to Dataabse Failed'}
+        result = {'error': 'Connection to Database Failed'}
         return result, 400

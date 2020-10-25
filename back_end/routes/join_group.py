@@ -41,5 +41,5 @@ def join_group():
         
 
     else:
-        result = {'error': 'Connection to Dataabse Failed'}
+        result = {'error': 'Connection to Database Failed'}
         return result, 400
