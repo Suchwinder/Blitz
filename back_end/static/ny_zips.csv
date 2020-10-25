@@ -1,0 +1,1795 @@
+zip,city,state_id
+6390,Fishers Island,NY
+10001,New York,NY
+10002,New York,NY
+10003,New York,NY
+10004,New York,NY
+10005,New York,NY
+10006,New York,NY
+10007,New York,NY
+10009,New York,NY
+10010,New York,NY
+10011,New York,NY
+10012,New York,NY
+10013,New York,NY
+10014,New York,NY
+10016,New York,NY
+10017,New York,NY
+10018,New York,NY
+10019,New York,NY
+10020,New York,NY
+10021,New York,NY
+10022,New York,NY
+10023,New York,NY
+10024,New York,NY
+10025,New York,NY
+10026,New York,NY
+10027,New York,NY
+10028,New York,NY
+10029,New York,NY
+10030,New York,NY
+10031,New York,NY
+10032,New York,NY
+10033,New York,NY
+10034,New York,NY
+10035,New York,NY
+10036,New York,NY
+10037,New York,NY
+10038,New York,NY
+10039,New York,NY
+10040,New York,NY
+10044,New York,NY
+10065,New York,NY
+10069,New York,NY
+10075,New York,NY
+10103,New York,NY
+10110,New York,NY
+10111,New York,NY
+10112,New York,NY
+10115,New York,NY
+10119,New York,NY
+10128,New York,NY
+10152,New York,NY
+10153,New York,NY
+10154,New York,NY
+10162,New York,NY
+10165,New York,NY
+10167,New York,NY
+10168,New York,NY
+10169,New York,NY
+10170,New York,NY
+10171,New York,NY
+10172,New York,NY
+10173,New York,NY
+10174,New York,NY
+10177,New York,NY
+10199,New York,NY
+10271,New York,NY
+10278,New York,NY
+10279,New York,NY
+10280,New York,NY
+10282,New York,NY
+10301,Staten Island,NY
+10302,Staten Island,NY
+10303,Staten Island,NY
+10304,Staten Island,NY
+10305,Staten Island,NY
+10306,Staten Island,NY
+10307,Staten Island,NY
+10308,Staten Island,NY
+10309,Staten Island,NY
+10310,Staten Island,NY
+10311,Staten Island,NY
+10312,Staten Island,NY
+10314,Staten Island,NY
+10451,Bronx,NY
+10452,Bronx,NY
+10453,Bronx,NY
+10454,Bronx,NY
+10455,Bronx,NY
+10456,Bronx,NY
+10457,Bronx,NY
+10458,Bronx,NY
+10459,Bronx,NY
+10460,Bronx,NY
+10461,Bronx,NY
+10462,Bronx,NY
+10463,Bronx,NY
+10464,Bronx,NY
+10465,Bronx,NY
+10466,Bronx,NY
+10467,Bronx,NY
+10468,Bronx,NY
+10469,Bronx,NY
+10470,Bronx,NY
+10471,Bronx,NY
+10472,Bronx,NY
+10473,Bronx,NY
+10474,Bronx,NY
+10475,Bronx,NY
+10501,Amawalk,NY
+10502,Ardsley,NY
+10503,Ardsley On Hudson,NY
+10504,Armonk,NY
+10505,Baldwin Place,NY
+10506,Bedford,NY
+10507,Bedford Hills,NY
+10509,Brewster,NY
+10510,Briarcliff Manor,NY
+10511,Buchanan,NY
+10512,Carmel,NY
+10514,Chappaqua,NY
+10516,Cold Spring,NY
+10517,Crompond,NY
+10518,Cross River,NY
+10519,Croton Falls,NY
+10520,Croton On Hudson,NY
+10522,Dobbs Ferry,NY
+10523,Elmsford,NY
+10524,Garrison,NY
+10526,Goldens Bridge,NY
+10527,Granite Springs,NY
+10528,Harrison,NY
+10530,Hartsdale,NY
+10532,Hawthorne,NY
+10533,Irvington,NY
+10535,Jefferson Valley,NY
+10536,Katonah,NY
+10537,Lake Peekskill,NY
+10538,Larchmont,NY
+10541,Mahopac,NY
+10543,Mamaroneck,NY
+10545,Maryknoll,NY
+10546,Millwood,NY
+10547,Mohegan Lake,NY
+10548,Montrose,NY
+10549,Mount Kisco,NY
+10550,Mount Vernon,NY
+10552,Mount Vernon,NY
+10553,Mount Vernon,NY
+10560,North Salem,NY
+10562,Ossining,NY
+10566,Peekskill,NY
+10567,Cortlandt Manor,NY
+10570,Pleasantville,NY
+10573,Port Chester,NY
+10576,Pound Ridge,NY
+10577,Purchase,NY
+10578,Purdys,NY
+10579,Putnam Valley,NY
+10580,Rye,NY
+10583,Scarsdale,NY
+10588,Shrub Oak,NY
+10589,Somers,NY
+10590,South Salem,NY
+10591,Tarrytown,NY
+10594,Thornwood,NY
+10595,Valhalla,NY
+10596,Verplanck,NY
+10597,Waccabuc,NY
+10598,Yorktown Heights,NY
+10601,White Plains,NY
+10603,White Plains,NY
+10604,West Harrison,NY
+10605,White Plains,NY
+10606,White Plains,NY
+10607,White Plains,NY
+10701,Yonkers,NY
+10703,Yonkers,NY
+10704,Yonkers,NY
+10705,Yonkers,NY
+10706,Hastings On Hudson,NY
+10707,Tuckahoe,NY
+10708,Bronxville,NY
+10709,Eastchester,NY
+10710,Yonkers,NY
+10801,New Rochelle,NY
+10803,Pelham,NY
+10804,New Rochelle,NY
+10805,New Rochelle,NY
+10901,Suffern,NY
+10910,Arden,NY
+10911,Bear Mountain,NY
+10913,Blauvelt,NY
+10914,Blooming Grove,NY
+10915,Bullville,NY
+10916,Campbell Hall,NY
+10917,Central Valley,NY
+10918,Chester,NY
+10919,Circleville,NY
+10920,Congers,NY
+10921,Florida,NY
+10922,Fort Montgomery,NY
+10923,Garnerville,NY
+10924,Goshen,NY
+10925,Greenwood Lake,NY
+10926,Harriman,NY
+10927,Haverstraw,NY
+10928,Highland Falls,NY
+10930,Highland Mills,NY
+10931,Hillburn,NY
+10932,Howells,NY
+10933,Johnson,NY
+10940,Middletown,NY
+10941,Middletown,NY
+10950,Monroe,NY
+10952,Monsey,NY
+10953,Mountainville,NY
+10954,Nanuet,NY
+10956,New City,NY
+10958,New Hampton,NY
+10960,Nyack,NY
+10962,Orangeburg,NY
+10963,Otisville,NY
+10964,Palisades,NY
+10965,Pearl River,NY
+10968,Piermont,NY
+10969,Pine Island,NY
+10970,Pomona,NY
+10973,Slate Hill,NY
+10974,Sloatsburg,NY
+10975,Southfields,NY
+10976,Sparkill,NY
+10977,Spring Valley,NY
+10979,Sterling Forest,NY
+10980,Stony Point,NY
+10983,Tappan,NY
+10984,Thiells,NY
+10985,Thompson Ridge,NY
+10986,Tomkins Cove,NY
+10987,Tuxedo Park,NY
+10988,Unionville,NY
+10989,Valley Cottage,NY
+10990,Warwick,NY
+10992,Washingtonville,NY
+10993,West Haverstraw,NY
+10994,West Nyack,NY
+10996,West Point,NY
+10998,Westtown,NY
+11001,Floral Park,NY
+11003,Elmont,NY
+11004,Glen Oaks,NY
+11005,Floral Park,NY
+11010,Franklin Square,NY
+11020,Great Neck,NY
+11021,Great Neck,NY
+11023,Great Neck,NY
+11024,Great Neck,NY
+11030,Manhasset,NY
+11040,New Hyde Park,NY
+11042,New Hyde Park,NY
+11050,Port Washington,NY
+11096,Inwood,NY
+11101,Long Island City,NY
+11102,Astoria,NY
+11103,Astoria,NY
+11104,Sunnyside,NY
+11105,Astoria,NY
+11106,Astoria,NY
+11109,Long Island City,NY
+11201,Brooklyn,NY
+11203,Brooklyn,NY
+11204,Brooklyn,NY
+11205,Brooklyn,NY
+11206,Brooklyn,NY
+11207,Brooklyn,NY
+11208,Brooklyn,NY
+11209,Brooklyn,NY
+11210,Brooklyn,NY
+11211,Brooklyn,NY
+11212,Brooklyn,NY
+11213,Brooklyn,NY
+11214,Brooklyn,NY
+11215,Brooklyn,NY
+11216,Brooklyn,NY
+11217,Brooklyn,NY
+11218,Brooklyn,NY
+11219,Brooklyn,NY
+11220,Brooklyn,NY
+11221,Brooklyn,NY
+11222,Brooklyn,NY
+11223,Brooklyn,NY
+11224,Brooklyn,NY
+11225,Brooklyn,NY
+11226,Brooklyn,NY
+11228,Brooklyn,NY
+11229,Brooklyn,NY
+11230,Brooklyn,NY
+11231,Brooklyn,NY
+11232,Brooklyn,NY
+11233,Brooklyn,NY
+11234,Brooklyn,NY
+11235,Brooklyn,NY
+11236,Brooklyn,NY
+11237,Brooklyn,NY
+11238,Brooklyn,NY
+11239,Brooklyn,NY
+11351,Flushing,NY
+11354,Flushing,NY
+11355,Flushing,NY
+11356,College Point,NY
+11357,Whitestone,NY
+11358,Flushing,NY
+11359,Bayside,NY
+11360,Bayside,NY
+11361,Bayside,NY
+11362,Little Neck,NY
+11363,Little Neck,NY
+11364,Oakland Gardens,NY
+11365,Fresh Meadows,NY
+11366,Fresh Meadows,NY
+11367,Flushing,NY
+11368,Corona,NY
+11369,East Elmhurst,NY
+11370,East Elmhurst,NY
+11371,Flushing,NY
+11372,Jackson Heights,NY
+11373,Elmhurst,NY
+11374,Rego Park,NY
+11375,Forest Hills,NY
+11377,Woodside,NY
+11378,Maspeth,NY
+11379,Middle Village,NY
+11385,Ridgewood,NY
+11411,Cambria Heights,NY
+11412,Saint Albans,NY
+11413,Springfield Gardens,NY
+11414,Howard Beach,NY
+11415,Kew Gardens,NY
+11416,Ozone Park,NY
+11417,Ozone Park,NY
+11418,Richmond Hill,NY
+11419,South Richmond Hill,NY
+11420,South Ozone Park,NY
+11421,Woodhaven,NY
+11422,Rosedale,NY
+11423,Hollis,NY
+11424,Jamaica,NY
+11425,Jamaica,NY
+11426,Bellerose,NY
+11427,Queens Village,NY
+11428,Queens Village,NY
+11429,Queens Village,NY
+11430,Jamaica,NY
+11432,Jamaica,NY
+11433,Jamaica,NY
+11434,Jamaica,NY
+11435,Jamaica,NY
+11436,Jamaica,NY
+11451,Jamaica,NY
+11501,Mineola,NY
+11507,Albertson,NY
+11509,Atlantic Beach,NY
+11510,Baldwin,NY
+11514,Carle Place,NY
+11516,Cedarhurst,NY
+11518,East Rockaway,NY
+11520,Freeport,NY
+11530,Garden City,NY
+11542,Glen Cove,NY
+11545,Glen Head,NY
+11547,Glenwood Landing,NY
+11548,Greenvale,NY
+11549,Hempstead,NY
+11550,Hempstead,NY
+11552,West Hempstead,NY
+11553,Uniondale,NY
+11554,East Meadow,NY
+11556,Uniondale,NY
+11557,Hewlett,NY
+11558,Island Park,NY
+11559,Lawrence,NY
+11560,Locust Valley,NY
+11561,Long Beach,NY
+11563,Lynbrook,NY
+11565,Malverne,NY
+11566,Merrick,NY
+11568,Old Westbury,NY
+11569,Point Lookout,NY
+11570,Rockville Centre,NY
+11572,Oceanside,NY
+11575,Roosevelt,NY
+11576,Roslyn,NY
+11577,Roslyn Heights,NY
+11579,Sea Cliff,NY
+11580,Valley Stream,NY
+11581,Valley Stream,NY
+11590,Westbury,NY
+11596,Williston Park,NY
+11598,Woodmere,NY
+11691,Far Rockaway,NY
+11692,Arverne,NY
+11693,Far Rockaway,NY
+11694,Rockaway Park,NY
+11697,Breezy Point,NY
+11701,Amityville,NY
+11702,Babylon,NY
+11703,North Babylon,NY
+11704,West Babylon,NY
+11705,Bayport,NY
+11706,Bay Shore,NY
+11709,Bayville,NY
+11710,Bellmore,NY
+11713,Bellport,NY
+11714,Bethpage,NY
+11715,Blue Point,NY
+11716,Bohemia,NY
+11717,Brentwood,NY
+11718,Brightwaters,NY
+11719,Brookhaven,NY
+11720,Centereach,NY
+11721,Centerport,NY
+11722,Central Islip,NY
+11724,Cold Spring Harbor,NY
+11725,Commack,NY
+11726,Copiague,NY
+11727,Coram,NY
+11729,Deer Park,NY
+11730,East Islip,NY
+11731,East Northport,NY
+11732,East Norwich,NY
+11733,East Setauket,NY
+11735,Farmingdale,NY
+11738,Farmingville,NY
+11739,Great River,NY
+11740,Greenlawn,NY
+11741,Holbrook,NY
+11742,Holtsville,NY
+11743,Huntington,NY
+11746,Huntington Station,NY
+11747,Melville,NY
+11749,Islandia,NY
+11751,Islip,NY
+11752,Islip Terrace,NY
+11753,Jericho,NY
+11754,Kings Park,NY
+11755,Lake Grove,NY
+11756,Levittown,NY
+11757,Lindenhurst,NY
+11758,Massapequa,NY
+11762,Massapequa Park,NY
+11763,Medford,NY
+11764,Miller Place,NY
+11765,Mill Neck,NY
+11766,Mount Sinai,NY
+11767,Nesconset,NY
+11768,Northport,NY
+11769,Oakdale,NY
+11770,Ocean Beach,NY
+11771,Oyster Bay,NY
+11772,Patchogue,NY
+11776,Port Jefferson Station,NY
+11777,Port Jefferson,NY
+11778,Rocky Point,NY
+11779,Ronkonkoma,NY
+11780,Saint James,NY
+11782,Sayville,NY
+11783,Seaford,NY
+11784,Selden,NY
+11786,Shoreham,NY
+11787,Smithtown,NY
+11788,Hauppauge,NY
+11789,Sound Beach,NY
+11790,Stony Brook,NY
+11791,Syosset,NY
+11792,Wading River,NY
+11793,Wantagh,NY
+11794,Stony Brook,NY
+11795,West Islip,NY
+11796,West Sayville,NY
+11797,Woodbury,NY
+11798,Wyandanch,NY
+11801,Hicksville,NY
+11803,Plainview,NY
+11804,Old Bethpage,NY
+11901,Riverhead,NY
+11930,Amagansett,NY
+11931,Aquebogue,NY
+11932,Bridgehampton,NY
+11933,Calverton,NY
+11934,Center Moriches,NY
+11935,Cutchogue,NY
+11937,East Hampton,NY
+11939,East Marion,NY
+11940,East Moriches,NY
+11941,Eastport,NY
+11942,East Quogue,NY
+11944,Greenport,NY
+11946,Hampton Bays,NY
+11947,Jamesport,NY
+11948,Laurel,NY
+11949,Manorville,NY
+11950,Mastic,NY
+11951,Mastic Beach,NY
+11952,Mattituck,NY
+11953,Middle Island,NY
+11954,Montauk,NY
+11955,Moriches,NY
+11956,New Suffolk,NY
+11957,Orient,NY
+11958,Peconic,NY
+11959,Quogue,NY
+11960,Remsenburg,NY
+11961,Ridge,NY
+11962,Sagaponack,NY
+11963,Sag Harbor,NY
+11964,Shelter Island,NY
+11965,Shelter Island Heights,NY
+11967,Shirley,NY
+11968,Southampton,NY
+11970,South Jamesport,NY
+11971,Southold,NY
+11972,Speonk,NY
+11973,Upton,NY
+11975,Wainscott,NY
+11976,Water Mill,NY
+11977,Westhampton,NY
+11978,Westhampton Beach,NY
+11980,Yaphank,NY
+12007,Alcove,NY
+12008,Alplaus,NY
+12009,Altamont,NY
+12010,Amsterdam,NY
+12015,Athens,NY
+12017,Austerlitz,NY
+12018,Averill Park,NY
+12019,Ballston Lake,NY
+12020,Ballston Spa,NY
+12022,Berlin,NY
+12023,Berne,NY
+12024,Brainard,NY
+12025,Broadalbin,NY
+12027,Burnt Hills,NY
+12028,Buskirk,NY
+12029,Canaan,NY
+12031,Carlisle,NY
+12032,Caroga Lake,NY
+12033,Castleton On Hudson,NY
+12035,Central Bridge,NY
+12036,Charlotteville,NY
+12037,Chatham,NY
+12040,Cherry Plain,NY
+12041,Clarksville,NY
+12042,Climax,NY
+12043,Cobleskill,NY
+12045,Coeymans,NY
+12046,Coeymans Hollow,NY
+12047,Cohoes,NY
+12051,Coxsackie,NY
+12052,Cropseyville,NY
+12053,Delanson,NY
+12054,Delmar,NY
+12056,Duanesburg,NY
+12057,Eagle Bridge,NY
+12058,Earlton,NY
+12059,East Berne,NY
+12060,East Chatham,NY
+12061,East Greenbush,NY
+12062,East Nassau,NY
+12063,East Schodack,NY
+12064,East Worcester,NY
+12065,Clifton Park,NY
+12066,Esperance,NY
+12067,Feura Bush,NY
+12068,Fonda,NY
+12069,Fort Hunter,NY
+12070,Fort Johnson,NY
+12071,Fultonham,NY
+12072,Fultonville,NY
+12074,Galway,NY
+12075,Ghent,NY
+12076,Gilboa,NY
+12077,Glenmont,NY
+12078,Gloversville,NY
+12083,Greenville,NY
+12084,Guilderland,NY
+12085,Guilderland Center,NY
+12086,Hagaman,NY
+12087,Hannacroix,NY
+12089,Hoosick,NY
+12090,Hoosick Falls,NY
+12092,Howes Cave,NY
+12093,Jefferson,NY
+12094,Johnsonville,NY
+12095,Johnstown,NY
+12106,Kinderhook,NY
+12108,Lake Pleasant,NY
+12110,Latham,NY
+12115,Malden Bridge,NY
+12116,Maryland,NY
+12117,Mayfield,NY
+12118,Mechanicville,NY
+12120,Medusa,NY
+12121,Melrose,NY
+12122,Middleburgh,NY
+12123,Nassau,NY
+12124,New Baltimore,NY
+12125,New Lebanon,NY
+12130,Niverville,NY
+12131,North Blenheim,NY
+12132,North Chatham,NY
+12134,Northville,NY
+12136,Old Chatham,NY
+12137,Pattersonville,NY
+12138,Petersburg,NY
+12139,Piseco,NY
+12140,Poestenkill,NY
+12143,Ravena,NY
+12144,Rensselaer,NY
+12147,Rensselaerville,NY
+12148,Rexford,NY
+12149,Richmondville,NY
+12150,Rotterdam Junction,NY
+12151,Round Lake,NY
+12153,Sand Lake,NY
+12154,Schaghticoke,NY
+12155,Schenevus,NY
+12156,Schodack Landing,NY
+12157,Schoharie,NY
+12158,Selkirk,NY
+12159,Slingerlands,NY
+12160,Sloansville,NY
+12161,South Bethlehem,NY
+12164,Speculator,NY
+12165,Spencertown,NY
+12166,Sprakers,NY
+12167,Stamford,NY
+12168,Stephentown,NY
+12169,Stephentown,NY
+12170,Stillwater,NY
+12172,Stottville,NY
+12173,Stuyvesant,NY
+12174,Stuyvesant Falls,NY
+12175,Summit,NY
+12176,Surprise,NY
+12177,Tribes Hill,NY
+12180,Troy,NY
+12182,Troy,NY
+12183,Troy,NY
+12184,Valatie,NY
+12185,Valley Falls,NY
+12186,Voorheesville,NY
+12187,Warnerville,NY
+12188,Waterford,NY
+12189,Watervliet,NY
+12190,Wells,NY
+12192,West Coxsackie,NY
+12193,Westerlo,NY
+12194,West Fulton,NY
+12195,West Lebanon,NY
+12196,West Sand Lake,NY
+12197,Worcester,NY
+12198,Wynantskill,NY
+12202,Albany,NY
+12203,Albany,NY
+12204,Albany,NY
+12205,Albany,NY
+12206,Albany,NY
+12207,Albany,NY
+12208,Albany,NY
+12209,Albany,NY
+12210,Albany,NY
+12211,Albany,NY
+12222,Albany,NY
+12302,Schenectady,NY
+12303,Schenectady,NY
+12304,Schenectady,NY
+12305,Schenectady,NY
+12306,Schenectady,NY
+12307,Schenectady,NY
+12308,Schenectady,NY
+12309,Schenectady,NY
+12401,Kingston,NY
+12404,Accord,NY
+12405,Acra,NY
+12406,Arkville,NY
+12407,Ashland,NY
+12409,Bearsville,NY
+12410,Big Indian,NY
+12411,Bloomington,NY
+12412,Boiceville,NY
+12413,Cairo,NY
+12414,Catskill,NY
+12416,Chichester,NY
+12417,Connelly,NY
+12418,Cornwallville,NY
+12419,Cottekill,NY
+12420,Cragsmoor,NY
+12421,Denver,NY
+12422,Durham,NY
+12423,East Durham,NY
+12424,East Jewett,NY
+12427,Elka Park,NY
+12428,Ellenville,NY
+12429,Esopus,NY
+12430,Fleischmanns,NY
+12431,Freehold,NY
+12432,Glasco,NY
+12433,Glenford,NY
+12434,Grand Gorge,NY
+12435,Greenfield Park,NY
+12436,Haines Falls,NY
+12438,Halcottsville,NY
+12439,Hensonville,NY
+12440,High Falls,NY
+12441,Highmount,NY
+12442,Hunter,NY
+12443,Hurley,NY
+12444,Jewett,NY
+12446,Kerhonkson,NY
+12448,Lake Hill,NY
+12449,Lake Katrine,NY
+12450,Lanesville,NY
+12451,Leeds,NY
+12452,Lexington,NY
+12453,Malden On Hudson,NY
+12454,Maplecrest,NY
+12455,Margaretville,NY
+12456,Mount Marion,NY
+12457,Mount Tremper,NY
+12458,Napanoch,NY
+12459,New Kingston,NY
+12460,Oak Hill,NY
+12461,Olivebridge,NY
+12463,Palenville,NY
+12464,Phoenicia,NY
+12465,Pine Hill,NY
+12466,Port Ewen,NY
+12468,Prattsville,NY
+12469,Preston Hollow,NY
+12470,Purling,NY
+12471,Rifton,NY
+12472,Rosendale,NY
+12473,Round Top,NY
+12474,Roxbury,NY
+12475,Ruby,NY
+12477,Saugerties,NY
+12480,Shandaken,NY
+12481,Shokan,NY
+12482,South Cairo,NY
+12483,Spring Glen,NY
+12484,Stone Ridge,NY
+12485,Tannersville,NY
+12486,Tillson,NY
+12487,Ulster Park,NY
+12489,Wawarsing,NY
+12490,West Camp,NY
+12491,West Hurley,NY
+12492,West Kill,NY
+12493,West Park,NY
+12494,West Shokan,NY
+12495,Willow,NY
+12496,Windham,NY
+12498,Woodstock,NY
+12501,Amenia,NY
+12502,Ancram,NY
+12503,Ancramdale,NY
+12504,Annandale On Hudson,NY
+12507,Barrytown,NY
+12508,Beacon,NY
+12512,Chelsea,NY
+12513,Claverack,NY
+12514,Clinton Corners,NY
+12515,Clintondale,NY
+12516,Copake,NY
+12517,Copake Falls,NY
+12518,Cornwall,NY
+12520,Cornwall On Hudson,NY
+12521,Craryville,NY
+12522,Dover Plains,NY
+12523,Elizaville,NY
+12524,Fishkill,NY
+12525,Gardiner,NY
+12526,Germantown,NY
+12527,Glenham,NY
+12528,Highland,NY
+12529,Hillsdale,NY
+12530,Hollowville,NY
+12531,Holmes,NY
+12533,Hopewell Junction,NY
+12534,Hudson,NY
+12538,Hyde Park,NY
+12540,Lagrangeville,NY
+12542,Marlboro,NY
+12543,Maybrook,NY
+12545,Millbrook,NY
+12546,Millerton,NY
+12547,Milton,NY
+12548,Modena,NY
+12549,Montgomery,NY
+12550,Newburgh,NY
+12553,New Windsor,NY
+12561,New Paltz,NY
+12563,Patterson,NY
+12564,Pawling,NY
+12565,Philmont,NY
+12566,Pine Bush,NY
+12567,Pine Plains,NY
+12569,Pleasant Valley,NY
+12570,Poughquag,NY
+12571,Red Hook,NY
+12572,Rhinebeck,NY
+12574,Rhinecliff,NY
+12575,Rock Tavern,NY
+12577,Salisbury Mills,NY
+12578,Salt Point,NY
+12580,Staatsburg,NY
+12581,Stanfordville,NY
+12582,Stormville,NY
+12583,Tivoli,NY
+12585,Verbank,NY
+12586,Walden,NY
+12589,Wallkill,NY
+12590,Wappingers Falls,NY
+12592,Wassaic,NY
+12594,Wingdale,NY
+12601,Poughkeepsie,NY
+12603,Poughkeepsie,NY
+12604,Poughkeepsie,NY
+12701,Monticello,NY
+12719,Barryville,NY
+12720,Bethel,NY
+12721,Bloomingburg,NY
+12722,Burlingham,NY
+12723,Callicoon,NY
+12724,Callicoon Center,NY
+12725,Claryville,NY
+12726,Cochecton,NY
+12729,Cuddebackville,NY
+12732,Eldred,NY
+12733,Fallsburg,NY
+12734,Ferndale,NY
+12736,Fremont Center,NY
+12737,Glen Spey,NY
+12738,Glen Wild,NY
+12740,Grahamsville,NY
+12741,Hankins,NY
+12742,Harris,NY
+12743,Highland Lake,NY
+12745,Hortonville,NY
+12746,Huguenot,NY
+12747,Hurleyville,NY
+12748,Jeffersonville,NY
+12749,Kauneonga Lake,NY
+12750,Kenoza Lake,NY
+12751,Kiamesha Lake,NY
+12752,Lake Huntington,NY
+12754,Liberty,NY
+12758,Livingston Manor,NY
+12759,Loch Sheldrake,NY
+12760,Long Eddy,NY
+12762,Mongaup Valley,NY
+12763,Mountain Dale,NY
+12764,Narrowsburg,NY
+12765,Neversink,NY
+12766,North Branch,NY
+12767,Obernburg,NY
+12768,Parksville,NY
+12769,Phillipsport,NY
+12770,Pond Eddy,NY
+12771,Port Jervis,NY
+12775,Rock Hill,NY
+12776,Roscoe,NY
+12777,Forestburgh,NY
+12778,Smallwood,NY
+12779,South Fallsburg,NY
+12780,Sparrow Bush,NY
+12781,Summitville,NY
+12783,Swan Lake,NY
+12784,Thompsonville,NY
+12785,Westbrookville,NY
+12786,White Lake,NY
+12787,White Sulphur Springs,NY
+12788,Woodbourne,NY
+12789,Woodridge,NY
+12790,Wurtsboro,NY
+12791,Youngsville,NY
+12792,Yulan,NY
+12801,Glens Falls,NY
+12803,South Glens Falls,NY
+12804,Queensbury,NY
+12808,Adirondack,NY
+12809,Argyle,NY
+12810,Athol,NY
+12811,Bakers Mills,NY
+12812,Blue Mountain Lake,NY
+12814,Bolton Landing,NY
+12815,Brant Lake,NY
+12816,Cambridge,NY
+12817,Chestertown,NY
+12819,Clemons,NY
+12821,Comstock,NY
+12822,Corinth,NY
+12823,Cossayuna,NY
+12824,Diamond Point,NY
+12827,Fort Ann,NY
+12828,Fort Edward,NY
+12831,Gansevoort,NY
+12832,Granville,NY
+12833,Greenfield Center,NY
+12834,Greenwich,NY
+12835,Hadley,NY
+12836,Hague,NY
+12837,Hampton,NY
+12838,Hartford,NY
+12839,Hudson Falls,NY
+12841,Huletts Landing,NY
+12842,Indian Lake,NY
+12843,Johnsburg,NY
+12844,Kattskill Bay,NY
+12845,Lake George,NY
+12846,Lake Luzerne,NY
+12847,Long Lake,NY
+12849,Middle Granville,NY
+12850,Middle Grove,NY
+12851,Minerva,NY
+12852,Newcomb,NY
+12853,North Creek,NY
+12855,North Hudson,NY
+12856,North River,NY
+12857,Olmstedville,NY
+12858,Paradox,NY
+12859,Porter Corners,NY
+12860,Pottersville,NY
+12861,Putnam Station,NY
+12862,Riparius,NY
+12863,Rock City Falls,NY
+12864,Sabael,NY
+12865,Salem,NY
+12866,Saratoga Springs,NY
+12870,Schroon Lake,NY
+12871,Schuylerville,NY
+12872,Severance,NY
+12873,Shushan,NY
+12874,Silver Bay,NY
+12878,Stony Creek,NY
+12883,Ticonderoga,NY
+12884,Victory Mills,NY
+12885,Warrensburg,NY
+12886,Wevertown,NY
+12887,Whitehall,NY
+12901,Plattsburgh,NY
+12903,Plattsburgh,NY
+12910,Altona,NY
+12911,Keeseville,NY
+12912,Au Sable Forks,NY
+12913,Bloomingdale,NY
+12914,Bombay,NY
+12916,Brushton,NY
+12917,Burke,NY
+12918,Cadyville,NY
+12919,Champlain,NY
+12920,Chateaugay,NY
+12921,Chazy,NY
+12922,Childwold,NY
+12923,Churubusco,NY
+12924,Keeseville,NY
+12926,Constable,NY
+12927,Cranberry Lake,NY
+12928,Crown Point,NY
+12929,Dannemora,NY
+12930,Dickinson Center,NY
+12932,Elizabethtown,NY
+12933,Ellenburg,NY
+12934,Ellenburg Center,NY
+12935,Ellenburg Depot,NY
+12936,Essex,NY
+12937,Fort Covington,NY
+12939,Gabriels,NY
+12941,Jay,NY
+12942,Keene,NY
+12943,Keene Valley,NY
+12944,Keeseville,NY
+12945,Lake Clear,NY
+12946,Lake Placid,NY
+12950,Lewis,NY
+12952,Lyon Mountain,NY
+12953,Malone,NY
+12955,Lyon Mountain,NY
+12956,Mineville,NY
+12957,Moira,NY
+12958,Mooers,NY
+12959,Mooers Forks,NY
+12960,Moriah,NY
+12961,Moriah Center,NY
+12962,Morrisonville,NY
+12964,New Russia,NY
+12965,Nicholville,NY
+12966,North Bangor,NY
+12967,North Lawrence,NY
+12969,Owls Head,NY
+12970,Paul Smiths,NY
+12972,Peru,NY
+12973,Piercefield,NY
+12974,Port Henry,NY
+12975,Port Kent,NY
+12976,Rainbow Lake,NY
+12977,Ray Brook,NY
+12978,Redford,NY
+12979,Rouses Point,NY
+12980,Saint Regis Falls,NY
+12981,Saranac,NY
+12983,Saranac Lake,NY
+12985,Schuyler Falls,NY
+12986,Tupper Lake,NY
+12987,Upper Jay,NY
+12989,Vermontville,NY
+12992,West Chazy,NY
+12993,Westport,NY
+12996,Willsboro,NY
+12997,Wilmington,NY
+12998,Witherbee,NY
+13020,Apulia Station,NY
+13021,Auburn,NY
+13024,Auburn,NY
+13026,Aurora,NY
+13027,Baldwinsville,NY
+13028,Bernhards Bay,NY
+13029,Brewerton,NY
+13030,Bridgeport,NY
+13031,Camillus,NY
+13032,Canastota,NY
+13033,Cato,NY
+13034,Cayuga,NY
+13035,Cazenovia,NY
+13036,Central Square,NY
+13037,Chittenango,NY
+13039,Cicero,NY
+13040,Cincinnatus,NY
+13041,Clay,NY
+13042,Cleveland,NY
+13044,Constantia,NY
+13045,Cortland,NY
+13051,Delphi Falls,NY
+13052,De Ruyter,NY
+13053,Dryden,NY
+13054,Durhamville,NY
+13057,East Syracuse,NY
+13060,Elbridge,NY
+13061,Erieville,NY
+13062,Etna,NY
+13063,Fabius,NY
+13064,Fair Haven,NY
+13066,Fayetteville,NY
+13068,Freeville,NY
+13069,Fulton,NY
+13071,Genoa,NY
+13072,Georgetown,NY
+13073,Groton,NY
+13074,Hannibal,NY
+13076,Hastings,NY
+13077,Homer,NY
+13078,Jamesville,NY
+13080,Jordan,NY
+13081,King Ferry,NY
+13082,Kirkville,NY
+13083,Lacona,NY
+13084,La Fayette,NY
+13087,Little York,NY
+13088,Liverpool,NY
+13090,Liverpool,NY
+13092,Locke,NY
+13101,Mc Graw,NY
+13102,Mc Lean,NY
+13103,Mallory,NY
+13104,Manlius,NY
+13108,Marcellus,NY
+13110,Marietta,NY
+13111,Martville,NY
+13112,Memphis,NY
+13113,Meridian,NY
+13114,Mexico,NY
+13115,Minetto,NY
+13116,Minoa,NY
+13117,Montezuma,NY
+13118,Moravia,NY
+13120,Nedrow,NY
+13122,New Woodstock,NY
+13123,North Bay,NY
+13124,North Pitcher,NY
+13126,Oswego,NY
+13131,Parish,NY
+13132,Pennellville,NY
+13134,Peterboro,NY
+13135,Phoenix,NY
+13136,Pitcher,NY
+13138,Pompey,NY
+13140,Port Byron,NY
+13141,Preble,NY
+13142,Pulaski,NY
+13143,Red Creek,NY
+13144,Richland,NY
+13145,Sandy Creek,NY
+13146,Savannah,NY
+13147,Scipio Center,NY
+13148,Seneca Falls,NY
+13152,Skaneateles,NY
+13153,Skaneateles Falls,NY
+13155,South Otselic,NY
+13156,Sterling,NY
+13157,Sylvan Beach,NY
+13158,Truxton,NY
+13159,Tully,NY
+13160,Union Springs,NY
+13162,Verona Beach,NY
+13163,Wampsville,NY
+13164,Warners,NY
+13165,Waterloo,NY
+13166,Weedsport,NY
+13167,West Monroe,NY
+13202,Syracuse,NY
+13203,Syracuse,NY
+13204,Syracuse,NY
+13205,Syracuse,NY
+13206,Syracuse,NY
+13207,Syracuse,NY
+13208,Syracuse,NY
+13209,Syracuse,NY
+13210,Syracuse,NY
+13211,Syracuse,NY
+13212,Syracuse,NY
+13214,Syracuse,NY
+13215,Syracuse,NY
+13219,Syracuse,NY
+13224,Syracuse,NY
+13290,Syracuse,NY
+13301,Alder Creek,NY
+13302,Altmar,NY
+13303,Ava,NY
+13304,Barneveld,NY
+13305,Beaver Falls,NY
+13308,Blossvale,NY
+13309,Boonville,NY
+13310,Bouckville,NY
+13312,Brantingham,NY
+13313,Bridgewater,NY
+13314,Brookfield,NY
+13315,Burlington Flats,NY
+13316,Camden,NY
+13317,Canajoharie,NY
+13318,Cassville,NY
+13319,Chadwicks,NY
+13320,Cherry Valley,NY
+13321,Clark Mills,NY
+13322,Clayville,NY
+13323,Clinton,NY
+13324,Cold Brook,NY
+13325,Constableville,NY
+13326,Cooperstown,NY
+13327,Croghan,NY
+13328,Deansboro,NY
+13329,Dolgeville,NY
+13331,Eagle Bay,NY
+13332,Earlville,NY
+13333,East Springfield,NY
+13334,Eaton,NY
+13335,Edmeston,NY
+13337,Fly Creek,NY
+13338,Forestport,NY
+13339,Fort Plain,NY
+13340,Frankfort,NY
+13341,Franklin Springs,NY
+13342,Garrattsville,NY
+13343,Glenfield,NY
+13345,Greig,NY
+13346,Hamilton,NY
+13348,Hartwick,NY
+13350,Herkimer,NY
+13352,Hinckley,NY
+13353,Hoffmeister,NY
+13354,Holland Patent,NY
+13355,Hubbardsville,NY
+13357,Ilion,NY
+13360,Inlet,NY
+13361,Jordanville,NY
+13362,Knoxboro,NY
+13363,Lee Center,NY
+13364,Leonardsville,NY
+13365,Little Falls,NY
+13367,Lowville,NY
+13368,Lyons Falls,NY
+13402,Madison,NY
+13403,Marcy,NY
+13404,Martinsburg,NY
+13406,Middleville,NY
+13407,Mohawk,NY
+13408,Morrisville,NY
+13409,Munnsville,NY
+13410,Nelliston,NY
+13411,New Berlin,NY
+13413,New Hartford,NY
+13415,New Lisbon,NY
+13416,Newport,NY
+13417,New York Mills,NY
+13418,North Brookfield,NY
+13420,Old Forge,NY
+13421,Oneida,NY
+13424,Oriskany,NY
+13425,Oriskany Falls,NY
+13428,Palatine Bridge,NY
+13431,Poland,NY
+13433,Port Leyden,NY
+13435,Prospect,NY
+13436,Raquette Lake,NY
+13437,Redfield,NY
+13438,Remsen,NY
+13439,Richfield Springs,NY
+13440,Rome,NY
+13441,Rome,NY
+13450,Roseboom,NY
+13452,Saint Johnsville,NY
+13454,Salisbury Center,NY
+13456,Sauquoit,NY
+13459,Sharon Springs,NY
+13460,Sherburne,NY
+13461,Sherrill,NY
+13464,Smyrna,NY
+13468,Springfield Center,NY
+13469,Stittville,NY
+13470,Stratford,NY
+13471,Taberg,NY
+13472,Thendara,NY
+13473,Turin,NY
+13475,Van Hornesville,NY
+13476,Vernon,NY
+13477,Vernon Center,NY
+13478,Verona,NY
+13480,Waterville,NY
+13483,Westdale,NY
+13484,West Eaton,NY
+13485,West Edmeston,NY
+13486,Westernville,NY
+13488,Westford,NY
+13489,West Leyden,NY
+13490,Westmoreland,NY
+13491,West Winfield,NY
+13492,Whitesboro,NY
+13493,Williamstown,NY
+13494,Woodgate,NY
+13495,Yorkville,NY
+13501,Utica,NY
+13502,Utica,NY
+13601,Watertown,NY
+13602,Fort Drum,NY
+13603,Watertown,NY
+13605,Adams,NY
+13606,Adams Center,NY
+13607,Alexandria Bay,NY
+13608,Antwerp,NY
+13612,Black River,NY
+13613,Brasher Falls,NY
+13614,Brier Hill,NY
+13615,Brownville,NY
+13616,Calcium,NY
+13617,Canton,NY
+13618,Cape Vincent,NY
+13619,Carthage,NY
+13620,Castorland,NY
+13621,Chase Mills,NY
+13622,Chaumont,NY
+13623,Chippewa Bay,NY
+13624,Clayton,NY
+13625,Colton,NY
+13626,Copenhagen,NY
+13628,Deferiet,NY
+13630,De Kalb Junction,NY
+13633,De Peyster,NY
+13634,Dexter,NY
+13635,Edwards,NY
+13636,Ellisburg,NY
+13637,Evans Mills,NY
+13638,Felts Mills,NY
+13639,Fine,NY
+13640,Wellesley Island,NY
+13641,Fishers Landing,NY
+13642,Gouverneur,NY
+13643,Great Bend,NY
+13646,Hammond,NY
+13647,Hannawa Falls,NY
+13648,Harrisville,NY
+13650,Henderson,NY
+13651,Henderson Harbor,NY
+13652,Hermon,NY
+13654,Heuvelton,NY
+13655,Hogansburg,NY
+13656,La Fargeville,NY
+13658,Lisbon,NY
+13659,Lorraine,NY
+13660,Madrid,NY
+13661,Mannsville,NY
+13662,Massena,NY
+13664,Morristown,NY
+13665,Natural Bridge,NY
+13666,Newton Falls,NY
+13667,Norfolk,NY
+13668,Norwood,NY
+13669,Ogdensburg,NY
+13670,Oswegatchie,NY
+13672,Parishville,NY
+13673,Philadelphia,NY
+13674,Pierrepont Manor,NY
+13675,Plessis,NY
+13676,Potsdam,NY
+13677,Pyrites,NY
+13678,Raymondville,NY
+13679,Redwood,NY
+13680,Rensselaer Falls,NY
+13681,Richville,NY
+13682,Rodman,NY
+13684,Russell,NY
+13685,Sackets Harbor,NY
+13687,South Colton,NY
+13690,Star Lake,NY
+13691,Theresa,NY
+13692,Thousand Island Park,NY
+13693,Three Mile Bay,NY
+13694,Waddington,NY
+13695,Wanakena,NY
+13696,West Stockholm,NY
+13697,Winthrop,NY
+13730,Afton,NY
+13731,Andes,NY
+13732,Apalachin,NY
+13733,Bainbridge,NY
+13734,Barton,NY
+13736,Berkshire,NY
+13739,Bloomville,NY
+13740,Bovina Center,NY
+13743,Candor,NY
+13744,Castle Creek,NY
+13746,Chenango Forks,NY
+13748,Conklin,NY
+13750,Davenport,NY
+13751,Davenport Center,NY
+13752,Delancey,NY
+13753,Delhi,NY
+13754,Deposit,NY
+13755,Downsville,NY
+13756,East Branch,NY
+13757,East Meredith,NY
+13760,Endicott,NY
+13774,Fishs Eddy,NY
+13775,Franklin,NY
+13776,Gilbertsville,NY
+13777,Glen Aubrey,NY
+13778,Greene,NY
+13780,Guilford,NY
+13782,Hamden,NY
+13783,Hancock,NY
+13784,Harford,NY
+13786,Harpersfield,NY
+13787,Harpursville,NY
+13788,Hobart,NY
+13790,Johnson City,NY
+13794,Killawog,NY
+13795,Kirkwood,NY
+13796,Laurens,NY
+13797,Lisle,NY
+13801,Mc Donough,NY
+13802,Maine,NY
+13803,Marathon,NY
+13804,Masonville,NY
+13806,Meridale,NY
+13807,Milford,NY
+13808,Morris,NY
+13809,Mount Upton,NY
+13810,Mount Vision,NY
+13811,Newark Valley,NY
+13812,Nichols,NY
+13813,Nineveh,NY
+13815,Norwich,NY
+13820,Oneonta,NY
+13825,Otego,NY
+13826,Ouaquaga,NY
+13827,Owego,NY
+13830,Oxford,NY
+13832,Plymouth,NY
+13833,Port Crane,NY
+13834,Portlandville,NY
+13835,Richford,NY
+13838,Sidney,NY
+13839,Sidney Center,NY
+13841,Smithville Flats,NY
+13842,South Kortright,NY
+13843,South New Berlin,NY
+13844,South Plymouth,NY
+13845,Tioga Center,NY
+13846,Treadwell,NY
+13847,Trout Creek,NY
+13849,Unadilla,NY
+13850,Vestal,NY
+13856,Walton,NY
+13859,Wells Bridge,NY
+13860,West Davenport,NY
+13861,West Oneonta,NY
+13862,Whitney Point,NY
+13863,Willet,NY
+13864,Willseyville,NY
+13865,Windsor,NY
+13901,Binghamton,NY
+13902,Binghamton,NY
+13903,Binghamton,NY
+13904,Binghamton,NY
+13905,Binghamton,NY
+14001,Akron,NY
+14004,Alden,NY
+14005,Alexander,NY
+14006,Angola,NY
+14008,Appleton,NY
+14009,Arcade,NY
+14011,Attica,NY
+14012,Barker,NY
+14013,Basom,NY
+14020,Batavia,NY
+14024,Bliss,NY
+14025,Boston,NY
+14026,Bowmansville,NY
+14028,Burt,NY
+14030,Chaffee,NY
+14031,Clarence,NY
+14032,Clarence Center,NY
+14033,Colden,NY
+14034,Collins,NY
+14035,Collins Center,NY
+14036,Corfu,NY
+14037,Cowlesville,NY
+14039,Dale,NY
+14040,Darien Center,NY
+14041,Dayton,NY
+14042,Delevan,NY
+14043,Depew,NY
+14047,Derby,NY
+14048,Dunkirk,NY
+14051,East Amherst,NY
+14052,East Aurora,NY
+14054,East Bethany,NY
+14055,East Concord,NY
+14057,Eden,NY
+14058,Elba,NY
+14059,Elma,NY
+14060,Farmersville Station,NY
+14061,Farnham,NY
+14062,Forestville,NY
+14063,Fredonia,NY
+14065,Freedom,NY
+14066,Gainesville,NY
+14067,Gasport,NY
+14068,Getzville,NY
+14069,Glenwood,NY
+14070,Gowanda,NY
+14072,Grand Island,NY
+14075,Hamburg,NY
+14080,Holland,NY
+14081,Irving,NY
+14082,Java Center,NY
+14085,Lake View,NY
+14086,Lancaster,NY
+14091,Lawtons,NY
+14092,Lewiston,NY
+14094,Lockport,NY
+14098,Lyndonville,NY
+14101,Machias,NY
+14102,Marilla,NY
+14103,Medina,NY
+14105,Middleport,NY
+14108,Newfane,NY
+14109,Niagara University,NY
+14111,North Collins,NY
+14112,North Evans,NY
+14113,North Java,NY
+14120,North Tonawanda,NY
+14125,Oakfield,NY
+14126,Olcott,NY
+14127,Orchard Park,NY
+14129,Perrysburg,NY
+14130,Pike,NY
+14131,Ransomville,NY
+14132,Sanborn,NY
+14134,Sardinia,NY
+14135,Sheridan,NY
+14136,Silver Creek,NY
+14138,South Dayton,NY
+14139,South Wales,NY
+14141,Springville,NY
+14143,Stafford,NY
+14145,Strykersville,NY
+14150,Tonawanda,NY
+14167,Varysburg,NY
+14168,Versailles,NY
+14169,Wales Center,NY
+14170,West Falls,NY
+14171,West Valley,NY
+14172,Wilson,NY
+14173,Yorkshire,NY
+14174,Youngstown,NY
+14201,Buffalo,NY
+14202,Buffalo,NY
+14203,Buffalo,NY
+14204,Buffalo,NY
+14206,Buffalo,NY
+14207,Buffalo,NY
+14208,Buffalo,NY
+14209,Buffalo,NY
+14210,Buffalo,NY
+14211,Buffalo,NY
+14212,Buffalo,NY
+14213,Buffalo,NY
+14214,Buffalo,NY
+14215,Buffalo,NY
+14216,Buffalo,NY
+14217,Buffalo,NY
+14218,Buffalo,NY
+14219,Buffalo,NY
+14220,Buffalo,NY
+14221,Buffalo,NY
+14222,Buffalo,NY
+14223,Buffalo,NY
+14224,Buffalo,NY
+14225,Buffalo,NY
+14226,Buffalo,NY
+14227,Buffalo,NY
+14228,Buffalo,NY
+14261,Buffalo,NY
+14301,Niagara Falls,NY
+14302,Niagara Falls,NY
+14303,Niagara Falls,NY
+14304,Niagara Falls,NY
+14305,Niagara Falls,NY
+14411,Albion,NY
+14414,Avon,NY
+14415,Bellona,NY
+14416,Bergen,NY
+14418,Branchport,NY
+14420,Brockport,NY
+14422,Byron,NY
+14423,Caledonia,NY
+14424,Canandaigua,NY
+14425,Farmington,NY
+14427,Castile,NY
+14428,Churchville,NY
+14432,Clifton Springs,NY
+14433,Clyde,NY
+14435,Conesus,NY
+14437,Dansville,NY
+14441,Dresden,NY
+14445,East Rochester,NY
+14450,Fairport,NY
+14454,Geneseo,NY
+14456,Geneva,NY
+14462,Groveland,NY
+14464,Hamlin,NY
+14466,Hemlock,NY
+14467,Henrietta,NY
+14468,Hilton,NY
+14469,Bloomfield,NY
+14470,Holley,NY
+14471,Honeoye,NY
+14472,Honeoye Falls,NY
+14475,Ionia,NY
+14476,Kendall,NY
+14477,Kent,NY
+14478,Keuka Park,NY
+14479,Knowlesville,NY
+14480,Lakeville,NY
+14481,Leicester,NY
+14482,Le Roy,NY
+14485,Lima,NY
+14486,Linwood,NY
+14487,Livonia,NY
+14489,Lyons,NY
+14502,Macedon,NY
+14504,Manchester,NY
+14505,Marion,NY
+14506,Mendon,NY
+14507,Middlesex,NY
+14510,Mount Morris,NY
+14511,Mumford,NY
+14512,Naples,NY
+14513,Newark,NY
+14514,North Chili,NY
+14516,North Rose,NY
+14517,Nunda,NY
+14519,Ontario,NY
+14521,Ovid,NY
+14522,Palmyra,NY
+14525,Pavilion,NY
+14526,Penfield,NY
+14527,Penn Yan,NY
+14529,Perkinsville,NY
+14530,Perry,NY
+14532,Phelps,NY
+14533,Piffard,NY
+14534,Pittsford,NY
+14536,Portageville,NY
+14537,Port Gibson,NY
+14539,Retsof,NY
+14541,Romulus,NY
+14542,Rose,NY
+14543,Rush,NY
+14544,Rushville,NY
+14545,Scottsburg,NY
+14546,Scottsville,NY
+14548,Shortsville,NY
+14549,Silver Lake,NY
+14550,Silver Springs,NY
+14551,Sodus,NY
+14555,Sodus Point,NY
+14559,Spencerport,NY
+14560,Springwater,NY
+14561,Stanley,NY
+14564,Victor,NY
+14568,Walworth,NY
+14569,Warsaw,NY
+14571,Waterport,NY
+14572,Wayland,NY
+14580,Webster,NY
+14585,West Bloomfield,NY
+14586,West Henrietta,NY
+14588,Willard,NY
+14589,Williamson,NY
+14590,Wolcott,NY
+14591,Wyoming,NY
+14592,York,NY
+14604,Rochester,NY
+14605,Rochester,NY
+14606,Rochester,NY
+14607,Rochester,NY
+14608,Rochester,NY
+14609,Rochester,NY
+14610,Rochester,NY
+14611,Rochester,NY
+14612,Rochester,NY
+14613,Rochester,NY
+14614,Rochester,NY
+14615,Rochester,NY
+14616,Rochester,NY
+14617,Rochester,NY
+14618,Rochester,NY
+14619,Rochester,NY
+14620,Rochester,NY
+14621,Rochester,NY
+14622,Rochester,NY
+14623,Rochester,NY
+14624,Rochester,NY
+14625,Rochester,NY
+14626,Rochester,NY
+14627,Rochester,NY
+14701,Jamestown,NY
+14706,Allegany,NY
+14707,Allentown,NY
+14708,Alma,NY
+14709,Angelica,NY
+14710,Ashville,NY
+14711,Belfast,NY
+14712,Bemus Point,NY
+14714,Black Creek,NY
+14715,Bolivar,NY
+14716,Brocton,NY
+14717,Caneadea,NY
+14718,Cassadaga,NY
+14719,Cattaraugus,NY
+14720,Celoron,NY
+14721,Ceres,NY
+14722,Chautauqua,NY
+14723,Cherry Creek,NY
+14724,Clymer,NY
+14726,Conewango Valley,NY
+14727,Cuba,NY
+14728,Dewittville,NY
+14729,East Otto,NY
+14731,Ellicottville,NY
+14732,Ellington,NY
+14733,Falconer,NY
+14735,Fillmore,NY
+14736,Findley Lake,NY
+14737,Franklinville,NY
+14738,Frewsburg,NY
+14739,Friendship,NY
+14740,Gerry,NY
+14741,Great Valley,NY
+14742,Greenhurst,NY
+14743,Hinsdale,NY
+14744,Houghton,NY
+14747,Kennedy,NY
+14748,Kill Buck,NY
+14750,Lakewood,NY
+14752,Lily Dale,NY
+14753,Limestone,NY
+14754,Little Genesee,NY
+14755,Little Valley,NY
+14756,Maple Springs,NY
+14757,Mayville,NY
+14760,Olean,NY
+14767,Panama,NY
+14769,Portland,NY
+14770,Portville,NY
+14772,Randolph,NY
+14774,Richburg,NY
+14775,Ripley,NY
+14777,Rushford,NY
+14778,Saint Bonaventure,NY
+14779,Salamanca,NY
+14781,Sherman,NY
+14782,Sinclairville,NY
+14783,Steamburg,NY
+14784,Stockton,NY
+14787,Westfield,NY
+14788,Westons Mills,NY
+14801,Addison,NY
+14802,Alfred,NY
+14803,Alfred Station,NY
+14804,Almond,NY
+14805,Alpine,NY
+14806,Andover,NY
+14807,Arkport,NY
+14808,Atlanta,NY
+14809,Avoca,NY
+14810,Bath,NY
+14812,Beaver Dams,NY
+14813,Belmont,NY
+14814,Big Flats,NY
+14815,Bradford,NY
+14816,Breesport,NY
+14817,Brooktondale,NY
+14818,Burdett,NY
+14819,Cameron,NY
+14820,Cameron Mills,NY
+14821,Campbell,NY
+14822,Canaseraga,NY
+14823,Canisteo,NY
+14824,Cayuta,NY
+14825,Chemung,NY
+14826,Cohocton,NY
+14827,Coopers Plains,NY
+14830,Corning,NY
+14836,Dalton,NY
+14837,Dundee,NY
+14838,Erin,NY
+14839,Greenwood,NY
+14840,Hammondsport,NY
+14841,Hector,NY
+14842,Himrod,NY
+14843,Hornell,NY
+14845,Horseheads,NY
+14846,Hunt,NY
+14847,Interlaken,NY
+14850,Ithaca,NY
+14853,Ithaca,NY
+14854,Jacksonville,NY
+14855,Jasper,NY
+14856,Kanona,NY
+14858,Lindley,NY
+14859,Lockwood,NY
+14860,Lodi,NY
+14861,Lowman,NY
+14864,Millport,NY
+14865,Montour Falls,NY
+14867,Newfield,NY
+14869,Odessa,NY
+14870,Painted Post,NY
+14871,Pine City,NY
+14872,Pine Valley,NY
+14873,Prattsburgh,NY
+14874,Pulteney,NY
+14877,Rexville,NY
+14878,Rock Stream,NY
+14879,Savona,NY
+14880,Scio,NY
+14881,Slaterville Springs,NY
+14882,Lansing,NY
+14883,Spencer,NY
+14884,Swain,NY
+14885,Troupsburg,NY
+14886,Trumansburg,NY
+14889,Van Etten,NY
+14891,Watkins Glen,NY
+14892,Waverly,NY
+14893,Wayne,NY
+14894,Wellsburg,NY
+14895,Wellsville,NY
+14897,Whitesville,NY
+14898,Woodhull,NY
+14901,Elmira,NY
+14903,Elmira,NY
+14904,Elmira,NY
+14905,Elmira,NY
