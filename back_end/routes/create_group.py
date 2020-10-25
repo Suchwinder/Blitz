@@ -23,14 +23,10 @@ def create_group():
         image = data.image
 
         # Need to use Boto3 to use AWS services
-        AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
         BUCKET = os.getenv('BUCKET')
 
         s3 = boto3.client(
-            's3',
-            aws_access_key_id=AWS_ACCESS_KEY_ID, 
-            aws_secret_access_key=AWS_SECRET_ACCESS_KEY
+            's3'
         ) # specifying amazon resource
         
         object_url = None
@@ -39,19 +35,23 @@ def create_group():
         # WE SHOULDNT NEED TO CREATE A S3 CONNECTION AND JUST STORE IN DB
         # ANY EMPTY STRING; COULD BE BETTER TO DO IF BEFORE SO ERROR HANDLING BETTER
 
-        if len(image) > 0:
+        if len(img) > 0:
+            # give it a random name, cause same file names will replace each other
+            letters = ''.join(random.choice(string.ascii_letters) for i in range(10))+'.jpeg'
             try:
                 # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html
-                response = s3.upload_file(image, BUCKET, image) # (our image, name of aws bucket, and no object url so use same image), returns true or false
-                object_url = f"https://{BUCKET}.s3.amazonaws.com/{image}"
+                response = s3.upload_file(img, BUCKET, letters, ExtraArgs={ "ContentType": "image/jpeg"}) # (our img, name of aws bucket, and no object url so use same img), returns true or false
+                object_url = f"https://{BUCKET}.s3.amazonaws.com/{letters}"
 
             except ClientError as e:
                 logging.error(e)
                 result = {'error': 'Image Upload Failed'}
-                return result, 400
+                return result, 40
         
         # image uploaded now can start doing all appropriate insertions
         
+        db_connection.close()
+
 
         # new_group = Groups()
         # some means to store image 
