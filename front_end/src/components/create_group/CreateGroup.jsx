@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../nav_bar/NavBar'
 // import ChooseFile from '../upload_button/ChooseFile';
-import UploadImage from '../upload_button/UploadImage'
+// import UploadImage from '../upload_button/UploadImage'
 import './CreateGroup.css'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -22,37 +22,35 @@ class CreateGroup extends Component {
   constructor(props){
     super(props)
     this.state = {
-      file: null
+      file: null,
+      preview: null
     }
     this.handleChange = this.handleChange.bind(this)
   }
 
    uploadImage = async () => {
-    const data = {
-      "image": this.state.file 
-    }
+    let data = new FormData();
+    data.append('file', this.state.file);
+
     const response = await fetch('/api/upload', {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
       method: 'POST',
-      body: JSON.stringify(data)
+      body: data
     })
     const status = response.status
-
     if(status === 200) {
-      console.log(response.success)
+      const result = await response.json()
+      console.log("hello", result.message)
     }
   }
 
   handleChange(event) {
-    console.log("the even thingy is: ", event.target.files)
-    const image = new File([event.target.files[0]], "filename");
+    console.log("the even thingy is: ", event.target.files, " and the type is: " , typeof(event.target.files[0]))
+    let image = URL.createObjectURL(event.target.files[0]) // for preview
+    const imageblob = new Blob([event.target.files[0]]) // to store
     this.setState({
-      file: URL.createObjectURL(image)
-      // file: event.target.files[0]
-    }, () => {console.log(this.state.file)})
+      file: imageblob,
+      preview: image
+    })
   }
 
   render () {
@@ -174,7 +172,7 @@ class CreateGroup extends Component {
                 <div>
                   <input type="file" onChange={this.handleChange}/>
                   <br></br>
-                  <img style={{width: 250}} src={this.state.file}/>
+                  <img style={{width: 250}} src={this.state.preview}/>
                 </div>
                 <br></br>
                 <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button>
