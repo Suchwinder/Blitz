@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import NavBar from '../nav_bar/NavBar'
-// import ChooseFile from '../upload_button/ChooseFile';
+import NavBar from '../nav_bar/NavBar';
 // import UploadImage from '../upload_button/UploadImage'
-import './CreateGroup.css'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import { Formik } from 'formik'
+import './CreateGroup.css';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 
@@ -44,7 +43,7 @@ class CreateGroup extends Component {
   }
 
   handleChange(event) {
-    console.log("the even thingy is: ", event.target.files, " and the type is: " , typeof(event.target.files[0]))
+    console.log("the event thingy is: ", event.target.files, " and the type is: " , typeof(event.target.files[0]))
     let image = URL.createObjectURL(event.target.files[0]) // for preview
     const imageblob = new Blob([event.target.files[0]]) // to store
     this.setState({
