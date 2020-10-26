@@ -1,15 +1,7 @@
-# create a blueprint for the routes to be registered to, not necessary but ood for modularization of routes
-from flask import Blueprint, request
-# calling our helper function to create a connection to the databse to execute a request
-from models import create_db_connection, Groups
-from botocore.exceptions import ClientError  # for exception handling
-import random
-import string
-import os
-import boto3
-import logging
-import random
-import string
+from flask import Blueprint, request # create a blueprint for the routes to be registered to, not necessary but ood for modularization of routes
+from models import create_db_connection, Groups # calling our helper function to create a connection to the databse to execute a request
+from botocore.exceptions import ClientError # for exception handling
+import random, string, os, boto3, logging, random, string, uuid, io
 
 # used to group a bunch of relted views together
 # views in this case can count as code written to create various endpoints
@@ -20,17 +12,20 @@ bp = Blueprint('upload', __name__, url_prefix='/api')
 def upload():
     db_connection = create_db_connection()
     if db_connection:
-        data = request.get_json()
-
-        # gather data
-        img = data["image"]
+        # Need to move the contents from the request.data to the request.files
+        request.get_data(parse_form_data = True)
+        # Now can access the files
+        data = (request.files['file'])        
+        # convert the randomized value into a string
+        # give it a random name, cause same file names will replace each other
+        letters = str(uuid.uuid4())
 
         # Need to use Boto3 to use AWS services
         # AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
         # AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
         BUCKET = os.getenv('BUCKET')
-        FOLDER = os.getenv('FOLDER')
-
+        # FOLDER = os.getenv('FOLDER')
+        
         s3 = boto3.client(
             's3'  # ,
             # aws_access_key_id=AWS_ACCESS_KEY_ID,
@@ -38,20 +33,10 @@ def upload():
         )  # specifying amazon resource
 
         object_url = None
-
-        # See if need to do personal check for IMAGE, IF EMPTY THEN
-        # WE SHOULDNT NEED TO CREATE A S3 CONNECTION AND JUST STORE IN DB
-        # ANY EMPTY STRING; COULD BE BETTER TO DO IF BEFORE SO ERROR HANDLING BETTER
-
-        if len(img) > 0:
-            # give it a random name, cause same file names will replace each other
-            letters = ''.join(random.choice(string.ascii_letters)
-                              for i in range(10))+'.jpeg'
+        if data:
             try:
                 # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html
-                # (our img, name of aws bucket, and no object url so use same img), returns true or false
-                response = s3.upload_file(img, BUCKET, letters, ExtraArgs={
-                                          "ContentType": "image/jpeg"})
+                response = s3.upload_fileobj(data, BUCKET, letters, ExtraArgs={ "ContentType": "image/jpeg"}) # (our img, name of aws bucket, and no object url so use same img), returns true or false
                 object_url = f"https://{BUCKET}.s3.amazonaws.com/{letters}"
 
             except ClientError as e:
@@ -61,9 +46,8 @@ def upload():
 
         db_connection.close()
 
-        return {"success": f"{object_url}"}, 200
-        # image uploaded now can start doing all appropriate insertions
-
+        return {"message":f"{object_url}"}, 200
+        
     else:
         result = {'error': 'Connection to Database Failed'}
         return result, 400
