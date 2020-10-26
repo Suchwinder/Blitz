@@ -34,7 +34,7 @@ def bootDB():
 
         state_info = States(stateName = "NY", taxRate = 1.08875)
         session.add(state_info) # need to add state first in order for the zips table to have a foreign key refernce to the state's table, otherwise throws error
-        
+
         zip_data = pandas.read_csv('./static/ny_zips.csv')
         for key, values in zip_data.iterrows():
             location = Zips(zipCode = values.zip, stateID = 1) # only working with NY state
@@ -109,7 +109,7 @@ class Users(Base):
     # Columns
     userID = Column(Integer, primary_key=True)
     nickname = Column(String)
-    amountOwer = Column(Float)
+    amountOwed = Column(Float)
     adjustedAmount = Column(Float)
     groupID = Column(Integer, ForeignKey('groups.groupID'))
 
