@@ -36,12 +36,17 @@ def getItems(receipt_text):
 Create item & price pairs
 @param: item_list is the list of items of type string
 @param: price_list is the list of prices of type float
-@returns dictionary of "item": price
+@returns array of dictionaries of item and price
 '''
 def createItemCostPairs(items_list, price_list):
     if(len(items_list) == len(price_list)):
-        res_dict = dict(zip(items_list, price_list))
-        return res_dict
+        pair_list = []
+        for i in range(len(items_list)):
+            res_dict = dict()
+            res_dict['name'] = item_list[i]
+            res_dict['price'] = price_list[i]
+            pair_list.append(res_dict)
+        return pair_list
 
 '''
 Create pairs for subtotal, tax, total
@@ -65,11 +70,13 @@ def cleanUpAndConvertPrices(prices_list):
 
 '''
 Creates JSON of the the item:price pairs
-@param: dictionary of "item": price
-@return: JSON of "item": price
+@param: array of dictionaries of items and price
+@return: JSON of "items":[dictionaries]
 '''
 def createItemsJSON(res_dict):
-    json_res = json.dumps(res_dict)
+    item = dict()
+    item['items'] = res_dict
+    json_res = json.dumps(item)
     return json_res
 
 # Main function to run code
