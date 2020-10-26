@@ -9,10 +9,31 @@ class Upload extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
   }
+
+  uploadImage = async () => {
+    const data = {
+      "image": this.state.file 
+    }
+    const response = await fetch('/api/upload', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    const status = response.status
+
+    if(status === 200) {
+      console.log(response.success)
+    }
+
+  }
+
   handleChange(event) {
     this.setState({
       file: URL.createObjectURL(event.target.files[0])
-    })
+    }, () => {console.log(this.state.file)})
   }
   render() {
     return (
