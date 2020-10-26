@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../nav_bar/NavBar";
 import { Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
+// https://stackoverflow.com/questions/50644976/react-button-onclick-redirect-page
 import "./JoinGroup.css";
 
 const JoinGroup = () => {

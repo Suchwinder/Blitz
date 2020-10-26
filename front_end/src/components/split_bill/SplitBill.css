@@ -16,8 +16,9 @@
     margin: auto;
 }
 
-.peopleInput {
+.innerList {
     list-style-type:none;
+    padding:0%;
 }
 
 .splitNames {
@@ -35,4 +36,8 @@
 
 hr {
     width: 95%;
+}
+
+body{
+    overflow: hidden;
 }

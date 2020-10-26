@@ -18,3 +18,20 @@
     margin: center;
     font-style: italic;
 }
+
+.form{
+    text-align: center;
+
+}
+
+.form-group {
+    width: 50%;
+    margin: 0 auto;
+    float: none;
+}
+
+.isDisabled {
+    color: currentColor;
+    opacity: 0.5;
+    text-decoration: none;
+}

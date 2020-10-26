@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import { FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
 import '../split_bill/SplitBill'
 
 const useStyles = makeStyles((theme) => ({
@@ -12,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+  },
+  fullWidth: {
+    width: '100%',
   },
 }));
 
@@ -34,20 +38,20 @@ export default function AutoGrid() {
         <Grid item xs>
             <Paper className={classes.paper}>
               Items
-                <ol>
+                <ul className="innerList">
                     <li>
                         5 Apples
                     </li>
                     <li>
                         3 Oranges
                     </li>
-                </ol>
+                </ul>
             </Paper>
         </Grid>
         <Grid item xs>
             <Paper className={classes.paper}>
-                Price per Unit
-                <ul className="peopleInput">
+                $/unit
+                <ul className="innerList">
                     <li>
                         $3
                     </li>
@@ -59,15 +63,21 @@ export default function AutoGrid() {
         </Grid>
         <Grid item xs>
           <Paper className={classes.paper}>
-                People
-                <ul className="peopleInput">
-                    <li>
-                        <input ></input>
-                    </li>
-                    <li>
-                        <input ></input>
-                    </li>
-                </ul>
+            <FormControl>
+                <InputLabel >User 1</InputLabel>
+                <Select>
+                    <MenuItem>Item 1</MenuItem>
+                    <MenuItem>Item 2</MenuItem>
+                </Select>
+            </FormControl>
+            <br></br>
+            <FormControl>
+                <InputLabel >User 2</InputLabel>
+                <Select>
+                    <MenuItem>Item 1</MenuItem>
+                    <MenuItem>Item 2</MenuItem>
+                </Select>
+            </FormControl>
           </Paper>
         </Grid>
       </Grid>
@@ -80,7 +90,7 @@ export default function AutoGrid() {
         <Grid item xs>
           <Paper className={classes.paper}>
               User 1
-              <ul className="peopleInput">
+              <ul className="innerList">
                     <li>
                         1x Apple
                     </li>
@@ -94,7 +104,7 @@ export default function AutoGrid() {
         <Grid item xs>
           <Paper className={classes.paper}>
               User 2
-              <ul className="peopleInput">
+              <ul className="innerList">
                     <li>
                         2x Orange
                     </li>
@@ -108,7 +118,7 @@ export default function AutoGrid() {
         <Grid item xs>
           <Paper className={classes.paper}>
               User 3
-              <ul className="peopleInput">
+              <ul className="innerList">
                     <li>
                         4x Apple
                     </li>
@@ -125,7 +135,7 @@ export default function AutoGrid() {
         <Grid item xs>
           <Paper className={classes.paper}>
               Grand Total
-              <ul className="peopleInput">
+              <ul className="innerList">
                     <li>
                         5x Apple
                     </li>
