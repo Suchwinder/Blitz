@@ -46,7 +46,7 @@ def create_group():
             except ClientError as e:
                 logging.error(e)
                 result = {'error': 'Image Upload Failed'}
-                return result, 40
+                return result, 400
         
         # image uploaded now can start doing all appropriate insertions
         
