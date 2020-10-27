@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0d46681b-8d0b-433c-92e3-d85e7f3349bd",
+		"_postman_id": "ed02caa3-daa3-4329-bf03-d8a0bd3c4a6d",
 		"name": "Blitz",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,8 +11,8 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n   \"image\": \"\"\n}",
+					"mode": "formdata",
+					"formdata": [],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -32,6 +32,38 @@
 					"path": [
 						"api",
 						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_group",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"names\": [\"john\", \"jack\"],\n    \"streetAddress\": \"695 Park Ave\",\n    \"city\": \"New York\",\n    \"locationName\": \"Hunter College\",\n    \"zip\": 10065,\n    \"s3url\": \"https://testblitztest.s3.amazonaws.com/407898bb-d1fb-4db4-9c50-b9b456e60641\",\n    \"items\": [\n       {\n           \"name\": \"Big Mac\",\n           \"price\": 5.23\n       },\n       {\n           \"name\": \"Large Coke\",\n           \"price\": 1.00\n       },\n       {\n           \"name\": \"Large Fries\",\n           \"price\": 3.56\n       },\n       {\n           \"name\": \"10 pc Chicken McNuggets\",\n           \"price\": 4.93\n       }\n   ]\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/create",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"create"
 					]
 				}
 			},

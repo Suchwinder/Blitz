@@ -1,72 +1,79 @@
 from flask import Blueprint, request # create a blueprint for the routes to be registered to, not necessary but ood for modularization of routes
-from models import create_db_connection, Groups # calling our helper function to create a connection to the databse to execute a request
-from botocore.exceptions import ClientError # for exception handling
-import random, string, os, boto3, logging
+from models import create_db_connection, Groups, Locations, Users, Items, Zips # calling our helper function to create a connection to the databse to execute a request
+from receipt_processor import imageToJson #image processing
+import random, string, os, datetime, boto3, tempfile
 
 # used to group a bunch of relted views together
 # views in this case can count as code written to create various endpoints
 bp = Blueprint('create_group', __name__, url_prefix='/api')
 
-@bp.route('/create', methods=("POST"))
+@bp.route('/create', methods=["POST"])
 def create_group():
     db_connection = create_db_connection()
     if db_connection:
         data = request.get_json()
 
         # gather data
-        users = data.names
-        street_address = data.streetAddress
-        state = "NY"
-        city = data.city
-        location_name = data.locationName
-        zip = data.zip
-        image = data.image
+        users = data['names']
+        street_address = data['streetAddress']
+        # state_location = "NY"
+        city_location = data['city']
+        location_name = data['locationName']
+        zip_code = data['zip']
+        image_s3url = data['s3url']
+        # items_list = data['items']
 
-        # Need to use Boto3 to use AWS services
+        index = image_s3url.rfind('/')+1
+        name = image_s3url[index:]
+
         BUCKET = os.getenv('BUCKET')
+        REGION = os.getenv('REGION')
+        s3cli = boto3.resource('s3', region_name=REGION)
+        # bucketname = 'testblitztest'
+        # file_to_read = 'unknown2.png'
+        bucket = s3cli.Bucket(BUCKET)
+        object = bucket.Object(name)
 
-        s3 = boto3.client(
-            's3'
-        ) # specifying amazon resource
-        
-        object_url = None
+        # object = s3cli.Bucket('testblitztest').Object('unknown.png')
+        # fileobj = s3cli.get_object(Bucket = bucketname, Key = file_to_read)
+        tmp = tempfile.NamedTemporaryFile()
 
-        # See if need to do personal check for IMAGE, IF EMPTY THEN 
-        # WE SHOULDNT NEED TO CREATE A S3 CONNECTION AND JUST STORE IN DB
-        # ANY EMPTY STRING; COULD BE BETTER TO DO IF BEFORE SO ERROR HANDLING BETTER
+        items_list = None
+        with open(tmp.name, 'wb') as f:
+            object.download_fileobj(f)
+            items_list = imageToJson(tmp.name)
 
-        if len(img) > 0:
-            # give it a random name, cause same file names will replace each other
-            letters = ''.join(random.choice(string.ascii_letters) for i in range(10))+'.jpeg'
-            try:
-                # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html
-                response = s3.upload_file(img, BUCKET, letters, ExtraArgs={ "ContentType": "image/jpeg"}) # (our img, name of aws bucket, and no object url so use same img), returns true or false
-                object_url = f"https://{BUCKET}.s3.amazonaws.com/{letters}"
+        # Need to insert data with respect to foreign keys, so location is first so group can use location as FK, then Group is done so user and items can use group as FK, and user and item can be done in any order
+        # create location object to insert into database
+        location_zip_obj = db_connection.query(Zips).filter(Zips.zipCode == str(zip_code)) # returns an array of results, but it is size 1
 
-            except ClientError as e:
-                logging.error(e)
-                result = {'error': 'Image Upload Failed'}
-                return result, 40
-        
-        # image uploaded now can start doing all appropriate insertions
-        
-        db_connection.close()
+        location_object = Locations(streetAddress = street_address, city = city_location, zipID = location_zip_obj[0].zipID, locationName = location_name)
+        db_connection.add(location_object)
+        db_connection.commit() # need to commit first in order to have ID
 
+        # once stored location can do Group creation next
+        # need random link in response
 
-        # new_group = Groups()
-        # some means to store image 
-        # processing for items?
-
-        # get state info from zip, and id, and taxrate
-        # insert the information
-        # store image on CDN
-
-        #once stored need random link in response
         letters = ''.join(random.choice(string.ascii_letters) for i in range(26))
         digits = ''.join(random.choice(string.digits) for i in range(10))
-        result_string = letters + '_' + digits
-        response = {'link': result_string
-                    'id': }
+        result_string = "http://localhost:3000/split_bill/"+letters + '_' + digits
+        
+        group_object = Groups(groupURL = result_string, locationID = location_object.locationID, imageURL = image_s3url, tipRate = 0.0, subTotal = 0.0, totalCost = 0.0, linkExpiration = (datetime.datetime.now()+datetime.timedelta(days=30)), userCount = len(users), totalAdjustment = 0.0, isDeleted = False)
+        db_connection.add(group_object)
+        db_connection.commit() # need to commit first so it has id before we se in items and users table
+
+        for user in users:
+            user_object = Users(nickname = user, amountOwed = 0.0, adjustedAmount = 0.0, groupID = group_object.groupID)
+            db_connection.add(user_object)
+        
+        for item in items_list:
+            item_object = Items(itemName = item['name'], itemCost = item['price'], itemQuantity = 1, groupID = group_object.groupID)
+            db_connection.add(item_object)
+        
+        db_connection.commit()
+        response = {'link': result_string,
+                    'message': "Successfully Created Group"}
+        return response, 200
 
     else:
         result = {'error': 'Connection to Database Failed'}
