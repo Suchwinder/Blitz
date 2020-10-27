@@ -12,7 +12,14 @@
 				"header": [],
 				"body": {
 					"mode": "formdata",
-					"formdata": [],
+					"formdata": [
+						{
+							"key": "file",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					],
 					"options": {
 						"raw": {
 							"language": "json"
@@ -44,7 +51,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"names\": [\"john\", \"jack\"],\n    \"streetAddress\": \"695 Park Ave\",\n    \"city\": \"New York\",\n    \"locationName\": \"Hunter College\",\n    \"zip\": 10065,\n    \"s3url\": \"https://testblitztest.s3.amazonaws.com/407898bb-d1fb-4db4-9c50-b9b456e60641\",\n    \"items\": [\n       {\n           \"name\": \"Big Mac\",\n           \"price\": 5.23\n       },\n       {\n           \"name\": \"Large Coke\",\n           \"price\": 1.00\n       },\n       {\n           \"name\": \"Large Fries\",\n           \"price\": 3.56\n       },\n       {\n           \"name\": \"10 pc Chicken McNuggets\",\n           \"price\": 4.93\n       }\n   ]\n\n}",
+					"raw": "{\n    \"names\": [\"john\", \"jack\"],\n    \"streetAddress\": \"695 Park Ave\",\n    \"city\": \"New York\",\n    \"locationName\": \"Hunter College\",\n    \"zip\": 10065,\n    \"s3url\": \"https://testblitztest.s3.amazonaws.com/shake2.png\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

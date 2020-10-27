@@ -51,15 +51,15 @@ def create_group():
         # create location object to insert into database
         if (zip_code == 0):
             response = {"error": "Please enter a valid address"}
-            return response, 404
+            return response, 400
         
         if (len(location_name) == 0):
             response = {"error": "Please enter a location name"}
-            return response, 404
+            return response, 400
         
         if (len(users) == 0):
             response = {"error": "Please enter at least one user"}
-            return response, 404
+            return response, 400
 
         # location is mandatory
         location_zip_obj = db_connection.query(Zips).filter(Zips.zipCode == str(zip_code)) # returns an array of results, but it is size 1
