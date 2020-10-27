@@ -22,31 +22,48 @@ def create_group():
         zip_code = data['zip']
         image_s3url = data['s3url']
         # items_list = data['items']
+        
+        # if we have an image to work with we need to process it
+        if (len(image_s3url)>0):
+            index = image_s3url.rfind('/')+1
+            name = image_s3url[index:]
 
-        index = image_s3url.rfind('/')+1
-        name = image_s3url[index:]
+            BUCKET = os.getenv('BUCKET')
+            REGION = os.getenv('REGION')
+            s3cli = boto3.resource('s3', region_name=REGION)
+            # bucketname = 'testblitztest'
+            # file_to_read = 'unknown2.png'
+            bucket = s3cli.Bucket(BUCKET)
+            object = bucket.Object(name)
 
-        BUCKET = os.getenv('BUCKET')
-        REGION = os.getenv('REGION')
-        s3cli = boto3.resource('s3', region_name=REGION)
-        # bucketname = 'testblitztest'
-        # file_to_read = 'unknown2.png'
-        bucket = s3cli.Bucket(BUCKET)
-        object = bucket.Object(name)
+            # object = s3cli.Bucket('testblitztest').Object('unknown.png')
+            # fileobj = s3cli.get_object(Bucket = bucketname, Key = file_to_read)
+            tmp = tempfile.NamedTemporaryFile()
 
-        # object = s3cli.Bucket('testblitztest').Object('unknown.png')
-        # fileobj = s3cli.get_object(Bucket = bucketname, Key = file_to_read)
-        tmp = tempfile.NamedTemporaryFile()
+            items_list = None
+            with open(tmp.name, 'wb') as f:
+                object.download_fileobj(f)
+                items_list = imageToJson(tmp.name)
 
-        items_list = None
-        with open(tmp.name, 'wb') as f:
-            object.download_fileobj(f)
-            items_list = imageToJson(tmp.name)
-
+        # location_zip_obj = ["zipID": -1] # -1 will link the zip to state to 2 it to a state called "NOTHING"
+        # if(len(zip_code) > 0):
         # Need to insert data with respect to foreign keys, so location is first so group can use location as FK, then Group is done so user and items can use group as FK, and user and item can be done in any order
         # create location object to insert into database
-        location_zip_obj = db_connection.query(Zips).filter(Zips.zipCode == str(zip_code)) # returns an array of results, but it is size 1
+        if (zip_code == 0):
+            response = {"error": "Please enter a valid address"}
+            return response, 400
+        
+        if (len(location_name) == 0):
+            response = {"error": "Please enter a location name"}
+            return response, 400
+        
+        if (len(users) == 0):
+            response = {"error": "Please enter at least one user"}
+            return response, 400
 
+        # location is mandatory
+        location_zip_obj = db_connection.query(Zips).filter(Zips.zipCode == str(zip_code)) # returns an array of results, but it is size 1
+        
         location_object = Locations(streetAddress = street_address, city = city_location, zipID = location_zip_obj[0].zipID, locationName = location_name)
         db_connection.add(location_object)
         db_connection.commit() # need to commit first in order to have ID
