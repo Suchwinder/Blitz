@@ -32,6 +32,8 @@ const ColoredLine = ({ color }) => (
 export default function AutoGrid() {
     const classes = useStyles();
 
+    // const[items, setItems] = useState([]);
+
     return (
         <div className={classes.root}>
         <Grid container spacing={3}>

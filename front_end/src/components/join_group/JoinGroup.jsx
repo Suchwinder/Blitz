@@ -28,27 +28,28 @@ class JoinGroup extends Component {
     event.preventDefault();
   }
 
-  // joinSession = async () => {
-  //   const link = {
-  //     "session_link": this.state.session_link,
-  //   }
-  //   const response = await fetch('/api/join', {
-  //     method:"PUT",
-  //     body: JSON.stringify(link)
-  //   });
+  componentDidMount() {
+    fetch("/api/session_link")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            session_link: result.session_link
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
 
-  //   const status = response.status;
-
-  //   if(status === 400 || status === 500){
-  //     alert("Please fix your link");
-  //     return;
-  //   }
-  //   else{
-  //     this.setState({
-  //       session_link: link
-  //     });
-  //   }
-  // }
   render(){  
     return (
         <div className="join-group-page">
