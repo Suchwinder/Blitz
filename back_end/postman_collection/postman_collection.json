@@ -15,9 +15,8 @@
 					"formdata": [
 						{
 							"key": "file",
-							"value": "",
-							"type": "text",
-							"disabled": true
+							"type": "file",
+							"src": "/Users/Suchwinder/Downloads/haikyuu-Season-5.jpg"
 						}
 					],
 					"options": {
@@ -27,7 +26,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/upload",
+					"raw": "http://127.0.0.1:5000/api/upload_image",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -38,7 +37,7 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"upload"
+						"upload_image"
 					]
 				}
 			},
@@ -51,7 +50,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"names\": [\"john\", \"jack\"],\n    \"streetAddress\": \"695 Park Ave\",\n    \"city\": \"New York\",\n    \"locationName\": \"Hunter College\",\n    \"zip\": 10065,\n    \"s3url\": \"https://testblitztest.s3.amazonaws.com/shake2.png\"\n}",
+					"raw": "{\n    \"names\": [\"john\", \"jack\"],\n    \"streetAddress\": \"695 Park Ave\",\n    \"city\": \"New York\",\n    \"locationName\": \"Hunter College\",\n    \"zip\": 10065,\n    \"s3url\": \"https://testblitztest.s3.amazonaws.com/90686ce2-e1a4-4209-9fad-ed03f965ef31\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,7 +58,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/create",
+					"raw": "http://127.0.0.1:5000/api/create_group",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -70,9 +69,77 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"create"
+						"create_group"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_group",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/get",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nickname\": \"James\",\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/create_user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"create_user"
+					]
+				},
+				"description": "Allows a person to add a user to a group"
 			},
 			"response": []
 		}

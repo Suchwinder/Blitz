@@ -32,7 +32,7 @@ class CreateGroup extends Component {
     let data = new FormData();
     data.append('file', this.state.file);
 
-    const response = await fetch('/api/upload', {
+    const response = await fetch('/api/upload_image', {
       method: 'POST',
       body: data
     })
