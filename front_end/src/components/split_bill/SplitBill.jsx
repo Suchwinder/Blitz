@@ -14,9 +14,9 @@ const SplitBill = () => {
         </div>
         <br></br>
         <Grid/>
-        <div className="receipt">
+        {/* <div className="receipt">
             <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" className="placeholder" alt="example placeholder"></img>
-        </div>
+        </div> */}
       </div>
     </div>
     

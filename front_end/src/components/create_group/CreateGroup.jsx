@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
 
 
 // https://react-bootstrap.github.io/components/forms/?#forms-validation-libraries
@@ -97,14 +98,15 @@ class CreateGroup extends Component {
 
               <Form.Group controlId="form.input_address">
                 <Form.Label>Address(optional):</Form.Label>
-                <Form.Control
+                <PlacesAutocomplete/>
+                {/* <Form.Control
                   type="text"
                   placeholder="Address"
                   name="input_address"
                   onChange={handleChange}
                   value={values.input_address}
                   as="textarea" rows="1" 
-                />
+                /> */}
               </Form.Group>
 
               <Form.Group className="form-group" controlId="form.select_state">
