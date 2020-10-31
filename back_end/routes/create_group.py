@@ -7,7 +7,7 @@ import random, string, os, datetime, boto3, tempfile
 # views in this case can count as code written to create various endpoints
 bp = Blueprint('create_group', __name__, url_prefix='/api')
 
-@bp.route('/create', methods=["POST"])
+@bp.route('/create_group', methods=["POST"])
 def create_group():
     db_connection = create_db_connection()
     if db_connection:
@@ -90,6 +90,8 @@ def create_group():
         db_connection.commit()
         response = {'link': result_string,
                     'message': "Successfully Created Group"}
+        
+        db_connection.close()
         return response, 200
 
     else:

@@ -7,7 +7,7 @@ import random, string, os, boto3, logging, random, string, uuid, io
 # views in this case can count as code written to create various endpoints
 bp = Blueprint('upload', __name__, url_prefix='/api')
 
-@bp.route('/upload', methods=["POST"])
+@bp.route('/upload_image', methods=["POST"])
 def upload():
     db_connection = create_db_connection()
     if db_connection:
