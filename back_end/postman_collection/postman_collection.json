@@ -142,6 +142,39 @@
 				"description": "Allows a person to add a user to a group"
 			},
 			"response": []
+		},
+		{
+			"name": "create_item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"item_name\": \"volleyball\",\n    \"item_cost\": 10.89,\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/create_item",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"create_item"
+					]
+				},
+				"description": "This is to add an item to the group "
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

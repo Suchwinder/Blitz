@@ -29,7 +29,7 @@ def create_user():
             db_connection.commit()
             db_connection.close()
             
-            # returns user name
+            # returns message saying item created
             response = {"message": f"{user} successfully created"}
             return response, 200
 
