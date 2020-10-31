@@ -173,7 +173,7 @@ class CreateGroup extends Component {
                 <div>
                   <input type="file" onChange={this.handleChange}/>
                   <br></br>
-                  <img style={{width: 250}} src={this.state.preview}/>
+                  <img style={{width: 250}} src={this.state.preview} alt={""}/>
                 </div>
                 <br></br>
                 <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button>
