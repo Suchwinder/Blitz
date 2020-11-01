@@ -35,11 +35,12 @@ export default function GoogleMaps() {
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState([]);
   const loaded = React.useRef(false);
+  const api_key = process.env.REACT_APP_API_KEY;
 
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCNdtDVlgJ9Wx7Bucz2GpdyzKmuSIJOL4s&libraries=places',
+        'https://maps.googleapis.com/maps/api/js?key=' + api_key + '&libraries=places',
         document.querySelector('head'),
         'google-maps',
       );
@@ -95,7 +96,6 @@ export default function GoogleMaps() {
   return (
     <Autocomplete
       id="google-map-demo"
-      style={{ width: 300 }}
       getOptionLabel={(option) => (typeof option === 'string' ? option : option.description)}
       filterOptions={(x) => x}
       options={options}
