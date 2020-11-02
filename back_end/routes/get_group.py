@@ -41,8 +41,8 @@ def get_group():
         for row in items_obj:
             items_list[row.itemName] = row.itemCost
 
-        for user in user_obj:
-            user_assignments = db_connection.query(User)
+        # for user in user_obj:
+        #     user_assignments = db_connection.query(User)
         # need to find all users by groupid, find all items they are paired to, and each individual expenses
         # assignments = {}
         # for row in items_obj:

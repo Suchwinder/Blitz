@@ -206,39 +206,6 @@
 				"description": "Edit a existing user in group"
 			},
 			"response": []
-		},
-		{
-			"name": "item_assignment",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"nickname\": \"ten\",\n    \"item_name\": \"jhk\",\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/api/assign_item",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"assign_item"
-					]
-				},
-				"description": "Creates User-Item assignment pairs"
-			},
-			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

@@ -17,7 +17,7 @@ def assign_item():
         user_object = db_connection.query(Users).filter((Users.nickname == user), (Users.groupID == group_object.groupID)).first()
         item_object = db_connection.query(Items).filter((Items.itemName == item_name), (Items.groupID == group_object.groupID)).first()
 
-        item_user_exist = db_connection.query(ItemAssignments).filter((ItemAssignments.itemID == item_object.itemID), (ItemAssignments.userID == user_object.userId)).first()
+        item_user_exist = db_connection.query(ItemAssignments).filter((ItemAssignments.itemID == item_object.itemID), (ItemAssignments.userID == user_object.userID)).first()
 
         if item_user_exist:
             response = {"error": "Item & User already assigned"}
@@ -30,7 +30,7 @@ def assign_item():
             db_connection.close()
 
             # returns message saying item created
-            response = {"message": f"{user} and " f"{item} paired successfully"}
+            response = {"message": f"{user} and " f"{item_name} paired successfully"}
             return response, 200
 
     else:
