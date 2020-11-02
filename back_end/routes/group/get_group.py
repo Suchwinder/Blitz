@@ -1,5 +1,6 @@
 from flask import Blueprint, request # create a blueprint for the routes to be registered to, not necessary but ood for modularization of routes
 from models import create_db_connection, Groups, Users, Items, ItemAssignments, Zips, Locations # calling our helper function to create a connection to the databse to execute a request
+import datetime
 
 bp = Blueprint('get_group', __name__, url_prefix='/api')
 
@@ -22,6 +23,11 @@ def join_group():
             response = {"error": "URL is expired or doesn't exist"}
             return response, 400
         
+        # check if link is expired
+        if (datetime.datetime.now() > user_session.linkExpiration):
+            response = {'error': 'URL Has Expired'}
+            return response, 403
+
         response = {
             # 'groupID': user_session.groupID,
             'groupURL': user_session.groupURL,
@@ -32,7 +38,7 @@ def join_group():
             'total_cost': user_session.totalCost, 
             'tax_rate': 1.08875,
             # 'linkExpiration': user_session.linkExpiration,  
-            # 'userCount': user_session.userCount,
+            'userCount': user_session.userCount,
             'total_adjustment': user_session.totalAdjustment 
         }
 
