@@ -1,5 +1,6 @@
 from flask import Flask
 from models import bootDB
+from routes import assign_item 
 from routes.group import upload_image, create_group, get_group #create_group, join_group, s3_test
 
 # User(s) Imports
@@ -8,7 +9,6 @@ from routes.users import edit_user
 
 # Item(s) Imports
 from routes.items import create_item
-
 
 def create_app():
     bootDB() #start database (good to do database boot before app to ensure it exists before app works)
@@ -24,5 +24,8 @@ def create_app():
 
     # Register(s) Item Functionality
     app.register_blueprint(create_item.bp)
+
+    # Register(s) Item-User Pair Functionality
+    app.register_blueprint(assign_item.bp)
 
     return app
