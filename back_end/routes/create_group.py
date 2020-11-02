@@ -14,13 +14,14 @@ def create_group():
         data = request.get_json()
 
         # gather data
-        users = data['names']
-        street_address = data['streetAddress']
+        users = data['users']
+        street_address = data['street_address']
         # state_location = "NY"
         city_location = data['city']
-        location_name = data['locationName']
-        zip_code = data['zip']
-        image_s3url = data['s3url']
+        location_name = data['location_name']
+        zip_code = data['zip_code']
+        image_s3url = data['image_s3url']
+        tip_rate = data['tip_rate']
         # items_list = data['items']
         
         # if we have an image to work with we need to process it
@@ -75,18 +76,25 @@ def create_group():
         digits = ''.join(random.choice(string.digits) for i in range(10))
         result_string = "http://localhost:3000/split_bill/"+letters + '_' + digits
         
-        group_object = Groups(groupURL = result_string, locationID = location_object.locationID, imageURL = image_s3url, tipRate = 0.0, subTotal = 0.0, totalCost = 0.0, linkExpiration = (datetime.datetime.now()+datetime.timedelta(days=30)), userCount = len(users), totalAdjustment = 0.0, isDeleted = False)
+        group_object = Groups(groupURL = result_string, locationID = location_object.locationID, imageURL = image_s3url, tipRate = tip_rate, subTotal = 0.0, totalCost = 0.0, linkExpiration = (datetime.datetime.now()+datetime.timedelta(days=30)), userCount = len(users), totalAdjustment = 0.0, isDeleted = False)
         db_connection.add(group_object)
         db_connection.commit() # need to commit first so it has id before we se in items and users table
 
         for user in users:
             user_object = Users(nickname = user, amountOwed = 0.0, adjustedAmount = 0.0, groupID = group_object.groupID)
             db_connection.add(user_object)
-        
+
+        items_total = 0       
         for item in items_list:
             item_object = Items(itemName = item['name'], itemCost = item['price'], itemQuantity = 1, groupID = group_object.groupID)
             db_connection.add(item_object)
+            items_total += item['price']
         
+        db_connection.query(Groups).filter(Groups.groupURL == result_string).update({
+            "subTotal": items_total,
+            "totalCost": (items_total)*(1.00875) + (items_total * group_object.tipRate/100)
+        })
+
         db_connection.commit()
         response = {'link': result_string,
                     'message': "Successfully Created Group"}
