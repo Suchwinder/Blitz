@@ -86,7 +86,7 @@ def create_group():
 
         items_total = 0       
         for item in items_list:
-            item_object = Items(itemName = item['name'], itemCost = item['price'], itemQuantity = 1, groupID = group_object.groupID)
+            item_object = Items(itemName = item['name'], itemCost = item['price'], itemQuantity = 1, itemCostPerPerson = item['price'], groupID = group_object.groupID)
             db_connection.add(item_object)
             items_total += item['price']
         
