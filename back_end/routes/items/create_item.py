@@ -14,8 +14,11 @@ def create_item():
         item_quantity = 1 # data['item_amount'] for now just storing it as one
         group_url = data['group_url']
 
-        if item_cost < 0:
-            response = {"error": "Item cannot be worth a negative amount"}
+        if item_cost <= 0:
+            response = {"error": "Item cannot be worth a negative amount or 0"}
+            return response, 400
+        if len(item_name) == 0:
+            response = {"error": "Please add a name for this new item"}
             return response, 400
         # Find the group first
         group_object = db_connection.query(Groups).filter(Groups.groupURL == group_url).first() # use first to avoid accessing as array
