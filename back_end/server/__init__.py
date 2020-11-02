@@ -1,9 +1,11 @@
 from flask import Flask
 from models import bootDB
-from routes import upload_image, create_group, users, assign_item #create_group, join_group, s3_test
+from routes import assign_item 
+from routes.group import upload_image, create_group, get_group #create_group, join_group, s3_test
 
 # User(s) Imports
 from routes.users import create_user
+from routes.users import edit_user
 
 # Item(s) Imports
 from routes.items import create_item
@@ -20,10 +22,12 @@ def create_app():
     
     # Register(s) User Functionality
     app.register_blueprint(create_user.bp)
+    app.register_blueprint(edit_user.bp)
 
     # Register(s) Item Functionality
     app.register_blueprint(create_item.bp)
 
+    # Register(s) Item-User Pair Functionality
     app.register_blueprint(assign_item.bp)
 
     return app
