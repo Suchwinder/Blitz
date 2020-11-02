@@ -3,7 +3,7 @@ from models import create_db_connection, Groups # calling our helper function to
 
 bp = Blueprint('join_group', __name__, url_prefix='/api')
 
-@bp.route('/join', methods=("GET"))
+@bp.route('/join', methods=["GET"])
 def join_group():
     db_connection = create_db_connection()
     if db_connection:
