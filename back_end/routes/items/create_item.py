@@ -41,7 +41,6 @@ def create_item():
                 "totalCost": (group_object.subTotal+item_cost)*(1.00875) + ((group_object.subTotal+item_cost) * group_object.tipRate/100)
             })
             db_connection.commit()
-            group_object
             db_connection.close()
             
             # returns message saying item created

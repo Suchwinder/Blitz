@@ -15,6 +15,7 @@ def create_user():
         if len(user) == 0:
             response = {"error": "Please enter a name"}
             return response, 400
+            
         # Find the group first
         group_object = db_connection.query(Groups).filter(Groups.groupURL == group_url).first() # use first to avoid accessing as array
 
