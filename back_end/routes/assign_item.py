@@ -9,14 +9,20 @@ def assign_item():
     if db_connection:
         data = request.get_json()
 
+        # gather data
         user = data['nickname']
         item_name = data['item_name']
         group_url = data['group_url']
         
+        # query the referenced groups
         group_object = db_connection.query(Groups).filter(Groups.groupURL == group_url).first()
         user_object = db_connection.query(Users).filter((Users.nickname == user), (Users.groupID == group_object.groupID)).first()
         item_object = db_connection.query(Items).filter((Items.itemName == item_name), (Items.groupID == group_object.groupID)).first()
 
+        # query data for price calculation
+        
+
+        # see item-user pair exists
         item_user_exist = db_connection.query(ItemAssignments).filter((ItemAssignments.itemID == item_object.itemID), (ItemAssignments.userID == user_object.userID)).first()
 
         if item_user_exist:
@@ -26,6 +32,15 @@ def assign_item():
         else:
             pair_object = ItemAssignments(userID = user_object.userID, itemID = item_object.itemID)
             db_connection.add(pair_object)
+            db_connection.commit()
+            
+            item_count = db_connection.query(ItemAssignments).filter((ItemAssignments.itemID == item_object.itemID)).count()
+            item_price = item_object.itemCost
+            user_total = user_object.amountOwed
+            new_total = user_total + format(item_price/item_count, '.2f')
+
+            db_connection.query(Users).filter((Users.nickname == user), (Users.groupID == group_object.groupID)).update({"amountOwed": new_total})
+
             db_connection.commit()
             db_connection.close()
 
