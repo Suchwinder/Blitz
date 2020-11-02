@@ -39,11 +39,15 @@ def edit_user():
             }) # https://docs.sqlalchemy.org/en/13/orm/query.html#sqlalchemy.orm.query.Query.update
 
         if adjusted_amount != user_exists.adjustedAmount:
+            db_connection.query(Groups).filter(Groups.groupID == group_object.groupID).update({
+                "totalAdjustment": (group_object.totalAdjustment - user_exists.adjustedAmount + adjusted_amount)
+            })
+
             db_connection.query(Users).filter((Users.nickname == nickname),(Users.groupID == group_object.groupID)).update({
                 "adjustedAmount": adjusted_amount
             })
-
-        db_connesction.commit()
+            
+        db_connection.commit()
         db_connection.close()
 
         # returns message saying item created
