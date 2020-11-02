@@ -5,25 +5,22 @@ import './CreateGroup.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
-import * as Yup from 'yup';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
 
 
 // https://react-bootstrap.github.io/components/forms/?#forms-validation-libraries
 // https://codesandbox.io/s/vxv6q4z5?file=/index.js
 
-const schema = Yup.object({
-  input_users: Yup.string().required(),
-  input_address: Yup.string().required(),
-  select_state: Yup.string().required()
-})
-
 class CreateGroup extends Component {
   constructor(props){
     super(props)
     this.state = {
       file: null,
-      preview: null
+      preview: null,
+      input_users: "",
+      input_address: "",
+      select_state: "",
+      input_tip: "",
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -56,7 +53,6 @@ class CreateGroup extends Component {
   render () {
     return(
       <Formik
-        validationSchema={schema}
         onSubmit={console.log}
         initialValues={{
           input_users: '',
