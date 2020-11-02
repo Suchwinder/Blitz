@@ -10,8 +10,6 @@ from routes.users import edit_user
 # Item(s) Imports
 from routes.items import create_item
 
-from routes import upload_image, create_group, get_group #create_group, join_group, s3_test
-
 def create_app():
     bootDB() #start database (good to do database boot before app to ensure it exists before app works)
     app = Flask(__name__) #start app
