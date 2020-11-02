@@ -12,6 +12,10 @@ def create_user():
         user = data['nickname']
         group_url = data['group_url']
 
+        if len(user) == 0:
+            response = {"error": "Please enter a name"}
+            return response, 400
+            
         # Find the group first
         group_object = db_connection.query(Groups).filter(Groups.groupURL == group_url).first() # use first to avoid accessing as array
 
@@ -26,6 +30,10 @@ def create_user():
         else:
             user_object = Users(nickname = user, amountOwed = 0.0, adjustedAmount = 0.0, groupID = group_object.groupID)
             db_connection.add(user_object)
+            db_connection.query(Groups).filter(Groups.groupURL == group_url).update({
+                "userCount": group_object.userCount + 1
+            })
+            
             db_connection.commit()
             db_connection.close()
             

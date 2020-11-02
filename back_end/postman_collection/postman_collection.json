@@ -20,9 +20,7 @@
 						}
 					],
 					"options": {
-						"raw": {
-							"language": "json"
-						}
+						"formdata": {}
 					}
 				},
 				"url": {
@@ -50,7 +48,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"names\": [\"john\", \"jack\"],\n    \"streetAddress\": \"695 Park Ave\",\n    \"city\": \"New York\",\n    \"locationName\": \"Hunter College\",\n    \"zip\": 10065,\n    \"s3url\": \"https://testblitztest.s3.amazonaws.com/90686ce2-e1a4-4209-9fad-ed03f965ef31\"\n}",
+					"raw": "{\n    \"users\": [\"john\", \"jack\"],\n    \"street_address\": \"695 Park Ave\",\n    \"city\": \"New York\",\n    \"location_name\": \"Hunter College\",\n    \"zip_code\": 10065,\n    \"image_s3url\": \"https://testblitztest.s3.amazonaws.com/shake2.png\",\n    \"tip_rate\": 10\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -117,7 +115,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nickname\": \"James\",\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"raw": "{\n    \"nickname\": \"James\",\n    \"group_url\": \"http://localhost:3000/split_bill/xGScjzlyaemISyKlbvjZjiFpoQ_3447122399\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -150,7 +148,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"item_name\": \"volleyball\",\n    \"item_cost\": 10.89,\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"raw": "{\n    \"item_name\": \"milkshake\",\n    \"item_cost\": 10.89,\n    \"group_url\": \"http://localhost:3000/split_bill/xGScjzlyaemISyKlbvjZjiFpoQ_3447122399\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -173,6 +171,39 @@
 					]
 				},
 				"description": "This is to add an item to the group "
+			},
+			"response": []
+		},
+		{
+			"name": "edit_user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nickname\": \"ten\",\n    \"new_nickname\": \"jhk\",\n    \"adjusted_amount\": 10.89,\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/edit_user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"edit_user"
+					]
+				},
+				"description": "Edit a existing user in group"
 			},
 			"response": []
 		}

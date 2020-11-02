@@ -14,6 +14,12 @@ def create_item():
         item_quantity = 1 # data['item_amount'] for now just storing it as one
         group_url = data['group_url']
 
+        if item_cost <= 0:
+            response = {"error": "Item cannot be worth a negative amount or 0"}
+            return response, 400
+        if len(item_name) == 0:
+            response = {"error": "Please add a name for this new item"}
+            return response, 400
         # Find the group first
         group_object = db_connection.query(Groups).filter(Groups.groupURL == group_url).first() # use first to avoid accessing as array
 
@@ -28,6 +34,12 @@ def create_item():
         else:
             item_object = Items(itemName = item_name, itemCost = item_cost, itemQuantity = item_quantity, groupID = group_object.groupID)
             db_connection.add(item_object)
+
+            # update total cost and subtotal
+            db_connection.query(Groups).filter(Groups.groupURL == group_url).update({
+                "subTotal": group_object.subTotal + item_cost,
+                "totalCost": (group_object.subTotal+item_cost)*(1.00875) + ((group_object.subTotal+item_cost) * group_object.tipRate/100)
+            })
             db_connection.commit()
             db_connection.close()
             
