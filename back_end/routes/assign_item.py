@@ -20,7 +20,10 @@ def assign_item():
         item_object = db_connection.query(Items).filter((Items.itemName == item_name), (Items.groupID == group_object.groupID)).first()
 
         # query data for price calculation
-        
+        curr_cost_per_person = item_object.itemCostPerPerson
+
+        # counts number of users assigned to that item
+        curr_numb_of_users = db_connection(ItemAssignments).filter(ItemAssignments.itemID == item_object.itemID).count()
 
         # see item-user pair exists
         item_user_exist = db_connection.query(ItemAssignments).filter((ItemAssignments.itemID == item_object.itemID), (ItemAssignments.userID == user_object.userID)).first()
