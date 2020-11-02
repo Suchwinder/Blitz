@@ -5,7 +5,7 @@ import datetime
 bp = Blueprint('get_group', __name__, url_prefix='/api')
 
 @bp.route('/get_group', methods=["GET"])
-def join_group():
+def get_group():
     db_connection = create_db_connection()
     if db_connection:
         data = request.get_json()
