@@ -4,6 +4,7 @@ from routes import upload_image, create_group, users #create_group, join_group, 
 
 # User(s) Imports
 from routes.users import create_user
+from routes.users import edit_user
 
 # Item(s) Imports
 from routes.items import create_item
@@ -19,6 +20,7 @@ def create_app():
     
     # Register(s) User Functionality
     app.register_blueprint(create_user.bp)
+    app.register_blueprint(edit_user.bp)
 
     # Register(s) Item Functionality
     app.register_blueprint(create_item.bp)
