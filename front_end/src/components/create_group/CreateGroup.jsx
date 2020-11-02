@@ -7,6 +7,10 @@ import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { TextField } from "@material-ui/core";
+
+
 
 
 // https://react-bootstrap.github.io/components/forms/?#forms-validation-libraries
@@ -83,14 +87,35 @@ class CreateGroup extends Component {
                 <Form.Label>
                   Input names here:
                 </Form.Label>
-              <Form.Control 
+                <Autocomplete
+            autoSelect
+            freeSolo
+            id="input_users"
+            limitTags={4}
+            multiple
+            onBlur={handleBlur}
+            onChange={handleChange}
+            getOptionLabel={option => option}
+            filterSelectedOptions
+            renderInput={params => (
+              <TextField
+                {...params}
+                id="input_users"
+                name="search"
+                variant="outlined"
+                label="Enter a name"
+                placeholder="input_users"
+              />
+            )}
+          />
+              {/*<Form.Control 
                 type="text"
                 name="input_users"
                 onChange={handleChange}
                 value={values.input_users}
                 isValid={touched.input_users && !errors.input_users}
                 as="textarea" rows="1" 
-              />
+              /> */}
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 

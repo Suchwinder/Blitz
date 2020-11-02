@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from '../nav_bar/NavBar'
-import Grid from '../Grid/Grid'
+import Grid from '../grid/Grid'
 import './SplitBill.css'
 
 const SplitBill = () => {
