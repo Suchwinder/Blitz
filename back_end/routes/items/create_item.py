@@ -28,7 +28,14 @@ def create_item():
         else:
             item_object = Items(itemName = item_name, itemCost = item_cost, itemQuantity = item_quantity, groupID = group_object.groupID)
             db_connection.add(item_object)
+
+            # update total cost and subtotal
+            db_connection.query(Groups).filter(Groups.groupURL == group_url).update({
+                "subTotal": group_object.subTotal + item_cost,
+                "totalCost": (group_object.subTotal+item_cost)*(1.00875) + ((group_object.subTotal+item_cost) * group_object.tipRate/100)
+            })
             db_connection.commit()
+            group_object
             db_connection.close()
             
             # returns message saying item created
