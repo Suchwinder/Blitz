@@ -26,25 +26,34 @@ class CreateGroup extends Component {
       select_state: "",
       input_tip: "",
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.inputFileRef = React.createRef();
+    this.handleImage = this.handleImage.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-   uploadImage = async () => {
-    let data = new FormData();
-    data.append('file', this.state.file);
+  //  uploadImage = async () => {
+  //   let data = new FormData();
+  //   data.append('file', this.state.file);
 
-    const response = await fetch('/api/upload_image', {
-      method: 'POST',
-      body: data
-    })
-    const status = response.status
-    if(status === 200) {
-      const result = await response.json()
-      console.log("hello", result.message)
-    }
-  }
+  //   const response = await fetch('/api/upload_image', {
+  //     method: 'POST',
+  //     body: data
+  //   })
+  //   const status = response.status
+  //   if(status === 200) {
+  //     const result = await response.json()
+  //     console.log("hello", result.message)
+  //   }
+  // }
 
+  // handle the form here
   handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleImage(event) {
     console.log("the event thingy is: ", event.target.files, " and the type is: " , typeof(event.target.files[0]))
     let image = URL.createObjectURL(event.target.files[0]) // for preview
     const imageblob = new Blob([event.target.files[0]]) // to store
@@ -54,10 +63,44 @@ class CreateGroup extends Component {
     })
   }
 
+  // call the api endpoint here
+  // put upload image here if it exists, call upload image api
+  handleSubmit = (event) => {
+    const names = this.state.input_users.split(',')
+    let data = {
+      "users": names,
+      "street_address": "695 Park Ave",
+      "city": "New York",
+      "location_name": "Hunter College",
+      "zip_code": 10065,
+      "image_s3url": this.state.preview,
+      "tip_rate": 10
+    }
+    console.log(data);
+    // fetch("localhost:5000/api/create_group", {
+    //   method: 'POST',
+    //   body: data
+    // }).then(res => {
+    //     res.json();
+    //     return res;
+    //   }).then(response => {
+    //     if (!response.ok) {
+    //       throw new Error();
+    //       // return error message
+    //     }
+    //     if (response.ok) {
+    //       const redirectLink = response.link;
+    //       const message = response.message;
+    //       return (<Redirect to={redirectLink} />)
+    //     }
+    //   })
+  } 
+
+
   render () {
     return(
       <Formik
-        onSubmit={console.log}
+        onSubmit={this.handleSubmit}
         initialValues={{
           input_users: '',
           input_address: '',
@@ -83,35 +126,15 @@ class CreateGroup extends Component {
                 <Form.Label>
                   Input names here:
                 </Form.Label>
-                <Autocomplete
-            autoSelect
-            freeSolo
-            id="input_users"
-            limitTags={4}
-            multiple
-            onBlur={handleBlur}
-            onChange={handleChange}
-            getOptionLabel={option => option}
-            filterSelectedOptions
-            renderInput={params => (
-              <TextField
-                {...params}
-                id="input_users"
-                name="search"
-                variant="outlined"
-                label="Enter a name"
-                placeholder="input_users"
-              />
-            )}
-          />
-              {/*<Form.Control 
+              <Form.Control 
                 type="text"
                 name="input_users"
-                onChange={handleChange}
-                value={values.input_users}
+                onChange={this.handleChange}
+                value={this.state.input_users}
                 isValid={touched.input_users && !errors.input_users}
                 as="textarea" rows="1" 
-              /> */}
+                required
+              /> 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
@@ -134,9 +157,9 @@ class CreateGroup extends Component {
                 <Form.Label>State(optional):</Form.Label>
                 <Form.Control
                   name="select_state"
-                  onChange={handleChange}
+                  onChange={this.handleChange}
                   onBlur={handleBlur}
-                  value={values.select_state}
+                  value={this.state.select_state}
                   as="select">
                   <option value="">Select a state</option>
                   <option value="Alabama">Alabama</option>
@@ -192,12 +215,13 @@ class CreateGroup extends Component {
                 </Form.Control>
                 <br></br>
                 <div>
-                  <input type="file" onChange={this.handleChange}/>
+                  <input type="file" name="file" ref={this.inputFileRef} onChange={this.handleImage}/>
                   <br></br>
                   <img style={{width: 225}} src={this.state.preview} alt={""}/>
                 </div>
                 <br></br>
-                <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button>
+                {/* <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button> */}
+                <Button type="submit" onClick={this.uploadImage}><a>Submit form</a></Button>
               </Form.Group>
             </Form>
             </div>
