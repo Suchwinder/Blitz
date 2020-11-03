@@ -6,8 +6,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { TextField } from "@material-ui/core";
+import { Redirect } from 'react-router-dom';
+
 
 
 
@@ -25,6 +25,10 @@ class CreateGroup extends Component {
       input_address: "",
       select_state: "",
       input_tip: "",
+      input_location: "",
+      input_zip: "",
+      input_city: ""
+
     }
     this.inputFileRef = React.createRef();
     this.handleImage = this.handleImage.bind(this);
@@ -69,10 +73,10 @@ class CreateGroup extends Component {
     const names = this.state.input_users.split(',')
     let data = {
       "users": names,
-      "street_address": "695 Park Ave",
-      "city": "New York",
-      "location_name": "Hunter College",
-      "zip_code": 10065,
+      "street_address": this.state.input_address,
+      "city": this.state.input_city,
+      "location_name": this.state.input_location,
+      "zip_code": this.state.input_zip,
       "image_s3url": this.state.preview,
       "tip_rate": 10
     }
@@ -128,12 +132,13 @@ class CreateGroup extends Component {
                 </Form.Label>
               <Form.Control 
                 type="text"
+                placeholder="Names"
                 name="input_users"
                 onChange={this.handleChange}
                 value={this.state.input_users}
                 isValid={touched.input_users && !errors.input_users}
                 as="textarea" rows="1" 
-                required
+                required = "Please enter at least one user"
               /> 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
@@ -142,17 +147,54 @@ class CreateGroup extends Component {
 
               <Form.Group controlId="form.input_address">
                 <Form.Label>Address:</Form.Label>
-                <PlacesAutocomplete/>
-                {/* <Form.Control
+                 <Form.Control
                   type="text"
                   placeholder="Address"
                   name="input_address"
                   onChange={handleChange}
                   value={values.input_address}
                   as="textarea" rows="1" 
-                /> */}
+                  required
+                /> 
               </Form.Group>
-
+              
+              <Form.Group controlId="form.input_city">
+                <Form.Label>City:</Form.Label>
+                 <Form.Control
+                  type="text"
+                  placeholder="City"
+                  name="input_city"
+                  onChange={handleChange}
+                  value={values.input_city}
+                  as="textarea" rows="1" 
+                /> 
+              </Form.Group>
+              
+              <Form.Group controlId="form.input_zip">
+                <Form.Label>Zip Code:</Form.Label>
+                 <Form.Control
+                  type="text"
+                  placeholder="Zip Code"
+                  name="input_zip"
+                  onChange={handleChange}
+                  value={values.input_zip}
+                  as="textarea" rows="1" 
+                /> 
+              </Form.Group>
+              
+              <Form.Group controlId="form.input_location">
+                <Form.Label>Location:</Form.Label>
+                 <Form.Control
+                  type="text"
+                  placeholder="Location Name"
+                  name="input_location"
+                  onChange={handleChange}
+                  value={values.input_location}
+                  as="textarea" rows="1" 
+                  required
+                /> 
+              </Form.Group>
+              
               <Form.Group className="form-group" controlId="form.select_state">
                 <Form.Label>State(optional):</Form.Label>
                 <Form.Control
