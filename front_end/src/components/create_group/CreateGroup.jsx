@@ -23,11 +23,9 @@ class CreateGroup extends Component {
       preview: null,
       input_users: "",
       input_address: "",
-      select_state: "",
       input_tip: "",
-      input_location: "",
-      input_zip: "",
-      input_city: ""
+      input_location: ""
+
 
     }
     this.inputFileRef = React.createRef();
@@ -50,7 +48,7 @@ class CreateGroup extends Component {
   //   }
   // }
 
-  // handle the form here
+  // Handle the form here
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -74,9 +72,7 @@ class CreateGroup extends Component {
     let data = {
       "users": names,
       "street_address": this.state.input_address,
-      "city": this.state.input_city,
       "location_name": this.state.input_location,
-      "zip_code": this.state.input_zip,
       "image_s3url": this.state.preview,
       "tip_rate": 10
     }
@@ -90,7 +86,7 @@ class CreateGroup extends Component {
     //   }).then(response => {
     //     if (!response.ok) {
     //       throw new Error();
-    //       // return error message
+          // return "Connection to Database Failed"
     //     }
     //     if (response.ok) {
     //       const redirectLink = response.link;
@@ -144,56 +140,6 @@ class CreateGroup extends Component {
               </Form.Group>
 
               {errors.input_users && touched.input_users && errors.input_users}
-
-              <Form.Group controlId="form.input_address">
-                <Form.Label>Address:</Form.Label>
-                 <Form.Control
-                  type="text"
-                  placeholder="Address"
-                  name="input_address"
-                  onChange={handleChange}
-                  value={values.input_address}
-                  as="textarea" rows="1" 
-                  required
-                /> 
-              </Form.Group>
-              
-              <Form.Group controlId="form.input_city">
-                <Form.Label>City:</Form.Label>
-                 <Form.Control
-                  type="text"
-                  placeholder="City"
-                  name="input_city"
-                  onChange={handleChange}
-                  value={values.input_city}
-                  as="textarea" rows="1" 
-                /> 
-              </Form.Group>
-              
-              <Form.Group controlId="form.input_zip">
-                <Form.Label>Zip Code:</Form.Label>
-                 <Form.Control
-                  type="text"
-                  placeholder="Zip Code"
-                  name="input_zip"
-                  onChange={handleChange}
-                  value={values.input_zip}
-                  as="textarea" rows="1" 
-                /> 
-              </Form.Group>
-              
-              <Form.Group controlId="form.input_location">
-                <Form.Label>Location:</Form.Label>
-                 <Form.Control
-                  type="text"
-                  placeholder="Location Name"
-                  name="input_location"
-                  onChange={handleChange}
-                  value={values.input_location}
-                  as="textarea" rows="1" 
-                  required
-                /> 
-              </Form.Group>
               
               <Form.Group className="form-group" controlId="form.select_state">
                 <Form.Label>State(optional):</Form.Label>
