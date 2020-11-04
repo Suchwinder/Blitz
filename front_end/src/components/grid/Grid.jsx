@@ -2,7 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 import '../split_bill/SplitBill';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,10 +40,7 @@ export default function AutoGrid() {
         <Grid container spacing={3}>
             <Grid item xs>
                 <Paper className={classes.paper}>
-                <div className="receipt">
-                    <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" className="placeholder" alt="example placeholder"></img>
-                </div>
-                {/* Items
+                Items
                     <ul className="innerList">
                         <li>
                             5 Apples
@@ -50,10 +48,10 @@ export default function AutoGrid() {
                         <li>
                             3 Oranges
                         </li>
-                    </ul> */}
+                    </ul>
                 </Paper>
             </Grid>
-            {/* <Grid item xs>
+            <Grid item xs>
                 <Paper className={classes.paper}>
                     $/unit
                     <ul className="innerList">
@@ -65,24 +63,25 @@ export default function AutoGrid() {
                         </li>
                     </ul>
                 </Paper>
-            </Grid> */}
+            </Grid>
             <Grid item xs>
             <Paper className={classes.paper}>
-                <FormControl>
-                    <InputLabel >User 1</InputLabel>
-                    <Select>
-                        <MenuItem>Item 1</MenuItem>
-                        <MenuItem>Item 2</MenuItem>
-                    </Select>
-                </FormControl>
-                <br></br>
-                <FormControl>
-                    <InputLabel >User 2</InputLabel>
-                    <Select>
-                        <MenuItem>Item 1</MenuItem>
-                        <MenuItem>Item 2</MenuItem>
-                    </Select>
-                </FormControl>
+                <div className={classes.root}>
+                    <Autocomplete
+                        multiple
+                        id="tags-standard"
+                        options={items_list}
+                        getOptionLabel={(option) => option.string}
+                        renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            variant="standard"
+                            label="User 1"
+                            placeholder="Selection"
+                        />
+                        )}
+                    />
+                </div>
             </Paper>
             </Grid>
         </Grid>
@@ -159,3 +158,7 @@ export default function AutoGrid() {
         </div>
     );
 }
+const items_list = [
+    { string: 'Orange'},
+    { string: 'Apples'},
+  ];
