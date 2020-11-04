@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import NavBar from '../nav_bar/NavBar';
-// import UploadImage from '../upload_button/UploadImage'
 import './CreateGroup.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
-import { Redirect } from 'react-router-dom';
-
-
-
-
-
-// https://react-bootstrap.github.io/components/forms/?#forms-validation-libraries
-// https://codesandbox.io/s/vxv6q4z5?file=/index.js
+// import { Redirect } from 'react-router-dom';
 
 class CreateGroup extends Component {
   constructor(props){
@@ -100,6 +92,9 @@ class CreateGroup extends Component {
     //   })
   } 
 
+  handleParentFunc = (value) =>{
+    console.log("Sent from Place API: ",value);
+  }
 
   render () {
     return(
@@ -147,7 +142,7 @@ class CreateGroup extends Component {
 
               <Form.Group controlId="form.input_address">
                 <Form.Label>Address:</Form.Label>
-                 <Form.Control
+                 {/* <Form.Control
                   type="text"
                   placeholder="Address"
                   name="input_address"
@@ -155,7 +150,14 @@ class CreateGroup extends Component {
                   value={values.input_address}
                   as="textarea" rows="1" 
                   required
-                /> 
+                />  */}
+                <PlacesAutocomplete
+                  handleParentFunc={(value)=> {
+                    // console.log("your value --> ", value);
+                    this.handleParentFunc(value);
+                    }
+                  }
+                />
               </Form.Group>
               
               <Form.Group controlId="form.input_city">
@@ -204,7 +206,7 @@ class CreateGroup extends Component {
                   value={this.state.select_state}
                   as="select">
                   <option value="">Select a state</option>
-                  <option value="Alabama">Alabama</option>
+                  {/* <option value="Alabama">Alabama</option>
                   <option value="Alaska">Alaska</option>
                   <option value="Arizona">Arizona</option>
                   <option value="Arkansas">Arkansas</option>
@@ -234,9 +236,9 @@ class CreateGroup extends Component {
                   <option value="Nevada">Nevada</option>
                   <option value="New Hampshire">New Hampshire</option>
                   <option value="New Jersey">New Jersey</option>
-                  <option value="New Mexico">New Mexico</option>
+                  <option value="New Mexico">New Mexico</option> */}
                   <option value="New York">New York</option>
-                  <option value="North Carolina">North Carolina</option>
+                  {/* <option value="North Carolina">North Carolina</option>
                   <option value="North Dakota">North Dakota</option>
                   <option value="Ohio">Ohio</option>
                   <option value="Oklahoma">Oklahoma</option>
@@ -253,7 +255,7 @@ class CreateGroup extends Component {
                   <option value="Washington">Washington</option>
                   <option value="West Virginia">West Virginia</option>
                   <option value="Wisconsin">Wisconsin</option>
-                  <option value="Wyoming">Wyoming</option>
+                  <option value="Wyoming">Wyoming</option> */}
                 </Form.Control>
                 <br></br>
                 <div>
@@ -262,8 +264,8 @@ class CreateGroup extends Component {
                   <img style={{width: 225}} src={this.state.preview} alt={""}/>
                 </div>
                 <br></br>
-                {/* <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button> */}
-                <Button type="submit" onClick={this.uploadImage}><a>Submit form</a></Button>
+                <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button>
+                {/* <Button type="submit" onClick={this.uploadImage}><a>Submit form</a></Button> */}
               </Form.Group>
             </Form>
             </div>

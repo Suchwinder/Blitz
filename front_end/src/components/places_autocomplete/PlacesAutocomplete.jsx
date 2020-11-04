@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GoogleMaps() {
+export default function GoogleMaps(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState('');
@@ -85,13 +85,14 @@ export default function GoogleMaps() {
         }
 
         setOptions(newOptions);
+        props.handleParentFunc(inputValue);
       }
     });
 
     return () => {
       active = false;
     };
-  }, [value, inputValue, fetch]);
+  }, [value, inputValue, fetch, props]);
 
   return (
     <Autocomplete
@@ -109,6 +110,7 @@ export default function GoogleMaps() {
       }}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
+        
       }}
       renderInput={(params) => (
         <TextField {...params} label="Add a location" variant="outlined" fullWidth />
@@ -120,7 +122,7 @@ export default function GoogleMaps() {
           matches.map((match) => [match.offset, match.offset + match.length]),
         );
 
-        return (
+        return ( 
           <Grid container alignItems="center">
             <Grid item>
               <LocationOnIcon className={classes.icon} />
