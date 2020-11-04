@@ -22,9 +22,6 @@ def assign_item():
         # query data for price calculation
         curr_cost_per_person = item_object.itemCostPerPerson
 
-        # counts number of users assigned to that item
-        # curr_numb_of_users = db_connection(ItemAssignments).filter(ItemAssignments.itemID == item_object.itemID).count()       
-
         # see item-user pair exists
         item_user_exist = db_connection.query(ItemAssignments).filter((ItemAssignments.itemID == item_object.itemID), (ItemAssignments.userID == user_object.userID)).first()
 
@@ -49,13 +46,18 @@ def assign_item():
             # update amount owed for all users associated with item
             item_assignment_object = db_connection.query(ItemAssignments).filter(ItemAssignments.itemID == item_object.itemID)
 
+            # traverse through each assignment pair
             for assignments in item_assignment_object:
+                # get user of assignment pair being looked at
                 curr_pair_user = db_connection.query(Users).filter(Users.userID == assignments.userID).first()
+                
+                # ensure that the currently traversed user's amountOwed isn't at $0.00 and there is at least 2 pairs (>=2)
                 if(curr_pair_user.amountOwed >0 and item_assignment_object.count() > 1):
                     user_total = curr_pair_user.amountOwed - curr_cost_per_person + new_per_person_price
                     db_connection.query(Users).filter(Users.userID == assignments.userID).update({"amountOwed": user_total})
                     db_connection.commit()
                 else:
+                    # add new price per person to the user's total
                     user_total = curr_pair_user.amountOwed + new_per_person_price
                     db_connection.query(Users).filter(Users.userID == assignments.userID).update({"amountOwed": user_total})
                     db_connection.commit()
