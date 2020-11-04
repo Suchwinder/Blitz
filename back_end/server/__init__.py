@@ -1,7 +1,7 @@
 from flask import Flask
 from models import bootDB
+from routes.group import upload_image, create_group, get_group, edit_tip_rate #create_group, join_group, s3_test
 from routes import assign_item 
-from routes.group import upload_image, create_group, get_group #create_group, join_group, s3_test
 
 # User(s) Imports
 from routes.users import create_user
@@ -17,6 +17,7 @@ def create_app():
     app.register_blueprint(create_group.bp)
     app.register_blueprint(get_group.bp)
     app.register_blueprint(upload_image.bp)
+    app.register_blueprint(edit_tip_rate.bp)
     
     # Register(s) User Functionality
     app.register_blueprint(create_user.bp)

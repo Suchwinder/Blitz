@@ -83,7 +83,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"url\": \"\"\n}",
+					"raw": "{\n    \"url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -91,7 +91,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/get",
+					"raw": "http://127.0.0.1:5000/api/get_group",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -102,7 +102,7 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"get"
+						"get_group"
 					]
 				}
 			},
@@ -115,7 +115,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nickname\": \"James\",\n    \"group_url\": \"http://localhost:3000/split_bill/xGScjzlyaemISyKlbvjZjiFpoQ_3447122399\"\n}",
+					"raw": "{\n    \"nickname\": \"testing\",\n    \"group_url\": \"http://localhost:3000/split_bill/xGScjzlyaemISyKlbvjZjiFpoQ_3447122399\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -148,7 +148,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"item_name\": \"milkshake\",\n    \"item_cost\": 10.89,\n    \"group_url\": \"http://localhost:3000/split_bill/xGScjzlyaemISyKlbvjZjiFpoQ_3447122399\"\n}",
+					"raw": "{\n    \"item_name\": \"test\",\n    \"item_cost\": 2,\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -181,7 +181,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nickname\": \"ten\",\n    \"new_nickname\": \"jhk\",\n    \"adjusted_amount\": 10.89,\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"raw": "{\n    \"nickname\": \"jack\",\n    \"new_nickname\": \"jack\",\n    \"adjusted_amount\": 0.89,\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -204,6 +204,38 @@
 					]
 				},
 				"description": "Edit a existing user in group"
+			},
+			"response": []
+		},
+		{
+			"name": "edit_tip_rate",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tip_rate\": 20,\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/edit_tip_rate",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"edit_tip_rate"
+					]
+				}
 			},
 			"response": []
 		}
