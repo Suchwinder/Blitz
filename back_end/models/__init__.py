@@ -126,6 +126,7 @@ class Items(Base):
     itemName = Column(String)
     itemCost = Column(Float)
     itemQuantity = Column(Integer)
+    itemCostPerPerson = Column(Float)
     groupID = Column(Integer, ForeignKey('groups.groupID'))
 
     # Relationships
