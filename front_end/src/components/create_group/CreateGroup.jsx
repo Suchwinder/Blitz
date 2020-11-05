@@ -16,13 +16,17 @@ class CreateGroup extends Component {
     super(props)
     this.state = {
       file: null,
-      preview: null,
+      preview: "",
       input_users: [],
       input_address: "",
-      input_tip: "",
+      input_zip_code: "",
+      input_city: "",
+      input_state: "",
+      input_tip: 0,
       input_location: "",
       redirect: false,
-      group_url: ""
+      group_url: "",
+      image_s3url: "",
     }
     this.inputFileRef = React.createRef();
     this.handleImage = this.handleImage.bind(this);
@@ -91,18 +95,47 @@ class CreateGroup extends Component {
   // call the api endpoint here
   // put upload image here if it exists, call upload image api
   handleSubmit = async (event) => {
-    // const names = this.state.input_users.split(',')
+    // First need to upload the image if it exists
+    if(this.state.preview !== "") { // check if preview empty rather then blob data
+      // call uploadimage api to get object url
+      let data = new FormData();
+      data.append('file', this.state.file);
+
+      const response = await fetch('/api/upload_image', {
+        method: 'POST',
+        body: data
+      })
+      const status = response.status
+      const result = response.json();
+
+      if(status === 200) {
+        this.setState({
+          image_s3url: result.message
+        })
+      } else {
+        console.log(result.error)
+        return;
+      }
+    }
+    
+    // Now upload rest of data
     let data = {
-      // "users": names,
+      "users": this.state.input_users,
       "street_address": this.state.input_address,
       "location_name": this.state.input_location,
-      "image_s3url": this.state.preview,
+      "city": this.state.input_city, 
+      "state": this.state.input_state,
+      "zip_code": this.state.input_zip_code,
+      "image_s3url": this.state.image_s3url,
       "tip_rate": this.state.input_tip
     }
-    console.log(data);
 
     try {
-      const response = await fetch("localhost:5000/api/create_group", {
+      const response = await fetch("/api/create_group", {
+        headers: {
+          "Content-Type": 'application/json',
+          "Accept": 'application/json',
+        },
         method: 'POST',
         body: JSON.stringify(data)
       })
@@ -339,7 +372,6 @@ class CreateGroup extends Component {
       </div>
     )} 
     </Formik>  
-
     )   
   }
 }
