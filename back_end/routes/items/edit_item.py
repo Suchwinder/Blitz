@@ -42,7 +42,6 @@ def edit_item():
         old_item_cost_per_person = item_object.itemCostPerPerson
 
         if(new_item_cost != item_object.itemCost):
-            print("ENTERED COST IF STATEMENT")
             # Get number of users associated with item
             user_count = db_connection.query(ItemAssignments).filter((ItemAssignments.itemID == item_object.itemID)).count()
 
