@@ -160,5 +160,5 @@ export default function AutoGrid() {
 }
 const items_list = [
     { string: 'Orange'},
-    { string: 'Apples'},
+    { string: 'Apple'},
   ];

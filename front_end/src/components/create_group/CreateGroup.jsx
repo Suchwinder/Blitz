@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import NavBar from '../nav_bar/NavBar';
-// import UploadImage from '../upload_button/UploadImage'
 import './CreateGroup.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
-import { Redirect } from 'react-router-dom';
 import FreesoloUsers from '../freesolo_users/FreesoloUsers'
-
-
-
-
-// https://react-bootstrap.github.io/components/forms/?#forms-validation-libraries
-// https://codesandbox.io/s/vxv6q4z5?file=/index.js
+// import { Redirect } from 'react-router-dom';
 
 class CreateGroup extends Component {
   constructor(props){
@@ -96,6 +89,9 @@ class CreateGroup extends Component {
     //   })
   } 
 
+  handleParentFunc = (value) =>{
+    console.log("Sent from Place API: ",value);
+  }
 
   render () {
     return(
@@ -143,16 +139,46 @@ class CreateGroup extends Component {
 
               <Form.Group controlId="form.input_address">
                 <Form.Label>Address:</Form.Label>
+                 {/* <Form.Control
+                  type="text"
+                  placeholder="Address"
+                  name="input_address"
+                  onChange={handleChange}
+                  value={values.input_address}
+                  as="textarea" rows="1" 
+                  required
+                />  */}
                 <PlacesAutocomplete
-                type="text"
-                placeholder="Address"
-                name="input_address"
-                onChange={handleChange}
-                value={values.input_address}
-                isValid={touched.input_address && !errors.input_address}
-                as="textarea" rows="1"
+                  handleParentFunc={(value)=> {
+                    // console.log("your value --> ", value);
+                    this.handleParentFunc(value);
+                    }
+                  }
                 />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              
+              <Form.Group controlId="form.input_city">
+                <Form.Label>City:</Form.Label>
+                 <Form.Control
+                  type="text"
+                  placeholder="City"
+                  name="input_city"
+                  onChange={handleChange}
+                  value={values.input_city}
+                  as="textarea" rows="1" 
+                /> 
+              </Form.Group>
+              
+              <Form.Group controlId="form.input_zip">
+                <Form.Label>Zip Code:</Form.Label>
+                 <Form.Control
+                  type="text"
+                  placeholder="Zip Code"
+                  name="input_zip"
+                  onChange={handleChange}
+                  value={values.input_zip}
+                  as="textarea" rows="1" 
+                /> 
               </Form.Group>
 
               {errors.input_address && touched.input_address && errors.input_address}
@@ -185,8 +211,8 @@ class CreateGroup extends Component {
                   onBlur={handleBlur}
                   value={this.state.select_state}
                   as="select">
-                  {/* <option value="">Select a state</option>
-                  <option value="Alabama">Alabama</option>
+                  <option value="">Select a state</option>
+                  {/* <option value="Alabama">Alabama</option>
                   <option value="Alaska">Alaska</option>
                   <option value="Arizona">Arizona</option>
                   <option value="Arkansas">Arkansas</option>
@@ -260,8 +286,8 @@ class CreateGroup extends Component {
                   <img style={{width: 225}} src={this.state.preview} alt={""}/>
                 </div>
                 <br></br>
-                {/* <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button> */}
-                <Button type="submit" onClick={this.uploadImage}><a>Submit form</a></Button>
+                <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button>
+                {/* <Button type="submit" onClick={this.uploadImage}><a>Submit form</a></Button> */}
               </Form.Group>
             </Form>
             </div>
