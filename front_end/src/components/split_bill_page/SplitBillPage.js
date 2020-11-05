@@ -55,6 +55,7 @@ class SplitBillPage extends Component {
       zip_code: "",
       redirect: false,
       user_count: 0,
+      address: "",
     }
   }
 
@@ -83,6 +84,7 @@ class SplitBillPage extends Component {
           users: result.users,
           user_count: result.user_count,
           zip_code: result.zip_code,
+          address: result.street_address + ', ' + result.city + ', ' + result.state_name + ' ' + result.zip_code,
         }/*, () => {console.log("after", this.state)}*/)
       } else if (status >= 400) {
           this.setState({
@@ -102,6 +104,7 @@ class SplitBillPage extends Component {
   //     console.log(error);
   //   }
   // }
+
   componentDidMount = async ()=> {
     // console.log(this.state.group_url);
     // console.log(window.location.href);
@@ -122,6 +125,10 @@ class SplitBillPage extends Component {
           <Redirect to='/'/>
           :
           <div className="split-bill-page">
+            <h4> {this.state.location_name} </h4>
+            <p> {this.state.address} </p>
+            {/* Render item, item price, and user assignment that is modifyable
+            should open a model to update for UI friendliness */}
             <Grid container spacing={3}>
               <Grid item xs>
                 <Paper className={classes.paper}>
@@ -173,6 +180,7 @@ class SplitBillPage extends Component {
             <br></br>
             <ColoredLine color="black" />
             <br></br>
+            {/* Render total for each individual */}
             <Grid container spacing={3}>
             {
               this.state.users.map((user, index) => {
@@ -222,21 +230,16 @@ class SplitBillPage extends Component {
               })
             }
             </Grid>
+            {/* Render group total */}
             <Grid container spacing={3}>
               <Grid item xs>
                 <Paper className={classes.paper}>
-                  Grand Total
+                  {/* Grand Total */}
                   <ul className="innerList">
-                    <li>
-                      5x Apple
-                    </li>
-                    <li>
-                      3x Orange
-                    </li>
-                    <br></br>
-                    <li>
-                      Total: $21
-                    </li>
+                    <ul>Tip Rate: {this.state.tip_rate}%</ul>
+                    <ul>Tax Rate: {(this.state.tax_rate-1).toFixed(6) * 100}%</ul>
+                    <ul>SubTotal: ${this.state.sub_total.toFixed(2)}</ul>
+                    <ul>Grand Total: ${this.state.total_cost.toFixed(2)}</ul>
                   </ul>
                 </Paper>
               </Grid>
