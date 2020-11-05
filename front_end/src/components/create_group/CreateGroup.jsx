@@ -149,7 +149,7 @@ class CreateGroup extends Component {
           redirect: true
         }, () => console.log(this.state))
       } else {
-        console.log(result.error);
+        alert(result.error);
       }
 
     } catch (error) {
@@ -219,12 +219,6 @@ class CreateGroup extends Component {
               required = "Please enter at least one user"
               onChange = {this.handleUsers}
               value={this.state.input_users}
-              // renderTags={(value, getTagProps) =>
-              // value.map((option, index) => (
-                //   <Chip variant="outlined" label={option} {...getTagProps({ index })} />
-                  
-                // ))
-              //}
               renderInput={(params) => (
                 <TextField {...params} variant="filled" label="Users" />
               )}
@@ -234,7 +228,25 @@ class CreateGroup extends Component {
               </Form.Group>
 
               {errors.input_users && touched.input_users && errors.input_users}
+              
+              <Form.Group controlId="form.input_location">
+                <Form.Label>
+                  Input location here:
+                </Form.Label>
+              <Form.Control 
+                type="text"
+                placeholder="Location Name"
+                name="input_location"
+                onChange={this.handleChange}
+                value={this.state.input_location}
+                isValid={touched.input_location && !errors.input_location}
+                as="textarea" rows="1" 
+                required = "Please enter your location"
+              /> 
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
 
+              {errors.input_location && touched.input_location && errors.input_location}
               <Form.Group controlId="form.input_address">
                 <Form.Label>Address:</Form.Label>
                  {/* <Form.Control
@@ -262,35 +274,18 @@ class CreateGroup extends Component {
               </Form.Group>
               {errors.input_address && touched.input_address && errors.input_address}
 
-              <Form.Group controlId="form.input_location">
-                <Form.Label>
-                  Input location here:
-                </Form.Label>
-              <Form.Control 
-                type="text"
-                placeholder="Location Name"
-                name="input_location"
-                onChange={this.handleChange}
-                value={this.state.input_location}
-                isValid={touched.input_location && !errors.input_location}
-                as="textarea" rows="1" 
-                required = "Please enter your location"
-              /> 
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-
-              {errors.input_users && touched.input_users && errors.input_users}
+              
               
               <Form.Group className="form-group" controlId="form.select_state">
-                <Form.Label>State(optional):</Form.Label>
-                <Form.Control
+                {/* <Form.Label>State(optional):</Form.Label> */}
+                {/* <Form.Control
                   name="select_state"
                   onChange={this.handleChange}
                   onBlur={handleBlur}
                   value={this.state.select_state}
                   as="select">
-                  {/* <option value="">Select a state</option> */}
-                  {/* <option value="Alabama">Alabama</option>
+                  <option value="">Select a state</option>
+                  <option value="Alabama">Alabama</option>
                   <option value="Alaska">Alaska</option>
                   <option value="Arizona">Arizona</option>
                   <option value="Arkansas">Arkansas</option>
@@ -320,9 +315,9 @@ class CreateGroup extends Component {
                   <option value="Nevada">Nevada</option>
                   <option value="New Hampshire">New Hampshire</option>
                   <option value="New Jersey">New Jersey</option>
-                  <option value="New Mexico">New Mexico</option> */}
+                  <option value="New Mexico">New Mexico</option>
                   <option value="New York">New York</option>
-                  {/* <option value="North Carolina">North Carolina</option>
+                  <option value="North Carolina">North Carolina</option>
                   <option value="North Dakota">North Dakota</option>
                   <option value="Ohio">Ohio</option>
                   <option value="Oklahoma">Oklahoma</option>
@@ -339,9 +334,11 @@ class CreateGroup extends Component {
                   <option value="Washington">Washington</option>
                   <option value="West Virginia">West Virginia</option>
                   <option value="Wisconsin">Wisconsin</option>
-                  <option value="Wyoming">Wyoming</option> */}
-                </Form.Control>
-                <Form.Group controlId="form.input_tip">
+                  <option value="Wyoming">Wyoming</option>
+                </Form.Control> */}
+              </Form.Group>
+              
+              <Form.Group controlId="form.input_tip">
                 <Form.Label>Tip:</Form.Label>
                 <Form.Control 
                 type="text"
@@ -356,6 +353,7 @@ class CreateGroup extends Component {
                 <option value="20">20%</option>
                 <option value="25">25%</option>
                 </Form.Control>
+
               </Form.Group>
                 <br></br>
                 <div>
@@ -366,7 +364,6 @@ class CreateGroup extends Component {
                 <br></br>
                 <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button>
                 {/* <Button type="submit" onClick={this.uploadImage}><a>Submit form</a></Button> */}
-              </Form.Group>
             </Form>
             </div>
       </div>
