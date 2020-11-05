@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
-import '../split_bill/SplitBill.css'
+import './SplitBill.css'
 import { Redirect } from 'react-router-dom';
 
 
@@ -237,7 +237,11 @@ class SplitBillPage extends Component {
                   {/* Grand Total */}
                   <ul className="innerList">
                     <ul>Tip Rate: {this.state.tip_rate}%</ul>
-                    <ul>Tax Rate: {(this.state.tax_rate-1).toFixed(6) * 100}%</ul>
+                    <ul>Tax Rate: {
+                      this.state.tax_rate === 0
+                      ? 0
+                      : (this.state.tax_rate-1).toFixed(6) * 100
+                    }% </ul>
                     <ul>SubTotal: ${this.state.sub_total.toFixed(2)}</ul>
                     <ul>Grand Total: ${this.state.total_cost.toFixed(2)}</ul>
                   </ul>
