@@ -9,12 +9,7 @@ def get_group():
     # print(group)
     db_connection = create_db_connection()
     if db_connection:
-        # data = request.get_json()
-
-        # print(group_URL)
         url = request.args['group_URL']
-        print("_______________________________________")
-        print(url)
 
         if(len(url) == 0):
             response = {'error': 'Please Enter a URL'}
