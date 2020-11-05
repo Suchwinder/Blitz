@@ -7,7 +7,7 @@ bp = Blueprint('edit_item', __name__, url_prefix='/api')
 def edit_item():
     db_connection = create_db_connection()
     if db_connection:
-        data = request.json()
+        data = request.get_json()
 
         item_name = data['item_name']
         new_item_name = data['new_item_name']
@@ -35,26 +35,33 @@ def edit_item():
                 return response, 400
             
             # update item's name
-            db_connection.query(Items).filter((Items.itemName == item_name), (Items.groupID == group_object.groupID)).update({"itemName": new_item_name})
+            db_connection.query(Items).filter(Items.itemID == item_object.itemID).update({"itemName": new_item_name})
+            db_connection.commit()
         
         # Get current cost per person
         old_item_cost_per_person = item_object.itemCostPerPerson
 
         if(new_item_cost != item_object.itemCost):
+            print("ENTERED COST IF STATEMENT")
             # Get number of users associated with item
             user_count = db_connection.query(ItemAssignments).filter((ItemAssignments.itemID == item_object.itemID)).count()
 
             # new cost per person
-            new_cost_per_person = round(new_item_cost/user_count, 2)
+            if(user_count >0):
+                new_cost_per_person = round(new_item_cost/user_count, 2)
+            else:
+                new_cost_per_person = new_item_cost
 
             # get all item-user assignments associated with this item
             item_assignment_object = db_connection.query(ItemAssignments).filter(ItemAssignments.itemID == item_object.itemID)
 
             # update item's base cost
-            db_connection.query(Items).filter((Items.itemName == item_name), (Items.groupID == group_object.groupID)).update({"itemCost": new_item_cost})
+            db_connection.query(Items).filter(Items.itemID == item_object.itemID).update({"itemCost": new_item_cost})
+            db_connection.commit()
 
             # update item's cost per person
-            db_connection.query(Items).filter((Items.itemName == item_name), (Items.groupID == group_object.groupID)).update({"itemCostPerPerson": new_cost_per_person})
+            db_connection.query(Items).filter(Items.itemID == item_object.itemID).update({"itemCostPerPerson": new_cost_per_person})
+            db_connection.commit()
 
             # traverse through each assignment pair
             for assignments in item_assignment_object:
