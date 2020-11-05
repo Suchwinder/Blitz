@@ -18,7 +18,7 @@ class CreateGroup extends Component {
       file: null,
       preview: null,
       input_users: [],
-      input_address: "",
+      // input_address: "",
       input_tip: "",
       input_location: "",
       redirect: false,
@@ -86,6 +86,11 @@ class CreateGroup extends Component {
     } else {
       return;
     }
+  }
+
+  handleAddress = (event, value, ) => {
+    console.log(value);
+    
   }
 
   // call the api endpoint here
@@ -214,6 +219,7 @@ class CreateGroup extends Component {
               </Form.Group>
 
               {errors.input_location && touched.input_location && errors.input_location}
+              
               <Form.Group controlId="form.input_address">
                 <Form.Label>Address:</Form.Label>
                  {/* <Form.Control
@@ -241,8 +247,6 @@ class CreateGroup extends Component {
               </Form.Group>
               {errors.input_address && touched.input_address && errors.input_address}
 
-              
-              
               <Form.Group className="form-group" controlId="form.select_state">
                 {/* <Form.Label>State(optional):</Form.Label> */}
                 {/* <Form.Control
