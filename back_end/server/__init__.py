@@ -9,6 +9,7 @@ from routes.users import edit_user
 
 # Item(s) Imports
 from routes.items import create_item
+from routes.items import edit_item
 
 def create_app():
     bootDB() #start database (good to do database boot before app to ensure it exists before app works)
@@ -25,6 +26,7 @@ def create_app():
 
     # Register(s) Item Functionality
     app.register_blueprint(create_item.bp)
+    app.register_blueprint(edit_item.bp)
 
     # Register(s) Item-User Pair Functionality
     app.register_blueprint(assign_item.bp)
