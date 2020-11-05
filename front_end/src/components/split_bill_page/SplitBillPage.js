@@ -85,18 +85,27 @@ class SplitBillPage extends Component {
       } else if (status >= 400) {
           this.setState({
             redirect: true
-          }, () => {throw Error(alert(result.error))});
+          }, () => {alert(result.error)});
       }
     } catch (error) {
       console.log(error);
     }
   }
 
+  // loadAllUserData = async () => {
+  //   try {
+  //     await this.fetchGroupData()
+
+  //   } catch {
+  //     console.log(error);
+  //   }
+  // }
   componentDidMount = async ()=> {
     // console.log(this.state.group_url);
     // console.log(window.location.href);
     // console.log(this.props);
-    this.fetchGroupData();
+    // await this.loadAllUserData();
+    await this.fetchGroupData();
   }
 
   render() {
@@ -111,7 +120,6 @@ class SplitBillPage extends Component {
           <Redirect to='/'/>
           :
           <div className="split-bill-page">
-            Hello World!
             <Grid container spacing={3}>
               <Grid item xs>
                 <Paper className={classes.paper}>
