@@ -41,6 +41,7 @@ class SplitBillPage extends Component {
       group_url: props.groupURL.match.url,
       image_url: "",
       item_assignments: {},
+      user_assignments: {},
       items: [],
       location_name: "",
       state_name: "",
@@ -69,6 +70,7 @@ class SplitBillPage extends Component {
           city: result.city,
           image_url: result.image_url,
           item_assignments: result.item_assignments,
+          user_assignments: result.user_assignments,
           items: result.items,
           location_name: result.location_name,
           state_name: result.state_name,
@@ -81,7 +83,7 @@ class SplitBillPage extends Component {
           users: result.users,
           user_count: result.user_count,
           zip_code: result.zip_code,
-        }, () => {console.log("after", this.state)})
+        }/*, () => {console.log("after", this.state)}*/)
       } else if (status >= 400) {
           this.setState({
             redirect: true
@@ -171,53 +173,56 @@ class SplitBillPage extends Component {
             <br></br>
             <ColoredLine color="black" />
             <br></br>
-
             <Grid container spacing={3}>
-              <Grid item xs>
-                <Paper className={classes.paper}>
-                  User 1
-                  <ul className="innerList">
-                    <li>
-                      1x Apple
-                    </li>
-                    <br></br>
-                    <li>
-                      Total: $3
-                    </li>
-                  </ul>
-                </Paper>
-              </Grid>
-              <Grid item xs>
-                <Paper className={classes.paper}>
-                  User 2
-                  <ul className="innerList">
-                    <li>
-                      2x Orange
-                    </li>
-                    <br></br>
-                    <li>
-                      Total: $4
-                    </li>
-                  </ul>
-                </Paper>
-              </Grid>
-              <Grid item xs>
-                <Paper className={classes.paper}>
-                  User 3
-                  <ul className="innerList">
-                    <li>
-                      4x Apple
-                    </li>
-                    <li>
-                      1x Orange
-                    </li>
-                    <br></br>
-                    <li>
-                      Total: $14
-                    </li>
-                  </ul>
-                </Paper>
-              </Grid>
+            {
+              this.state.users.map((user, index) => {
+                return (
+                  <Grid item xs key={index+1}>
+                    <Paper className={classes.paper}>
+                      {user.user_nickname}
+                      <br/>
+                      <ul className="innerList">
+                        {
+                          // check if the user_adjusted_amount exists
+                          this.state.user_assignments === undefined
+                          ?
+                            <div>
+                              <li> no assignments</li>
+                            </div>
+                          : (
+                            // check if the user array is empty
+                            this.state.user_assignments[user.user_nickname].length === 0
+                            ?
+                              <li> no assignments </li>
+                            : (
+                              <div>
+                                { 
+                                  this.state.user_assignments[user.user_nickname].map((item, index2) => {
+                                    return (
+                                      <li key={index2+1}>
+                                        {item}
+                                      </li>
+                                    )
+                                  })
+                                }
+                                <br/>
+                                <li>
+                                total: {user.user_amount_owed.toFixed(2)} 
+                                <br/>
+                                adjustments: {user.user_adjusted_amount.toFixed(2)}
+                                </li>
+                              </div>
+                            )
+                          )
+                        }
+                      </ul>
+                    </Paper>
+                  </Grid>
+                )
+              })
+            }
+            </Grid>
+            <Grid container spacing={3}>
               <Grid item xs>
                 <Paper className={classes.paper}>
                   Grand Total
