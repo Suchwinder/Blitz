@@ -5,8 +5,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
-import FreesoloUsers from '../freesolo_users/FreesoloUsers'
-// import { Redirect } from 'react-router-dom';
+// import FreesoloUsers from '../freesolo_users/FreesoloUsers'
+import Chip from '@material-ui/core/Chip';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
+import { Redirect } from 'react-router-dom';
 
 class CreateGroup extends Component {
   constructor(props){
@@ -14,12 +17,12 @@ class CreateGroup extends Component {
     this.state = {
       file: null,
       preview: null,
-      input_users: "",
+      input_users: [],
       input_address: "",
       input_tip: "",
-      input_location: ""
-
-
+      input_location: "",
+      redirect: false,
+      group_url: ""
     }
     this.inputFileRef = React.createRef();
     this.handleImage = this.handleImage.bind(this);
@@ -46,6 +49,7 @@ class CreateGroup extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+    // console.log(event.target)
   }
 
   handleImage(event) {
@@ -58,18 +62,67 @@ class CreateGroup extends Component {
     })
   }
 
+  handleUsers = (event, value, type) => {
+    // console.log(value);
+    console.log(type);
+    if (type === "remove-option") {
+      this.setState({
+        input_users: value
+      })
+    } else if (type === "create-option") {
+      let exists = false;
+      this.state.input_users.map((user_name) => {
+        if(user_name === event.target.value) {
+          exists = true;
+          return (alert("Duplicate User Cannot Exist"));
+        }
+      })
+      if(exists) {
+        return;
+      }
+      this.setState({
+        input_users: [...this.state.input_users, event.target.value]
+      })
+    } else {
+      return;
+    }
+  }
+
   // call the api endpoint here
   // put upload image here if it exists, call upload image api
-  handleSubmit = (event) => {
-    const names = this.state.input_users.split(',')
+  handleSubmit = async (event) => {
+    // const names = this.state.input_users.split(',')
     let data = {
-      "users": names,
+      // "users": names,
       "street_address": this.state.input_address,
       "location_name": this.state.input_location,
       "image_s3url": this.state.preview,
       "tip_rate": this.state.input_tip
     }
     console.log(data);
+
+    try {
+      const response = await fetch("localhost:5000/api/create_group", {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+
+      const status = response.status;
+      const result = await response.json();
+
+      if(status === 200) {
+        this.setState({
+          group_url: result.link,
+          redirect: true
+        }, () => console.log(this.state))
+      } else {
+        console.log(result.error);
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+
     // fetch("localhost:5000/api/create_group", {
     //   method: 'POST',
     //   body: data
@@ -79,7 +132,7 @@ class CreateGroup extends Component {
     //   }).then(response => {
     //     if (!response.ok) {
     //       throw new Error();
-          // return "Connection to Database Failed"
+    //       return "Connection to Database Failed"
     //     }
     //     if (response.ok) {
     //       const redirectLink = response.link;
@@ -94,6 +147,9 @@ class CreateGroup extends Component {
   }
 
   render () {
+    if(this.state.redirect) {
+      return <Redirect to={this.state.group_url}/>
+    }
     return(
       <Formik
         onSubmit={this.handleSubmit}
@@ -122,16 +178,25 @@ class CreateGroup extends Component {
                 <Form.Label>
                   Input names here:
                 </Form.Label>
-              <FreesoloUsers  //Doesn't allow duplicates
-                type="text"
-                placeholder="Names"
-                name="input_users"
-                onChange={this.handleChange}
-                value={this.state.input_users}
-                isValid={touched.input_users && !errors.input_users}
-                as="textarea" rows="1" 
-                required = "Please enter at least one user"
-              /> 
+              <Autocomplete
+              multiple
+              id="input_users"
+              options={[]}
+              freeSolo
+              required = "Please enter at least one user"
+              onChange = {this.handleUsers}
+              value={this.state.input_users}
+              // renderTags={(value, getTagProps) =>
+              // value.map((option, index) => (
+                //   <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+                  
+                // ))
+              //}
+              renderInput={(params) => (
+                <TextField {...params} variant="filled" label="Users" />
+              )}
+              
+            />
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
@@ -149,8 +214,14 @@ class CreateGroup extends Component {
                   required
                 />  */}
                 <PlacesAutocomplete
+                  // onChange={(event, value) => {
+                  //   this.handleParentFunc(value);
+                  // }}
                   handleParentFunc={(value)=> {
                     // console.log("your value --> ", value);
+                    // this.setState({
+                    //   input_address: value
+                    // })
                     this.handleParentFunc(value);
                     }
                   }
@@ -185,7 +256,7 @@ class CreateGroup extends Component {
                   onBlur={handleBlur}
                   value={this.state.select_state}
                   as="select">
-                  <option value="">Select a state</option>
+                  {/* <option value="">Select a state</option> */}
                   {/* <option value="Alabama">Alabama</option>
                   <option value="Alaska">Alaska</option>
                   <option value="Arizona">Arizona</option>

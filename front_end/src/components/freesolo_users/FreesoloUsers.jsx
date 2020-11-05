@@ -24,9 +24,12 @@ export default function Tags() {
         id="input_users"
         options={Names.map((option) => option.title)}
         freeSolo
+        required = "Please enter at least one user"
+        onChange = ""
         renderTags={(value, getTagProps) =>
           value.map((option, index) => (
             <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+            
           ))
         }
         renderInput={(params) => (
@@ -37,4 +40,4 @@ export default function Tags() {
   );
 }
 
-const Names = [{title: "John Doe"}];
+const Names = [];
