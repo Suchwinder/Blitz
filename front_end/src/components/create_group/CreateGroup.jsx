@@ -156,34 +156,8 @@ class CreateGroup extends Component {
                   }
                 />
               </Form.Group>
-              
-              <Form.Group controlId="form.input_city">
-                <Form.Label>City:</Form.Label>
-                 <Form.Control
-                  type="text"
-                  placeholder="City"
-                  name="input_city"
-                  onChange={handleChange}
-                  value={values.input_city}
-                  as="textarea" rows="1" 
-                /> 
-              </Form.Group>
-              
-              <Form.Group controlId="form.input_zip">
-                <Form.Label>Zip Code:</Form.Label>
-                 <Form.Control
-                  type="text"
-                  placeholder="Zip Code"
-                  name="input_zip"
-                  onChange={handleChange}
-                  value={values.input_zip}
-                  as="textarea" rows="1" 
-                /> 
-              </Form.Group>
-
               {errors.input_address && touched.input_address && errors.input_address}
 
-              
               <Form.Group controlId="form.input_location">
                 <Form.Label>
                   Input location here:
