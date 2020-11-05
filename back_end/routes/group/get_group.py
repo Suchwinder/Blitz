@@ -4,13 +4,17 @@ import datetime
 
 bp = Blueprint('get_group', __name__, url_prefix='/api')
 
-@bp.route('/get_group', methods=["GET"])
+@bp.route('/get_group/', methods=["GET"])
 def get_group():
+    # print(group)
     db_connection = create_db_connection()
     if db_connection:
-        data = request.get_json()
+        # data = request.get_json()
 
-        url = data['url']
+        # print(group_URL)
+        url = request.args['group_URL']
+        print("_______________________________________")
+        print(url)
 
         if(len(url) == 0):
             response = {'error': 'Please Enter a URL'}
@@ -20,7 +24,7 @@ def get_group():
         user_session = db_connection.query(Groups).filter(Groups.groupURL == url).first()
 
         if user_session is None:
-            response = {"error": "URL is expired or doesn't exist"}
+            response = {"error": "URL doesn't exist"}
             return response, 400
         
         # check if link is expired

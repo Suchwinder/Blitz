@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
 import '../split_bill/SplitBill.css'
+import { Redirect } from 'react-router-dom';
 
 
 const styles = (theme) => ({
@@ -37,8 +38,8 @@ class SplitBillPage extends Component {
     super(props);
     this.state = {
       city: "",
-      groupURL: "",
-      imageURL: "",
+      group_url: props.groupURL.match.url,
+      image_url: "",
       item_assignments: {},
       items: [],
       location_name: "",
@@ -50,29 +51,32 @@ class SplitBillPage extends Component {
       total_adjustment: 0,
       total_cost: 0,
       users: [],
-      zip_code: ""
+      zip_code: "",
+      redirect: false,
     }
   }
 
   fetchGroupData = async () => {
-    const data = {
-      "link": this.state.groupURL
+    // With get requests cant pass a body, so pass in URL parameter instead, should be URL encoded but in this case skipped as it currently works without it
+    const response = await fetch(`/api/get_group/?group_URL=http://localhost:3000${this.state.group_url}`)
+    const status = response.status;
+    const result = await response.json();
+
+    if(status == 200) { // good request can parse
+
+    } else if (status >= 400) {
+        alert(result.error);
+        this.setState({
+          redirect: true
+        });
     }
-    const response = await fetch('/api/get_group', {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'GET',
-      body: data
-    }) 
   }
 
-  componentDidMount() {
+  componentDidMount = async ()=> {
     // console.log(this.state.group_url);
     // console.log(window.location.href);
     console.log(this.props);
-    const response = await this.fetchGroupData()
+    this.fetchGroupData();
   }
 
   render() {
@@ -81,126 +85,132 @@ class SplitBillPage extends Component {
     return (
       <div>
         <NavBar/>
-        <div className="split-bill-page">
-          Hello World!
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-              Items
-                <ul className="innerList">
-                  <li>
-                    5 Apples
-                  </li>
-                  <li>
-                    3 Oranges
-                  </li>
-                </ul>
-              </Paper>
+        {
+          this.state.redirect 
+          ? 
+          <Redirect to='/'/>
+          :
+          <div className="split-bill-page">
+            Hello World!
+            <Grid container spacing={3}>
+              <Grid item xs>
+                <Paper className={classes.paper}>
+                Items
+                  <ul className="innerList">
+                    <li>
+                      5 Apples
+                    </li>
+                    <li>
+                      3 Oranges
+                    </li>
+                  </ul>
+                </Paper>
+              </Grid>
+              <Grid item xs>
+                <Paper className={classes.paper}>
+                  $/unit
+                  <ul className="innerList">
+                    <li>
+                      $3
+                    </li>
+                    <li>
+                      $2
+                    </li>
+                  </ul>
+                </Paper>
+              </Grid>
+              <Grid item xs>
+                <Paper className={classes.paper}>
+                  <FormControl>
+                    <InputLabel >User 1</InputLabel>
+                    <Select>
+                      <MenuItem>Item 1</MenuItem>
+                      <MenuItem>Item 2</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <br></br>
+                  <FormControl>
+                    <InputLabel >User 2</InputLabel>
+                    <Select>
+                      <MenuItem>Item 1</MenuItem>
+                      <MenuItem>Item 2</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Paper>
+              </Grid>
             </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                $/unit
-                <ul className="innerList">
-                  <li>
-                    $3
-                  </li>
-                  <li>
-                    $2
-                  </li>
-                </ul>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <FormControl>
-                  <InputLabel >User 1</InputLabel>
-                  <Select>
-                    <MenuItem>Item 1</MenuItem>
-                    <MenuItem>Item 2</MenuItem>
-                  </Select>
-                </FormControl>
-                <br></br>
-                <FormControl>
-                  <InputLabel >User 2</InputLabel>
-                  <Select>
-                    <MenuItem>Item 1</MenuItem>
-                    <MenuItem>Item 2</MenuItem>
-                  </Select>
-                </FormControl>
-              </Paper>
-            </Grid>
-          </Grid>
 
-          <br></br>
-          <ColoredLine color="black" />
-          <br></br>
+            <br></br>
+            <ColoredLine color="black" />
+            <br></br>
 
-          <Grid container spacing={3}>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                User 1
-                <ul className="innerList">
-                  <li>
-                    1x Apple
-                  </li>
-                  <br></br>
-                  <li>
-                    Total: $3
-                  </li>
-                </ul>
-              </Paper>
+            <Grid container spacing={3}>
+              <Grid item xs>
+                <Paper className={classes.paper}>
+                  User 1
+                  <ul className="innerList">
+                    <li>
+                      1x Apple
+                    </li>
+                    <br></br>
+                    <li>
+                      Total: $3
+                    </li>
+                  </ul>
+                </Paper>
+              </Grid>
+              <Grid item xs>
+                <Paper className={classes.paper}>
+                  User 2
+                  <ul className="innerList">
+                    <li>
+                      2x Orange
+                    </li>
+                    <br></br>
+                    <li>
+                      Total: $4
+                    </li>
+                  </ul>
+                </Paper>
+              </Grid>
+              <Grid item xs>
+                <Paper className={classes.paper}>
+                  User 3
+                  <ul className="innerList">
+                    <li>
+                      4x Apple
+                    </li>
+                    <li>
+                      1x Orange
+                    </li>
+                    <br></br>
+                    <li>
+                      Total: $14
+                    </li>
+                  </ul>
+                </Paper>
+              </Grid>
+              <Grid item xs>
+                <Paper className={classes.paper}>
+                  Grand Total
+                  <ul className="innerList">
+                    <li>
+                      5x Apple
+                    </li>
+                    <li>
+                      3x Orange
+                    </li>
+                    <br></br>
+                    <li>
+                      Total: $21
+                    </li>
+                  </ul>
+                </Paper>
+              </Grid>
             </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                User 2
-                <ul className="innerList">
-                  <li>
-                    2x Orange
-                  </li>
-                  <br></br>
-                  <li>
-                    Total: $4
-                  </li>
-                </ul>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                User 3
-                <ul className="innerList">
-                  <li>
-                    4x Apple
-                  </li>
-                  <li>
-                    1x Orange
-                  </li>
-                  <br></br>
-                  <li>
-                    Total: $14
-                  </li>
-                </ul>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                Grand Total
-                <ul className="innerList">
-                  <li>
-                    5x Apple
-                  </li>
-                  <li>
-                    3x Orange
-                  </li>
-                  <br></br>
-                  <li>
-                    Total: $21
-                  </li>
-                </ul>
-              </Paper>
-            </Grid>
-          </Grid>
-          <br></br>
-        </div>
+            <br></br>
+          </div>
+        }
       </div>
     )
   }
