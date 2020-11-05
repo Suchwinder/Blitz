@@ -24,7 +24,7 @@ def edit_item():
         if item_object is None:
             response = {"error": "Item does not exists"}
             db_connection.close()
-            return response, 400
+            return response, 404
 
         if len(new_item_name) and (new_item_name != item_name):
             # Check if item with new name already exists
