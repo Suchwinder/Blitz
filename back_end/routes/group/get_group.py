@@ -34,15 +34,15 @@ def get_group():
 
         response = {
             # 'groupID': user_session.groupID,
-            'groupURL': user_session.groupURL,
+            'group_url': user_session.groupURL,
             # 'locationID': user_session.locationID, 
-            'imageURL': user_session.imageURL,
+            'image_url': user_session.imageURL,
             'tip_rate': user_session.tipRate, 
             'sub_total': user_session.subTotal, 
             'total_cost': user_session.totalCost, 
             'tax_rate': 1.08875,
             # 'linkExpiration': user_session.linkExpiration,  
-            'userCount': user_session.userCount,
+            'user_count': user_session.userCount,
             'total_adjustment': user_session.totalAdjustment 
         }
 

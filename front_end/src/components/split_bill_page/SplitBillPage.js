@@ -53,6 +53,7 @@ class SplitBillPage extends Component {
       users: [],
       zip_code: "",
       redirect: false,
+      user_count: 0,
     }
   }
 
@@ -62,8 +63,24 @@ class SplitBillPage extends Component {
     const status = response.status;
     const result = await response.json();
 
-    if(status == 200) { // good request can parse
-
+    if(status == 200) {
+      this.setState({
+        city: result.city,
+        image_url: result.image_url,
+        item_assignments: result.item_assignments,
+        items: result.items,
+        location_name: result.location_name,
+        state_name: result.state_name,
+        street_address: result.street_address,
+        sub_total: result.sub_total,
+        tax_rate: result.tax_rate,
+        tip_rate: result.tip_rate,
+        total_adjustment: result.total_adjustment,
+        total_cost: result.total_cost,
+        users: result.users,
+        user_count: result.user_count,
+        zip_code: result.zip_code,
+      }, () => {console.log("after", this.state)})
     } else if (status >= 400) {
         alert(result.error);
         this.setState({
@@ -75,7 +92,7 @@ class SplitBillPage extends Component {
   componentDidMount = async ()=> {
     // console.log(this.state.group_url);
     // console.log(window.location.href);
-    console.log(this.props);
+    // console.log(this.props);
     this.fetchGroupData();
   }
 
