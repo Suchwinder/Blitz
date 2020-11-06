@@ -30,7 +30,7 @@ def delete_item():
         # get all item-user assignments associated with this item
         item_assignment_object = db_connection.query(ItemAssignments).filter(ItemAssignments.itemID == item_object.itemID)
 
-        # delete item if item is not assigned
+        # delete item if item is not assigned to any users
         if item_assignment_object is None:
             db_connection.query(Items).filter(Items.itemID == item_id).delete()
             db_connection.commit()
