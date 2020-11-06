@@ -30,6 +30,8 @@ class CreateGroup extends Component {
     this.inputFileRef = React.createRef();
     this.handleImage = this.handleImage.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleParentFunc = this.handleParentFunc.bind(this);
+    this.handleUsers = this.handleUsers.bind(this);
   }
 
   //  uploadImage = async () => {
@@ -52,7 +54,7 @@ class CreateGroup extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    // console.log(event.target)
+    console.log(event.target)
   }
 
   handleImage(event) {
@@ -174,6 +176,7 @@ class CreateGroup extends Component {
     //   })
   } 
 
+  //Handles Google API address field
   handleParentFunc = (value) =>{
     if (value) {
       const [input_address, input_city, input_state, input_zip_code] = value.split(',');
@@ -351,7 +354,6 @@ class CreateGroup extends Component {
                   Input Tip here:
                 </Form.Label>
               <Form.Control 
-                type="text"
                 placeholder="Tip"
                 name="input_tip"
                 onChange={this.handleChange}
