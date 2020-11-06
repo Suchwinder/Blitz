@@ -252,7 +252,6 @@ class CreateGroup extends Component {
                 onChange={this.handleChange}
                 value={this.state.input_location}
                 isValid={touched.input_location && !errors.input_location}
-                as="textarea" rows="1" 
                 required = "Please enter your location"
               /> 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -359,7 +358,6 @@ class CreateGroup extends Component {
                 onChange={this.handleChange}
                 value={this.state.input_tip}
                 isValid={touched.input_tip && !errors.input_tip}
-                as="textarea" rows="1" 
                 required = "Please enter your tip"
               /> 
                 <Form.Control.Feedback></Form.Control.Feedback>
