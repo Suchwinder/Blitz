@@ -30,6 +30,7 @@ def delete_item():
         # get all item-user assignments associated with this item
         item_assignment_object = db_connection.query(ItemAssignments).filter(ItemAssignments.itemID == item_object.itemID)
 
+        # delete item if item is not assigned
         if item_assignment_object is None:
             db_connection.query(Items).filter(Items.itemID == item_id).delete()
             response = {"message": f"{item_name} successfully deleted"}
@@ -39,12 +40,15 @@ def delete_item():
                 # get user of assignment pair being looked at
                 curr_pair_user = db_connection.query(Users).filter(Users.userID == assignments.userID).first()
 
+                # recalculate user total
                 user_total = curr_pair_user.amountOwed - item_cost_per_person
 
+                # update total
                 db_connection.query(Users).filter(Users.userID == assignments.userID).update({"amountOwed": user_total})
                 db_connection.commit()
 
-                db_connection.query(ItemAssignments).filter(ItemAssignments.itemAssignmentID == item_id).delete()
+                # delete assignment pair from db
+                db_connection.query(ItemAssignments).filter(ItemAssignments.itemAssignmentID == assignments.itemAssignmentID).delete()
 
             db_connection.query(Items).filter(Items.itemID == item_id).delete()
             response = {"message": f"{item_name} successfully deleted"}
