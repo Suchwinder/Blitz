@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
-// import FreesoloUsers from '../freesolo_users/FreesoloUsers'
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
@@ -22,7 +21,7 @@ class CreateGroup extends Component {
       input_zip_code: "",
       input_city: "",
       input_state: "",
-      input_tip: 0,
+      input_tip: "",
       input_location: "",
       redirect: false,
       group_url: "",
@@ -68,7 +67,7 @@ class CreateGroup extends Component {
 
   handleUsers = (event, value, type) => {
     // console.log(value);
-    console.log(type);
+    // console.log(type);
     if (type === "remove-option") {
       this.setState({
         input_users: value
@@ -90,11 +89,6 @@ class CreateGroup extends Component {
     } else {
       return;
     }
-  }
-
-  handleAddress = (event, value, ) => {
-    console.log(value);
-    
   }
 
   // call the api endpoint here
@@ -181,7 +175,18 @@ class CreateGroup extends Component {
   } 
 
   handleParentFunc = (value) =>{
-    console.log("Sent from Place API: ",value);
+    if (value) {
+      const [input_address, input_city, input_state, input_zip_code] = value.split(',');
+      if (input_address && input_city && input_state && input_zip_code) {
+        this.setState({
+          input_address,
+          input_zip_code,
+          input_city,
+          input_state,
+        });
+        console.log("Sent from Place API: ", input_address, input_city, input_state, input_zip_code);  
+      }
+    }
   }
 
   render () {
@@ -239,7 +244,6 @@ class CreateGroup extends Component {
                   Input location here:
                 </Form.Label>
               <Form.Control 
-                type="text"
                 placeholder="Location Name"
                 name="input_location"
                 onChange={this.handleChange}
@@ -343,21 +347,20 @@ class CreateGroup extends Component {
               </Form.Group>
               
               <Form.Group controlId="form.input_tip">
-                <Form.Label>Tip:</Form.Label>
-                <Form.Control 
+                <Form.Label>
+                  Input Tip here:
+                </Form.Label>
+              <Form.Control 
                 type="text"
+                placeholder="Tip"
                 name="input_tip"
-                onChange={handleChange}
-                value={values.input_tip}
-                as="select" rows="1" 
-                >
-                <option value="">Select an amount</option>  
-                <option value="10">10%</option>
-                <option value="15">15%</option>
-                <option value="20">20%</option>
-                <option value="25">25%</option>
-                </Form.Control>
-
+                onChange={this.handleChange}
+                value={this.state.input_tip}
+                isValid={touched.input_tip && !errors.input_tip}
+                as="textarea" rows="1" 
+                required = "Please enter your tip"
+              /> 
+                <Form.Control.Feedback></Form.Control.Feedback>
               </Form.Group>
                 <br></br>
                 <div>

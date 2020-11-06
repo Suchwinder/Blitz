@@ -20,8 +20,6 @@ function loadScript(src, position, id) {
   position.appendChild(script);
 }
 
-const autocompleteService = { current: null };
-
 const useStyles = makeStyles((theme) => ({
   icon: {
     color: theme.palette.text.secondary,
@@ -35,12 +33,12 @@ export default function GoogleMaps(props) {
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState([]);
   const loaded = React.useRef(false);
-  const api_key = process.env.REACT_APP_API_KEY;
+  const autocompleteService = React.useRef();
 
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        'https://maps.googleapis.com/maps/api/js?key=' + api_key + '&libraries=places',
+        'https://maps.googleapis.com/maps/api/js?key=AIzaSyAy1w5u7TSqNnRAKFGn53FAE56UAkBqdxQ&libraries=places',
         document.querySelector('head'),
         'google-maps',
       );
@@ -54,7 +52,7 @@ export default function GoogleMaps(props) {
       throttle((request, callback) => {
         autocompleteService.current.getPlacePredictions(request, callback);
       }, 200),
-    [],
+    [autocompleteService],
   );
 
   React.useEffect(() => {
@@ -72,7 +70,7 @@ export default function GoogleMaps(props) {
       return undefined;
     }
 
-    fetch({ input: inputValue }, (results) => {
+    fetch({ input: inputValue, types: ["address"] }, (results) => {
       if (active) {
         let newOptions = [];
 
@@ -85,7 +83,6 @@ export default function GoogleMaps(props) {
         }
 
         setOptions(newOptions);
-        props.handleParentFunc(inputValue);
       }
     });
 
@@ -107,10 +104,10 @@ export default function GoogleMaps(props) {
       onChange={(event, newValue) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
+        props.handleParentFunc(newValue.description);
       }}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
-        
       }}
       renderInput={(params) => (
         <TextField {...params} label="Add a location" variant="outlined" fullWidth />
