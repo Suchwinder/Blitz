@@ -33,6 +33,7 @@ def delete_item():
         # delete item if item is not assigned
         if item_assignment_object is None:
             db_connection.query(Items).filter(Items.itemID == item_id).delete()
+            db_connection.commit()
             response = {"message": f"{item_name} successfully deleted"}
             return response, 200
         else:
@@ -49,8 +50,10 @@ def delete_item():
 
                 # delete assignment pair from db
                 db_connection.query(ItemAssignments).filter(ItemAssignments.itemAssignmentID == assignments.itemAssignmentID).delete()
+                db_connection.commit()
 
             db_connection.query(Items).filter(Items.itemID == item_id).delete()
+            db_connection.commit()
             response = {"message": f"{item_name} successfully deleted"}
             return response, 200
 
