@@ -9,6 +9,10 @@ import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import FilledInput from '@material-ui/core/FilledInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 class CreateGroup extends Component {
   constructor(props){
@@ -187,7 +191,7 @@ class CreateGroup extends Component {
           input_city,
           input_state,
         });
-        console.log("Sent from Place API: ", input_address, input_city, input_state, input_zip_code);  
+        // console.log("Sent from Place API: ", input_address, input_city, input_state, input_zip_code);  
       }
     }
   }
@@ -237,16 +241,13 @@ class CreateGroup extends Component {
               )}
               
             />
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
-
-              {errors.input_users && touched.input_users && errors.input_users}
               
-              <Form.Group controlId="form.input_location">
+              <Form.Group className="form-group" controlId="form.input_location">
                 <Form.Label>
                   Input location here:
                 </Form.Label>
-              <Form.Control 
+              {/* <Form.Control 
                 placeholder="Location Name"
                 name="input_location"
                 onChange={this.handleChange}
@@ -254,11 +255,19 @@ class CreateGroup extends Component {
                 isValid={touched.input_location && !errors.input_location}
                 as="textarea" rows="1" 
                 required = "Please enter your location"
-              /> 
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              />  */}
+                <br></br>
+                <TextField
+                  fullWidth
+                  required
+                  label="Establishment"
+                  name="input_location"
+                  onChange={this.handleChange}
+                  value={this.state.input_location}
+                  // helperText="Ex: name of restaurant"
+                  variant="filled"
+                />
               </Form.Group>
-
-              {errors.input_location && touched.input_location && errors.input_location}
               
               <Form.Group controlId="form.input_address">
                 <Form.Label>Address:</Form.Label>
@@ -285,7 +294,6 @@ class CreateGroup extends Component {
                   }
                 />
               </Form.Group>
-              {errors.input_address && touched.input_address && errors.input_address}
 
               <Form.Group className="form-group" controlId="form.select_state">
                 {/* <Form.Label>State(optional):</Form.Label> */}
@@ -353,7 +361,8 @@ class CreateGroup extends Component {
                 <Form.Label>
                   Input Tip here:
                 </Form.Label>
-              <Form.Control 
+              {/* <Form.Control 
+                type="text"
                 placeholder="Tip"
                 name="input_tip"
                 onChange={this.handleChange}
@@ -361,7 +370,17 @@ class CreateGroup extends Component {
                 isValid={touched.input_tip && !errors.input_tip}
                 as="textarea" rows="1" 
                 required = "Please enter your tip"
-              /> 
+              />  */}
+              <FormControl fullWidth variant="filled">
+                <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+                <FilledInput
+                  id="filled-adornment-amount"
+                  name="input_tip"
+                  value={this.state.input_tip}
+                  onChange={this.handleChange}
+                  startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                />
+              </FormControl>
                 <Form.Control.Feedback></Form.Control.Feedback>
               </Form.Group>
                 <br></br>
