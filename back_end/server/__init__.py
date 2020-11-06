@@ -4,12 +4,10 @@ from routes.group import upload_image, create_group, get_group, edit_tip_rate #c
 from routes import assign_item, unassign_item
 
 # User(s) Imports
-from routes.users import create_user
-from routes.users import edit_user
+from routes.users import create_user, edit_user
 
 # Item(s) Imports
-from routes.items import create_item
-from routes.items import edit_item
+from routes.items import create_item, edit_item, delete_item
 
 def create_app():
     bootDB() #start database (good to do database boot before app to ensure it exists before app works)
@@ -27,6 +25,7 @@ def create_app():
     # Register(s) Item Functionality
     app.register_blueprint(create_item.bp)
     app.register_blueprint(edit_item.bp)
+    app.register_blueprint(delete_item.bp)
 
     # Register(s) Item-User Pair Functionality
     app.register_blueprint(assign_item.bp)
