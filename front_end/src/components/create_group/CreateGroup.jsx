@@ -34,20 +34,20 @@ class CreateGroup extends Component {
     this.handleUsers = this.handleUsers.bind(this);
   }
 
-  //  uploadImage = async () => {
-  //   let data = new FormData();
-  //   data.append('file', this.state.file);
+   uploadImage = async () => {
+    let data = new FormData();
+    data.append('file', this.state.file);
 
-  //   const response = await fetch('/api/upload_image', {
-  //     method: 'POST',
-  //     body: data
-  //   })
-  //   const status = response.status
-  //   if(status === 200) {
-  //     const result = await response.json()
-  //     console.log("hello", result.message)
-  //   }
-  // }
+    const response = await fetch('/api/upload_image', {
+      method: 'POST',
+      body: data
+    })
+    const status = response.status
+    if(status === 200) {
+      const result = await response.json()
+      console.log("hello", result.message)
+    }
+  }
 
   // Handle the form here
   handleChange(event) {
