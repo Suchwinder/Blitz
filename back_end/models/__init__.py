@@ -11,7 +11,7 @@ Base = declarative_base() # instantiating base catalog that houses all tables, s
 
 # os can load variables from the system environment, but to load variable in first 
 # need to use a specific comman in README.md -> reference: https://pypi.org/project/python-dotenv/
-DATABASE_URI = os.getenv('DATABASE_URI') 
+DATABASE_URI = os.getenv('DATABASE_URL') 
 engine = create_engine(DATABASE_URI, echo=False) # need to connect to server, explanation: when we want to connect to database, upon our application launching we need some object to contain the info about our database, this is waht this vairbale does. https://hackersandslackers.com/python-database-management-sqlalchemy/
 
 Session = sessionmaker(bind=engine) # this object can be used to make a session later on, using the engine as its configuration so each session will use the enginer to aquire its resources
