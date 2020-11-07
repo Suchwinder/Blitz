@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
-import Chip from '@material-ui/core/Chip';
+// import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
@@ -61,7 +61,8 @@ class CreateGroup extends Component {
         if(user_name === event.target.value) {
           exists = true;
           return (alert("Duplicate User Cannot Exist"));
-        }
+        } 
+        return null;
       })
       if(exists) {
         return;
