@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/" render={MainPageComponent}/>
         <Route exact path="/create_group" component={CreateGroupComponent} />
         <Route exact path="/join_group" component={JoinGroupComponent} />
-        {/* <Route exact path="/split_bill" component={SplitBillComponent} /> */}
+        <Route exact path="/split_bill" component={MainPageComponent} />
         <Route path = '/split_bill/:groupURL' component={SplitBillPageComponent}/>
       </Switch>
     </div>

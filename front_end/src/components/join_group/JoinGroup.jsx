@@ -26,14 +26,18 @@ class JoinGroup extends Component {
 
   handleSubmit = () =>{
     if(this.state.session_link.length === 0) {
-      alert("Please enter a link")
+      return(alert("Please enter a link"))
     }
     const start = this.state.session_link.search('/split_bill');
+
+    if(start === -1) {
+      return (alert("Plase enter a valid link"))
+    }
     this.state.session_link.substring(start);
-    
+
     this.setState({
       submit_link: this.state.session_link,
-    }, () => console.log(this.state))
+    })
   }
 
   render(){  
