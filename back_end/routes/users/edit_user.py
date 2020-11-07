@@ -11,7 +11,7 @@ def edit_user():
 
         nickname = data['nickname']
         new_nickname = data['new_nickname']
-        adjusted_amount = data['adjusted_amount']
+        adjusted_amount = float(data['adjusted_amount'])
         group_url = data['group_url']
 
 

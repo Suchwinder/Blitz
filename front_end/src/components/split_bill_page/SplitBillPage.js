@@ -248,6 +248,10 @@ class SplitBillPage extends Component {
     }
   }
 
+  handleUserEdit = async (old_value) => {
+    
+  }
+
   // –––––––––––– Modal Opening and Closing ––––––––––––
   handleOpen = (obj, name, cost) => {
     if(obj === "user_modal") {
