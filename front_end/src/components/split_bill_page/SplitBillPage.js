@@ -48,7 +48,8 @@ const ColoredLine = ({ color }) => (
         style={{
             color: color,
             backgroundColor: color,
-            height: 5
+            height: 5,
+            margin: 5, 
         }}
     />
 );
@@ -550,6 +551,7 @@ class SplitBillPage extends Component {
             <p style={{"textAlign": "center"}}> {this.state.address} </p>
             <div style={{"textAlign": "center"}}>
               <textarea
+                style={{"width": "250px"}}
                 ref={(textarea) => this.textArea = textarea}
                 value={this.state.group_url}
               />
@@ -573,6 +575,7 @@ class SplitBillPage extends Component {
                 <Paper className={classes.paper}>
                 <h6 style={{"textAlign": "center"}}> Items </h6>
                 <Modal
+                  style={{"align": "right"}}
                   aria-labelledby="transition-modal-title"
                   aria-describedby="transition-modal-description"
                   className={classes.modal}
