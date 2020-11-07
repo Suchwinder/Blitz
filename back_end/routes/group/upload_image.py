@@ -26,11 +26,11 @@ def upload():
         # FOLDER = os.getenv('FOLDER')
         
         s3 = boto3.client(
-            's3'# ,
-            # aws_access_key_id=AWS_ACCESS_KEY_ID, 
+            's3'  # ,
+            # aws_access_key_id=AWS_ACCESS_KEY_ID,
             # aws_secret_access_key=AWS_SECRET_ACCESS_KEY
-        ) # specifying amazon resource
-        
+        )  # specifying amazon resource
+
         object_url = None
         if data:
             try:
@@ -42,7 +42,7 @@ def upload():
                 logging.error(e)
                 result = {'error': 'Image Upload Failed'}
                 return result, 400
-        
+
         db_connection.close()
 
         return {"message":f"{object_url}"}, 200

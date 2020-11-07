@@ -304,6 +304,105 @@
 				"description": "Unassign User-Item assignment pairs"
 			},
 			"response": []
+		},
+		{
+			"name": "edit_item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"item_name\": \"jack\",\n    \"new_item_name\": \"jack\",\n    \"new_item_cost\": 0.89,\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/edit_item",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"edit_item"
+					]
+				},
+				"description": "Edit a existing item in group"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nickname\": \"jack\",\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/delete_user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"delete_user"
+					]
+				},
+				"description": "Delete an existing user in group"
+			},
+			"response": []
+		},
+		{
+			"name": "delete_item",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"item_name\": \"pizza\",\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/api/delete_item",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"delete_item"
+					]
+				},
+				"description": "Delete a existing item in group"
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
