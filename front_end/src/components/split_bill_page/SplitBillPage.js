@@ -253,8 +253,45 @@ class SplitBillPage extends Component {
   }
 
   handleUserEdit = async (old_value) => {
-    if(this.state.new_user_name === this.state.user_modal){
-      return alert("")
+    let adjustment = "0.0";
+    if(this.state.new_nickname === this.state.user_modal && this.state.new_adjusted_amount === old_value) {
+      return alert("Please enter something different to edit");
+    } else if (this.state.new_nickname.length === 0) {
+      return alert("Username cannot be empty!");
+    } else if (this.state.new_adjusted_amount !== 0) {
+      adjustment  = this.state.new_adjusted_amount;
+    }
+
+    const data = {
+      "nickname": this.state.user_modal,
+      "new_nickname": this.state.new_nickname,
+      "adjusted_amount": adjustment,
+      "group_url": this.state.group_url
+    };
+
+    console.log("DATA:", data);
+
+    const response = await fetch('/api/edit_user', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'PUT',
+      body: JSON.stringify(data)
+    });
+
+    const status = response.status;
+    const result = await response.json();
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        user_modal: "",
+        new_nickname: "",
+        new_adjusted_amount: "", 
+      })
+    } else {
+      alert(result.error);
     }
   }
 
@@ -264,7 +301,7 @@ class SplitBillPage extends Component {
       this.setState({
         [obj]: name,
         new_adjusted_amount: cost,
-        new_user_name: name
+        new_nickname: name
       })
     } else if (obj === "item_modal") {
       this.setState({
@@ -530,9 +567,10 @@ class SplitBillPage extends Component {
                     >
                       <Fade in={this.state.user_modal === user.user_nickname}>
                         <div className={classes.paper_modal}>
-                            <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_user_name" defaultValue={this.state.user_modal} onChange={this.handleChange}/>
+                            <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_nickname" defaultValue={this.state.new_nickname} onChange={this.handleChange}/>
+                            <TextField id="outlined-basic" label="Change Adjustment" variant="outlined" name="new_adjusted_amount" defaultValue={this.state.new_adjusted_amount} onChange={this.handleChange} type="number" step={0.01}/>
                             <Button onClick={this.handleDeleteUser}>Delete</Button>
-                            <Button>Edit</Button>
+                            <Button onClick={() => this.handleUserEdit(user.user_adjusted_amount)}>Edit</Button>
                             <Button onClick={() => this.handleClose("user_modal")}>Cancel</Button>
                         </div>
                       </Fade>
