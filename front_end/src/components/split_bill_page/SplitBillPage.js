@@ -255,13 +255,13 @@ class SplitBillPage extends Component {
         [obj]: name,
         new_adjusted_amount: cost,
         new_user_name: name
-      }, () => console.log(this.state))
+      })
     } else {
       this.setState({
         [obj]: name,
         new_item_cost: cost,
         new_item_name: name
-      }, () => console.log(this.state))
+      })
     }
   }
 
@@ -311,7 +311,6 @@ class SplitBillPage extends Component {
       alert(result.error);
     }
   }
-
 
   componentDidMount = async () => {
     await this.fetchGroupData();
