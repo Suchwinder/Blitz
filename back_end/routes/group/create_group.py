@@ -1,6 +1,6 @@
 from flask import Blueprint, request # create a blueprint for the routes to be registered to, not necessary but ood for modularization of routes
-from models import create_db_connection, Groups, Locations, Users, Items, Zips # calling our helper function to create a connection to the databse to execute a request
-from receipt_processor import imageToJson #image processing
+from back_end.models import create_db_connection, Groups, Locations, Users, Items, Zips # calling our helper function to create a connection to the databse to execute a request
+from back_end.receipt_processor import imageToJson #image processing
 import random, string, os, datetime, boto3, tempfile
 
 # used to group a bunch of relted views together
