@@ -16,11 +16,13 @@ def create_group():
         # gather data
         users = data['users']
         street_address = data['street_address']
-        # state_location = "NY"
+        # state_location = data['state']
         city_location = data['city']
         location_name = data['location_name']
-        zip_code = data['zip_code']
+        # zip_code = data['zip_code']
+        zip_code = "10065"
         image_s3url = data['image_s3url']
+        # image_s3url = "https://testblitztest.s3.amazonaws.com/0c193734-6fea-4328-b44f-a570f889da26"
         tip_rate = data['tip_rate']
         # items_list = data['items']
         
@@ -50,7 +52,7 @@ def create_group():
         # if(len(zip_code) > 0):
         # Need to insert data with respect to foreign keys, so location is first so group can use location as FK, then Group is done so user and items can use group as FK, and user and item can be done in any order
         # create location object to insert into database
-        if (zip_code == 0):
+        if (len(zip_code) == 0):
             response = {"error": "Please enter a valid address"}
             return response, 400
         
