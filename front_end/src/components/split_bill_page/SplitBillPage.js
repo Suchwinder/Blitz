@@ -84,13 +84,16 @@ class SplitBillPage extends Component {
       new_item_cost: "",
       add_item: false,
       add_item_name: "",
-      add_item_cost: "",
+      add_item_cost: "0.0",
       add_user: false,
+      add_user_name: "",
+      add_user_adjusted_amount: "0.0"
     }
   }
 
   handleChange = (event) => {
     event.preventDefault();
+    console.log(event.target.name, "   ", event.target.value)
     this.setState({
       [event.target.name]: event.target.value
     }, () => console.log(this.state))
@@ -356,8 +359,42 @@ class SplitBillPage extends Component {
   }
 
   // –––––––––––– Add User or Item –––––––––––––––––––––
-  handleAddUser = () => {
+  handleAddUser = async () => {
+    if(this.state.add_user_name.length === 0) {
+      return alert("User must have name");
+    } else if(this.state.add_user_adjusted_amount.length === 0) {
+      return alert("User must have some cost");
+    }
 
+    const data = {
+      "nickname": this.state.add_user_name,
+      "amount_adjusted": this.state.add_user_adjusted_amount,
+      "group_url": this.state.group_url
+    }
+      
+    const response = await fetch('/api/create_user', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        add_user: false,
+        add_user_name: "",
+        add_user_adjusted_amount: "", 
+      })
+    } else {
+      alert(result.error);
+    }
   }
 
   handleAddItem = async () => {
@@ -506,6 +543,30 @@ class SplitBillPage extends Component {
             <br></br>
             {/* Render total for each individual */}
             <Grid container spacing={3}>
+              <Modal
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  className={classes.modal}
+                  open={this.state.add_user}
+                  onClose={() => this.handleClose("add_user")}
+                  closeAfterTransition
+                  BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+                >
+                  <Fade in={this.state.add_user}>
+                    <div className={classes.paper_modal}>
+                      <TextField id="outlined-basic" label="Username" variant="outlined" name="add_user_name" placeholder="name" onChange={this.handleChange}/>
+                      <TextField id="outlined-basic" label="Adjusted Amount" variant="outlined" name="add_user_adjusted_amount" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
+                      <Button onClick={this.handleAddUser}>Add</Button>
+                      <Button onClick={() => this.handleClose("add_user")}>Cancel</Button>
+                    </div>
+                  </Fade>
+                </Modal>
+                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_user", "na", "na")}>
+                  Add User
+                </Button>
             {
               this.state.users.map((user, index) => {
                 return (
@@ -551,7 +612,10 @@ class SplitBillPage extends Component {
                             // check if the user array is empty
                             this.state.user_assignments[user.user_nickname].length === 0
                             ?
-                              <div style={{"textAlign": "center"}}> no assignments </div>
+                              <div>
+                                <div style={{"textAlign": "center"}}> no assignments </div>
+                                <div style={{"textAlign": "center"}}> adjustments: {user.user_adjusted_amount.toFixed(2)} </div>
+                              </div>
                             : (
                               <div style={{"textAlign": "center"}}> 
                                 { 
