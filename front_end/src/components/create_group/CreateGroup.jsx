@@ -370,7 +370,7 @@ class CreateGroup extends Component {
                 <FilledInput
                   id="filled-adornment-amount"
                   name="input_tip"
-                  input type = {Number}
+                  // input type = {Number}
                   value={this.state.input_tip}
                   onChange={this.handleChange}
                   startAdornment={<InputAdornment position="start">$</InputAdornment>}
