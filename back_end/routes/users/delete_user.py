@@ -21,6 +21,7 @@ def delete_user():
 
         # Check if user doesn't exist
         if user_object is None:
+            print("USER DNE")
             response = {"error": "User does not exists"}
             db_connection.close()
             return response, 404
