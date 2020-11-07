@@ -94,10 +94,9 @@ class SplitBillPage extends Component {
 
   handleChange = (event) => {
     event.preventDefault();
-    console.log(event.target.name, "   ", event.target.value)
     this.setState({
       [event.target.name]: event.target.value
-    }, () => console.log(this.state))
+    })
   }
 
   // –––––––––––– Get Group Data –––––––––––––––––––––––
@@ -272,8 +271,6 @@ class SplitBillPage extends Component {
       "adjusted_amount": adjustment,
       "group_url": this.state.group_url
     };
-
-    console.log("DATA:", data);
 
     const response = await fetch('/api/edit_user', {
       headers: {
@@ -496,8 +493,6 @@ class SplitBillPage extends Component {
       tip = parseFloat(this.state.new_tip_rate);
     }
 
-    console.log(tip)
-      // return;
     const data = {
       "tip_rate": tip,
       "group_url": this.state.group_url
