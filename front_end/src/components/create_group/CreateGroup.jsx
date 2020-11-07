@@ -28,36 +28,16 @@ class CreateGroup extends Component {
       image_s3url: "",
     }
     this.inputFileRef = React.createRef();
-    this.handleImage = this.handleImage.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleParentFunc = this.handleParentFunc.bind(this);
-    this.handleUsers = this.handleUsers.bind(this);
   }
 
-  //  uploadImage = async () => {
-  //   let data = new FormData();
-  //   data.append('file', this.state.file);
-
-  //   const response = await fetch('/api/upload_image', {
-  //     method: 'POST',
-  //     body: data
-  //   })
-  //   const status = response.status
-  //   if(status === 200) {
-  //     const result = await response.json()
-  //     console.log("hello", result.message)
-  //   }
-  // }
-
   // Handle the form here
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
-    console.log(event.target)
   }
 
-  handleImage(event) {
+  handleImage = (event) => {
     console.log("the event thingy is: ", event.target.files, " and the type is: " , typeof(event.target.files[0]))
     let image = URL.createObjectURL(event.target.files[0]) // for preview
     const imageblob = new Blob([event.target.files[0]]) // to store
@@ -68,8 +48,6 @@ class CreateGroup extends Component {
   }
 
   handleUsers = (event, value, type) => {
-    // console.log(value);
-    // console.log(type);
     if (type === "remove-option") {
       this.setState({
         input_users: value
@@ -96,6 +74,7 @@ class CreateGroup extends Component {
   // call the api endpoint here
   // put upload image here if it exists, call upload image api
   handleSubmit = async (event) => {
+    event.preventDefault();
     // First need to upload the image if it exists
     if(this.state.preview !== "") { // check if preview empty rather then blob data
       // call uploadimage api to get object url
@@ -107,7 +86,7 @@ class CreateGroup extends Component {
         body: data
       })
       const status = response.status
-      const result = response.json();
+      const result = await response.json();
 
       if(status === 200) {
         this.setState({
@@ -148,7 +127,7 @@ class CreateGroup extends Component {
         this.setState({
           group_url: result.link,
           redirect: true
-        }, () => console.log(this.state))
+        })
       } else {
         alert(result.error);
       }
@@ -156,24 +135,6 @@ class CreateGroup extends Component {
     } catch (error) {
       console.log(error);
     }
-
-    // fetch("localhost:5000/api/create_group", {
-    //   method: 'POST',
-    //   body: data
-    // }).then(res => {
-    //     res.json();
-    //     return res;
-    //   }).then(response => {
-    //     if (!response.ok) {
-    //       throw new Error();
-    //       return "Connection to Database Failed"
-    //     }
-    //     if (response.ok) {
-    //       const redirectLink = response.link;
-    //       const message = response.message;
-    //       return (<Redirect to={redirectLink} />)
-    //     }
-    //   })
   } 
 
   //Handles Google API address field
@@ -187,7 +148,6 @@ class CreateGroup extends Component {
           input_city,
           input_state,
         });
-        console.log("Sent from Place API: ", input_address, input_city, input_state, input_zip_code);  
       }
     }
   }
@@ -218,7 +178,7 @@ class CreateGroup extends Component {
         <div className="text">
           <div>Creating Your Group</div>
           <br></br>
-            <Form className="form" onSubmit={handleSubmit}>
+            <Form className="form" onSubmit={this.handleSubmit}>
               
               <Form.Group controlId="form.input_users">
                 <Form.Label>
@@ -369,8 +329,7 @@ class CreateGroup extends Component {
                   <img style={{width: 225}} src={this.state.preview} alt={""}/>
                 </div>
                 <br></br>
-                <Button type="submit" onClick={this.uploadImage}><a className="isDisabled" href="/split_bill">Submit form</a></Button>
-                {/* <Button type="submit" onClick={this.uploadImage}><a>Submit form</a></Button> */}
+              <Button type="submit"> Submit form </Button>
             </Form>
             </div>
       </div>
