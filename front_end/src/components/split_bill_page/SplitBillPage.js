@@ -253,7 +253,9 @@ class SplitBillPage extends Component {
   }
 
   handleUserEdit = async (old_value) => {
-    
+    if(this.state.new_user_name === this.state.user_modal){
+      return alert("")
+    }
   }
 
   // –––––––––––– Modal Opening and Closing ––––––––––––
