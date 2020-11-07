@@ -78,6 +78,7 @@ def create_group():
         letters = ''.join(random.choice(string.ascii_letters) for i in range(26))
         digits = ''.join(random.choice(string.digits) for i in range(10))
         result_string = "http://localhost:3000/split_bill/"+letters + '_' + digits
+        frontend_return = "/split_bill/"+letters + '_' + digits
         
         group_object = Groups(groupURL = result_string, locationID = location_object.locationID, imageURL = image_s3url, tipRate = tip_rate, subTotal = 0.0, totalCost = 0.0, linkExpiration = (datetime.datetime.now()+datetime.timedelta(days=30)), userCount = len(users), totalAdjustment = 0.0, isDeleted = False)
         db_connection.add(group_object)
@@ -99,7 +100,7 @@ def create_group():
         })
 
         db_connection.commit()
-        response = {'link': result_string,
+        response = {'link': frontend_return,
                     'message': "Successfully Created Group"}
         
         db_connection.close()
