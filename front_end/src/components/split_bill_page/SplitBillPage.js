@@ -553,7 +553,7 @@ class SplitBillPage extends Component {
               <textarea
                 style={{"width": "250px"}}
                 ref={(textarea) => this.textArea = textarea}
-                value={this.state.group_url}
+                defaultValue={this.state.group_url}
               />
             </div>
             <div style={{"textAlign": "center"}}>
