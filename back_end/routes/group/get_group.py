@@ -60,7 +60,7 @@ def get_group():
 
         # need to find all users by groupid, find all items they are paired to, and each individual expenses
         # get all users
-        users = db_connection.query(Users).filter(Users.groupID == user_session.groupID)
+        users = db_connection.query(Users).filter(Users.groupID == user_session.groupID).order_by(Users.userID)
         
         total_users = []
         user_assignments = {}
@@ -74,7 +74,7 @@ def get_group():
             user_assignments[user.nickname] = []
 
         # get all items
-        items = db_connection.query(Items).filter(Items.groupID == user_session.groupID)
+        items = db_connection.query(Items).filter(Items.groupID == user_session.groupID).order_by(Items.itemID)
 
         total_items = []
         items_assignments = {}

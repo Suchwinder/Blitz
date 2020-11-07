@@ -11,7 +11,7 @@ def edit_item():
 
         item_name = data['item_name']
         new_item_name = data['new_item_name']
-        new_item_cost = data['new_item_cost']
+        new_item_cost = float(data['new_item_cost'])
         group_url = data['group_url']
 
         # Find the group first

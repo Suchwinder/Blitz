@@ -11,7 +11,7 @@ def edit_tip_rate():
     if db_connection:
         data = request.get_json()
 
-        tip_rate = data['tip_rate']
+        tip_rate = float(data['tip_rate'])
         group_url = data['group_url']
 
         # Get the group info

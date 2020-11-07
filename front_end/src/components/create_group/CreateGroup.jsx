@@ -34,24 +34,6 @@ class CreateGroup extends Component {
     this.inputFileRef = React.createRef();
   }
 
-<<<<<<< HEAD
-   uploadImage = async () => {
-    let data = new FormData();
-    data.append('file', this.state.file);
-
-    const response = await fetch('/api/upload_image', {
-      method: 'POST',
-      body: data
-    })
-    const status = response.status
-    if(status === 200) {
-      const result = await response.json()
-      console.log("hello", result.message)
-    }
-  }
-
-=======
->>>>>>> 3e0c02f89ca7ac67474f6f4d8fe281c5109e6124
   // Handle the form here
   handleChange = (event) => {
     this.setState({

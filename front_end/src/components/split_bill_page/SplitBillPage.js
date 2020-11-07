@@ -76,12 +76,30 @@ class SplitBillPage extends Component {
       redirect: false,
       user_count: 0,
       address: "",
-      userModal: null,
-      itemModal: null,
+      user_modal: "",
+      new_user_name: "",
+      new_adjusted_amount: "",
+      item_modal: "",
+      new_item_name: "",
+      new_item_cost: "",
+      add_item: false,
+      add_item_name: "",
+      add_item_cost: "0.0",
+      add_user: false,
+      add_user_name: "",
+      add_user_adjusted_amount: "0.0",
+      new_tip_rate: ""
     }
   }
 
-  // –––––––––––– Get Group Data ––––––––––––
+  handleChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  // –––––––––––– Get Group Data –––––––––––––––––––––––
   fetchGroupData = async () => {
     // With get requests cant pass a body, so pass in URL parameter instead, should be URL encoded but in this case skipped as it currently works without it
     try {
@@ -191,24 +209,317 @@ class SplitBillPage extends Component {
       alert(result.error);
     }
   }
-  // –––––––––––– Edit Item or Edit User ––––––––––––
-  handleEdit = async () => {
+
+  // –––––––––––– Edit Item or Edit User –––––––––––––––
+  handleItemEdit = async (old_value) => {
+    // parse integer into float
+    let cost = "0.0";
+    if(this.state.new_item_name === this.state.item_modal && this.state.new_item_cost === old_value) {
+      return alert("Please enter some change to edit");
+    } else if (this.state.new_item_name.length === 0) {
+      return alert("Name cannot be empty");
+    } else if(this.state.new_item_cost.length !== 0) {
+      // cost = parseFloat(this.state.new_item_cost).toFixed(2);
+      cost = this.state.new_item_cost;
+    }
+    
+    const data = {
+      "item_name": this.state.item_modal,
+      "new_item_name": this.state.new_item_name, // if no new then can be empty or same as original
+      "new_item_cost": cost, 
+      "group_url": this.state.group_url
+    }
+
+    const response = await fetch('/api/edit_item', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'PUT',
+      body: JSON.stringify(data)
+    })
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        item_modal: "",
+        new_item_name: "",
+        new_item_cost: "", 
+      })
+    } else {
+      alert(result.error);
+    }
   }
 
-  handleOpen = (obj, item_name) => {
-    this.setState({
-      [obj]: item_name
-    })
+  handleUserEdit = async (old_value) => {
+    let adjustment = "0.0";
+    if(this.state.new_nickname === this.state.user_modal && this.state.new_adjusted_amount === old_value) {
+      return alert("Please enter something different to edit");
+    } else if (this.state.new_nickname.length === 0) {
+      return alert("Username cannot be empty!");
+    } else if (this.state.new_adjusted_amount !== 0) {
+      adjustment  = this.state.new_adjusted_amount;
+    }
+
+    const data = {
+      "nickname": this.state.user_modal,
+      "new_nickname": this.state.new_nickname,
+      "adjusted_amount": adjustment,
+      "group_url": this.state.group_url
+    };
+
+    const response = await fetch('/api/edit_user', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'PUT',
+      body: JSON.stringify(data)
+    });
+
+    const status = response.status;
+    const result = await response.json();
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        user_modal: "",
+        new_nickname: "",
+        new_adjusted_amount: "", 
+      })
+    } else {
+      alert(result.error);
+    }
+  }
+
+  // –––––––––––– Modal Opening and Closing ––––––––––––
+  handleOpen = (obj, name, cost) => {
+    if(obj === "user_modal") {
+      this.setState({
+        [obj]: name,
+        new_adjusted_amount: cost,
+        new_nickname: name
+      })
+    } else if(obj === "item_modal") {
+      this.setState({
+        [obj]: name,
+        new_item_cost: cost,
+        new_item_name: name
+      })
+    } else if(obj === "add_item" || obj ==="add_user"){
+      this.setState({
+        [obj]: true
+      })
+    } else if(obj === "edit_tip") {
+      this.setState({
+        [obj]: true,
+        new_tip_rate: this.state.tip_rate
+      })
+    }
   }
 
   handleClose = (obj) => {
-    this.setState({
-      [obj]: null
-    })
+    if(obj === "user_modal") {
+      this.setState({
+        [obj]: "",
+        new_adjusted_amount: "",
+        new_user_name: ""
+      })
+    } else if (obj === "item_modal") {
+      this.setState({
+        [obj]: "",
+        new_item_cost: "",
+        new_item_name: ""
+      })
+    } else if (obj === "add_item" || obj === "add_user" || obj ==="edit_tip") {
+      this.setState({
+        [obj]: false
+      })
+    }
   }
-  // –––––––––––– Delete Item ––––––––––––
+  // –––––––––––– Delete Item or User ––––––––––––––––––
+  handleDeleteItem = async () => {
+    const data = {
+      "item_name": this.state.item_modal,
+      "group_url": this.state.group_url
+    }
 
-  // –––––––––––– Delete User ––––––––––––
+    const response = await fetch('/api/delete_item', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'DELETE',
+      body: JSON.stringify(data)
+    })
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        item_modal: "",
+        new_item_name: "",
+        new_item_cost: "", 
+      })
+    } else {
+      alert(result.error);
+    }
+  }
+
+  handleDeleteUser = async () => {
+    const data = {
+      "nickname": this.state.user_modal,
+      "group_url": this.state.group_url
+    };
+
+    const response = await fetch('/api/delete_user', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'DELETE',
+      body: JSON.stringify(data)
+    });
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200){
+      console.log(result.message)
+      await this.fetchGroupData();
+      this.setState({
+        user_modal: "",
+        new_adjusted_amount: "",
+        new_user_name: ""
+      })
+    } else {
+      alert(result.error)
+    }
+  }
+
+  // –––––––––––– Add User or Item –––––––––––––––––––––
+  handleAddUser = async () => {
+    if(this.state.add_user_name.length === 0) {
+      return alert("User must have name");
+    } else if(this.state.add_user_adjusted_amount.length === 0) {
+      return alert("User must have some cost");
+    }
+
+    const data = {
+      "nickname": this.state.add_user_name,
+      "amount_adjusted": this.state.add_user_adjusted_amount,
+      "group_url": this.state.group_url
+    }
+      
+    const response = await fetch('/api/create_user', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        add_user: false,
+        add_user_name: "",
+        add_user_adjusted_amount: "", 
+      })
+    } else {
+      alert(result.error);
+    }
+  }
+
+  handleAddItem = async () => {
+    if(this.state.add_item_name.length === 0) {
+      return alert("Item must have name");
+    } else if(this.state.add_item_cost.length === 0) {
+      return alert("Item must have some cost");
+    }
+
+    const data = {
+      "item_name": this.state.add_item_name,
+      "item_cost": this.state.add_item_cost,
+      "group_url": this.state.group_url
+    }
+      
+    const response = await fetch('/api/create_item', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        add_item: false,
+        add_item_name: "",
+        add_item_cost: "", 
+      })
+    } else {
+      alert(result.error);
+    }
+  }
+
+  // –––––––––––– Edit Tip –––––––––––––––––––––––––––––
+  handleTip = async () => {
+    console.log(this.state.new_tip_rate)
+    let tip = "0.0";
+    if (this.state.new_tip_rate.length > 0 && this.state.new_tip_rate[0] === '-') {
+      return alert("Tip cannot be negative");
+    } else if(parseFloat(this.state.new_tip_rate) === this.state.tip_rate) {
+      return alert("Please enter a different tip rate");
+    } else if (this.state.new_tip_rate.length !== 0) {
+      tip = parseFloat(this.state.new_tip_rate);
+    }
+
+    const data = {
+      "tip_rate": tip,
+      "group_url": this.state.group_url
+    };
+
+    const response = await fetch('/api/edit_tip_rate', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'PUT',
+      body: JSON.stringify(data)
+    });
+
+    const status = response.status;
+    const result = await response.json();
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        edit_tip: false,
+        new_tip_rate: "",
+      })
+    } else {
+      alert(result.error);
+    }
+  }
 
   componentDidMount = async () => {
     await this.fetchGroupData();
@@ -236,6 +547,30 @@ class SplitBillPage extends Component {
               <Grid item xs>
                 <Paper className={classes.paper}>
                 <h6 style={{"textAlign": "center"}}> Items </h6>
+                <Modal
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  className={classes.modal}
+                  open={this.state.add_item}
+                  onClose={() => this.handleClose("add_item")}
+                  closeAfterTransition
+                  BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+                >
+                  <Fade in={this.state.add_item}>
+                    <div className={classes.paper_modal}>
+                      <TextField id="outlined-basic" label="Item Name" variant="outlined" name="add_item_name" placeholder="name" onChange={this.handleChange}/>
+                      <TextField id="outlined-basic" label="Item Cost" variant="outlined" name="add_item_cost" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
+                      <Button onClick={this.handleAddItem}>Add</Button>
+                      <Button onClick={() => this.handleClose("add_item")}>Cancel</Button>
+                    </div>
+                  </Fade>
+                </Modal>
+                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_item", "na", "na")}>
+                  Add Item
+                </Button> 
                 {/* <ul className="innerList"> */}
                 {
                   this.state.items.map((item, index) => {
@@ -245,23 +580,26 @@ class SplitBillPage extends Component {
                           aria-labelledby="transition-modal-title"
                           aria-describedby="transition-modal-description"
                           className={classes.modal}
-                          open={this.state.itemModal === item.item_name}
-                          onClose={() => this.handleClose("itemModal")}
+                          open={this.state.item_modal === item.item_name}
+                          onClose={() => this.handleClose("item_modal")}
                           closeAfterTransition
                           BackdropComponent={Backdrop}
                           BackdropProps={{
                             timeout: 500,
                           }}
                         >
-                          <Fade in={this.state.itemModal === item.item_name}>
+                          <Fade in={this.state.item_modal === item.item_name}>
                             <div className={classes.paper_modal}>
-                              <h2 id="transition-modal-title">Transition modal</h2>
-                              <p id="transition-modal-description">react-transition-group animates me.</p>
+                              <TextField id="outlined-basic" label="Change Item Name" variant="outlined" name="new_item_name" defaultValue={this.state.new_item_name} onChange={this.handleChange}/>
+                              <TextField id="outlined-basic" label="Change Cost" variant="outlined" name="new_item_cost" defaultValue={this.state.new_item_cost} onChange={this.handleChange} type="number" step={0.01}/>
+                              <Button onClick={this.handleDeleteItem}>Delete</Button>
+                              <Button onClick={() => this.handleItemEdit(item.item_cost)}>Edit</Button>
+                              <Button onClick={() => this.handleClose("item_modal")}>Cancel</Button>
                             </div>
                           </Fade>
                         </Modal>
 
-                        <Button variant="outlined" color="primary" className={classes.item_button} onClick={() => this.handleOpen("itemModal", item.item_name)} size='small' display="inline">
+                        <Button variant="outlined" color="primary" className={classes.item_button} onClick={() => this.handleOpen("item_modal", item.item_name, item.item_cost)} size='small' display="inline">
                           {item.item_name}: ${item.item_cost} 
                         </Button> 
                         <Autocomplete
@@ -291,6 +629,30 @@ class SplitBillPage extends Component {
             <br></br>
             {/* Render total for each individual */}
             <Grid container spacing={3}>
+              <Modal
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  className={classes.modal}
+                  open={this.state.add_user}
+                  onClose={() => this.handleClose("add_user")}
+                  closeAfterTransition
+                  BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+                >
+                  <Fade in={this.state.add_user}>
+                    <div className={classes.paper_modal}>
+                      <TextField id="outlined-basic" label="Username" variant="outlined" name="add_user_name" placeholder="name" onChange={this.handleChange}/>
+                      <TextField id="outlined-basic" label="Adjusted Amount" variant="outlined" name="add_user_adjusted_amount" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
+                      <Button onClick={this.handleAddUser}>Add</Button>
+                      <Button onClick={() => this.handleClose("add_user")}>Cancel</Button>
+                    </div>
+                  </Fade>
+                </Modal>
+                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_user", "na", "na")}>
+                  Add User
+                </Button>
             {
               this.state.users.map((user, index) => {
                 return (
@@ -299,18 +661,21 @@ class SplitBillPage extends Component {
                       aria-labelledby="transition-modal-title"
                       aria-describedby="transition-modal-description"
                       className={classes.modal}
-                      open={this.state.userModal === user.user_nickname}
-                      onClose={() => this.handleClose("userModal")}
+                      open={this.state.user_modal === user.user_nickname}
+                      onClose={() => this.handleClose("user_modal")}
                       closeAfterTransition
                       BackdropComponent={Backdrop}
                       BackdropProps={{
                         timeout: 500,
                       }}
                     >
-                      <Fade in={this.state.userModal === user.user_nickname}>
+                      <Fade in={this.state.user_modal === user.user_nickname}>
                         <div className={classes.paper_modal}>
-                          <h2 id="transition-modal-title">Transition modal</h2>
-                          <p id="transition-modal-description">react-transition-group animates me.</p>
+                            <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_nickname" defaultValue={this.state.new_nickname} onChange={this.handleChange}/>
+                            <TextField id="outlined-basic" label="Change Adjustment" variant="outlined" name="new_adjusted_amount" defaultValue={this.state.new_adjusted_amount} onChange={this.handleChange} type="number" step={0.01}/>
+                            <Button onClick={this.handleDeleteUser}>Delete</Button>
+                            <Button onClick={() => this.handleUserEdit(user.user_adjusted_amount)}>Edit</Button>
+                            <Button onClick={() => this.handleClose("user_modal")}>Cancel</Button>
                         </div>
                       </Fade>
                     </Modal>
@@ -320,7 +685,7 @@ class SplitBillPage extends Component {
                           "justifyContent": "center",
                           "alignItems": "center",
                         }}>
-                        <Button onClick={() => this.handleOpen("userModal", user.user_nickname)}>{user.user_nickname}</Button>
+                        <Button onClick={() => this.handleOpen("user_modal", user.user_nickname, user.user_adjusted_amount)}>{user.user_nickname}</Button>
                       </div>
                       <div className="innerList">
                         {
@@ -334,7 +699,10 @@ class SplitBillPage extends Component {
                             // check if the user array is empty
                             this.state.user_assignments[user.user_nickname].length === 0
                             ?
-                              <div style={{"textAlign": "center"}}> no assignments </div>
+                              <div>
+                                <div style={{"textAlign": "center"}}> no assignments </div>
+                                <div style={{"textAlign": "center"}}> adjustments: {user.user_adjusted_amount.toFixed(2)} </div>
+                              </div>
                             : (
                               <div style={{"textAlign": "center"}}> 
                                 { 
@@ -369,7 +737,20 @@ class SplitBillPage extends Component {
                 <Paper className={classes.paper}>
                   {/* Grand Total */}
                   {/* <ul className="innerList"> */}
-                    <div style={{"textAlign": "center"}}>Tip Rate: {this.state.tip_rate}%</div>
+                  {
+                    this.state.edit_tip
+                    ?
+                    <div style={{"textAlign": "center"}}>
+                      <TextField id="outlined-basic" label="Tip" variant="outlined" name="new_tip_rate" onChange={this.handleChange} defaultValue={this.state.new_tip_rate} type="number"/>
+                      <Button onClick={this.handleTip}>Submit</Button>
+                      <Button onClick={() => this.handleClose("edit_tip")}>Cancel</Button>
+                    </div>
+                    :
+                    <div>
+                      <div style={{"textAlign": "center"}}>Tip Rate: {this.state.tip_rate}%</div>
+                      <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("edit_tip")}>Edit Tip</Button>
+                    </div>
+                  }
                     <div style={{"textAlign": "center"}}>Tax Rate: {
                       this.state.tax_rate === 0
                       ? 0
@@ -377,6 +758,7 @@ class SplitBillPage extends Component {
                     }% </div>
                     <div style={{"textAlign": "center"}}>SubTotal: ${this.state.sub_total.toFixed(2)}</div>
                     <div style={{"textAlign": "center"}}>Grand Total: ${this.state.total_cost.toFixed(2)}</div>
+                    <div style={{"textAlign": "center"}}>Net Adjustments: ${this.state.total_adjustment.toFixed(2)}</div>
                   {/* </ul> */}
                 </Paper>
               </Grid>

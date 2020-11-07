@@ -10,7 +10,7 @@ def create_item():
         data = request.get_json()
 
         item_name = data['item_name']
-        item_cost = data['item_cost']
+        item_cost = float(data['item_cost'])
         item_quantity = 1 # data['item_amount'] for now just storing it as one
         group_url = data['group_url']
 
