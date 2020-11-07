@@ -10,6 +10,7 @@ def create_user():
         data = request.get_json()
 
         user = data['nickname']
+        amount_adjusted = float(data['amount_adjusted'])
         group_url = data['group_url']
 
         if len(user) == 0:
@@ -28,7 +29,7 @@ def create_user():
             return response, 400
         
         else:
-            user_object = Users(nickname = user, amountOwed = 0.0, adjustedAmount = 0.0, groupID = group_object.groupID)
+            user_object = Users(nickname = user, amountOwed = 0.0, adjustedAmount = amount_adjusted, groupID = group_object.groupID)
             db_connection.add(user_object)
             db_connection.query(Groups).filter(Groups.groupURL == group_url).update({
                 "userCount": group_object.userCount + 1
