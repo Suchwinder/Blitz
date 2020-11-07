@@ -82,6 +82,10 @@ class SplitBillPage extends Component {
       item_modal: "",
       new_item_name: "",
       new_item_cost: "",
+      add_item: false,
+      add_item_name: "",
+      add_item_cost: "",
+      add_user: false,
     }
   }
 
@@ -256,11 +260,15 @@ class SplitBillPage extends Component {
         new_adjusted_amount: cost,
         new_user_name: name
       })
-    } else {
+    } else if (obj === "item_modal") {
       this.setState({
         [obj]: name,
         new_item_cost: cost,
         new_item_name: name
+      })
+    } else if (obj === "add_item" || "add_user") {
+      this.setState({
+        [obj]: true
       })
     }
   }
@@ -272,12 +280,16 @@ class SplitBillPage extends Component {
         new_adjusted_amount: "",
         new_user_name: ""
       }, () => console.log(this.state))
-    } else {
+    } else if (obj === "item_modal") {
       this.setState({
         [obj]: "",
         new_item_cost: "",
         new_item_name: ""
       }, () => console.log(this.state))
+    } else if (obj === "add_item" || "add_user") {
+      this.setState({
+        [obj]: false
+      })
     }
   }
   // –––––––––––– Delete Item or User ––––––––––––––––––
@@ -312,6 +324,15 @@ class SplitBillPage extends Component {
     }
   }
 
+  // –––––––––––– Add User or Item –––––––––––––––––––––
+  handleAddUser = () => {
+
+  }
+
+  handleAddItem = () => {
+
+  }
+
   componentDidMount = async () => {
     await this.fetchGroupData();
   }
@@ -338,6 +359,30 @@ class SplitBillPage extends Component {
               <Grid item xs>
                 <Paper className={classes.paper}>
                 <h6 style={{"textAlign": "center"}}> Items </h6>
+                <Modal
+                  aria-labelledby="transition-modal-title"
+                  aria-describedby="transition-modal-description"
+                  className={classes.modal}
+                  open={this.state.add_item}
+                  onClose={() => this.handleClose("add_item")}
+                  closeAfterTransition
+                  BackdropComponent={Backdrop}
+                  BackdropProps={{
+                    timeout: 500,
+                  }}
+                >
+                  <Fade in={this.state.add_item}>
+                    <div className={classes.paper_modal}>
+                      <TextField id="outlined-basic" label="Item Name" variant="outlined" name="new_item_name" defaultValue="name" onChange={this.handleChange}/>
+                      <TextField id="outlined-basic" label="Item Cost" variant="outlined" name="new_item_cost" defaultValue="cost" onChange={this.handleChange} type="number" step={0.01}/>
+                      <Button onClick={this.handleAddItem}>Add</Button>
+                      <Button onClick={() => this.handleClose("add_item")}>Cancel</Button>
+                    </div>
+                  </Fade>
+                </Modal>
+                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_item", "na", "na")}>
+                  Add Item
+                </Button> 
                 {/* <ul className="innerList"> */}
                 {
                   this.state.items.map((item, index) => {
