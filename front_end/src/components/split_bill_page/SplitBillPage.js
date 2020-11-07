@@ -10,7 +10,9 @@ import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 const styles = (theme) => ({
     root: {
@@ -27,7 +29,18 @@ const styles = (theme) => ({
     },
     item_button: {
       margin: '0.1em'
-    }
+    },
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    paper_modal: {
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
 });
 
 const ColoredLine = ({ color }) => (
@@ -181,6 +194,18 @@ class SplitBillPage extends Component {
   // –––––––––––– Edit Item or Edit User ––––––––––––
   handleEdit = async () => {
   }
+
+  handleOpen = (obj, item_name) => {
+    this.setState({
+      [obj]: item_name
+    })
+  }
+
+  handleClose = (obj) => {
+    this.setState({
+      [obj]: null
+    })
+  }
   // –––––––––––– Delete Item ––––––––––––
 
   // –––––––––––– Delete User ––––––––––––
@@ -215,12 +240,28 @@ class SplitBillPage extends Component {
                 {
                   this.state.items.map((item, index) => {
                     return (
-                      this.state.itemModal === item.item_name 
-                      ?
-                        <div>Hello</div>
-                      :
                       <div key={index+1}>
-                        <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline">
+                        <Modal
+                          aria-labelledby="transition-modal-title"
+                          aria-describedby="transition-modal-description"
+                          className={classes.modal}
+                          open={this.state.itemModal === item.item_name}
+                          onClose={() => this.handleClose("itemModal")}
+                          closeAfterTransition
+                          BackdropComponent={Backdrop}
+                          BackdropProps={{
+                            timeout: 500,
+                          }}
+                        >
+                          <Fade in={this.state.itemModal === item.item_name}>
+                            <div className={classes.paper_modal}>
+                              <h2 id="transition-modal-title">Transition modal</h2>
+                              <p id="transition-modal-description">react-transition-group animates me.</p>
+                            </div>
+                          </Fade>
+                        </Modal>
+
+                        <Button variant="outlined" color="primary" className={classes.item_button} onClick={() => this.handleOpen("itemModal", item.item_name)} size='small' display="inline">
                           {item.item_name}: ${item.item_cost} 
                         </Button> 
                         <Autocomplete
@@ -254,13 +295,32 @@ class SplitBillPage extends Component {
               this.state.users.map((user, index) => {
                 return (
                   <Grid item xs key={index+1}>
+                    <Modal
+                      aria-labelledby="transition-modal-title"
+                      aria-describedby="transition-modal-description"
+                      className={classes.modal}
+                      open={this.state.userModal === user.user_nickname}
+                      onClose={() => this.handleClose("userModal")}
+                      closeAfterTransition
+                      BackdropComponent={Backdrop}
+                      BackdropProps={{
+                        timeout: 500,
+                      }}
+                    >
+                      <Fade in={this.state.userModal === user.user_nickname}>
+                        <div className={classes.paper_modal}>
+                          <h2 id="transition-modal-title">Transition modal</h2>
+                          <p id="transition-modal-description">react-transition-group animates me.</p>
+                        </div>
+                      </Fade>
+                    </Modal>
                     <Paper className={classes.paper}>
                       <div style={{
                           "display": "flex",
                           "justifyContent": "center",
                           "alignItems": "center",
                         }}>
-                        <Button>{user.user_nickname}</Button>
+                        <Button onClick={() => this.handleOpen("userModal", user.user_nickname)}>{user.user_nickname}</Button>
                       </div>
                       <div className="innerList">
                         {
@@ -268,7 +328,7 @@ class SplitBillPage extends Component {
                           this.state.user_assignments === undefined
                           ?
                             <div style={{"textAlign": "center"}}>
-                             no assignments
+                            no assignments
                             </div>
                           : (
                             // check if the user array is empty
