@@ -16,12 +16,14 @@ def create_group():
         # gather data
         users = data['users']
         street_address = data['street_address']
-        # state_location = "NY"
+        # state_location = data['state']
         city_location = data['city']
         location_name = data['location_name']
-        zip_code = data['zip_code']
+        # zip_code = data['zip_code']
+        zip_code = "10065"
         image_s3url = data['image_s3url']
-        tip_rate = data['tip_rate']
+        # image_s3url = "https://testblitztest.s3.amazonaws.com/0c193734-6fea-4328-b44f-a570f889da26"
+        tip_rate = float(data['tip_rate'])
         # items_list = data['items']
         
         # if we have an image to work with we need to process it
@@ -50,7 +52,7 @@ def create_group():
         # if(len(zip_code) > 0):
         # Need to insert data with respect to foreign keys, so location is first so group can use location as FK, then Group is done so user and items can use group as FK, and user and item can be done in any order
         # create location object to insert into database
-        if (len(zip_code) == 0):
+        if (len(street_address) == 0):
             response = {"error": "Please enter a valid address"}
             return response, 400
         
@@ -61,6 +63,7 @@ def create_group():
         if (len(users) == 0):
             response = {"error": "Please enter at least one user"}
             return response, 400
+
 
         # location is mandatory
         location_zip_obj = db_connection.query(Zips).filter(Zips.zipCode == str(zip_code)) # returns an array of results, but it is size 1
@@ -75,6 +78,7 @@ def create_group():
         letters = ''.join(random.choice(string.ascii_letters) for i in range(26))
         digits = ''.join(random.choice(string.digits) for i in range(10))
         result_string = "http://localhost:3000/split_bill/"+letters + '_' + digits
+        frontend_return = "/split_bill/"+letters + '_' + digits
         
         group_object = Groups(groupURL = result_string, locationID = location_object.locationID, imageURL = image_s3url, tipRate = tip_rate, subTotal = 0.0, totalCost = 0.0, linkExpiration = (datetime.datetime.now()+datetime.timedelta(days=30)), userCount = len(users), totalAdjustment = 0.0, isDeleted = False)
         db_connection.add(group_object)
@@ -96,7 +100,7 @@ def create_group():
         })
 
         db_connection.commit()
-        response = {'link': result_string,
+        response = {'link': frontend_return,
                     'message': "Successfully Created Group"}
         
         db_connection.close()

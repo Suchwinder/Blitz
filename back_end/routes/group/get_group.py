@@ -4,13 +4,12 @@ import datetime
 
 bp = Blueprint('get_group', __name__, url_prefix='/api')
 
-@bp.route('/get_group', methods=["GET"])
+@bp.route('/get_group/', methods=["GET"])
 def get_group():
+    # print(group)
     db_connection = create_db_connection()
     if db_connection:
-        data = request.get_json()
-
-        url = data['url']
+        url = request.args['group_URL']
 
         if(len(url) == 0):
             response = {'error': 'Please Enter a URL'}
@@ -20,7 +19,7 @@ def get_group():
         user_session = db_connection.query(Groups).filter(Groups.groupURL == url).first()
 
         if user_session is None:
-            response = {"error": "URL is expired or doesn't exist"}
+            response = {"error": "URL doesn't exist"}
             return response, 400
         
         # check if link is expired
@@ -30,15 +29,15 @@ def get_group():
 
         response = {
             # 'groupID': user_session.groupID,
-            'groupURL': user_session.groupURL,
+            'group_url': user_session.groupURL,
             # 'locationID': user_session.locationID, 
-            'imageURL': user_session.imageURL,
+            'image_url': user_session.imageURL,
             'tip_rate': user_session.tipRate, 
             'sub_total': user_session.subTotal, 
             'total_cost': user_session.totalCost, 
             'tax_rate': 1.08875,
             # 'linkExpiration': user_session.linkExpiration,  
-            'userCount': user_session.userCount,
+            'user_count': user_session.userCount,
             'total_adjustment': user_session.totalAdjustment 
         }
 
@@ -64,6 +63,7 @@ def get_group():
         users = db_connection.query(Users).filter(Users.groupID == user_session.groupID)
         
         total_users = []
+        user_assignments = {}
         for user in users:
             user_object = { 
                 'user_nickname': user.nickname,
@@ -71,6 +71,7 @@ def get_group():
                 'user_adjusted_amount': user.adjustedAmount
             }
             total_users.append(user_object)
+            user_assignments[user.nickname] = []
 
         # get all items
         items = db_connection.query(Items).filter(Items.groupID == user_session.groupID)
@@ -98,18 +99,31 @@ def get_group():
             item_id = item_object.itemID
             # use id to get an array of item assignments for that specific item to all the users connected to it
             i_a = db_connection.query(ItemAssignments).filter(ItemAssignments.itemID == item_id)
-            # get user id now to get hte name of the person and append it to the value of our dictionary items_assignments
+            # get user id now to get the name of the person and append it to the value of our dictionary items_assignments
             for assignment in i_a:
                 user_name = db_connection.query(Users).filter(Users.userID == assignment.userID).first()
                 # item[item_name].append(user_name)
-                items_assignments[item].append(user_name)
+                items_assignments[item].append(user_name.nickname)
+
+        # get user assignments 
+        for user_nickname in user_assignments:
+            #get user object to get user id to traverse through assignments
+            user_object = db_connection.query(Users).filter((Users.groupID == user_session.groupID), (Users.nickname == user_nickname)).first()
+            user_id = user_object.userID
+            #use id to get an array of items assignments for this specific user
+            u_a = list(db_connection.query(ItemAssignments).filter(ItemAssignments.userID == user_id))
+            #get item id to get the name of the item and append it to the value of our dicitonary user_assignments
+            for assignment in u_a:
+                item_name = db_connection.query(Items).filter(Items.itemID == assignment.itemID).first()
+                user_assignments[user_nickname].append(item_name.itemName)
 
         db_connection.commit()
 
         response['users'] = total_users
         response['items'] = total_items
         response['item_assignments'] = items_assignments
-        
+        response['user_assignments'] = user_assignments
+
         db_connection.close()
 
         return response, 200
