@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
-import Chip from '@material-ui/core/Chip';
+// import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
@@ -25,7 +25,7 @@ class CreateGroup extends Component {
       input_zip_code: "",
       input_city: "",
       input_state: "",
-      input_tip: "",
+      input_tip: 0,
       input_location: "",
       redirect: false,
       group_url: "",
@@ -212,10 +212,6 @@ class CreateGroup extends Component {
           handleSubmit,
           handleChange,
           handleBlur,
-          values,
-          touched,
-          isValid,
-          errors,
         }) => (
         <div className="create-group-page">
           <NavBar/>
@@ -374,6 +370,7 @@ class CreateGroup extends Component {
                 <FilledInput
                   id="filled-adornment-amount"
                   name="input_tip"
+                  input type = {Number}
                   value={this.state.input_tip}
                   onChange={this.handleChange}
                   startAdornment={<InputAdornment position="start">$</InputAdornment>}

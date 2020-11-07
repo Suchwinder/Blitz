@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "../nav_bar/NavBar";
-// import { Button, Label } from "reactstrap";
+import { Button} from "reactstrap";
 // import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { Input } from "@material-ui/core";
@@ -28,27 +28,29 @@ class JoinGroup extends Component {
     event.preventDefault();
   }
 
-  componentDidMount() {
-    fetch("/api/session_link")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            session_link: result.session_link
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
-  }
+
+
+  // componentDidMount() {
+  //   fetch("/api/session_link")
+  //     .then(res => res.json())
+  //     .then(
+  //       (result) => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           session_link: result.session_link
+  //         });
+  //       },
+  //       // Note: it's important to handle errors here
+  //       // instead of a catch() block so that we don't swallow
+  //       // exceptions from actual bugs in components.
+  //       (error) => {
+  //         this.setState({
+  //           isLoaded: true,
+  //           error
+  //         });
+  //       }
+  //     )
+  // }
 
   render(){  
     return (
@@ -62,8 +64,8 @@ class JoinGroup extends Component {
                 <Input type="text" value={this.state.session_link} onChange={this.handleChange}></Input>
               </label>
               <br></br>
-              <input type="submit" value="Submit"/>
-              {/* <Button type="submit" onClick={this.joinSession}><a className="isDisabled" href="/split_bill">Submit form</a></Button> */}
+              {/* <input type="submit" value="Submit"/> */}
+              <Button type="submit" onClick={this.joinSession}><a className="isDisabled" href="/split_bill">Submit</a></Button>
               <FormHelperText id="my-helper-text">This will redirect you to your session.</FormHelperText>
             </form>
           </div>
