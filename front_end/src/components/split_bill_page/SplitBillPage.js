@@ -285,13 +285,13 @@ class SplitBillPage extends Component {
         [obj]: "",
         new_adjusted_amount: "",
         new_user_name: ""
-      }, () => console.log(this.state))
+      })
     } else if (obj === "item_modal") {
       this.setState({
         [obj]: "",
         new_item_cost: "",
         new_item_name: ""
-      }, () => console.log(this.state))
+      })
     } else if (obj === "add_item" || "add_user") {
       this.setState({
         [obj]: false
@@ -366,8 +366,42 @@ class SplitBillPage extends Component {
 
   }
 
-  handleAddItem = () => {
-  
+  handleAddItem = async () => {
+    if(this.state.add_item_name.length === 0) {
+      return alert("Item must have name");
+    } else if(this.state.add_item_cost.length === 0) {
+      return alert("Item must have some cost");
+    }
+
+    const data = {
+      "item_name": this.state.add_item_name,
+      "item_cost": this.state.add_item_cost,
+      "group_url": this.state.group_url
+    }
+      
+    const response = await fetch('/api/create_item', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        add_item: false,
+        add_item_name: "",
+        add_item_cost: "", 
+      })
+    } else {
+      alert(result.error);
+    }
   }
 
   componentDidMount = async () => {
@@ -410,8 +444,8 @@ class SplitBillPage extends Component {
                 >
                   <Fade in={this.state.add_item}>
                     <div className={classes.paper_modal}>
-                      <TextField id="outlined-basic" label="Item Name" variant="outlined" name="new_item_name" defaultValue="name" onChange={this.handleChange}/>
-                      <TextField id="outlined-basic" label="Item Cost" variant="outlined" name="new_item_cost" defaultValue="cost" onChange={this.handleChange} type="number" step={0.01}/>
+                      <TextField id="outlined-basic" label="Item Name" variant="outlined" name="add_item_name" placeholder="name" onChange={this.handleChange}/>
+                      <TextField id="outlined-basic" label="Item Cost" variant="outlined" name="add_item_cost" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
                       <Button onClick={this.handleAddItem}>Add</Button>
                       <Button onClick={() => this.handleClose("add_item")}>Cancel</Button>
                     </div>
