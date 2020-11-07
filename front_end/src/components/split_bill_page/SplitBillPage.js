@@ -702,6 +702,7 @@ class SplitBillPage extends Component {
                     }% </div>
                     <div style={{"textAlign": "center"}}>SubTotal: ${this.state.sub_total.toFixed(2)}</div>
                     <div style={{"textAlign": "center"}}>Grand Total: ${this.state.total_cost.toFixed(2)}</div>
+                    <div style={{"textAlign": "center"}}>Net Adjustments: ${this.state.total_adjustment.toFixed(2)}</div>
                   {/* </ul> */}
                 </Paper>
               </Grid>
