@@ -19,6 +19,10 @@ def assign_item():
         user_object = db_connection.query(Users).filter((Users.nickname == user), (Users.groupID == group_object.groupID)).first()
         item_object = db_connection.query(Items).filter((Items.itemName == item_name), (Items.groupID == group_object.groupID)).first()
 
+        if(user_object is None):
+            response = {"error": "This user doesn't exist"}
+            return response, 400
+
         # query data for price calculation
         curr_cost_per_person = item_object.itemCostPerPerson
 
