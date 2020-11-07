@@ -33,7 +33,7 @@ class JoinGroup extends Component {
     this.state.session_link.substring(start);
 
     this.setState({
-      submit_link: this.state.session_link,
+      submit_link: this.state.session_link.substring(21, this.state.session_link.length),
     })
   }
 
