@@ -152,10 +152,6 @@ class CreateGroup extends Component {
           input_city,
           input_state,
         });
-<<<<<<< HEAD
-=======
-        // console.log("Sent from Place API: ", input_address, input_city, input_state, input_zip_code);  
->>>>>>> d63470c48c7893269566fe323aa5110426489139
       }
     }
   }
