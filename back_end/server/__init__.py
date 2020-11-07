@@ -1,18 +1,18 @@
 from flask import Flask
-from models import bootDB
-from routes.group import (
+from back_end.models import bootDB
+from back_end.routes.group import (
     upload_image,
     create_group,
     get_group,
     edit_tip_rate,
 )  # create_group, join_group, s3_test
-from routes import assign_item, unassign_item
+from back_end.routes import assign_item, unassign_item
 
 # User(s) Imports
-from routes.users import create_user, edit_user, delete_user
+from back_end.routes.users import create_user, edit_user, delete_user
 
 # Item(s) Imports
-from routes.items import create_item, edit_item, delete_item
+from back_end.routes.items import create_item, edit_item, delete_item
 
 
 def create_app():
