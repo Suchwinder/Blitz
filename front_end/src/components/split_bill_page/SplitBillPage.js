@@ -64,7 +64,7 @@ class SplitBillPage extends Component {
       user_count: 0,
       address: "",
       userModal: null,
-      ItemModal: null,
+      itemModal: null,
     }
   }
 
@@ -215,6 +215,10 @@ class SplitBillPage extends Component {
                 {
                   this.state.items.map((item, index) => {
                     return (
+                      this.state.itemModal === item.item_name 
+                      ?
+                        <div>Hello</div>
+                      :
                       <div key={index+1}>
                         <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline">
                           {item.item_name}: ${item.item_cost} 
