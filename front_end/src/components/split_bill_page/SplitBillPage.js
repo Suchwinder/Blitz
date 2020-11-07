@@ -312,6 +312,36 @@ class SplitBillPage extends Component {
     }
   }
 
+  handleDeleteUser = async () => {
+    const data = {
+      "nickname": this.state.user_modal,
+      "group_url": this.state.group_url
+    };
+
+    const response = await fetch('/api/delete_user', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'DELETE',
+      body: JSON.stringify(data)
+    });
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200){
+      console.log(result.message)
+      await this.fetchGroupData();
+      this.setState({
+        user_modal: "",
+        new_adjusted_amount: "",
+        new_user_name: ""
+      })
+    } else {
+      alert(result.error)
+    }
+  }
 
   componentDidMount = async () => {
     await this.fetchGroupData();
@@ -416,7 +446,7 @@ class SplitBillPage extends Component {
                       <Fade in={this.state.user_modal === user.user_nickname}>
                         <div className={classes.paper_modal}>
                             <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_user_name" defaultValue={this.state.user_modal} onChange={this.handleChange}/>
-                            <Button>Delete</Button>
+                            <Button onClick={this.handleDeleteUser}>Delete</Button>
                             <Button>Edit</Button>
                             <Button onClick={() => this.handleClose("user_modal")}>Cancel</Button>
                         </div>
