@@ -98,7 +98,7 @@ def get_group():
             item_object = db_connection.query(Items).filter((Items.groupID == user_session.groupID),(Items.itemName == item_name)).first()
             item_id = item_object.itemID
             # use id to get an array of item assignments for that specific item to all the users connected to it
-            i_a = db_connection.query(ItemAssignments).filter(ItemAssignments.itemID == item_id).order_by(ItemAssignments.itemAssignmentID)
+            i_a = db_connection.query(ItemAssignments).filter(ItemAssignments.itemID == item_id)
             # get user id now to get the name of the person and append it to the value of our dictionary items_assignments
             for assignment in i_a:
                 user_name = db_connection.query(Users).filter(Users.userID == assignment.userID).first()
