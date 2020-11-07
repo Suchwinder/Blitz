@@ -107,17 +107,14 @@ def get_group():
 
         # get user assignments 
         for user_nickname in user_assignments:
-            print(user_nickname)
             #get user object to get user id to traverse through assignments
             user_object = db_connection.query(Users).filter((Users.groupID == user_session.groupID), (Users.nickname == user_nickname)).first()
             user_id = user_object.userID
             #use id to get an array of items assignments for this specific user
             u_a = list(db_connection.query(ItemAssignments).filter(ItemAssignments.userID == user_id))
-            print(u_a)
             #get item id to get the name of the item and append it to the value of our dicitonary user_assignments
             for assignment in u_a:
                 item_name = db_connection.query(Items).filter(Items.itemID == assignment.itemID).first()
-                print(assignment)
                 user_assignments[user_nickname].append(item_name.itemName)
 
         db_connection.commit()

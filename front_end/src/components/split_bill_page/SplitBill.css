@@ -1,43 +1,43 @@
 .split-bill-page {
     background-image: linear-gradient(rgba(128, 128, 128, 0.404), rgba(179, 171, 171, 0.63));
-    height: 100vh;
-    width: 100%;
+    /* height: 100vh; */
+    /* width: 100%; */
 }
 
-.column {
+/* .column {
     float: left;
     width: 33%;
-}
+} */
 
-.row:after {
+/* .row:after {
     content: "";
     display: table;
     clear: both;
     margin: auto;
-}
+} */
 
-.innerList {
+/* .innerList {
     list-style-type:none;
     padding:0%;
-}
+} */
 
-.splitNames {
+/* .splitNames {
     float: left;
     width: 25%;
-}
+} */
 
-.receipt {
+/* .receipt {
     text-align: center;
-}
+} */
 
-.placeholder {
+/* .placeholder {
     width: 300px;
-}
+} */
 
-hr {
+/* hr {
     width: 95%;
-}
+} */
 
-body{
+/* body{
     overflow: hidden;
-}
+} */

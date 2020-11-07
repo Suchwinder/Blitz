@@ -4,9 +4,12 @@ import NavBar from '../nav_bar/NavBar'
 import { withStyles } from "@material-ui/core/styles";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
+// import { FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
 import './SplitBill.css'
 import { Redirect } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
 const styles = (theme) => ({
@@ -15,12 +18,16 @@ const styles = (theme) => ({
     },
     paper: {
       padding: theme.spacing(2),
-      textAlign: 'center',
+      // textAlign: 'center',
       color: theme.palette.text.secondary,
+      margin: '1%'
     },
     fullWidth: {
       width: '100%',
     },
+    item_button: {
+      margin: '0.1em'
+    }
 });
 
 const ColoredLine = ({ color }) => (
@@ -38,7 +45,7 @@ class SplitBillPage extends Component {
     super(props);
     this.state = {
       city: "",
-      group_url: props.groupURL.match.url,
+      group_url: window.location.href,
       image_url: "",
       item_assignments: {},
       user_assignments: {},
@@ -56,17 +63,30 @@ class SplitBillPage extends Component {
       redirect: false,
       user_count: 0,
       address: "",
+      userModal: null,
+      ItemModal: null,
     }
   }
 
+  // –––––––––––– Get Group Data ––––––––––––
   fetchGroupData = async () => {
     // With get requests cant pass a body, so pass in URL parameter instead, should be URL encoded but in this case skipped as it currently works without it
     try {
-      const response = await fetch(`/api/get_group/?group_URL=http://localhost:3000${this.state.group_url}`)
+      const response = await fetch(`/api/get_group/?group_URL=${this.state.group_url}`)
       const status = response.status;
       const result = await response.json();
   
-      if(status == 200) {
+      if(status === 200) {
+        result.items.sort(function(a, b) {
+          // console.log(a.item_name < b.item_name)
+          if(a.item_name < b.item_name) { return -1; }
+          if(a.item_name > b.item_name) { return 1; }
+          return 0;
+        });
+
+        // result.items.forEach(item => {
+        //   console.log(item.item_name);
+        // })
         this.setState({
           city: result.city,
           image_url: result.image_url,
@@ -84,7 +104,7 @@ class SplitBillPage extends Component {
           users: result.users,
           user_count: result.user_count,
           zip_code: result.zip_code,
-          address: result.street_address + ', ' + result.city + ', ' + result.state_name + ' ' + result.zip_code,
+          address: result.street_address + ', ' + result.city + ', ' + result.state_name,
         }/*, () => {console.log("after", this.state)}*/)
       } else if (status >= 400) {
           this.setState({
@@ -96,25 +116,81 @@ class SplitBillPage extends Component {
     }
   }
 
-  // loadAllUserData = async () => {
-  //   try {
-  //     await this.fetchGroupData()
+  // –––––––––––– Assign or Unassign Member ––––––––––––
+  handleAsssign = async (event, value, type) => {
+    // assign an item to a user
+    let status = null;
+    let result = null;
+    if(type === 'create-option') {
+      const data = {
+        "nickname": value[value.length-1],
+        "item_name": event.target.name,
+        "group_url": this.state.group_url
+      };
 
-  //   } catch {
-  //     console.log(error);
-  //   }
-  // }
+      const response = await fetch('/api/assign_item', {
+        headers: {
+          'Accept': 'application/json',
+          "Content-Type": 'application/json'
+        }, 
+        method: "POST",
+        body: JSON.stringify(data)
+      });
 
-  componentDidMount = async ()=> {
-    // console.log(this.state.group_url);
-    // console.log(window.location.href);
-    // console.log(this.props);
-    // await this.loadAllUserData();
+      status = response.status;
+      result = await response.json();
+    } else if (type === 'remove-option') { // unassign and item to a user
+      // get removed value by using difference between value and state
+      let removed = null;
+      if(!value) {
+        removed = this.state.item_assignments[event.target.name][0];
+      } else {
+        removed = this.state.item_assignments[event.target.name].filter(item => 
+          !value.includes(item)
+        )
+      }
+      const data = {
+        "nickname": removed[0],
+        "item_name": event.target.name,
+        "group_url": this.state.group_url
+      };
+
+      const response = await fetch('/api/unassign_item', {
+        headers: {
+          'Accept': 'application/json',
+          "Content-Type": 'application/json'
+        }, 
+        method: "POST",
+        body: JSON.stringify(data)
+      });
+
+      status = response.status;
+      result = await response.json();
+    } else {
+      return;
+    }
+    if (status === 200) {
+      console.log(result.message);
+      // get data again
+      await this.fetchGroupData();
+      console.log("Data Updated");
+    } else {
+      alert(result.error);
+    }
+  }
+  // –––––––––––– Edit Item or Edit User ––––––––––––
+  handleEdit = async () => {
+  }
+  // –––––––––––– Delete Item ––––––––––––
+
+  // –––––––––––– Delete User ––––––––––––
+
+  componentDidMount = async () => {
     await this.fetchGroupData();
   }
 
   render() {
-    // the 
+    // get access to the styling for our components to use
     const classes = this.props.classes;
     return (
       <div>
@@ -125,58 +201,46 @@ class SplitBillPage extends Component {
           <Redirect to='/'/>
           :
           <div className="split-bill-page">
-            <h4> {this.state.location_name} </h4>
-            <p> {this.state.address} </p>
+            <br/>
+            <h4 style={{"textAlign": "center"}}> {this.state.location_name} </h4>
+            <p style={{"textAlign": "center"}}> {this.state.address} </p>
             {/* Render item, item price, and user assignment that is modifyable
             should open a model to update for UI friendliness */}
             <Grid container spacing={3}>
+              {/* Currently displaying item name and cost */}
               <Grid item xs>
                 <Paper className={classes.paper}>
-                Items
-                  <ul className="innerList">
-                    <li>
-                      5 Apples
-                    </li>
-                    <li>
-                      3 Oranges
-                    </li>
-                  </ul>
-                </Paper>
-              </Grid>
-              <Grid item xs>
-                <Paper className={classes.paper}>
-                  $/unit
-                  <ul className="innerList">
-                    <li>
-                      $3
-                    </li>
-                    <li>
-                      $2
-                    </li>
-                  </ul>
-                </Paper>
-              </Grid>
-              <Grid item xs>
-                <Paper className={classes.paper}>
-                  <FormControl>
-                    <InputLabel >User 1</InputLabel>
-                    <Select>
-                      <MenuItem>Item 1</MenuItem>
-                      <MenuItem>Item 2</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <br></br>
-                  <FormControl>
-                    <InputLabel >User 2</InputLabel>
-                    <Select>
-                      <MenuItem>Item 1</MenuItem>
-                      <MenuItem>Item 2</MenuItem>
-                    </Select>
-                  </FormControl>
+                <h6 style={{"textAlign": "center"}}> Items </h6>
+                {/* <ul className="innerList"> */}
+                {
+                  this.state.items.map((item, index) => {
+                    return (
+                      <div key={index+1}>
+                        <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline">
+                          {item.item_name}: ${item.item_cost} 
+                        </Button> 
+                        <Autocomplete
+                          id="free-solo-demo"
+                          freeSolo
+                          display='inline'
+                          disableClearable={true}
+                          value={this.state.item_assignments[item.item_name]}
+                          multiple
+                          options={[]}
+                          onChange={this.handleAsssign}
+                          size='small'
+                          renderInput={(params) => (
+                            <TextField {...params} label="user(s)" margin="normal" variant="outlined" name={item.item_name}/>
+                          )}
+                        />
+                      </div>
+                    )
+                  })
+                }
+                {/* </ul> */}
                 </Paper>
               </Grid>
             </Grid>
-
             <br></br>
             <ColoredLine color="black" />
             <br></br>
@@ -187,43 +251,48 @@ class SplitBillPage extends Component {
                 return (
                   <Grid item xs key={index+1}>
                     <Paper className={classes.paper}>
-                      {user.user_nickname}
-                      <br/>
-                      <ul className="innerList">
+                      <div style={{
+                          "display": "flex",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                        }}>
+                        <Button>{user.user_nickname}</Button>
+                      </div>
+                      <div className="innerList">
                         {
                           // check if the user_adjusted_amount exists
                           this.state.user_assignments === undefined
                           ?
-                            <div>
-                              <li> no assignments</li>
+                            <div style={{"textAlign": "center"}}>
+                             no assignments
                             </div>
                           : (
                             // check if the user array is empty
                             this.state.user_assignments[user.user_nickname].length === 0
                             ?
-                              <li> no assignments </li>
+                              <div style={{"textAlign": "center"}}> no assignments </div>
                             : (
-                              <div>
+                              <div style={{"textAlign": "center"}}> 
                                 { 
                                   this.state.user_assignments[user.user_nickname].map((item, index2) => {
                                     return (
-                                      <li key={index2+1}>
+                                      <div key={index2+1} style={{"textAlign": "center"}}>
                                         {item}
-                                      </li>
+                                      </div>
                                     )
                                   })
                                 }
                                 <br/>
-                                <li>
+                                <div>
                                 total: {user.user_amount_owed.toFixed(2)} 
                                 <br/>
                                 adjustments: {user.user_adjusted_amount.toFixed(2)}
-                                </li>
+                                </div>
                               </div>
                             )
                           )
                         }
-                      </ul>
+                      </div>
                     </Paper>
                   </Grid>
                 )
@@ -235,16 +304,16 @@ class SplitBillPage extends Component {
               <Grid item xs>
                 <Paper className={classes.paper}>
                   {/* Grand Total */}
-                  <ul className="innerList">
-                    <ul>Tip Rate: {this.state.tip_rate}%</ul>
-                    <ul>Tax Rate: {
+                  {/* <ul className="innerList"> */}
+                    <div style={{"textAlign": "center"}}>Tip Rate: {this.state.tip_rate}%</div>
+                    <div style={{"textAlign": "center"}}>Tax Rate: {
                       this.state.tax_rate === 0
                       ? 0
                       : (this.state.tax_rate-1).toFixed(6) * 100
-                    }% </ul>
-                    <ul>SubTotal: ${this.state.sub_total.toFixed(2)}</ul>
-                    <ul>Grand Total: ${this.state.total_cost.toFixed(2)}</ul>
-                  </ul>
+                    }% </div>
+                    <div style={{"textAlign": "center"}}>SubTotal: ${this.state.sub_total.toFixed(2)}</div>
+                    <div style={{"textAlign": "center"}}>Grand Total: ${this.state.total_cost.toFixed(2)}</div>
+                  {/* </ul> */}
                 </Paper>
               </Grid>
             </Grid>
