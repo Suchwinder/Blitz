@@ -76,12 +76,23 @@ class SplitBillPage extends Component {
       redirect: false,
       user_count: 0,
       address: "",
-      userModal: null,
-      itemModal: null,
+      user_modal: "",
+      new_user_name: "",
+      new_adjusted_amount: "",
+      item_modal: "",
+      new_item_name: "",
+      new_item_cost: "",
     }
   }
 
-  // –––––––––––– Get Group Data ––––––––––––
+  handleChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      [event.target.name]: event.target.value
+    }, () => console.log(this.state))
+  }
+
+  // –––––––––––– Get Group Data –––––––––––––––––––––––
   fetchGroupData = async () => {
     // With get requests cant pass a body, so pass in URL parameter instead, should be URL encoded but in this case skipped as it currently works without it
     try {
@@ -191,24 +202,116 @@ class SplitBillPage extends Component {
       alert(result.error);
     }
   }
-  // –––––––––––– Edit Item or Edit User ––––––––––––
-  handleEdit = async () => {
+
+  // –––––––––––– Edit Item or Edit User –––––––––––––––
+  handleItemEdit = async (old_value) => {
+    // parse integer into float
+    let cost = "0.0";
+    if(this.state.new_item_name === this.state.item_modal && this.state.new_item_cost === old_value) {
+      return alert("Please enter some change to edit");
+    } else if (this.state.new_item_name.length === 0) {
+      return alert("Name cannot be empty");
+    } else if(this.state.new_item_cost.length !== 0) {
+      // cost = parseFloat(this.state.new_item_cost).toFixed(2);
+      cost = this.state.new_item_cost;
+    }
+    
+    const data = {
+      "item_name": this.state.item_modal,
+      "new_item_name": this.state.new_item_name, // if no new then can be empty or same as original
+      "new_item_cost": cost, 
+      "group_url": this.state.group_url
+    }
+
+    const response = await fetch('/api/edit_item', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'PUT',
+      body: JSON.stringify(data)
+    })
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        item_modal: "",
+        new_item_name: "",
+        new_item_cost: "", 
+      })
+    } else {
+      alert(result.error);
+    }
   }
 
-  handleOpen = (obj, item_name) => {
-    this.setState({
-      [obj]: item_name
-    })
+  // –––––––––––– Modal Opening and Closing ––––––––––––
+  handleOpen = (obj, name, cost) => {
+    if(obj === "user_modal") {
+      this.setState({
+        [obj]: name,
+        new_adjusted_amount: cost,
+        new_user_name: name
+      }, () => console.log(this.state))
+    } else {
+      this.setState({
+        [obj]: name,
+        new_item_cost: cost,
+        new_item_name: name
+      }, () => console.log(this.state))
+    }
   }
 
   handleClose = (obj) => {
-    this.setState({
-      [obj]: null
-    })
+    if(obj === "user_modal") {
+      this.setState({
+        [obj]: "",
+        new_adjusted_amount: "",
+        new_user_name: ""
+      }, () => console.log(this.state))
+    } else {
+      this.setState({
+        [obj]: "",
+        new_item_cost: "",
+        new_item_name: ""
+      }, () => console.log(this.state))
+    }
   }
-  // –––––––––––– Delete Item ––––––––––––
+  // –––––––––––– Delete Item or User ––––––––––––––––––
+  handleDeleteItem = async () => {
+    const data = {
+      "item_name": this.state.item_modal,
+      "group_url": this.state.group_url
+    }
 
-  // –––––––––––– Delete User ––––––––––––
+    const response = await fetch('/api/delete_item', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'DELETE',
+      body: JSON.stringify(data)
+    })
+
+    const status = response.status;
+    const result = await response.json();
+
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        item_modal: "",
+        new_item_name: "",
+        new_item_cost: "", 
+      })
+    } else {
+      alert(result.error);
+    }
+  }
+
 
   componentDidMount = async () => {
     await this.fetchGroupData();
@@ -245,23 +348,26 @@ class SplitBillPage extends Component {
                           aria-labelledby="transition-modal-title"
                           aria-describedby="transition-modal-description"
                           className={classes.modal}
-                          open={this.state.itemModal === item.item_name}
-                          onClose={() => this.handleClose("itemModal")}
+                          open={this.state.item_modal === item.item_name}
+                          onClose={() => this.handleClose("item_modal")}
                           closeAfterTransition
                           BackdropComponent={Backdrop}
                           BackdropProps={{
                             timeout: 500,
                           }}
                         >
-                          <Fade in={this.state.itemModal === item.item_name}>
+                          <Fade in={this.state.item_modal === item.item_name}>
                             <div className={classes.paper_modal}>
-                              <h2 id="transition-modal-title">Transition modal</h2>
-                              <p id="transition-modal-description">react-transition-group animates me.</p>
+                              <TextField id="outlined-basic" label="Change Item Name" variant="outlined" name="new_item_name" defaultValue={this.state.new_item_name} onChange={this.handleChange}/>
+                              <TextField id="outlined-basic" label="Change Cost" variant="outlined" name="new_item_cost" defaultValue={this.state.new_item_cost} onChange={this.handleChange} type="number" step={0.01}/>
+                              <Button onClick={this.handleDeleteItem}>Delete</Button>
+                              <Button onClick={() => this.handleItemEdit(item.item_cost)}>Edit</Button>
+                              <Button onClick={() => this.handleClose("item_modal")}>Cancel</Button>
                             </div>
                           </Fade>
                         </Modal>
 
-                        <Button variant="outlined" color="primary" className={classes.item_button} onClick={() => this.handleOpen("itemModal", item.item_name)} size='small' display="inline">
+                        <Button variant="outlined" color="primary" className={classes.item_button} onClick={() => this.handleOpen("item_modal", item.item_name, item.item_cost)} size='small' display="inline">
                           {item.item_name}: ${item.item_cost} 
                         </Button> 
                         <Autocomplete
@@ -299,18 +405,20 @@ class SplitBillPage extends Component {
                       aria-labelledby="transition-modal-title"
                       aria-describedby="transition-modal-description"
                       className={classes.modal}
-                      open={this.state.userModal === user.user_nickname}
-                      onClose={() => this.handleClose("userModal")}
+                      open={this.state.user_modal === user.user_nickname}
+                      onClose={() => this.handleClose("user_modal")}
                       closeAfterTransition
                       BackdropComponent={Backdrop}
                       BackdropProps={{
                         timeout: 500,
                       }}
                     >
-                      <Fade in={this.state.userModal === user.user_nickname}>
+                      <Fade in={this.state.user_modal === user.user_nickname}>
                         <div className={classes.paper_modal}>
-                          <h2 id="transition-modal-title">Transition modal</h2>
-                          <p id="transition-modal-description">react-transition-group animates me.</p>
+                            <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_user_name" defaultValue={this.state.user_modal} onChange={this.handleChange}/>
+                            <Button>Delete</Button>
+                            <Button>Edit</Button>
+                            <Button onClick={() => this.handleClose("user_modal")}>Cancel</Button>
                         </div>
                       </Fade>
                     </Modal>
@@ -320,7 +428,7 @@ class SplitBillPage extends Component {
                           "justifyContent": "center",
                           "alignItems": "center",
                         }}>
-                        <Button onClick={() => this.handleOpen("userModal", user.user_nickname)}>{user.user_nickname}</Button>
+                        <Button onClick={() => this.handleOpen("user_modal", user.user_nickname, user.user_adjusted_amount)}>{user.user_nickname}</Button>
                       </div>
                       <div className="innerList">
                         {
