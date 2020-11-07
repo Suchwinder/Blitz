@@ -87,7 +87,8 @@ class SplitBillPage extends Component {
       add_item_cost: "0.0",
       add_user: false,
       add_user_name: "",
-      add_user_adjusted_amount: "0.0"
+      add_user_adjusted_amount: "0.0",
+      new_tip_rate: ""
     }
   }
 
@@ -255,23 +256,71 @@ class SplitBillPage extends Component {
     }
   }
 
+  handleUserEdit = async (old_value) => {
+    let adjustment = "0.0";
+    if(this.state.new_nickname === this.state.user_modal && this.state.new_adjusted_amount === old_value) {
+      return alert("Please enter something different to edit");
+    } else if (this.state.new_nickname.length === 0) {
+      return alert("Username cannot be empty!");
+    } else if (this.state.new_adjusted_amount !== 0) {
+      adjustment  = this.state.new_adjusted_amount;
+    }
+
+    const data = {
+      "nickname": this.state.user_modal,
+      "new_nickname": this.state.new_nickname,
+      "adjusted_amount": adjustment,
+      "group_url": this.state.group_url
+    };
+
+    console.log("DATA:", data);
+
+    const response = await fetch('/api/edit_user', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'PUT',
+      body: JSON.stringify(data)
+    });
+
+    const status = response.status;
+    const result = await response.json();
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        user_modal: "",
+        new_nickname: "",
+        new_adjusted_amount: "", 
+      })
+    } else {
+      alert(result.error);
+    }
+  }
+
   // –––––––––––– Modal Opening and Closing ––––––––––––
   handleOpen = (obj, name, cost) => {
     if(obj === "user_modal") {
       this.setState({
         [obj]: name,
         new_adjusted_amount: cost,
-        new_user_name: name
+        new_nickname: name
       })
-    } else if (obj === "item_modal") {
+    } else if(obj === "item_modal") {
       this.setState({
         [obj]: name,
         new_item_cost: cost,
         new_item_name: name
       })
-    } else if (obj === "add_item" || "add_user") {
+    } else if(obj === "add_item" || obj ==="add_user"){
       this.setState({
         [obj]: true
+      })
+    } else if(obj === "edit_tip") {
+      this.setState({
+        [obj]: true,
+        new_tip_rate: this.state.tip_rate
       })
     }
   }
@@ -289,7 +338,7 @@ class SplitBillPage extends Component {
         new_item_cost: "",
         new_item_name: ""
       })
-    } else if (obj === "add_item" || "add_user") {
+    } else if (obj === "add_item" || obj === "add_user" || obj ==="edit_tip") {
       this.setState({
         [obj]: false
       })
@@ -429,6 +478,48 @@ class SplitBillPage extends Component {
         add_item: false,
         add_item_name: "",
         add_item_cost: "", 
+      })
+    } else {
+      alert(result.error);
+    }
+  }
+
+  // –––––––––––– Edit Tip –––––––––––––––––––––––––––––
+  handleTip = async () => {
+    console.log(this.state.new_tip_rate)
+    let tip = "0.0";
+    if (this.state.new_tip_rate.length > 0 && this.state.new_tip_rate[0] === '-') {
+      return alert("Tip cannot be negative");
+    } else if(parseFloat(this.state.new_tip_rate) === this.state.tip_rate) {
+      return alert("Please enter a different tip rate");
+    } else if (this.state.new_tip_rate.length !== 0) {
+      tip = parseFloat(this.state.new_tip_rate);
+    }
+
+    console.log(tip)
+      // return;
+    const data = {
+      "tip_rate": tip,
+      "group_url": this.state.group_url
+    };
+
+    const response = await fetch('/api/edit_tip_rate', {
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": 'application/json',
+      },
+      method: 'PUT',
+      body: JSON.stringify(data)
+    });
+
+    const status = response.status;
+    const result = await response.json();
+    if(status === 200) {
+      console.log(result.message);
+      await this.fetchGroupData();
+      this.setState({
+        edit_tip: false,
+        new_tip_rate: "",
       })
     } else {
       alert(result.error);
@@ -585,9 +676,10 @@ class SplitBillPage extends Component {
                     >
                       <Fade in={this.state.user_modal === user.user_nickname}>
                         <div className={classes.paper_modal}>
-                            <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_user_name" defaultValue={this.state.user_modal} onChange={this.handleChange}/>
+                            <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_nickname" defaultValue={this.state.new_nickname} onChange={this.handleChange}/>
+                            <TextField id="outlined-basic" label="Change Adjustment" variant="outlined" name="new_adjusted_amount" defaultValue={this.state.new_adjusted_amount} onChange={this.handleChange} type="number" step={0.01}/>
                             <Button onClick={this.handleDeleteUser}>Delete</Button>
-                            <Button>Edit</Button>
+                            <Button onClick={() => this.handleUserEdit(user.user_adjusted_amount)}>Edit</Button>
                             <Button onClick={() => this.handleClose("user_modal")}>Cancel</Button>
                         </div>
                       </Fade>
@@ -650,7 +742,20 @@ class SplitBillPage extends Component {
                 <Paper className={classes.paper}>
                   {/* Grand Total */}
                   {/* <ul className="innerList"> */}
-                    <div style={{"textAlign": "center"}}>Tip Rate: {this.state.tip_rate}%</div>
+                  {
+                    this.state.edit_tip
+                    ?
+                    <div style={{"textAlign": "center"}}>
+                      <TextField id="outlined-basic" label="Tip" variant="outlined" name="new_tip_rate" onChange={this.handleChange} defaultValue={this.state.new_tip_rate} type="number"/>
+                      <Button onClick={this.handleTip}>Submit</Button>
+                      <Button onClick={() => this.handleClose("edit_tip")}>Cancel</Button>
+                    </div>
+                    :
+                    <div>
+                      <div style={{"textAlign": "center"}}>Tip Rate: {this.state.tip_rate}%</div>
+                      <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("edit_tip")}>Edit Tip</Button>
+                    </div>
+                  }
                     <div style={{"textAlign": "center"}}>Tax Rate: {
                       this.state.tax_rate === 0
                       ? 0
@@ -658,6 +763,7 @@ class SplitBillPage extends Component {
                     }% </div>
                     <div style={{"textAlign": "center"}}>SubTotal: ${this.state.sub_total.toFixed(2)}</div>
                     <div style={{"textAlign": "center"}}>Grand Total: ${this.state.total_cost.toFixed(2)}</div>
+                    <div style={{"textAlign": "center"}}>Net Adjustments: ${this.state.total_adjustment.toFixed(2)}</div>
                   {/* </ul> */}
                 </Paper>
               </Grid>

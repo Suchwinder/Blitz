@@ -11,7 +11,7 @@ def edit_user():
 
         nickname = data['nickname']
         new_nickname = data['new_nickname']
-        adjusted_amount = data['adjusted_amount']
+        adjusted_amount = float(data['adjusted_amount'])
         group_url = data['group_url']
 
 
@@ -34,7 +34,7 @@ def edit_user():
                 return response, 400
             
             # update works on array of data or bulk data not single entity apprently
-            db_connection.query(Users).filter((Users.nickname == nickname),(Users.groupID == group_object.groupID)).update({
+            db_connection.query(Users).filter(Users.userID == user_exists.userID).update({
                 "nickname": new_nickname,
             }) # https://docs.sqlalchemy.org/en/13/orm/query.html#sqlalchemy.orm.query.Query.update
 
@@ -43,7 +43,7 @@ def edit_user():
                 "totalAdjustment": (group_object.totalAdjustment - user_exists.adjustedAmount + adjusted_amount)
             })
 
-            db_connection.query(Users).filter((Users.nickname == nickname),(Users.groupID == group_object.groupID)).update({
+            db_connection.query(Users).filter(Users.userID == user_exists.userID).update({
                 "adjustedAmount": adjusted_amount
             })
             
