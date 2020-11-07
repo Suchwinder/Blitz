@@ -60,7 +60,7 @@ def get_group():
 
         # need to find all users by groupid, find all items they are paired to, and each individual expenses
         # get all users
-        users = db_connection.query(Users).filter(Users.groupID == user_session.groupID)
+        users = db_connection.query(Users).filter(Users.groupID == user_session.groupID).order_by(Users.userID)
         
         total_users = []
         user_assignments = {}
@@ -74,7 +74,7 @@ def get_group():
             user_assignments[user.nickname] = []
 
         # get all items
-        items = db_connection.query(Items).filter(Items.groupID == user_session.groupID)
+        items = db_connection.query(Items).filter(Items.groupID == user_session.groupID).order_by(Items.itemID)
 
         total_items = []
         items_assignments = {}
@@ -98,7 +98,7 @@ def get_group():
             item_object = db_connection.query(Items).filter((Items.groupID == user_session.groupID),(Items.itemName == item_name)).first()
             item_id = item_object.itemID
             # use id to get an array of item assignments for that specific item to all the users connected to it
-            i_a = db_connection.query(ItemAssignments).filter(ItemAssignments.itemID == item_id)
+            i_a = db_connection.query(ItemAssignments).filter(ItemAssignments.itemID == item_id).order_by(ItemAssignments.itemAssignmentID)
             # get user id now to get the name of the person and append it to the value of our dictionary items_assignments
             for assignment in i_a:
                 user_name = db_connection.query(Users).filter(Users.userID == assignment.userID).first()
