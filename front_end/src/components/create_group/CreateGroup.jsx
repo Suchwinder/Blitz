@@ -25,7 +25,7 @@ class CreateGroup extends Component {
       input_zip_code: "",
       input_city: "",
       input_state: "",
-      input_tip: "",
+      input_tip: 0,
       input_location: "",
       redirect: false,
       group_url: "",
@@ -42,7 +42,6 @@ class CreateGroup extends Component {
   }
 
   handleImage = (event) => {
-    console.log("the event thingy is: ", event.target.files, " and the type is: " , typeof(event.target.files[0]))
     let image = URL.createObjectURL(event.target.files[0]) // for preview
     const imageblob = new Blob([event.target.files[0]]) // to store
     this.setState({

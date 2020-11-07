@@ -23,7 +23,7 @@ def create_group():
         zip_code = "10065"
         image_s3url = data['image_s3url']
         # image_s3url = "https://testblitztest.s3.amazonaws.com/0c193734-6fea-4328-b44f-a570f889da26"
-        tip_rate = data['tip_rate']
+        tip_rate = float(data['tip_rate'])
         # items_list = data['items']
         
         # if we have an image to work with we need to process it
@@ -52,7 +52,7 @@ def create_group():
         # if(len(zip_code) > 0):
         # Need to insert data with respect to foreign keys, so location is first so group can use location as FK, then Group is done so user and items can use group as FK, and user and item can be done in any order
         # create location object to insert into database
-        if (len(zip_code) == 0):
+        if (len(street_address) == 0):
             response = {"error": "Please enter a valid address"}
             return response, 400
         
@@ -63,6 +63,7 @@ def create_group():
         if (len(users) == 0):
             response = {"error": "Please enter at least one user"}
             return response, 400
+
 
         # location is mandatory
         location_zip_obj = db_connection.query(Zips).filter(Zips.zipCode == str(zip_code)) # returns an array of results, but it is size 1
