@@ -25,6 +25,11 @@ def delete_item():
             db_connection.close()
             return response, 404
 
+        db_connection.query(Groups).filter(Groups.groupURL == group_url).update({
+            "subTotal": group_object.subTotal - item_object.itemCost,
+            "totalCost": (group_object.subTotal - item_object.itemCost)*(1.00875)+ ((group_object.subTotal - item_object.itemCost) * group_object.tipRate/100)
+        })
+        
         item_cost_per_person = item_object.itemCostPerPerson
 
         # get all item-user assignments associated with this item
@@ -54,6 +59,8 @@ def delete_item():
 
             db_connection.query(Items).filter(Items.itemID == item_id).delete()
             db_connection.commit()
+
+
             response = {"message": f"{item_name} successfully deleted"}
             return response, 200
 
