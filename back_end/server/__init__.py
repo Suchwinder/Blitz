@@ -21,6 +21,15 @@ def create_app():
         __name__, static_folder="../../front_end/build", static_url_path="/"
     )  # start app
 
+    @app.route("/")
+    def index():
+        return app.send_static_file("index.html")
+
+    # For react router error handling
+    @app.errorhandler(404)
+    def not_found(e):
+        return app.send_static_file("index.html")
+
     app.register_blueprint(create_group.bp)
     app.register_blueprint(get_group.bp)
     app.register_blueprint(upload_image.bp)
