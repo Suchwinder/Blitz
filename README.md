@@ -67,8 +67,8 @@
     ```
     export PYTHONPATH="$(pwd)" && dotenv -f back_end/.env run python back_end/main.py
     ``` 
-    Running the gunicorn or python run command in a editor may cause issues, best way is to use the default terminal provided by your machine. Also note gunicorn version will 
-    not work with windows OS.
+    Running the gunicorn or python run command in a editor may cause issues, best way is to use the default terminal provided by your machine. Also note gunicorn version and 
+    export python will not work with windows OS.
 
 9. To deactivate virtual environment:
     ```
