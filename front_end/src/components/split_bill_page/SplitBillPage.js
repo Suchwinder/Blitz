@@ -789,7 +789,9 @@ class SplitBillPage extends Component {
                     :
                     <div>
                       <div style={{"textAlign": "center"}}>Tip Rate: {this.state.tip_rate}%</div>
+                      <div className="edit_tip_button">
                       <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("edit_tip")}>Edit Tip</Button>
+                      </div>
                     </div>
                   }
                     <div style={{"textAlign": "center"}}>Tax Rate: {

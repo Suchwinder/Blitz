@@ -1,5 +1,8 @@
 body {
-    background-image: linear-gradient(rgba(128, 128, 128, 0.404), rgba(179, 171, 171, 0.63));
+  background-image: linear-gradient(
+    rgba(128, 128, 128, 0.404),
+    rgba(179, 171, 171, 0.63)
+  );
 }
 
 .add_user_button {
@@ -10,6 +13,11 @@ body {
 .add_item_button {
   padding-left: 70%;
 }
+
+.edit_tip_button {
+  padding-left: 70%;
+}
+
 /* .column {
     float: left;
     width: 33%;
