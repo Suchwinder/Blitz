@@ -27,12 +27,17 @@ def bootDB():
     if not database_exists(engine.url):
         create_database(engine.url)
         print("Creating Database")
-        Base.metadata.create_all(engine)
-        print("Creating Tables")
+    else:
+        print("Database Already Exists")
 
-        # Set up States and Zips Tables
-        session = create_db_connection()
+    Base.metadata.create_all(engine)
+    print("Creating Tables")
 
+    # Set up States and Zips Tables
+    session = create_db_connection()
+
+    some_state = session.query(States).filter(States.stateName == "NY").first()
+    if some_state is None:
         state_info = States(stateName = "NY", taxRate = 1.08875)
         session.add(state_info) # need to add state first in order for the zips table to have a foreign key refernce to the state's table, otherwise throws error
         state_info = States(stateName = "NOTHING", taxRate = 0)
@@ -46,10 +51,7 @@ def bootDB():
         session.commit() # confirm everything is added, note flush() is called as a part of comit()
         # https://stackoverflow.com/questions/4201455/sqlalchemy-whats-the-difference-between-flush-and-commit#:~:text=The%20session%20object%20registers%20transaction,to%20the%20database%20until%20session.&text=commit()%20commits%20(persists)%20those,to%20commit()%20(1). 
 
-        session.close() # end the connection and return it back to the pool of available connections
-
-    else:
-        print("Database Already Exists")
+    session.close() # end the connection and return it back to the pool of available connections
 
 ### Database ORM Classes
 class Groups(Base):
