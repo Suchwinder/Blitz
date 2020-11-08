@@ -598,9 +598,11 @@ class SplitBillPage extends Component {
                     </div>
                   </Fade>
                 </Modal>
+                <div className="add_item_button">
                 <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_item", "na", "na")}>
                   Add Item
-                </Button> 
+                </Button>
+                </div> 
                 {/* <ul className="innerList"> */}
                 {
                   this.state.items.map((item, index) => {
@@ -685,8 +687,8 @@ class SplitBillPage extends Component {
                     </div>
                   </Fade>
                 </Modal>
-                <div className="add_user_modal">
-                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline"  onClick={() => this.handleOpen("add_user", "na", "na")}>
+                <div className="add_user_button">
+                <Button variant="outlined" color="primary" className={classes.item_button} size='small' marginRight="auto" display="inline"  onClick={() => this.handleOpen("add_user", "na", "na")}>
                   Add User
                 </Button>
                 </div>

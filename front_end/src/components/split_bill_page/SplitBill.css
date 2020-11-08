@@ -7,9 +7,15 @@
   /* width: 100%; */
 }
 
-.add_user_modal {
-  position: bottom;
+.add_user_button {
+  padding-left: 70%;
+  margin: 50px;
 }
+
+.add_item_button {
+  padding-left: 70%;
+}
+
 /* .column {
     float: left;
     width: 33%;
