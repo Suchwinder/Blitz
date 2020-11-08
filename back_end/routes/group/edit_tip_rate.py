@@ -1,5 +1,5 @@
 from flask import Blueprint, request # create a blueprint for the routes to be registered to, not necessary but ood for modularization of routes
-from models import create_db_connection, Groups # calling our helper function to create a connection to the databse to execute a request
+from back_end.models import create_db_connection, Groups # calling our helper function to create a connection to the databse to execute a request
 
 # used to group a bunch of relted views together
 # views in this case can count as code written to create various endpoints

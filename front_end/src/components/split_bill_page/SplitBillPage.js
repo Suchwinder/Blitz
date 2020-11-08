@@ -58,7 +58,7 @@ class SplitBillPage extends Component {
     super(props);
     this.state = {
       city: "",
-      group_url: window.location.href,
+      group_url: props.groupURL.match.url,
       image_url: "",
       item_assignments: {},
       user_assignments: {},

@@ -1,6 +1,6 @@
 from flask import Blueprint, request # create a blueprint for the routes to be registered to, not necessary but ood for modularization of routes
-from models import create_db_connection, Groups, Locations, Users, Items, Zips # calling our helper function to create a connection to the databse to execute a request
-from receipt_processor import imageToJson #image processing
+from back_end.models import create_db_connection, Groups, Locations, Users, Items, Zips # calling our helper function to create a connection to the databse to execute a request
+from back_end.receipt_processor import imageToJson #image processing
 import random, string, os, datetime, boto3, tempfile
 
 # used to group a bunch of relted views together
@@ -26,6 +26,7 @@ def create_group():
         tip_rate = float(data['tip_rate'])
         # items_list = data['items']
         
+        items_list = None
         # if we have an image to work with we need to process it
         if (len(image_s3url)>0):
             index = image_s3url.rfind('/')+1
@@ -43,7 +44,6 @@ def create_group():
             # fileobj = s3cli.get_object(Bucket = bucketname, Key = file_to_read)
             tmp = tempfile.NamedTemporaryFile()
 
-            items_list = None
             with open(tmp.name, 'wb') as f:
                 object.download_fileobj(f)
                 items_list = imageToJson(tmp.name)
@@ -77,7 +77,7 @@ def create_group():
 
         letters = ''.join(random.choice(string.ascii_letters) for i in range(26))
         digits = ''.join(random.choice(string.digits) for i in range(10))
-        result_string = "http://localhost:3000/split_bill/"+letters + '_' + digits
+        result_string = "/split_bill/"+letters + '_' + digits
         frontend_return = "/split_bill/"+letters + '_' + digits
         
         group_object = Groups(groupURL = result_string, locationID = location_object.locationID, imageURL = image_s3url, tipRate = tip_rate, subTotal = 0.0, totalCost = 0.0, linkExpiration = (datetime.datetime.now()+datetime.timedelta(days=30)), userCount = len(users), totalAdjustment = 0.0, isDeleted = False)
@@ -88,11 +88,12 @@ def create_group():
             user_object = Users(nickname = user, amountOwed = 0.0, adjustedAmount = 0.0, groupID = group_object.groupID)
             db_connection.add(user_object)
 
-        items_total = 0       
-        for item in items_list:
-            item_object = Items(itemName = item['name'], itemCost = item['price'], itemQuantity = 1, itemCostPerPerson = item['price'], groupID = group_object.groupID)
-            db_connection.add(item_object)
-            items_total += item['price']
+        items_total = 0   
+        if items_list:    
+            for item in items_list:
+                item_object = Items(itemName = item['name'], itemCost = item['price'], itemQuantity = 1, itemCostPerPerson = item['price'], groupID = group_object.groupID)
+                db_connection.add(item_object)
+                items_total += item['price']
         
         db_connection.query(Groups).filter(Groups.groupURL == result_string).update({
             "subTotal": items_total,

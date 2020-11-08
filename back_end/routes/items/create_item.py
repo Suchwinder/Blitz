@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from models import create_db_connection, Groups, Items
+from back_end.models import create_db_connection, Groups, Items
 
 bp = Blueprint('create_item', __name__, url_prefix='/api')
 
