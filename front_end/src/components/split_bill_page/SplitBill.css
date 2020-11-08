@@ -4,12 +4,12 @@ body {
 
 .add_user_button {
   padding-left: 70%;
+  width: 100%;
 }
 
 .add_item_button {
   padding-left: 70%;
 }
-
 /* .column {
     float: left;
     width: 33%;

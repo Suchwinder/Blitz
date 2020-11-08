@@ -688,7 +688,7 @@ class SplitBillPage extends Component {
                   </Fade>
                 </Modal>
                 <div className="add_user_button">
-                <Button variant="outlined" color="primary" className={classes.item_button} size='small' marginright="auto" display="inline"  onClick={() => this.handleOpen("add_user", "na", "na")}>
+                <Button variant="outlined" color="primary" className={classes.item_button} size='small'  display="inline"  onClick={() => this.handleOpen("add_user", "na", "na")}>
                   Add User
                 </Button>
                 </div>
