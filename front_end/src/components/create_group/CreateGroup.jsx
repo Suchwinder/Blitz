@@ -177,11 +177,11 @@ class CreateGroup extends Component {
           isValid,
           errors,
         }) => (
-        <div className="create-group-page">
+        <div>
           <NavBar/>
-        <div className="text">
-          <div>Creating Your Group</div>
-          <br></br>
+          <div className="text">
+            <div>Creating Your Group</div>
+            <br></br>
             <Form className="form" onSubmit={this.handleSubmit}>
               
               <Form.Group controlId="form.input_users">
@@ -350,7 +350,7 @@ class CreateGroup extends Component {
                 <br></br>
               <Button type="submit"> Submit form </Button>
             </Form>
-            </div>
+          </div>
       </div>
     )} 
     </Formik>  

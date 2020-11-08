@@ -545,7 +545,7 @@ class SplitBillPage extends Component {
           ? 
           <Redirect to='/'/>
           :
-          <div className="split-bill-page">
+          <div>
             <br/>
             <h4 style={{"textAlign": "center"}}> {this.state.location_name} </h4>
             <p style={{"textAlign": "center"}}> {this.state.address} </p>
@@ -591,8 +591,9 @@ class SplitBillPage extends Component {
                     <div className={classes.paper_modal}>
                       <TextField id="outlined-basic" label="Item Name" variant="outlined" name="add_item_name" placeholder="name" onChange={this.handleChange}/>
                       <TextField id="outlined-basic" label="Item Cost" variant="outlined" name="add_item_cost" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
-                      <Button onClick={this.handleAddItem}>Add</Button>
-                      <Button onClick={() => this.handleClose("add_item")}>Cancel</Button>
+                      <br></br>
+                      <Button style={{"display": "flex", "justifyContent" : "center"}} onClick={this.handleAddItem}>Add</Button>
+                      <Button style={{"margin": "0 auto"}} onClick={() => this.handleClose("add_item")}>Cancel</Button>
                     </div>
                   </Fade>
                 </Modal>
@@ -658,29 +659,30 @@ class SplitBillPage extends Component {
             {/* Render total for each individual */}
             <Grid container spacing={3}>
               <Modal
-                  aria-labelledby="transition-modal-title"
-                  aria-describedby="transition-modal-description"
-                  className={classes.modal}
-                  open={this.state.add_user}
-                  onClose={() => this.handleClose("add_user")}
-                  closeAfterTransition
-                  BackdropComponent={Backdrop}
-                  BackdropProps={{
-                    timeout: 500,
-                  }}
-                >
-                  <Fade in={this.state.add_user}>
-                    <div className={classes.paper_modal}>
-                      <TextField id="outlined-basic" label="Username" variant="outlined" name="add_user_name" placeholder="name" onChange={this.handleChange}/>
-                      <TextField id="outlined-basic" label="Adjusted Amount" variant="outlined" name="add_user_adjusted_amount" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
-                      <Button onClick={this.handleAddUser}>Add</Button>
-                      <Button onClick={() => this.handleClose("add_user")}>Cancel</Button>
-                    </div>
-                  </Fade>
-                </Modal>
-                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_user", "na", "na")}>
-                  Add User
-                </Button>
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes.modal}
+                open={this.state.add_user}
+                onClose={() => this.handleClose("add_user")}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+              >
+                <Fade in={this.state.add_user}>
+                  <div className={classes.paper_modal}>
+                    <TextField id="outlined-basic" label="Username" variant="outlined" name="add_user_name" placeholder="name" onChange={this.handleChange}/>
+                    <TextField id="outlined-basic" label="Adjusted Amount" variant="outlined" name="add_user_adjusted_amount" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
+                    <Button onClick={this.handleAddUser}>Add</Button>
+                    <Button onClick={() => this.handleClose("add_user")}>Cancel</Button>
+                  </div>
+                </Fade>
+              </Modal>
+              <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_user", "na", "na")}>
+                Add User
+              </Button>
+                
             {
               this.state.users.map((user, index) => {
                 return (
