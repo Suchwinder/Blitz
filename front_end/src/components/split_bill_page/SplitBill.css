@@ -10,15 +10,16 @@ body {
   width: 100%;
 }
 
-.add_item_button {
-  flex: 1;
-  padding-left: 70%;
-}
-
 .items_flex_container {
   display: flex;
 }
-.item_line {
+
+.add_item_button {
+  flex: 1;
+  padding-left: 60%;
+}
+
+.items_line {
   text-align: center;
 }
 

@@ -25,10 +25,7 @@ def create_group():
         # image_s3url = "https://testblitztest.s3.amazonaws.com/0c193734-6fea-4328-b44f-a570f889da26"
         tip_rate = float(data['tip_rate'])
         # items_list = data['items']
-<<<<<<< HEAD
-=======
         
->>>>>>> 8ff9943a5333f85a6f68956022813fc70a8d151c
         items_list = None
         # if we have an image to work with we need to process it
         if (len(image_s3url)>0):
