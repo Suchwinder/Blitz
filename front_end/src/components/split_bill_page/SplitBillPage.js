@@ -148,7 +148,7 @@ class SplitBillPage extends Component {
   }
 
   // –––––––––––– Assign or Unassign Member ––––––––––––
-  handleAsssign = async (event, value, type) => {
+  handleAssign = async (event, value, type, s_name) => {
     // assign an item to a user
     let status = null;
     let result = null;
@@ -175,6 +175,8 @@ class SplitBillPage extends Component {
       let removed = null;
       if(!value) {
         removed = this.state.item_assignments[event.target.name][0];
+      } else if (!event.target.name) {
+        return;
       } else {
         removed = this.state.item_assignments[event.target.name].filter(item => 
           !value.includes(item)
@@ -483,7 +485,6 @@ class SplitBillPage extends Component {
 
   // –––––––––––– Edit Tip –––––––––––––––––––––––––––––
   handleTip = async () => {
-    console.log(this.state.new_tip_rate)
     let tip = "0.0";
     if (this.state.new_tip_rate.length > 0 && this.state.new_tip_rate[0] === '-') {
       return alert("Tip cannot be negative");
@@ -641,11 +642,13 @@ class SplitBillPage extends Component {
                           freeSolo
                           display='inline'
                           disableClearable={true}
+                          disableCloseOnSelect={true}
                           value={this.state.item_assignments[item.item_name]}
                           multiple
                           options={[]}
-                          onChange={this.handleAsssign}
+                          onChange={this.handleAssign}
                           size='small'
+                          name={item.item_name}
                           renderInput={(params) => (
                             <TextField {...params} label="user(s)" margin="normal" variant="outlined" name={item.item_name}/>
                           )}
