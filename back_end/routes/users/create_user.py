@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from models import create_db_connection, Groups, Users
+from back_end.models import create_db_connection, Groups, Users
 
 bp = Blueprint('create_user', __name__, url_prefix='/api')
 

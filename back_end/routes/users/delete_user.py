@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from models import create_db_connection, Groups, Users, Items, ItemAssignments
+from back_end.models import create_db_connection, Groups, Users, Items, ItemAssignments
 
 bp = Blueprint('delete_user', __name__, url_prefix='/api')
 
