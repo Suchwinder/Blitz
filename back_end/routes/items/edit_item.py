@@ -37,11 +37,14 @@ def edit_item():
             # update item's name
             db_connection.query(Items).filter(Items.itemID == item_object.itemID).update({"itemName": new_item_name})
             db_connection.commit()
+
+        # Get item current cost
+        old_item_cost = item_object.itemCost
         
         # Get current cost per person
         old_item_cost_per_person = item_object.itemCostPerPerson
 
-        if(new_item_cost != item_object.itemCost):
+        if(new_item_cost != old_item_cost):
             # Get number of users associated with item
             user_count = db_connection.query(ItemAssignments).filter((ItemAssignments.itemID == item_object.itemID)).count()
 
@@ -56,6 +59,16 @@ def edit_item():
 
             # update item's base cost
             db_connection.query(Items).filter(Items.itemID == item_object.itemID).update({"itemCost": new_item_cost})
+            db_connection.commit()
+
+            # calculate new subtotal
+            new_subtotal = group_object.subTotal - old_item_cost + new_item_cost
+
+            # update total cost and subtotal
+            db_connection.query(Groups).filter(Groups.groupURL == group_url).update({
+                "subTotal": new_subtotal,
+                "totalCost": (new_subtotal)*(1.00875) + ((new_subtotal) * group_object.tipRate/100)
+            })
             db_connection.commit()
 
             # update item's cost per person

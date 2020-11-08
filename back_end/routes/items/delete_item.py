@@ -29,6 +29,7 @@ def delete_item():
             "subTotal": group_object.subTotal - item_object.itemCost,
             "totalCost": (group_object.subTotal - item_object.itemCost)*(1.00875)+ ((group_object.subTotal - item_object.itemCost) * group_object.tipRate/100)
         })
+        db_connection.commit()
         
         item_cost_per_person = item_object.itemCostPerPerson
 
