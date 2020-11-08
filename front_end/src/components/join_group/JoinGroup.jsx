@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import NavBar from "../nav_bar/NavBar";
 import { Button } from "reactstrap";
-// import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import { Input } from "@material-ui/core";
 import "./JoinGroup.css";
 import { Redirect } from "react-router-dom";
-
-// https://stackoverflow.com/questions/50644976/react-button-onclick-redirect-page
 
 class JoinGroup extends Component {
   constructor(props){
@@ -31,12 +28,12 @@ class JoinGroup extends Component {
     const start = this.state.session_link.search('/split_bill');
 
     if(start === -1) {
-      return (alert("Plase enter a valid link"))
+      return (alert("Please enter a valid link"))
     }
     this.state.session_link.substring(start);
 
     this.setState({
-      submit_link: this.state.session_link,
+      submit_link: this.state.session_link.substring(21, this.state.session_link.length),
     })
   }
 

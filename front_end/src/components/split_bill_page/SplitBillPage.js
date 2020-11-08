@@ -48,7 +48,8 @@ const ColoredLine = ({ color }) => (
         style={{
             color: color,
             backgroundColor: color,
-            height: 5
+            height: 5,
+            margin: 5, 
         }}
     />
 );
@@ -88,7 +89,8 @@ class SplitBillPage extends Component {
       add_user: false,
       add_user_name: "",
       add_user_adjusted_amount: "0.0",
-      new_tip_rate: ""
+      new_tip_rate: "",
+      copySuccess: false,
     }
   }
 
@@ -525,6 +527,13 @@ class SplitBillPage extends Component {
     await this.fetchGroupData();
   }
 
+  copyCodeToClipboard = () => {
+    const el = this.textArea
+    el.select()
+    document.execCommand("copy")
+    this.setState({copySuccess: true})
+  }
+
   render() {
     // get access to the styling for our components to use
     const classes = this.props.classes;
@@ -540,6 +549,24 @@ class SplitBillPage extends Component {
             <br/>
             <h4 style={{"textAlign": "center"}}> {this.state.location_name} </h4>
             <p style={{"textAlign": "center"}}> {this.state.address} </p>
+            <div style={{"textAlign": "center"}}>
+              <textarea
+                style={{"width": "250px"}}
+                ref={(textarea) => this.textArea = textarea}
+                defaultValue={this.state.group_url}
+              />
+            </div>
+            <div style={{"textAlign": "center"}}>
+              <button onClick={() => this.copyCodeToClipboard()}>
+                Copy to Clipboard
+              </button>
+              {
+                this.state.copySuccess ?
+                <div style={{"color": "green"}}>
+                  Success!
+                </div> : null
+              }
+            </div>
             {/* Render item, item price, and user assignment that is modifyable
             should open a model to update for UI friendliness */}
             <Grid container spacing={3}>
@@ -548,6 +575,7 @@ class SplitBillPage extends Component {
                 <Paper className={classes.paper}>
                 <h6 style={{"textAlign": "center"}}> Items </h6>
                 <Modal
+                  style={{"align": "right"}}
                   aria-labelledby="transition-modal-title"
                   aria-describedby="transition-modal-description"
                   className={classes.modal}
