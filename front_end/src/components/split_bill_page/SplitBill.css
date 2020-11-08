@@ -11,11 +11,20 @@ body {
 }
 
 .add_item_button {
+  flex: 1;
   padding-left: 70%;
 }
 
-.edit_tip_button {
-  padding-left: 70%;
+.items_flex_container {
+  display: flex;
+}
+.item_line {
+  text-align: center;
+}
+
+.edit_flex_container {
+  justify-content: center;
+  display: flex;
 }
 
 /* .column {

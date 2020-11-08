@@ -573,7 +573,8 @@ class SplitBillPage extends Component {
               {/* Currently displaying item name and cost */}
               <Grid item xs>
                 <Paper className={classes.paper}>
-                <h6 style={{"textAlign": "center"}}> Items </h6>
+                <div className="items_flex_container">
+                <div className="items_line" > Items </div>
                 <Modal
                   style={{"align": "right"}}
                   aria-labelledby="transition-modal-title"
@@ -602,6 +603,7 @@ class SplitBillPage extends Component {
                 <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_item", "na", "na")}>
                   Add Item
                 </Button>
+                </div>
                 </div> 
                 {/* <ul className="innerList"> */}
                 {
@@ -787,12 +789,10 @@ class SplitBillPage extends Component {
                       <Button onClick={() => this.handleClose("edit_tip")}>Cancel</Button>
                     </div>
                     :
-                    <div>
-                      <div style={{"textAlign": "center"}}>Tip Rate: {this.state.tip_rate}%</div>
-                      <div className="edit_tip_button">
+                    <div className="edit_flex_container">
+                      <div>Tip Rate: {this.state.tip_rate}%</div>
                       <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("edit_tip")}>Edit Tip</Button>
                       </div>
-                    </div>
                   }
                     <div style={{"textAlign": "center"}}>Tax Rate: {
                       this.state.tax_rate === 0
