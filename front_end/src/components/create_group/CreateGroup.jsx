@@ -172,10 +172,6 @@ class CreateGroup extends Component {
           handleSubmit,
           handleChange,
           handleBlur,
-          values,
-          touched,
-          isValid,
-          errors,
         }) => (
         <div>
           <NavBar/>
@@ -334,6 +330,7 @@ class CreateGroup extends Component {
                 <FilledInput
                   id="filled-adornment-amount"
                   name="input_tip"
+                  // input type = {Number}
                   value={this.state.input_tip}
                   onChange={this.handleChange}
                   endAdornment={<InputAdornment position="end">%</InputAdornment>}

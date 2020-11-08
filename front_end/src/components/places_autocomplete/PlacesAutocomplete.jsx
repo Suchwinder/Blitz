@@ -34,6 +34,8 @@ export default function GoogleMaps(props) {
   const [options, setOptions] = React.useState([]);
   const loaded = React.useRef(false);
   const autocompleteService = React.useRef();
+  // const api_key = process.env.REACT_APP_API_KEY;
+
 
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
@@ -70,7 +72,7 @@ export default function GoogleMaps(props) {
       return undefined;
     }
 
-    fetch({ input: inputValue, types: ["address" ] }, (results) => {
+    fetch({ input: inputValue, types: ["address"] }, (results) => {
       if (active) {
         let newOptions = [];
 
