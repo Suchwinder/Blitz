@@ -5,7 +5,7 @@ import './MainPage.css'
 class MainPage extends Component{
   render(){
     return(
-      <div className="main-page">
+      <div>
         <NavBar/>
         <div className="text">
           <h1>What do we do?</h1>

@@ -172,21 +172,17 @@ class CreateGroup extends Component {
           handleSubmit,
           handleChange,
           handleBlur,
-          values,
-          touched,
-          isValid,
-          errors,
         }) => (
-        <div className="create-group-page">
+        <div>
           <NavBar/>
-        <div className="text">
-          <div>Creating Your Group</div>
-          <br></br>
+          <div className="text">
+            <div>Creating Your Group</div>
+            <br></br>
             <Form className="form" onSubmit={this.handleSubmit}>
               
               <Form.Group controlId="form.input_users">
                 <Form.Label>
-                  Input names here:
+                  Input name(s):
                 </Form.Label>
               <Autocomplete
               multiple
@@ -197,7 +193,7 @@ class CreateGroup extends Component {
               onChange = {this.handleUsers}
               value={this.state.input_users}
               renderInput={(params) => (
-                <TextField {...params} variant="filled" label="Users" />
+                <TextField {...params} variant="filled" label="User(s)" />
               )}
               
             />
@@ -205,7 +201,7 @@ class CreateGroup extends Component {
               
               <Form.Group className="form-group" controlId="form.input_location">
                 <Form.Label>
-                  Input location here:
+                  Input location:
                 </Form.Label>
               {/* <Form.Control 
                 placeholder="Location Name"
@@ -334,9 +330,10 @@ class CreateGroup extends Component {
                 <FilledInput
                   id="filled-adornment-amount"
                   name="input_tip"
+                  // input type = {Number}
                   value={this.state.input_tip}
                   onChange={this.handleChange}
-                  startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                  endAdornment={<InputAdornment position="end">%</InputAdornment>}
                 />
               </FormControl>
                 <Form.Control.Feedback></Form.Control.Feedback>
@@ -350,7 +347,7 @@ class CreateGroup extends Component {
                 <br></br>
               <Button type="submit"> Submit form </Button>
             </Form>
-            </div>
+          </div>
       </div>
     )} 
     </Formik>  
