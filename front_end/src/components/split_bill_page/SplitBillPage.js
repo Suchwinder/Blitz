@@ -629,7 +629,7 @@ class SplitBillPage extends Component {
             <br></br>
             {/* Render total for each individual */}
             <Grid container spacing={3}>
-              <Modal
+                <Modal
                   aria-labelledby="transition-modal-title"
                   aria-describedby="transition-modal-description"
                   className={classes.modal}

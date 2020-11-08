@@ -25,7 +25,7 @@ def create_group():
         # image_s3url = "https://testblitztest.s3.amazonaws.com/0c193734-6fea-4328-b44f-a570f889da26"
         tip_rate = float(data['tip_rate'])
         # items_list = data['items']
-        
+        items_list = None
         # if we have an image to work with we need to process it
         if (len(image_s3url)>0):
             index = image_s3url.rfind('/')+1
@@ -43,7 +43,6 @@ def create_group():
             # fileobj = s3cli.get_object(Bucket = bucketname, Key = file_to_read)
             tmp = tempfile.NamedTemporaryFile()
 
-            items_list = None
             with open(tmp.name, 'wb') as f:
                 object.download_fileobj(f)
                 items_list = imageToJson(tmp.name)
@@ -88,12 +87,13 @@ def create_group():
             user_object = Users(nickname = user, amountOwed = 0.0, adjustedAmount = 0.0, groupID = group_object.groupID)
             db_connection.add(user_object)
 
-        items_total = 0       
-        for item in items_list:
-            item_object = Items(itemName = item['name'], itemCost = item['price'], itemQuantity = 1, itemCostPerPerson = item['price'], groupID = group_object.groupID)
-            db_connection.add(item_object)
-            items_total += item['price']
-        
+        items_total = 0
+        if items_list != None:       
+            for item in items_list:
+                item_object = Items(itemName = item['name'], itemCost = item['price'], itemQuantity = 1, itemCostPerPerson = item['price'], groupID = group_object.groupID)
+                db_connection.add(item_object)
+                items_total += item['price']
+            
         db_connection.query(Groups).filter(Groups.groupURL == result_string).update({
             "subTotal": items_total,
             "totalCost": (items_total)*(1.00875) + (items_total * group_object.tipRate/100)
