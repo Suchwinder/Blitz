@@ -42,7 +42,7 @@ class JoinGroup extends Component {
       return <Redirect to={this.state.submit_link}/>
     }
     return (
-        <div className="join-group-page">
+        <div>
           <NavBar />
           <div className="text">
               <label className="form">

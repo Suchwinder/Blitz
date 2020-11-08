@@ -1,7 +1,5 @@
-.join-group-page {
+body {
     background-image: linear-gradient(rgba(128, 128, 128, 0.404), rgba(179, 171, 171, 0.63));
-    height: 100vh;
-    width: 100%;
 }
 
 .text {
