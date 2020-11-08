@@ -60,6 +60,7 @@ class SplitBillPage extends Component {
     this.state = {
       city: "",
       group_url: props.groupURL.match.url,
+      full_url: window.location.href,
       image_url: "",
       item_assignments: {},
       user_assignments: {},
@@ -117,9 +118,6 @@ class SplitBillPage extends Component {
           return 0;
         });
 
-        // result.items.forEach(item => {
-        //   console.log(item.item_name);
-        // })
         this.setState({
           city: result.city,
           image_url: result.image_url,
@@ -138,7 +136,7 @@ class SplitBillPage extends Component {
           user_count: result.user_count,
           zip_code: result.zip_code,
           address: result.street_address + ', ' + result.city + ', ' + result.state_name,
-        }/*, () => {console.log("after", this.state)}*/)
+        })
       } else if (status >= 400) {
           this.setState({
             redirect: true
@@ -203,10 +201,10 @@ class SplitBillPage extends Component {
       return;
     }
     if (status === 200) {
-      console.log(result.message);
+      // console.log(result.message);
       // get data again
       await this.fetchGroupData();
-      console.log("Data Updated");
+      // console.log("Data Updated");
     } else {
       alert(result.error);
     }
@@ -245,7 +243,7 @@ class SplitBillPage extends Component {
     const result = await response.json();
 
     if(status === 200) {
-      console.log(result.message);
+      // console.log(result.message);
       await this.fetchGroupData();
       this.setState({
         item_modal: "",
@@ -286,7 +284,7 @@ class SplitBillPage extends Component {
     const status = response.status;
     const result = await response.json();
     if(status === 200) {
-      console.log(result.message);
+      // console.log(result.message);
       await this.fetchGroupData();
       this.setState({
         user_modal: "",
@@ -363,7 +361,7 @@ class SplitBillPage extends Component {
     const result = await response.json();
 
     if(status === 200) {
-      console.log(result.message);
+      // console.log(result.message);
       await this.fetchGroupData();
       this.setState({
         item_modal: "",
@@ -394,7 +392,7 @@ class SplitBillPage extends Component {
     const result = await response.json();
 
     if(status === 200){
-      console.log(result.message)
+      // console.log(result.message)
       await this.fetchGroupData();
       this.setState({
         user_modal: "",
@@ -433,7 +431,7 @@ class SplitBillPage extends Component {
     const result = await response.json();
 
     if(status === 200) {
-      console.log(result.message);
+      // console.log(result.message);
       await this.fetchGroupData();
       this.setState({
         add_user: false,
@@ -471,7 +469,7 @@ class SplitBillPage extends Component {
     const result = await response.json();
 
     if(status === 200) {
-      console.log(result.message);
+      // console.log(result.message);
       await this.fetchGroupData();
       this.setState({
         add_item: false,
@@ -512,7 +510,7 @@ class SplitBillPage extends Component {
     const status = response.status;
     const result = await response.json();
     if(status === 200) {
-      console.log(result.message);
+      // console.log(result.message);
       await this.fetchGroupData();
       this.setState({
         edit_tip: false,
@@ -553,7 +551,7 @@ class SplitBillPage extends Component {
               <textarea
                 style={{"width": "250px"}}
                 ref={(textarea) => this.textArea = textarea}
-                defaultValue={this.state.group_url}
+                defaultValue={this.state.full_url}
               />
             </div>
             <div style={{"textAlign": "center"}}>

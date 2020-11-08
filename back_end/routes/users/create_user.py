@@ -32,7 +32,8 @@ def create_user():
             user_object = Users(nickname = user, amountOwed = 0.0, adjustedAmount = amount_adjusted, groupID = group_object.groupID)
             db_connection.add(user_object)
             db_connection.query(Groups).filter(Groups.groupURL == group_url).update({
-                "userCount": group_object.userCount + 1
+                "userCount": group_object.userCount + 1,
+                "totalAdjustment": group_object.totalAdjustment + user_object.adjustedAmount
             })
             
             db_connection.commit()
