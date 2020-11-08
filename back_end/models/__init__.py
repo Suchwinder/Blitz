@@ -37,7 +37,7 @@ def bootDB():
     session = create_db_connection()
 
     some_state = session.query(States).filter(States.stateName == "NY").first()
-    if some_state is None:
+    if not some_state:
         state_info = States(stateName = "NY", taxRate = 1.08875)
         session.add(state_info) # need to add state first in order for the zips table to have a foreign key refernce to the state's table, otherwise throws error
         state_info = States(stateName = "NOTHING", taxRate = 0)
