@@ -591,8 +591,10 @@ class SplitBillPage extends Component {
                     <div className={classes.paper_modal}>
                       <TextField id="outlined-basic" label="Item Name" variant="outlined" name="add_item_name" placeholder="name" onChange={this.handleChange}/>
                       <TextField id="outlined-basic" label="Item Cost" variant="outlined" name="add_item_cost" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
+                      <div>
                       <Button onClick={this.handleAddItem}>Add</Button>
                       <Button onClick={() => this.handleClose("add_item")}>Cancel</Button>
+                      </div>
                     </div>
                   </Fade>
                 </Modal>
@@ -620,9 +622,11 @@ class SplitBillPage extends Component {
                             <div className={classes.paper_modal}>
                               <TextField id="outlined-basic" label="Change Item Name" variant="outlined" name="new_item_name" defaultValue={this.state.new_item_name} onChange={this.handleChange}/>
                               <TextField id="outlined-basic" label="Change Cost" variant="outlined" name="new_item_cost" defaultValue={this.state.new_item_cost} onChange={this.handleChange} type="number" step={0.01}/>
+                              <div>
                               <Button onClick={this.handleDeleteItem}>Delete</Button>
                               <Button onClick={() => this.handleItemEdit(item.item_cost)}>Edit</Button>
                               <Button onClick={() => this.handleClose("item_modal")}>Cancel</Button>
+                              </div>
                             </div>
                           </Fade>
                         </Modal>
@@ -661,6 +665,7 @@ class SplitBillPage extends Component {
                   aria-labelledby="transition-modal-title"
                   aria-describedby="transition-modal-description"
                   className={classes.modal}
+                  // style={{"align": "right"}}
                   open={this.state.add_user}
                   onClose={() => this.handleClose("add_user")}
                   closeAfterTransition
@@ -673,14 +678,18 @@ class SplitBillPage extends Component {
                     <div className={classes.paper_modal}>
                       <TextField id="outlined-basic" label="Username" variant="outlined" name="add_user_name" placeholder="name" onChange={this.handleChange}/>
                       <TextField id="outlined-basic" label="Adjusted Amount" variant="outlined" name="add_user_adjusted_amount" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
+                      <div>
                       <Button onClick={this.handleAddUser}>Add</Button>
                       <Button onClick={() => this.handleClose("add_user")}>Cancel</Button>
+                      </div>
                     </div>
                   </Fade>
                 </Modal>
-                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_user", "na", "na")}>
+                <div className="add_user_modal">
+                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline"  onClick={() => this.handleOpen("add_user", "na", "na")}>
                   Add User
                 </Button>
+                </div>
             {
               this.state.users.map((user, index) => {
                 return (
@@ -701,9 +710,11 @@ class SplitBillPage extends Component {
                         <div className={classes.paper_modal}>
                             <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_nickname" defaultValue={this.state.new_nickname} onChange={this.handleChange}/>
                             <TextField id="outlined-basic" label="Change Adjustment" variant="outlined" name="new_adjusted_amount" defaultValue={this.state.new_adjusted_amount} onChange={this.handleChange} type="number" step={0.01}/>
+                            <div>
                             <Button onClick={this.handleDeleteUser}>Delete</Button>
                             <Button onClick={() => this.handleUserEdit(user.user_adjusted_amount)}>Edit</Button>
                             <Button onClick={() => this.handleClose("user_modal")}>Cancel</Button>
+                            </div>
                         </div>
                       </Fade>
                     </Modal>
