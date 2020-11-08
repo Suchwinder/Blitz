@@ -56,7 +56,7 @@
     ~~the env variable wont be loaded in fast enough, so it would be type None. To fix this load env variables before~~
     ~~hand through terminal, refer to github docs. The command is:~~
     ```
-    ~~dotenv -f .env run python main.py~~
+    dotenv -f .env run python main.py
     ```
     Instead of the above commands you can use gunicorn to run this application. To do this you must ensure you have it installed (it should be if used command 7).
     Then make sure you are in the root directory of this app. From their run:
