@@ -43,7 +43,7 @@
     $ venv\Scripts\activate
     ```
 
-7.  Install dependencies from `requirements.txt`:
+7.  Exit out of the back_end directory using `cd ..` and install dependencies from `requirements.txt`:
     ```
     $ pip install -r requirements.txt
     ```
