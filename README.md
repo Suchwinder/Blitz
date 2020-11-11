@@ -58,6 +58,8 @@
     ```
     dotenv -f .env run python main.py
     ```
+    IGNORE THE LAST TWO COMMANDS ABOVE, this was for earlier in our development track. Below is the new way of running the app.
+    
     Instead of the above commands you can use gunicorn to run this application (and for this to work need a build ready to be served) to do that please go into front end and run ```npm run build```. Also be ensure you have it installed (it should be if used command 7).
     Then make sure you are in the root directory of this app. From there run:
     ```
