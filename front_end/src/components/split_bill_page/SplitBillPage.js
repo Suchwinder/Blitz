@@ -92,6 +92,7 @@ class SplitBillPage extends Component {
       add_user_adjusted_amount: "0.0",
       new_tip_rate: "",
       copySuccess: false,
+      show_image: false,
     }
   }
 
@@ -522,15 +523,24 @@ class SplitBillPage extends Component {
     }
   }
 
-  componentDidMount = async () => {
-    await this.fetchGroupData();
+  // –––––––––––– Handle preview –––––––––––––––––––––––
+  handleImage = () => {
+    this.setState({
+      show_image: !this.state.show_image
+    })
+    console.log(this.state.image_url)
   }
 
+  // –––––––––––– Copy URL –––––––––––––––––––––––––––––
   copyCodeToClipboard = () => {
     const el = this.textArea
     el.select()
     document.execCommand("copy")
     this.setState({copySuccess: true})
+  }
+
+  componentDidMount = async () => {
+    await this.fetchGroupData();
   }
 
   render() {
@@ -778,7 +788,7 @@ class SplitBillPage extends Component {
             {/* Render group total */}
             <Grid container spacing={3}>
               <Grid item xs>
-            <Paper className={classes.paper}>
+                <Paper className={classes.paper}>
                   {/* Grand Total */}
                   {/* <ul className="innerList"> */}
                   {
@@ -804,9 +814,23 @@ class SplitBillPage extends Component {
                     <div style={{"textAlign": "center"}}>Grand Total: ${this.state.total_cost.toFixed(2)}</div>
                     <div style={{"textAlign": "center"}}>Net Adjustments: ${this.state.total_adjustment.toFixed(2)}</div>
                   {/* </ul> */}
+                  {
+                    this.state.image_url.length > 0
+                    ?
+                      this.state.show_image 
+                      ? 
+                        <div>
+                          <Button onClick={this.handleImage}>Hide</Button>
+                          <img style={{width: 225}} src={this.state.image_url} alt={"None"}/>
+                        </div>
+                      :
+                        <Button onClick={this.handleImage}>Show</Button>
+                    :
+                  <p>No Receipt Uploaded</p>
+                  }
                 </Paper>
               </Grid>
-            </Grid>
+            </Grid>  
             <br></br>
           </div>
         }
