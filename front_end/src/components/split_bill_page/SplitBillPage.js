@@ -528,7 +528,6 @@ class SplitBillPage extends Component {
     this.setState({
       show_image: !this.state.show_image
     })
-    console.log(this.state.image_url)
   }
 
   // –––––––––––– Copy URL –––––––––––––––––––––––––––––
