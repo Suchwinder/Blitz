@@ -53,9 +53,9 @@ class MainPage extends Component{
             </Grid>
             <img className={classes.img} src={people} alt="people"/>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
               
-          </Grid>
+          </Grid> */}
           <Typography variant="h4">
               Get started with these simple steps:
           </Typography>
@@ -63,7 +63,7 @@ class MainPage extends Component{
           <Grid container className={classes.steps}>
             <Grid item xs={4} sm={2}>
               <Typography>
-                1. Click 'Create' on the task bar above or the 'Get Started' button below to get started.
+                1. Click 'Create' on the task bar above or the 'Get Started' button above to get started.
               </Typography>
             </Grid>
             <Grid item xs={4} sm={2}>
