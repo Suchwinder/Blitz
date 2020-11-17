@@ -126,13 +126,13 @@ class MainPage extends Component{
               <Typography>
                 Githib Link :
                 <a href="https://github.com/Suchwinder/Blitz">
-                  https://github.com/Suchwinder/Blitz
+                  Click here
                 </a>
               </Typography>
               <Typography >
                 Current deployment :
                 <a href="https://blitz-cost-management.herokuapp.com/">
-                  https://blitz-cost-management.herokuapp.com/
+                  Click here
                 </a>
                 </Typography>
             </Grid>
@@ -140,7 +140,7 @@ class MainPage extends Component{
           
           <br></br>
 
-          {/* Githubs */}
+          {/* Team Githubs */}
           <Grid container className={classes.cards}>
             <Card className={classes.card}>
               <CardMedia 
