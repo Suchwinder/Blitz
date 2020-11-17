@@ -3,9 +3,15 @@ import NavBar from '../nav_bar/NavBar';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import people from './people.jpg';
 import { Button } from 'reactstrap';
-// import './MainPage.css';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import People from '../images/people.jpg';
+import Such from '../images/such.png';
+import David from '../images/david.jpg';
+import Kent from '../images/kent.png';
+import Rohan from '../images/rohan.png';
 
 const styles = () => ({
   root:{
@@ -13,8 +19,8 @@ const styles = () => ({
   },
   img:{
     // zIndex: -1,
-    width: '25%',
-    height: '25%',
+    maxWidth: '25%',
+    height: 'auto',
     top: 0,
     left: 0,
   },
@@ -24,8 +30,22 @@ const styles = () => ({
     position: 'static',
     textAlign: 'center',
   },
-  steps:{
+  columns:{
     justifyContent: 'center',
+  },
+  card:{
+    width: 150,
+    height: 200,
+    margin: '2vh',
+  },
+  cards:{
+    paddingTop: '2vh',
+    paddingLeft : '2vh',
+    paddingRight : '2vh',
+    justifyContent: 'center',
+  },
+  media: {
+    height: 125,
   },
 });
 
@@ -39,6 +59,7 @@ class MainPage extends Component{
           <Grid container>
             <Grid item xs={12} sm={6}>
               <br></br>
+              {/* Introduction */}
               <Typography variant="h4">
                 Welcome to Blitz
               </Typography>
@@ -51,16 +72,16 @@ class MainPage extends Component{
               <br></br>
               <Button>Get Started</Button>
             </Grid>
-            <img className={classes.img} src={people} alt="people"/>
+            {/* Image */}
+            <img className={classes.img} src={People} alt="people"/>
           </Grid>
-          {/* <Grid item xs={12} sm={6}>
-              
-          </Grid> */}
+          
+          {/* How to - Guide */}
           <Typography variant="h4">
               Get started with these simple steps:
           </Typography>
           <br></br>
-          <Grid container className={classes.steps}>
+          <Grid container className={classes.columns}>
             <Grid item xs={4} sm={2}>
               <Typography>
                 1. Click 'Create' on the task bar above or the 'Get Started' button above to get started.
@@ -76,6 +97,95 @@ class MainPage extends Component{
                 3. Submit and share! 
               </Typography>
             </Grid>
+          </Grid>
+
+          <br></br>
+
+          {/* About the Team  */}
+          <Typography variant="h4">
+            About Us
+          </Typography>
+          <br></br>
+          <Grid container className={classes.columns}>
+            <Grid item xs={8}>
+              <Typography>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, 
+                non pulvinar lorem felis nec erat. Aliquam egestas, velit at condimentum placerat, 
+                sem sapien laoreet mauris, dictum porttitor lacus est nec enim. 
+                Vivamus feugiat elit lorem, eu porttitor ante ultrices id. 
+                Phasellus suscipit tellus ante, nec dignissim elit imperdiet nec. 
+                Nullam fringilla feugiat nisl. Ut pretium, metus venenatis dictum viverra, 
+                dui metus finibus enim, ac rhoncus sem lorem vitae mauris. 
+                Suspendisse ut venenatis libero. Suspendisse lorem felis, pretium in maximus id, tempor non ipsum.
+              </Typography>
+              <Typography>
+                In progress: Capstone project where users can process receipts to manage costs of activities. 
+                Will use React, Flask, OpenCV/Pytesseract, and web sockets. 
+              </Typography>
+              <Typography>
+                Githib Link :
+                <a href="https://github.com/Suchwinder/Blitz">
+                  https://github.com/Suchwinder/Blitz
+                </a>
+              </Typography>
+              <Typography >
+                Current deployment :
+                <a href="https://blitz-cost-management.herokuapp.com/">
+                  https://blitz-cost-management.herokuapp.com/
+                </a>
+                </Typography>
+            </Grid>
+          </Grid>
+          
+          <br></br>
+
+          {/* Githubs */}
+          <Grid container className={classes.cards}>
+            <Card className={classes.card}>
+              <CardMedia 
+                className={classes.media}
+                image={Such}
+              />  
+              <CardContent>
+                <Typography>
+                  Such
+                </Typography>
+              </CardContent>
+            </Card>
+            <Card className={classes.card}>
+              <CardMedia 
+                className={classes.media}
+                image={David}
+              />  
+              <CardContent>
+                <Typography>
+                  David
+                </Typography>
+              </CardContent>
+            </Card>
+            <Card className={classes.card}>
+              <CardMedia 
+                className={classes.media}
+                image={Kent}
+              />  
+              <CardContent>
+                <Typography>
+                  Kent
+                </Typography>
+              </CardContent>
+            </Card>
+            <Card className={classes.card}>
+              <CardMedia 
+                className={classes.media}
+                image={Rohan}
+              />  
+              <CardContent>
+                <Typography>
+                  Rohan
+                </Typography>
+              </CardContent>
+            </Card>
           </Grid>
         </div>
       </div>
