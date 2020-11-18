@@ -59,13 +59,14 @@ class MainPage extends Component{
       <div className={classes.root}>
         <NavBar/>
         <div className={classes.text}>
-          <Grid container>
-            <Grid item xs={12} sm={6}>
+          <Grid container alignItems="center" justify="center">
+            <Grid item xs={12} sm={3}>
               <br></br>
               {/* Introduction */}
               <Typography variant="h4">
                 Welcome to Blitz
               </Typography>
+              <br></br>
               <Typography>  
                 An easy-to-use platform to help distribute your group's costs. 
               </Typography>
