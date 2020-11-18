@@ -75,13 +75,14 @@ class MainPage extends Component{
       <div className={classes.root}>
         <NavBar/>
         <div className={classes.text}>
-          <Grid container>
-            <Grid item xs={12} sm={6}>
+          <Grid container alignItems="center" justify="center">
+            <Grid item xs={12} sm={3}>
               <br></br>
               {/* Introduction */}
               <Typography variant="h4">
                 Welcome to Blitz
               </Typography>
+              <br></br>
               <Typography>  
                 An easy-to-use platform to help distribute your group's costs. 
               </Typography>
@@ -167,10 +168,11 @@ class MainPage extends Component{
           {/* Team Githubs */}
           <Grid container className={classes.cards}>
             <CardActionArea className={classes.actionArea} 
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='https://github.com/Suchwinder';
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   window.location.href='https://github.com/Suchwinder';
+            // }}
+            href='https://github.com/Suchwinder'
             >
               <Card className={classes.card}>
                 <CardMedia 
@@ -186,10 +188,11 @@ class MainPage extends Component{
             </CardActionArea>
             
             <CardActionArea className={classes.actionArea} 
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='https://github.com/davidy9000';
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   window.location.href='https://github.com/davidy9000';
+            // }}
+            href='https://github.com/davidy9000'
             >
               <Card className={classes.card}>
                 <CardMedia 
@@ -205,10 +208,11 @@ class MainPage extends Component{
             </CardActionArea>
 
             <CardActionArea className={classes.actionArea} 
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='https://github.com/knt-zhang';
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   window.location.href='https://github.com/knt-zhang';
+            // }}
+            href='https://github.com/knt-zhang'
             >
               <Card className={classes.card}>
                 <CardMedia 
@@ -224,10 +228,11 @@ class MainPage extends Component{
             </CardActionArea>
 
             <CardActionArea className={classes.actionArea} 
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='https://github.com/rtohaan';
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   window.location.href='https://github.com/rtohaan';
+            // }}
+            href='https://github.com/rtohaan'
             >
               <Card className={classes.card}>
                 <CardMedia 

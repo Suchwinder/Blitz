@@ -24,22 +24,15 @@ const NavBar = (props) => {
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand onClick={() => setPage("main")}>Blitz</Navbar.Brand>
         <Nav className="ml-auto">
-          <Button
-            className="button"
-            variant="dark"
-            onClick={() => setPage("main")}
-          >
-            {" "}Home{" "}
+          <Button variant="dark" onClick={() => setPage("main")}>
+            Home
           </Button>
           <Button variant="dark" onClick={() => setPage("create")}>
-            {" "}Create{" "}
+            Create
           </Button>
           <Button variant="dark" onClick={() => setPage("join")}>
-            {" "}Join{" "}
+            Join
           </Button>
-          {/* <Nav.Link href="#home">Home</Nav.Link> */}
-          {/* <Nav.Link href="#create-group">Create Group</Nav.Link> */}
-          {/* <Nav.Link href="#join-group">Join Group</Nav.Link> */}
         </Nav>
       </Navbar>
     </header>
