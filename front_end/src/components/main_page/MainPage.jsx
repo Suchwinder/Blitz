@@ -97,7 +97,7 @@ class MainPage extends Component{
             <img className={classes.img} src={People} alt="people"/>
             </MediaQuery>
 
-            <MediaQuery orientation='portrait'>
+            <MediaQuery maxWidth={1224}>
             <img className={classes.mobile_img} src={People} alt="people"/>
             </MediaQuery>
 
