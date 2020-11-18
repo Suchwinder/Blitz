@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from '../nav_bar/NavBar';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from "@material-ui/core";
+import { CardActionArea, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Button } from 'reactstrap';
 import Card from '@material-ui/core/Card';
@@ -44,8 +44,11 @@ const styles = () => ({
     paddingRight : '2vh',
     justifyContent: 'center',
   },
-  media: {
+  media:{
     height: 125,
+  },
+  actionArea:{
+    maxWidth: 188,
   },
 });
 
@@ -124,15 +127,13 @@ class MainPage extends Component{
                 Will use React, Flask, OpenCV/Pytesseract, and web sockets. 
               </Typography>
               <Typography>
-                Githib Link :
                 <a href="https://github.com/Suchwinder/Blitz">
-                  Click here
+                  Blitz Github Link
                 </a>
               </Typography>
-              <Typography >
-                Current deployment :
+              <Typography >                
                 <a href="https://blitz-cost-management.herokuapp.com/">
-                  Click here
+                  Current deployment
                 </a>
                 </Typography>
             </Grid>
@@ -142,50 +143,81 @@ class MainPage extends Component{
 
           {/* Team Githubs */}
           <Grid container className={classes.cards}>
-            <Card className={classes.card}>
-              <CardMedia 
-                className={classes.media}
-                image={Such}
-              />  
-              <CardContent>
-                <Typography>
-                  Such
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card className={classes.card}>
-              <CardMedia 
-                className={classes.media}
-                image={David}
-              />  
-              <CardContent>
-                <Typography>
-                  David
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card className={classes.card}>
-              <CardMedia 
-                className={classes.media}
-                image={Kent}
-              />  
-              <CardContent>
-                <Typography>
-                  Kent
-                </Typography>
-              </CardContent>
-            </Card>
-            <Card className={classes.card}>
-              <CardMedia 
-                className={classes.media}
-                image={Rohan}
-              />  
-              <CardContent>
-                <Typography>
-                  Rohan
-                </Typography>
-              </CardContent>
-            </Card>
+            <CardActionArea className={classes.actionArea} 
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://github.com/Suchwinder';
+            }}
+            >
+              <Card className={classes.card}>
+                <CardMedia 
+                  className={classes.media}
+                  image={Such}
+                />  
+                <CardContent>
+                  <Typography>
+                    Such
+                  </Typography>
+                </CardContent>
+              </Card>
+            </CardActionArea>
+            
+            <CardActionArea className={classes.actionArea} 
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://github.com/davidy9000';
+            }}
+            >
+              <Card className={classes.card}>
+                <CardMedia 
+                  className={classes.media}
+                  image={David}
+                />  
+                <CardContent>
+                  <Typography>
+                    David
+                  </Typography>
+                </CardContent>
+              </Card>
+            </CardActionArea>
+
+            <CardActionArea className={classes.actionArea} 
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://github.com/knt-zhang';
+            }}
+            >
+              <Card className={classes.card}>
+                <CardMedia 
+                  className={classes.media}
+                  image={Kent}
+                />  
+                <CardContent>
+                  <Typography>
+                    Kent
+                  </Typography>
+                </CardContent>
+              </Card>
+            </CardActionArea>
+
+            <CardActionArea className={classes.actionArea} 
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href='https://github.com/rtohaan';
+            }}
+            >
+              <Card className={classes.card}>
+                <CardMedia 
+                  className={classes.media}
+                  image={Rohan}
+                />  
+                <CardContent>
+                  <Typography>
+                    Rohan
+                  </Typography>
+                </CardContent>
+              </Card>
+            </CardActionArea>
           </Grid>
         </div>
       </div>
