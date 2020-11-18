@@ -12,6 +12,9 @@ import Such from '../images/such.png';
 import David from '../images/david.jpg';
 import Kent from '../images/kent.png';
 import Rohan from '../images/rohan.png';
+import MediaQuery from 'react-responsive'
+import './MainPage.css';
+
 
 const styles = () => ({
   root:{
@@ -23,7 +26,20 @@ const styles = () => ({
     height: 'auto',
     top: 0,
     left: 0,
+    
   },
+  mobile_img:{
+    maxWidth: '85%',
+    height: 'auto',
+    top: 0,
+    left: 0,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  
+    
+    
+  },
+
   text:{
     fontSize: '20px',
     color: 'black',
@@ -76,7 +92,14 @@ class MainPage extends Component{
               <Button>Get Started</Button>
             </Grid>
             {/* Image */}
+            <MediaQuery minDeviceWidth={1224} values={{deviceWidth: 1230}}>
             <img className={classes.img} src={People} alt="people"/>
+            </MediaQuery>
+
+            <MediaQuery orientation='portrait'>
+            <img className={classes.mobile_img} src={People} alt="people"/>
+            </MediaQuery>
+
           </Grid>
           
           {/* How to - Guide */}
