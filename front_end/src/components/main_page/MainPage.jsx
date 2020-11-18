@@ -144,10 +144,11 @@ class MainPage extends Component{
           {/* Team Githubs */}
           <Grid container className={classes.cards}>
             <CardActionArea className={classes.actionArea} 
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='https://github.com/Suchwinder';
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   window.location.href='https://github.com/Suchwinder';
+            // }}
+            href='https://github.com/Suchwinder'
             >
               <Card className={classes.card}>
                 <CardMedia 
@@ -163,10 +164,11 @@ class MainPage extends Component{
             </CardActionArea>
             
             <CardActionArea className={classes.actionArea} 
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='https://github.com/davidy9000';
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   window.location.href='https://github.com/davidy9000';
+            // }}
+            href='https://github.com/davidy9000'
             >
               <Card className={classes.card}>
                 <CardMedia 
@@ -182,10 +184,11 @@ class MainPage extends Component{
             </CardActionArea>
 
             <CardActionArea className={classes.actionArea} 
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='https://github.com/knt-zhang';
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   window.location.href='https://github.com/knt-zhang';
+            // }}
+            href='https://github.com/knt-zhang'
             >
               <Card className={classes.card}>
                 <CardMedia 
@@ -201,10 +204,11 @@ class MainPage extends Component{
             </CardActionArea>
 
             <CardActionArea className={classes.actionArea} 
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href='https://github.com/rtohaan';
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   window.location.href='https://github.com/rtohaan';
+            // }}
+            href='https://github.com/rtohaan'
             >
               <Card className={classes.card}>
                 <CardMedia 
