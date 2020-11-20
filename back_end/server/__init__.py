@@ -14,6 +14,7 @@ from back_end.routes.users import create_user, edit_user, delete_user
 # Item(s) Imports
 from back_end.routes.items import create_item, edit_item, delete_item
 
+from flask_socketio import SocketIO, emit, disconnect
 
 def create_app():
     bootDB()  # start database (good to do database boot before app to ensure it exists before app works)
@@ -49,4 +50,20 @@ def create_app():
     app.register_blueprint(assign_item.bp)
     app.register_blueprint(unassign_item.bp)
 
+    print("completed")
+    # socketio = SocketIO(app)
+    # @socketio.on('asd')
+    # def echo_connect():
+    #     emit('asd')
+    #     print('Client has connected')
+
+    # @socketio.on('new_update')
+    # def handleUpdate():
+    #     emit('new_update', broadcast=True)
+    
+    # @socketio.on('disconnect')
+    # def echo_disconnect():
+    #     print('Client has disconnected')
+
+    # return socketio.run(app, debug=True)
     return app

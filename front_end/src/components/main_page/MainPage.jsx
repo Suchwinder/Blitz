@@ -1,8 +1,28 @@
 import React, { Component } from 'react';
 import NavBar from '../nav_bar/NavBar'
 import './MainPage.css'
+import io from "socket.io-client";
+
 
 class MainPage extends Component{
+  // componentDidMount = () => {
+  //   const ENDPOINT = "http://localhost:5000";
+  //   const socket = io.connect(ENDPOINT, {
+  //     reconnection: true,
+  //     // transports: ['websocket']
+  //   });
+
+  //   console.log("the socket: ",  socket);
+
+  //   // socket.emit('asd', () => {
+  //     // console.log('I emit the connection??')
+  //   // })
+
+  //   socket.on('asd', () => {
+  //     console.log('I have successfully connected to the server');
+  //   })
+  // }
+
   render(){
     return(
       <div>
