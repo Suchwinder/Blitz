@@ -546,7 +546,7 @@ class SplitBillPage extends Component {
     await this.fetchGroupData();
 
     const socket = io.connect(ENDPOINT);
-    console.log("the socket: ",  socket);
+    console.log("the socket: SPLITBILL",  socket);
 
     socket.emit('asd', () => {
       console.log('I emit the connection??')

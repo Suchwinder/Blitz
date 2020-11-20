@@ -3,25 +3,33 @@ import NavBar from '../nav_bar/NavBar'
 import './MainPage.css'
 import io from "socket.io-client";
 
-
 class MainPage extends Component{
-  // componentDidMount = () => {
-  //   const ENDPOINT = "http://localhost:5000";
-  //   const socket = io.connect(ENDPOINT, {
-  //     reconnection: true,
-  //     // transports: ['websocket']
-  //   });
+  constructor(props) {
+    super(props);
+    this.state = {
+      socket: ""
+    }
+  }
 
-  //   console.log("the socket: ",  socket);
+  componentDidMount = () => {
+    const ENDPOINT = "/socket";
+    const socket = io.connect(ENDPOINT, {
+      reconnection: true,
+      transports: ['websocket'] // need to upgrade to websockets succesfully 
+    });
+    this.setState({
+      socket: socket
+    }, () => {console.log(this.state)})
 
-  //   // socket.emit('asd', () => {
-  //     // console.log('I emit the connection??')
-  //   // })
 
-  //   socket.on('asd', () => {
-  //     console.log('I have successfully connected to the server');
-  //   })
-  // }
+    console.log("the socket: ",  socket);
+
+    socket.emit('asd')
+
+    socket.on('asd', () => {
+      console.log('I have successfully connected to the server');
+    })
+  }
 
   render(){
     return(
