@@ -9,7 +9,6 @@ socketio = SocketIO(app) # no need for cors
 # Broadcasts update when a client makes an update
 @socketio.on('new_update', namespace='/socket')
 def handleUpdate(data):
-    # logging.debug("The CONTENTS ARE: ", data)
     emit('new_update', '', broadcast=True, room=data)
 
 # Makes client join a room for the groups' bill
