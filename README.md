@@ -71,6 +71,11 @@
     ``` 
     Running the gunicorn or python run command in a editor may cause issues, best way is to use the default terminal provided by your machine. Also note gunicorn version and 
     export python will not work with windows OS.
+    
+    ### For Heroku Command to run app:
+    ```
+    heroku local --env=back_end/.env
+    ```
 
 9. To deactivate virtual environment:
     ```
