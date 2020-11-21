@@ -484,7 +484,7 @@ class SplitBillPage extends Component {
         add_item_name: "",
         add_item_cost: "", 
       })
-      this.state.socket.emit('new_update');
+      this.state.socket.emit('new_update', this.state.group_url);
     } else {
       alert(result.error);
     }
@@ -551,16 +551,35 @@ class SplitBillPage extends Component {
     const socket = io.connect(ENDPOINT, {
       reconnection: true,
       transports: ['websocket'] // need to upgrade to websockets succesfully 
-    });
+    })
+
     this.setState({
       socket: socket
-    }, () => {console.log(this.state)})
+    })
+        
+    socket.emit('join', {
+      'room': this.state.group_url
+    })
 
     socket.on('new_update', () => {
       console.log("New Update Triggered")
       this.fetchGroupData();
     })
+
+    // socket.on('leave', () => {
+    //   console.log("User is leaving")
+    // })
   }
+
+  // componentWillUnmount = () => {
+  //   this.state.socket.emit('leave', {
+  //     'room': this.state.group_url
+  //   })
+
+  //   this.state.socket.emit('disconnect')
+
+  //   console.log("goodybye")
+  // }
 
   render() {
     // get access to the styling for our components to use
