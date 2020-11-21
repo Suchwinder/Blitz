@@ -97,6 +97,7 @@ class SplitBillPage extends Component {
       new_tip_rate: "",
       copySuccess: false,
       show_image: false,
+      socket: ""
     }
   }
 
@@ -483,6 +484,7 @@ class SplitBillPage extends Component {
         add_item_name: "",
         add_item_cost: "", 
       })
+      this.state.socket.emit('new_update');
     } else {
       alert(result.error);
     }
@@ -545,15 +547,18 @@ class SplitBillPage extends Component {
   componentDidMount = async () => {
     await this.fetchGroupData();
 
-    const socket = io.connect(ENDPOINT);
-    console.log("the socket: SPLITBILL",  socket);
+    const ENDPOINT = "/socket";
+    const socket = io.connect(ENDPOINT, {
+      reconnection: true,
+      transports: ['websocket'] // need to upgrade to websockets succesfully 
+    });
+    this.setState({
+      socket: socket
+    }, () => {console.log(this.state)})
 
-    socket.emit('asd', () => {
-      console.log('I emit the connection??')
-    })
-
-    socket.on('asd', () => {
-      console.log('I have successfully connected to the server');
+    socket.on('new_update', () => {
+      console.log("New Update Triggered")
+      this.fetchGroupData();
     })
   }
 

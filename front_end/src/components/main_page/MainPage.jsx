@@ -1,36 +1,8 @@
 import React, { Component } from 'react';
 import NavBar from '../nav_bar/NavBar'
 import './MainPage.css'
-import io from "socket.io-client";
 
 class MainPage extends Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      socket: ""
-    }
-  }
-
-  componentDidMount = () => {
-    const ENDPOINT = "/socket";
-    const socket = io.connect(ENDPOINT, {
-      reconnection: true,
-      transports: ['websocket'] // need to upgrade to websockets succesfully 
-    });
-    this.setState({
-      socket: socket
-    }, () => {console.log(this.state)})
-
-
-    console.log("the socket: ",  socket);
-
-    socket.emit('asd')
-
-    socket.on('asd', () => {
-      console.log('I have successfully connected to the server');
-    })
-  }
-
   render(){
     return(
       <div>
