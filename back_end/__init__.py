@@ -15,19 +15,12 @@ def handleUpdate(data):
 # Makes client join a room for the groups' bill
 @socketio.on('join', namespace='/socket')
 def on_join(data):
-    # logging.debug("the data is: ", data)
     room = data['room']
     join_room(room)
     logging.debug("Successfully joined room")
 
-# @socketio.on('leave')
-# def on_leave(data):
-#     logging.debug(" getting slapped in the face")
-
-#     room = data['room']
-#     logging.debug("Successfully left room")
-#     leave_room(room)
-
-# @socketio.on('disconnect')
-# def test_disconnect():
-#     logging.debug("Disconnected –––––––––––––--$$$$$$$$$$$$")
+@socketio.on('leave', namespace='/socket')
+def on_leave(data):
+    room = data['room']
+    leave_room(room)
+    logging.debug("Successfully left room")

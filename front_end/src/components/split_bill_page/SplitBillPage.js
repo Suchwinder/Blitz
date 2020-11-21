@@ -565,21 +565,13 @@ class SplitBillPage extends Component {
       console.log("New Update Triggered")
       this.fetchGroupData();
     })
-
-    // socket.on('leave', () => {
-    //   console.log("User is leaving")
-    // })
   }
 
-  // componentWillUnmount = () => {
-  //   this.state.socket.emit('leave', {
-  //     'room': this.state.group_url
-  //   })
-
-  //   this.state.socket.emit('disconnect')
-
-  //   console.log("goodybye")
-  // }
+  componentWillUnmount = () => {
+    this.state.socket.emit('leave', {
+      'room': this.state.group_url
+    })
+  }
 
   render() {
     // get access to the styling for our components to use
