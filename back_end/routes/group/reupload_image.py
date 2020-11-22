@@ -2,19 +2,22 @@ from flask import Blueprint, request
 from back_end.models import create_db_connection, Groups, Users, Items, ItemAssignments
 from botocore.exceptions import ClientError
 from back_end.receipt_processor import imageToJson 
-import random, string, os, boto3, logging, random, string, uuid, io
+import random, string, os, boto3, logging, random, string, uuid, io, tempfile
 
-bp = Blueprint('reupload', __name__, url_prefix='/api')
+bp = Blueprint('reupload_image', __name__, url_prefix='/api')
 
-@bp.route('/reupload_image', methods=['POST'])
+@bp.route('/reupload_image/', methods=['POST'])
 def reupload():
     db_connection = create_db_connection()
     if db_connection:
+        group_url = request.args['group_URL']
+
         # Need to move the contents from the request.data to the request.files
         request.get_data(parse_form_data = True)
+
+        logging.debug("The data is: ", request.files)
         # Now can access the files
         data = request.files['file']
-        group_url = request.files['group_url']
 
         # Need to get image url from group_url in order to delete it in S3
         group_object = db_connection.query(Groups).filter(Groups.groupURL == group_url).first()
@@ -33,9 +36,12 @@ def reupload():
 
         # Delete the image if we have one ––––––––––––––––––––––––––––––––––––-
         if(len(image_to_delete) != 0):
+            index = image_to_delete.rfind('/')+1
+            image_to_delete_key = image_to_delete[index:]
             # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Object
             try:
-                response = s3.delete_object(BUCKET, image_to_delete)
+                logging.debug("The image to delete is: ", image_to_delete_key)
+                response = s3.delete_object(Bucket=BUCKET, Key=image_to_delete_key)
 
             except ClientError as e:
                 logging.error(e)
@@ -115,6 +121,7 @@ def reupload():
                 items_total += item['price']
         
         db_connection.query(Groups).filter(Groups.groupURL == group_object.groupURL).update({
+            "imageURL": object_url,
             "subTotal": items_total,
             "totalCost": (items_total)*(1.00875) + (items_total * group_object.tipRate/100)
         })
