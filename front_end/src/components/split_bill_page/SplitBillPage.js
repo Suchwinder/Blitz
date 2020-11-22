@@ -13,6 +13,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import io from "socket.io-client";
 
 const styles = (theme) => ({
     root: {
@@ -93,6 +94,7 @@ class SplitBillPage extends Component {
       new_tip_rate: "",
       copySuccess: false,
       show_image: false,
+      socket: ""
     }
   }
 
@@ -207,6 +209,7 @@ class SplitBillPage extends Component {
       // console.log(result.message);
       // get data again
       await this.fetchGroupData();
+      this.state.socket.emit('new_update', this.state.group_url);
       // console.log("Data Updated");
     } else {
       alert(result.error);
@@ -253,6 +256,7 @@ class SplitBillPage extends Component {
         new_item_name: "",
         new_item_cost: "", 
       })
+      this.state.socket.emit('new_update', this.state.group_url);
     } else {
       alert(result.error);
     }
@@ -294,6 +298,7 @@ class SplitBillPage extends Component {
         new_nickname: "",
         new_adjusted_amount: "", 
       })
+      this.state.socket.emit('new_update', this.state.group_url);
     } else {
       alert(result.error);
     }
@@ -371,6 +376,7 @@ class SplitBillPage extends Component {
         new_item_name: "",
         new_item_cost: "", 
       })
+      this.state.socket.emit('new_update', this.state.group_url);
     } else {
       alert(result.error);
     }
@@ -402,6 +408,7 @@ class SplitBillPage extends Component {
         new_adjusted_amount: "",
         new_user_name: ""
       })
+      this.state.socket.emit('new_update', this.state.group_url);
     } else {
       alert(result.error)
     }
@@ -441,6 +448,7 @@ class SplitBillPage extends Component {
         add_user_name: "",
         add_user_adjusted_amount: "", 
       })
+      this.state.socket.emit('new_update', this.state.group_url);
     } else {
       alert(result.error);
     }
@@ -479,6 +487,7 @@ class SplitBillPage extends Component {
         add_item_name: "",
         add_item_cost: "", 
       })
+      this.state.socket.emit('new_update', this.state.group_url);
     } else {
       alert(result.error);
     }
@@ -518,6 +527,7 @@ class SplitBillPage extends Component {
         edit_tip: false,
         new_tip_rate: "",
       })
+      this.state.socket.emit('new_update', this.state.group_url);
     } else {
       alert(result.error);
     }
@@ -540,6 +550,30 @@ class SplitBillPage extends Component {
 
   componentDidMount = async () => {
     await this.fetchGroupData();
+
+    const ENDPOINT = "/socket";
+    const socket = io.connect(ENDPOINT, {
+      reconnection: true,
+      transports: ['websocket'] // need to upgrade to websockets succesfully 
+    })
+
+    this.setState({
+      socket: socket
+    })
+        
+    socket.emit('join', {
+      'room': this.state.group_url
+    })
+
+    socket.on('new_update', () => {
+      this.fetchGroupData();
+    })
+  }
+
+  componentWillUnmount = () => {
+    this.state.socket.emit('leave', {
+      'room': this.state.group_url
+    })
   }
 
   render() {
