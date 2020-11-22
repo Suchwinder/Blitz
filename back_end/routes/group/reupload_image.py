@@ -15,7 +15,6 @@ def reupload():
         # Need to move the contents from the request.data to the request.files
         request.get_data(parse_form_data = True)
 
-        logging.debug("The data is: ", request.files)
         # Now can access the files
         data = request.files['file']
 
@@ -40,7 +39,6 @@ def reupload():
             image_to_delete_key = image_to_delete[index:]
             # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html#S3.Object
             try:
-                logging.debug("The image to delete is: ", image_to_delete_key)
                 response = s3.delete_object(Bucket=BUCKET, Key=image_to_delete_key)
 
             except ClientError as e:
@@ -50,7 +48,6 @@ def reupload():
 
         # Update User Expensis to 0 –––––––––––––––––––––––––––––––––––––––––––
         users_object = db_connection.query(Users).filter(Users.groupID == group_object.groupID) # should get an array of users
-        logging.debug(" all users: ", users_object)
 
         for user in users_object:
             db_connection.query(Users).filter(Users.userID == user.userID).update({
@@ -60,7 +57,6 @@ def reupload():
         
         # Delete all items and item assignments –––––––––––––––––––––––––––––––
         items_object = db_connection.query(Items).filter(Items.groupID == group_object.groupID)
-        logging.debug(" all items: ", items_object)
         for item in items_object:
             item_id = item.itemID
 
