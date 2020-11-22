@@ -35,7 +35,7 @@ def upload():
         if data:
             try:
                 # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html
-                response = s3.upload_fileobj(data, BUCKET, letters, ExtraArgs={ "ContentType": "image/jpeg"}) # (our img, name of aws bucket, and no object url so use same img), returns true or false
+                response = s3.upload_fileobj(data, BUCKET, letters, ExtraArgs={ "ContentType": "image/jpeg"}) # (our img, name of aws bucket, and object url name would be awsurl+random letter we generated)), returns true or false
                 object_url = f"https://{BUCKET}.s3.amazonaws.com/{letters}"
 
             except ClientError as e:

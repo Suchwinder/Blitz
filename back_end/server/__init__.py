@@ -5,6 +5,7 @@ from back_end.routes.group import (
     create_group,
     get_group,
     edit_tip_rate,
+    reupload_image
 )  # create_group, join_group, s3_test
 from back_end.routes import assign_item, unassign_item
 
@@ -35,6 +36,7 @@ def create_app():
     app.register_blueprint(get_group.bp)
     app.register_blueprint(upload_image.bp)
     app.register_blueprint(edit_tip_rate.bp)
+    app.register_blueprint(reupload_image.bp)
 
     # Register(s) User Functionality
     app.register_blueprint(create_user.bp)
