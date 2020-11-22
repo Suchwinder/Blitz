@@ -14,9 +14,6 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import io from "socket.io-client";
-// import SocketIOClient from "socket.io-client";
-
-const ENDPOINT = "http://localhost:5000";
 
 const styles = (theme) => ({
     root: {
