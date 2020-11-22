@@ -26,7 +26,6 @@ const styles = () => ({
     height: 'auto',
     top: 0,
     left: 0,
-    
   },
   mobile_img:{
     maxWidth: '85%',
@@ -35,9 +34,6 @@ const styles = () => ({
     left: 0,
     marginLeft: 'auto',
     marginRight: 'auto',
-  
-    
-    
   },
 
   text:{
@@ -48,6 +44,9 @@ const styles = () => ({
   },
   columns:{
     justifyContent: 'center',
+    marginleft: '-.75rem',
+    marginright: '-.75rem',
+    margintop: '-.75rem',
   },
   card:{
     width: 150,
@@ -66,6 +65,15 @@ const styles = () => ({
   actionArea:{
     maxWidth: 188,
   },
+  background:{
+    paddingLeft: '60px',
+    paddingRight: '60px',
+    padding: '60px',
+  },
+  steps:{
+    padding: '.75rem',
+  }
+
 });
 
 class MainPage extends Component{
@@ -93,16 +101,15 @@ class MainPage extends Component{
               <Button>Get Started</Button>
             </Grid>
             {/* Image */}
-            <MediaQuery minDeviceWidth={1224} values={{deviceWidth: 1230}}>
+            <MediaQuery minWidth={600} >
             <img className={classes.img} src={People} alt="people"/>
             </MediaQuery>
-
-            <MediaQuery maxWidth={1224}>
+            <MediaQuery maxWidth={600}>
             <img className={classes.mobile_img} src={People} alt="people"/>
             </MediaQuery>
 
           </Grid>
-          
+          <div container className={classes.background}>
           {/* How to - Guide */}
           <Typography variant="h4">
               Get started with these simple steps:
@@ -110,22 +117,22 @@ class MainPage extends Component{
           <br></br>
           <Grid container className={classes.columns}>
             <Grid item xs={4} sm={2}>
-              <Typography>
+              <Typography className={classes.steps}>
                 1. Click 'Create' on the task bar above or the 'Get Started' button above to get started.
               </Typography>
             </Grid>
             <Grid item xs={4} sm={2}>
-              <Typography>
+              <Typography className={classes.steps}>
                 2. Fill out all of the prompts. Submitting your receipt is optional.
               </Typography>
             </Grid>
             <Grid item xs={4} sm={2}>
-              <Typography>
+              <Typography className={classes.steps}>
                 3. Submit and share! 
               </Typography>
             </Grid>
           </Grid>
-
+          </div>
           <br></br>
 
           {/* About the Team  */}

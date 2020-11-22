@@ -3,6 +3,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Redirect } from "react-router-dom";
 import { Button } from "reactstrap";
+import {Link} from 'react-scroll';
+
 
 const NavBar = (props) => {
   const [page, setPage] = useState("");
@@ -27,6 +29,13 @@ const NavBar = (props) => {
           <Button variant="dark" onClick={() => setPage("main")}>
             Home
           </Button>
+          <Link activeClass= "active"
+            to ="about"
+            spy={true}
+            smooth={true}
+            offset ={-50}
+            duration={500}><Button variant="dark">About</Button> </Link>
+
           <Button variant="dark" onClick={() => setPage("create")}>
             Create
           </Button>
