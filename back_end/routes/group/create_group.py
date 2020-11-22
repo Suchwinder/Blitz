@@ -52,13 +52,13 @@ def create_group():
         # if(len(zip_code) > 0):
         # Need to insert data with respect to foreign keys, so location is first so group can use location as FK, then Group is done so user and items can use group as FK, and user and item can be done in any order
         # create location object to insert into database
-        # if (len(street_address) == 0):
-        #     response = {"error": "Please enter a valid address"}
-        #     return response, 400
+        if (len(street_address) == 0):
+            response = {"error": "Please enter a valid address"}
+            return response, 400
         
-        # if (len(location_name) == 0):
-        #     response = {"error": "Please enter a location name"}
-        #     return response, 400
+        if (len(location_name) == 0):
+            response = {"error": "Please enter a location name"}
+            return response, 400
         
         if (len(users) == 0):
             response = {"error": "Please enter at least one user"}
