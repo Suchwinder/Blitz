@@ -48,7 +48,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"users\": [\"john\", \"jack\"],\n    \"street_address\": \"695 Park Ave\",\n    \"city\": \"New York\",\n    \"location_name\": \"Hunter College\",\n    \"zip_code\": 10065,\n    \"image_s3url\": \"https://testblitztest.s3.amazonaws.com/shake2.png\",\n    \"tip_rate\": 10\n}",
+					"raw": "{\n    \"users\": [\"john\", \"jack\"],\n    \"street_address\": \"695 Park Ave\",\n    \"city\": \"New York\",\n    \"location_name\": \"Hunter College\",\n    \"zip_code\": 10065,\n    \"image_s3url\": \"https://testblitztest.s3.amazonaws.com/test1.jpeg\",\n    \"tip_rate\": 10\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -83,7 +83,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -91,7 +91,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/get_group",
+					"raw": "http://127.0.0.1:5000/api/get_group/?group_URL=/split_bill/GVkFLAPoLULyVidjefCUAbWQxL_4289157094",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -102,7 +102,14 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"get_group"
+						"get_group",
+						""
+					],
+					"query": [
+						{
+							"key": "group_URL",
+							"value": "/split_bill/GVkFLAPoLULyVidjefCUAbWQxL_4289157094"
+						}
 					]
 				}
 			},
@@ -238,15 +245,15 @@
 				}
 			},
 			"response": []
-        },
-        {
+		},
+		{
 			"name": "item_assignment",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"nickname\": \"ten\",\n    \"item_name\": \"jhk\",\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
+					"raw": "{\n    \"nickname\": \"jack\",\n    \"item_name\": \"shake \",\n    \"group_url\": \"http://localhost:3000/split_bill/sCyVcbwxgYZgZGbdCQhFPrhNYn_0427945010\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -306,21 +313,27 @@
 			"response": []
 		},
 		{
-			"name": "edit_item",
+			"name": "reupload_image",
 			"request": {
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"item_name\": \"jack\",\n    \"new_item_name\": \"jack\",\n    \"new_item_cost\": 0.89,\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"value": " /Users/Suchwinder/Desktop/reupload.jpeg ",
+							"type": "text"
+						},
+						{
+							"key": "group_url",
+							"value": "/split_bill/aYQDRViNcmCzGONQuTJosNXKYJ_0634887057",
+							"type": "text"
 						}
-					}
+					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/edit_item",
+					"raw": "http://127.0.0.1:5000/api/reupload_image",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -331,76 +344,9 @@
 					"port": "5000",
 					"path": [
 						"api",
-						"edit_item"
+						"reupload_image"
 					]
-				},
-				"description": "Edit a existing item in group"
-			},
-			"response": []
-		},
-		{
-			"name": "delete_user",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"nickname\": \"jack\",\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/api/delete_user",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"delete_user"
-					]
-				},
-				"description": "Delete an existing user in group"
-			},
-			"response": []
-		},
-		{
-			"name": "delete_item",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"item_name\": \"pizza\",\n    \"group_url\": \"http://localhost:3000/split_bill/WJDsBbaRNzAmUzfNZPuKugnldJ_6663819503\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://127.0.0.1:5000/api/delete_item",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"delete_item"
-					]
-				},
-				"description": "Delete a existing item in group"
+				}
 			},
 			"response": []
 		}
