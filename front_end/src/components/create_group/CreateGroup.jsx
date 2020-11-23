@@ -305,7 +305,7 @@ class CreateGroup extends Component {
               </Form.Group>
                 <br></br>
                 <div>
-                  <input type="file" name="file" ref={this.inputFileRef} onChange={this.handleImage}/>
+                  <input type="file" name="file" accept="image/png, image/jpeg" ref={this.inputFileRef} onChange={this.handleImage}/>
                   <br></br>
                   <img style={{width: 225}} src={this.state.preview} alt={""}/>
                 </div>
