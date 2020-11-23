@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Redirect } from "react-router-dom";
 import { Button } from "reactstrap";
-import {Link} from 'react-scroll';
+import { Link } from 'react-scroll';
 
 
 const NavBar = (props) => {

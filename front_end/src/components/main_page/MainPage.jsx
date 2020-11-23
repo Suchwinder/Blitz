@@ -12,8 +12,19 @@ import Such from '../images/such.png';
 import David from '../images/david.jpg';
 import Kent from '../images/kent.png';
 import Rohan from '../images/rohan.png';
-import MediaQuery from 'react-responsive'
+import ReactLogo from '../images/react.png';
+import Python from '../images/python.png';
+import Flask from '../images/flask.png';
+import Tesseract from '../images/tesseract.png';
+import OpenCV from '../images/opencv.png';
+import SQLAlchemy from '../images/sqlalchemy.png';
+import Heroku from '../images/heroku.png';
+import S3 from '../images/s3.png';
+import PSQL from '../images/psql.png';
+import MediaQuery from 'react-responsive';
+import Navbar from 'react-bootstrap/esm/Navbar';
 import './MainPage.css';
+
 
 
 const styles = () => ({
@@ -21,7 +32,6 @@ const styles = () => ({
     
   },
   img:{
-    // zIndex: -1,
     maxWidth: '25%',
     height: 'auto',
     top: 0,
@@ -35,7 +45,11 @@ const styles = () => ({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
-
+  title:{
+    paddingTop: '2vh',
+    paddingLeft : '2vh',
+    paddingRight : '2vh',
+  },
   text:{
     fontSize: '20px',
     color: 'black',
@@ -44,16 +58,16 @@ const styles = () => ({
   },
   columns:{
     justifyContent: 'center',
-    marginleft: '-.75rem',
-    marginright: '-.75rem',
-    margintop: '-.75rem',
+    // marginleft: '-.75rem',
+    // marginright: '-.75rem',
+    // margintop: '-.75rem',
   },
   card:{
     width: 150,
     height: 200,
     margin: '2vh',
   },
-  cards:{
+  cardsList:{
     paddingTop: '2vh',
     paddingLeft : '2vh',
     paddingRight : '2vh',
@@ -72,8 +86,25 @@ const styles = () => ({
   },
   steps:{
     padding: '.75rem',
-  }
+  },
+  tech:{
+    width: 150,
+    height: 150,
+    paddingTop: '2vh',
+    paddingLeft : '2vh',
+    paddingRight : '2vh',
+    justifyContent: 'center',
+  },
+  techImg:{
+    width: '100%',
+    height: '55%',
+  },
+  textPadding:{
+    paddingTop: '2vh',
+  },
+  footer:{
 
+  },
 });
 
 class MainPage extends Component{
@@ -85,19 +116,17 @@ class MainPage extends Component{
         <div className={classes.text}>
           <Grid container alignItems="center" justify="center">
             <Grid item xs={12} sm={3}>
-              <br></br>
               {/* Introduction */}
-              <Typography variant="h4">
+              <Typography variant="h4" className={classes.title}>
                 Welcome to Blitz
               </Typography>
-              <br></br>
-              <Typography>  
+              <Typography className={classes.textPadding}>  
                 An easy-to-use platform to help distribute your group's costs. 
               </Typography>
               <Typography>
                 Click below to get started.
               </Typography>
-              <br></br>
+              <p className={classes.textPadding}></p>
               <Button>Get Started</Button>
             </Grid>
             {/* Image */}
@@ -107,14 +136,13 @@ class MainPage extends Component{
             <MediaQuery maxWidth={600}>
             <img className={classes.mobile_img} src={People} alt="people"/>
             </MediaQuery>
-
           </Grid>
-          <div container className={classes.background}>
+          
           {/* How to - Guide */}
-          <Typography variant="h4">
-              Get started with these simple steps:
+          <Typography variant="h4" className={classes.title}>
+            Get started with these simple steps:
           </Typography>
-          <br></br>
+          {/* <p className={classes.textPadding}></p> */}
           <Grid container className={classes.columns}>
             <Grid item xs={4} sm={2}>
               <Typography className={classes.steps}>
@@ -132,17 +160,14 @@ class MainPage extends Component{
               </Typography>
             </Grid>
           </Grid>
-          </div>
-          <br></br>
 
           {/* About the Team  */}
-          <Typography variant="h4">
+          <Typography variant="h4" className={classes.title}>
             About Us
           </Typography>
-          <br></br>
           <Grid container className={classes.columns}>
             <Grid item xs={8}>
-              <Typography>
+              <Typography className={classes.textPadding}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, 
                 non pulvinar lorem felis nec erat. Aliquam egestas, velit at condimentum placerat, 
@@ -162,30 +187,22 @@ class MainPage extends Component{
                   Blitz Github Link
                 </a>
               </Typography>
-              <Typography >                
+              <Typography>                
                 <a href="https://blitz-cost-management.herokuapp.com/">
                   Current deployment
                 </a>
                 </Typography>
             </Grid>
           </Grid>
-          
-          <br></br>
 
           {/* Team Githubs */}
-          <Grid container className={classes.cards}>
+          <Grid container className={classes.cardsList}>
             <CardActionArea className={classes.actionArea} 
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   window.location.href='https://github.com/Suchwinder';
-            // }}
-            href='https://github.com/Suchwinder'
-            >
+            href='https://github.com/Suchwinder'>
               <Card className={classes.card}>
                 <CardMedia 
                   className={classes.media}
-                  image={Such}
-                />  
+                  image={Such}/>  
                 <CardContent>
                   <Typography>
                     Such
@@ -195,17 +212,11 @@ class MainPage extends Component{
             </CardActionArea>
             
             <CardActionArea className={classes.actionArea} 
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   window.location.href='https://github.com/davidy9000';
-            // }}
-            href='https://github.com/davidy9000'
-            >
+            href='https://github.com/davidy9000'>
               <Card className={classes.card}>
                 <CardMedia 
                   className={classes.media}
-                  image={David}
-                />  
+                  image={David}/>  
                 <CardContent>
                   <Typography>
                     David
@@ -215,17 +226,11 @@ class MainPage extends Component{
             </CardActionArea>
 
             <CardActionArea className={classes.actionArea} 
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   window.location.href='https://github.com/knt-zhang';
-            // }}
-            href='https://github.com/knt-zhang'
-            >
+            href='https://github.com/knt-zhang'>
               <Card className={classes.card}>
                 <CardMedia 
                   className={classes.media}
-                  image={Kent}
-                />  
+                  image={Kent}/>  
                 <CardContent>
                   <Typography>
                     Kent
@@ -235,17 +240,11 @@ class MainPage extends Component{
             </CardActionArea>
 
             <CardActionArea className={classes.actionArea} 
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   window.location.href='https://github.com/rtohaan';
-            // }}
-            href='https://github.com/rtohaan'
-            >
+            href='https://github.com/rtohaan'>
               <Card className={classes.card}>
                 <CardMedia 
                   className={classes.media}
-                  image={Rohan}
-                />  
+                  image={Rohan}/>  
                 <CardContent>
                   <Typography>
                     Rohan
@@ -254,6 +253,74 @@ class MainPage extends Component{
               </Card>
             </CardActionArea>
           </Grid>
+
+          {/* Tools used */}
+          <Typography variant="h4" className={classes.title}>
+            Tools Used
+          </Typography>
+          <p className={classes.textPadding}></p>
+          <Grid container justify="center">
+            <Card className={classes.tech}>
+              <CardMedia 
+                className={classes.techImg}
+                image={ReactLogo}/>
+                React
+            </Card>
+            <Card className={classes.tech}>
+              <CardMedia 
+                className={classes.techImg}
+                image={Python}/>
+                Python
+            </Card>
+            <Card className={classes.tech}>
+              <CardMedia 
+                className={classes.techImg}
+                image={Flask}/>
+                Flask
+            </Card>
+            <Card className={classes.tech}>
+              <CardMedia 
+                className={classes.techImg}
+                image={Tesseract}/>
+                Tesseract
+            </Card>
+            <Card className={classes.tech}>
+              <CardMedia 
+                className={classes.techImg}
+                image={OpenCV}/>
+                OpenCV
+            </Card>
+            <Card className={classes.tech}>
+              <CardMedia 
+                className={classes.techImg}
+                image={SQLAlchemy}/>
+                SQL Alchemy
+            </Card>
+            <Card className={classes.tech}>
+              <CardMedia 
+                className={classes.techImg}
+                image={Heroku}/>
+                Heroku
+            </Card>
+            <Card className={classes.tech}>
+              <CardMedia 
+                className={classes.techImg}
+                image={S3}/>
+                Amazon S3
+            </Card>
+            <Card className={classes.tech}>
+              <CardMedia 
+                className={classes.techImg}
+                image={PSQL}/>
+                PostgreSQL
+            </Card>
+          </Grid>
+          <p className={classes.textPadding}></p>
+          
+          {/* Footer */}
+          <Navbar bg="dark" variant="dark" className={classes.footer}>
+            Footer
+          </Navbar>
         </div>
       </div>
     )   
