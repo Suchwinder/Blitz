@@ -21,6 +21,7 @@ import SQLAlchemy from '../images/sqlalchemy.png';
 import Heroku from '../images/heroku.png';
 import S3 from '../images/s3.png';
 import PSQL from '../images/psql.png';
+import Github from '../images/github.png';
 import MediaQuery from 'react-responsive';
 import Navbar from 'react-bootstrap/esm/Navbar';
 import './MainPage.css';
@@ -102,8 +103,9 @@ const styles = () => ({
   textPadding:{
     paddingTop: '2vh',
   },
-  footer:{
-
+  footerImg:{
+    maxWidth: '5vh',
+    height: 'auto',
   },
 });
 
@@ -318,8 +320,15 @@ class MainPage extends Component{
           <p className={classes.textPadding}></p>
           
           {/* Footer */}
-          <Navbar bg="dark" variant="dark" className={classes.footer}>
-            Footer
+          <Navbar bg="dark" variant="dark">
+            <Grid container>
+              <Grid item xs={6}>
+                <Navbar.Brand>Blitz</Navbar.Brand>
+              </Grid>
+              <Grid item xs={6}>
+                <a href="https://github.com/Suchwinder/Blitz"><img className={classes.footerImg} src={Github} alt=""></img></a>
+              </Grid>
+            </Grid>
           </Navbar>
         </div>
       </div>
