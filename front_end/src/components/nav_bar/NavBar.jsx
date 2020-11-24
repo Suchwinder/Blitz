@@ -9,6 +9,7 @@ import Modal from '@material-ui/core/Modal';
 import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import { withStyles } from "@material-ui/core/styles";
+import JoinGroup from "../join_group/JoinGroup";
 
 const styles = (theme) => ({
   root: {
@@ -98,6 +99,9 @@ class NavBar extends Component {
     }
   }
 
+  printstuff = () => {
+    console.log("sup")
+  }
   render () {
     /*
       Be careful with logic in redirect inside a render
@@ -141,19 +145,20 @@ class NavBar extends Component {
             >
               {" "}Home{" "}
             </Button>
-            <Button variant="dark" className={classes.item_button} name="show_create" onClick={()=>this.handleModalOpen('show_create')}>
+            <Button variant="dark" className={classes.item_button} name="show_create" onClick={this.printstuff}>
               {" "}Create{" "}
             </Button>
             <Button variant="dark" className={classes.item_button} onClick={()=>this.handleModalOpen('show_join')}>
               {" "}Join{" "}
             </Button>
+            <Button>test</Button>
             <Modal
               style={{"align": "right"}}
               aria-labelledby="transition-modal-title"
               aria-describedby="transition-modal-description"
               className={classes.modal}
               open={this.state.show_join}
-              onClick={()=>this.handleModalOpen('show_join')}
+              onClose={()=>this.handleModalOpen('show_join')}
               closeAfterTransition
               BackdropComponent={Backdrop}
               BackdropProps={{
@@ -162,8 +167,8 @@ class NavBar extends Component {
             >
               <Fade in={this.state.show_join}>
                 <div className={classes.paper_modal}>
-                  <p>Hello</p>
-                  <Button onClick={()=>this.handleModalOpen('show_join')} name="show_join">Cancel</Button>
+                  <JoinGroup handleModalOpen={this.handleModalOpen}/>
+                  {/* <Button onClick={()=>this.handleModalOpen('show_join')} name="show_join">Cancel</Button> */}
                 </div>
               </Fade>
             </Modal>
@@ -174,7 +179,7 @@ class NavBar extends Component {
               aria-describedby="transition-modal-description"
               className={classes.modal}
               open={this.state.show_create}
-              onClick={()=>this.handleModalOpen('show_create')}
+              onClose={()=>this.handleModalOpen('show_create')}
               closeAfterTransition
               BackdropComponent={Backdrop}
               BackdropProps={{

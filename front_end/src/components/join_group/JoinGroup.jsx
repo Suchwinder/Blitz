@@ -5,6 +5,14 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { Input } from "@material-ui/core";
 import "./JoinGroup.css";
 import { Redirect } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
+
+
+const styles = (theme) => ({
+  item_button: {
+    margin: '0.1em'
+  },
+});
 
 class JoinGroup extends Component {
   constructor(props){
@@ -38,12 +46,13 @@ class JoinGroup extends Component {
   }
 
   render(){  
+    const classes = this.props.classes;
     if(this.state.submit_link !== "") {
       return <Redirect to={this.state.submit_link}/>
     }
     return (
         <div>
-          <NavBar />
+          {/* <NavBar /> */}
           <div className="text">
               <label className="form">
                 Enter your invite link:
@@ -52,7 +61,8 @@ class JoinGroup extends Component {
               </label>
               <br></br>
               {/* <input type="submit" value="Submit"/> */}
-              <Button type="submit" onClick={this.handleSubmit}>Join</Button>
+              <Button className={classes.item_button} type="submit" onClick={this.handleSubmit}>Join</Button>
+              <Button className={classes.item_button} onClick={()=>this.props.handleModalOpen('show_join')} name="show_join">Cancel</Button>
               <FormHelperText id="my-helper-text">This will redirect you to your session.</FormHelperText>
           </div>
         </div>
@@ -60,4 +70,4 @@ class JoinGroup extends Component {
   }
 };
 
-export default JoinGroup;
+export default withStyles(styles, { withTheme: true })(JoinGroup);
