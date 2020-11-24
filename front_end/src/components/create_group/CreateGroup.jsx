@@ -174,7 +174,7 @@ class CreateGroup extends Component {
           handleBlur,
         }) => (
         <div>
-          <NavBar/>
+          {/* <NavBar/> */}
           <div className="text">
             <div>Creating Your Group</div>
             <br></br>
@@ -346,6 +346,7 @@ class CreateGroup extends Component {
                 </div>
                 <br></br>
               <Button type="submit"> Submit form </Button>
+              <Button onClick={()=>this.props.handleModalOpen('show_create')} name="show_create">Cancel</Button>
             </Form>
           </div>
       </div>

@@ -10,6 +10,7 @@ import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import { withStyles } from "@material-ui/core/styles";
 import JoinGroup from "../join_group/JoinGroup";
+import CreateGroup from "../create_group/CreateGroup"
 
 const styles = (theme) => ({
   root: {
@@ -145,13 +146,12 @@ class NavBar extends Component {
             >
               {" "}Home{" "}
             </Button>
-            <Button variant="dark" className={classes.item_button} name="show_create" onClick={this.printstuff}>
+            <Button variant="dark" className={classes.item_button} name="show_create" onClick={()=>this.handleModalOpen('show_create')}>
               {" "}Create{" "}
             </Button>
             <Button variant="dark" className={classes.item_button} onClick={()=>this.handleModalOpen('show_join')}>
               {" "}Join{" "}
             </Button>
-            <Button>test</Button>
             <Modal
               style={{"align": "right"}}
               aria-labelledby="transition-modal-title"
@@ -188,8 +188,8 @@ class NavBar extends Component {
             >
               <Fade in={this.state.show_create}>
                 <div className={classes.paper_modal}>
-                  <p>Hello</p>
-                  <Button onClick={()=>this.handleModalOpen('show_create')} name="show_create">Cancel</Button>
+                  <CreateGroup handleModalOpen={this.handleModalOpen}/>
+                  {/* <Button onClick={()=>this.handleModalOpen('show_create')} name="show_create">Cancel</Button> */}
                 </div>
               </Fade>
             </Modal>
