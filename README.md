@@ -87,3 +87,6 @@
 - David Yuen
 - Kent Zhang
 - Rohan Tohaan
+
+### Side Notes
+When using workers with socketio, to ensure all users for a specifc room are connected we reduce the worker to 1
