@@ -164,6 +164,7 @@ class MainPage extends Component{
           </Grid>
 
           {/* About the Team  */}
+          <div className={classes.root} id='about'>
           <Typography variant="h4" className={classes.title}>
             About Us
           </Typography>
@@ -255,7 +256,7 @@ class MainPage extends Component{
               </Card>
             </CardActionArea>
           </Grid>
-
+          </div>
           {/* Tools used */}
           <Typography variant="h4" className={classes.title}>
             Tools Used

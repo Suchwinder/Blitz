@@ -15,6 +15,8 @@ const NavBar = (props) => {
     setPage("");
   }, [page]);
 
+
+
   if (page === "main") {
     return <Redirect to="/" />;
   } else if (page === "create") {
@@ -36,11 +38,11 @@ const NavBar = (props) => {
             spy={true}
             smooth={true}
             offset ={-50}
-            duration={500}><Button variant="dark" className="btn_space" onClick={() => setPage("about")}>
-              About
-              </Button> 
-              </Link>
-
+            duration={500}>
+          <Button variant="dark" className="btn_space">
+            About
+          </Button> 
+          </Link>
           <Button variant="dark" className="btn_space" onClick={() => setPage("create")}>
             Create
           </Button>
