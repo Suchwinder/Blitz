@@ -29,6 +29,7 @@ def delete_user():
         item_assignment_object = db_connection.query(ItemAssignments).filter(ItemAssignments.userID == user_object.userID)
 
         db_connection.query(Groups).filter(Groups.groupID == group_object.groupID).update({
+            "userCount": group_object.userCount - 1,
             "totalAdjustment": (group_object.totalAdjustment - user_object.adjustedAmount)
         })
         db_connection.commit()
