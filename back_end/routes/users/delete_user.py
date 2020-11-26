@@ -28,6 +28,11 @@ def delete_user():
         # get all item-user assignments associated with this item
         item_assignment_object = db_connection.query(ItemAssignments).filter(ItemAssignments.userID == user_object.userID)
 
+        db_connection.query(Groups).filter(Groups.groupID == group_object.groupID).update({
+            "totalAdjustment": (group_object.totalAdjustment - user_object.adjustedAmount)
+        })
+        db_connection.commit()
+
         # delete user if user is not assigned to any item
         if item_assignment_object.count() ==0:
             db_connection.query(Users).filter(Users.userID == user_id).delete()
@@ -73,7 +78,6 @@ def delete_user():
                         user_total = curr_pair_user.amountOwed - old_item_cost_per_person + new_per_person_price
                         db_connection.query(Users).filter(Users.userID == pair.userID).update({"amountOwed": user_total})
                         db_connection.commit()
-
 
             db_connection.query(Users).filter(Users.userID == user_id).delete()
             db_connection.commit()
