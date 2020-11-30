@@ -171,19 +171,8 @@ class MainPage extends Component{
           <Grid container className={classes.columns}>
             <Grid item xs={8}>
               <Typography className={classes.textPadding}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nunc maximus, nulla ut commodo sagittis, sapien dui mattis dui, 
-                non pulvinar lorem felis nec erat. Aliquam egestas, velit at condimentum placerat, 
-                sem sapien laoreet mauris, dictum porttitor lacus est nec enim. 
-                Vivamus feugiat elit lorem, eu porttitor ante ultrices id. 
-                Phasellus suscipit tellus ante, nec dignissim elit imperdiet nec. 
-                Nullam fringilla feugiat nisl. Ut pretium, metus venenatis dictum viverra, 
-                dui metus finibus enim, ac rhoncus sem lorem vitae mauris. 
-                Suspendisse ut venenatis libero. Suspendisse lorem felis, pretium in maximus id, tempor non ipsum.
-              </Typography>
-              <Typography>
-                In progress: Capstone project where users can process receipts to manage costs of activities. 
-                Will use React, Flask, OpenCV/Pytesseract, and web sockets. 
+                Hunter College students work on a Capstone project where users can process receipts to manage costs of activities. 
+                Using React, Flask, OpenCV/Pytesseract, and web sockets. 
               </Typography>
               <Typography>
                 <a href="https://github.com/Suchwinder/Blitz">
