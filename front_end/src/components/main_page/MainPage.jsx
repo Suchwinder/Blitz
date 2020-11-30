@@ -107,6 +107,13 @@ const styles = () => ({
     maxWidth: '5vh',
     height: 'auto',
   },
+  hr:{
+    height:"3px",
+    width:"90%",
+    borderWidth:0,
+    color:"gray",
+    backgroundColor:"gray",
+  },
 });
 
 class MainPage extends Component{
@@ -162,6 +169,9 @@ class MainPage extends Component{
               </Typography>
             </Grid>
           </Grid>
+
+          {/* Divider */}
+          <hr className={classes.hr}></hr>
 
           {/* About the Team  */}
           <div className={classes.root} id='about'>
