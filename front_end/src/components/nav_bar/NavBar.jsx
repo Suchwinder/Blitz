@@ -39,7 +39,7 @@ const NavBar = (props) => {
             smooth={true}
             offset ={-50}
             duration={500}>
-          <Button variant="dark" className="btn_space">
+          <Button variant="dark" className="btn_space" onClick={() => setPage("main")}>
             About
           </Button> 
           </Link>
