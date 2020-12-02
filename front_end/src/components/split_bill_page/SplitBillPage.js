@@ -43,18 +43,14 @@ const styles = (theme) => ({
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
+    hr:{
+      height:"3px",
+      width:"90%",
+      borderWidth:0,
+      color:"gray",
+      backgroundColor:"gray",
+    },
 });
-
-const ColoredLine = ({ color }) => (
-    <hr
-        style={{
-            color: color,
-            backgroundColor: color,
-            height: 5,
-            margin: 5, 
-        }}
-    />
-);
 
 class SplitBillPage extends Component {
   constructor(props) {
@@ -759,7 +755,7 @@ class SplitBillPage extends Component {
               </Grid>
             </Grid>
             <br></br>
-            <ColoredLine color="black" />
+            <hr className={classes.hr}></hr>
             <br></br>
             {/* Render total for each individual */}
             <Grid container spacing={3}>
