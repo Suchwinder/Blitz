@@ -16,6 +16,9 @@ import Fade from '@material-ui/core/Fade';
 import Form from 'react-bootstrap/Form';
 import io from "socket.io-client";
 
+var QRCode = require('qrcode.react');
+// import QRCode from "qrcode.react";
+
 const styles = (theme) => ({
     root: {
       flexGrow: 1,
@@ -659,6 +662,7 @@ class SplitBillPage extends Component {
                 </div> : null
               }
             </div>
+            <QRCode value={this.state.full_url}></QRCode>  
             {/* Render item, item price, and user assignment that is modifyable
             should open a model to update for UI friendliness */}
             <Grid container spacing={3}>
