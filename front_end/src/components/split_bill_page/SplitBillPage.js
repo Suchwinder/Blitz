@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import NavBar from '../nav_bar/NavBar'
-// need to use withStyles to combine Material UI design with react compnents at end of file when exporting
 import { withStyles } from "@material-ui/core/styles";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import { FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
-import './SplitBill.css'
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -52,6 +49,29 @@ const styles = (theme) => ({
       borderWidth:0,
       color:"gray",
       backgroundColor:"gray",
+    },
+    add_user_button:{
+      paddingLeft: "70%",
+      width: "100%",
+    },
+    items_flex_container: {
+      display: "flex",
+    },
+    add_item_button: {
+      flex: "1",
+      paddingLeft: "60%",
+    },
+    
+    items_line: {
+      textAlign: "center",
+    },
+    
+    edit_flex_container: {
+      justifyContent: "center",
+      display: "flex",
+    },
+    qr_code:{
+      display: "inline",
     },
 });
 
@@ -646,7 +666,7 @@ class SplitBillPage extends Component {
             <p style={{"textAlign": "center"}}> {this.state.address} </p>
             <div style={{"textAlign": "center"}}>
               <textarea
-                style={{"width": "250px"}}
+                style={{"width": "235px"}}
                 ref={(textarea) => this.textArea = textarea}
                 defaultValue={this.state.full_url}
               />
@@ -662,15 +682,18 @@ class SplitBillPage extends Component {
                 </div> : null
               }
             </div>
-            <QRCode value={this.state.full_url}></QRCode>  
+            <div style={{"width": "100%", "textAlign": "center", "paddingTop": "5px"}}>
+              <QRCode className={classes.qr_code} value={this.state.full_url}></QRCode>  
+            </div>
+
             {/* Render item, item price, and user assignment that is modifyable
             should open a model to update for UI friendliness */}
             <Grid container spacing={3}>
               {/* Currently displaying item name and cost */}
               <Grid item xs>
                 <Paper className={classes.paper}>
-                <div className="items_flex_container">
-                <div className="items_line" > Items </div>
+                <div className={classes.items_flex_container}>
+                <div className={classes.items_line} > Items </div>
                 <Modal
                   style={{"align": "right"}}
                   aria-labelledby="transition-modal-title"
@@ -695,7 +718,7 @@ class SplitBillPage extends Component {
                     </div>
                   </Fade>
                 </Modal>
-                <div className="add_item_button">
+                <div className={classes.add_item_button}>
                 <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_item", "na", "na")}>
                   Add Item
                 </Button>
@@ -787,7 +810,7 @@ class SplitBillPage extends Component {
                     </div>
                   </Fade>
                 </Modal>
-                <div className="add_user_button">
+                <div className={classes.add_user_button}>
                 <Button variant="outlined" color="primary" className={classes.item_button} size='small'  display="inline"  onClick={() => this.handleOpen("add_user", "na", "na")}>
                   Add User
                 </Button>
@@ -887,7 +910,7 @@ class SplitBillPage extends Component {
                       <Button onClick={() => this.handleClose("edit_tip")}>Cancel</Button>
                     </div>
                     :
-                    <div className="edit_flex_container">
+                    <div className={classes.edit_flex_container}>
                       <div>Tip Rate: {this.state.tip_rate}%</div>
                       <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("edit_tip")}>Edit Tip</Button>
                       </div>
