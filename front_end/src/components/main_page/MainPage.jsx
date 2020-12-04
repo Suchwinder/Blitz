@@ -26,8 +26,6 @@ import MediaQuery from 'react-responsive';
 import Navbar from 'react-bootstrap/esm/Navbar';
 import './MainPage.css';
 
-
-
 const styles = () => ({
   root:{
     
@@ -47,9 +45,14 @@ const styles = () => ({
     marginRight: 'auto',
   },
   title:{
-    paddingTop: '2vh',
-    paddingLeft : '2vh',
-    paddingRight : '2vh',
+    // paddingTop: '2vh',
+    // paddingLeft : '2vh',
+    // paddingRight : '2vh',
+    display: 'block',
+    marginBlockStart: '0.83em',
+    marginBlockEnd: '0.83em',
+    marginInlineStart: '0px',
+    marginInlineEnd: '0px',
   },
   text:{
     fontSize: '20px',
@@ -129,13 +132,13 @@ class MainPage extends Component{
               <Typography variant="h4" className={classes.title}>
                 Welcome to Blitz
               </Typography>
-              <Typography className={classes.textPadding}>  
+              <Typography >  
                 An easy-to-use platform to help distribute your group's costs. 
               </Typography>
               <Typography>
                 Click below to get started.
               </Typography>
-              <p className={classes.textPadding}></p>
+              <p ></p>
               <Button>Get Started</Button>
             </Grid>
             {/* Image */}
@@ -151,7 +154,7 @@ class MainPage extends Component{
           <Typography variant="h4" className={classes.title}>
             Get started with these simple steps:
           </Typography>
-          {/* <p className={classes.textPadding}></p> */}
+          {/* <p ></p> */}
           <Grid container className={classes.columns}>
             <Grid item xs={4} sm={2}>
               <Typography className={classes.steps}>
@@ -180,7 +183,7 @@ class MainPage extends Component{
           </Typography>
           <Grid container className={classes.columns}>
             <Grid item xs={8}>
-              <Typography className={classes.textPadding}>
+              <Typography >
                 Hunter College students work on a Capstone project where users can process receipts to manage costs of activities. 
                 Using React, Flask, OpenCV/Pytesseract, and web sockets. 
               </Typography>
@@ -260,7 +263,7 @@ class MainPage extends Component{
           <Typography variant="h4" className={classes.title}>
             Tools Used
           </Typography>
-          <p className={classes.textPadding}></p>
+          <p ></p>
           <Grid container justify="center">
             <Card className={classes.tech}>
               <CardMedia 
@@ -317,7 +320,7 @@ class MainPage extends Component{
                 PostgreSQL
             </Card>
           </Grid>
-          <p className={classes.textPadding}></p>
+          <p ></p>
           
           {/* Footer */}
           <Navbar bg="dark" variant="dark">

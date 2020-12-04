@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavBar from '../nav_bar/NavBar'
+import NavBar from '../nav_bar/NavBar';
 import { withStyles } from "@material-ui/core/styles";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +12,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Form from 'react-bootstrap/Form';
 import io from "socket.io-client";
+import {Typography} from "@material-ui/core";
 
 var QRCode = require('qrcode.react');
 // import QRCode from "qrcode.react";
@@ -75,7 +76,17 @@ const styles = (theme) => ({
     },
     btn:{
       paddingLeft: "15%",
-    }
+    },
+    // border:{
+    //   borderStyle: "solid",
+    // },
+    text:{
+      display: 'block',
+      marginBlockStart: '0.83em',
+      marginBlockEnd: '0.83em',
+      marginInlineStart: '0px',
+      marginInlineEnd: '0px',
+    },
 });
 
 class SplitBillPage extends Component {
@@ -688,12 +699,26 @@ class SplitBillPage extends Component {
             <div style={{"width": "100%", "textAlign": "center", "paddingTop": "5px"}}>
               <QRCode className={classes.qr_code} value={this.state.full_url}></QRCode>  
             </div>
-
+            
+            <Grid container alignItems="center" justify="center">
+              <Grid item>
+                <Typography variant="h5" className={classes.text}>
+                  Inventory
+                </Typography>
+                <Typography className={classes.text}>
+                  Get started by adding items or assigning users to items.
+                </Typography>
+                <Typography className={classes.text}>
+                  Or if there is an error, remove or edit them by selecting the item.
+                </Typography>
+              </Grid>              
+            </Grid>
+            
             {/* Render item, item price, and user assignment that is modifyable
             should open a model to update for UI friendliness */}
-            <Grid container spacing={3}>
+            <Grid container>
               {/* Currently displaying item name and cost */}
-              <Grid item xs>
+              <Grid item xs className={classes.border}>
                 <Paper className={classes.paper}>
                 <div className={classes.items_flex_container}>
                 <div className={classes.items_line} > Items </div>
@@ -788,11 +813,23 @@ class SplitBillPage extends Component {
                 </Paper>
               </Grid>
             </Grid>
+            
             <br></br>
             <hr className={classes.hr}></hr>
-            <br></br>
+
             {/* Render total for each individual */}
-            <Grid container spacing={3}>
+            <Grid container justify="center">
+              <Grid item>
+                <Typography variant="h5" className={classes.text}>
+                  Users
+                </Typography>
+                <Typography className={classes.text}>
+                  Allows you to add user(s) or remove user(s) with adjustments.
+                </Typography>
+              </Grid>              
+            </Grid>
+
+            <Grid container>
                 <Modal
                   aria-labelledby="transition-modal-title"
                   aria-describedby="transition-modal-description"
@@ -824,6 +861,9 @@ class SplitBillPage extends Component {
                   Add User
                 </Button>
                 </div>
+
+                <br></br>
+                <hr className={classes.hr}></hr>
             {
               this.state.users.map((user, index) => {
                 return (
@@ -907,7 +947,17 @@ class SplitBillPage extends Component {
             }
             </Grid>
             {/* Render group total */}
-            <Grid container spacing={3}>
+            <Grid container justify="center">
+              <Grid item>
+                <Typography variant="h5" className={classes.text}>
+                  Total
+                </Typography>
+                <Typography className={classes.text}>
+                  Below displays the total cost and any additional adjustments.
+                </Typography>
+              </Grid>              
+            </Grid>
+            <Grid container className={classes.border} styling={{"paddingBottom": "5px"}}>
               <Grid item xs>
                 <Paper className={classes.paper}>
                   {/* Grand Total */}
@@ -960,6 +1010,7 @@ class SplitBillPage extends Component {
                 </Paper>
               </Grid>
             </Grid>  
+            
             <br></br>
           </div>
         }
