@@ -86,7 +86,6 @@ class CreateGroup extends Component {
   }
 
   getCroppedImg(image, crop, fileName) {
-    console.log("Creating Crop");
     const canvas = document.createElement('canvas');
     const scaleX = image.naturalWidth / image.width;
     const scaleY = image.naturalHeight / image.height;
