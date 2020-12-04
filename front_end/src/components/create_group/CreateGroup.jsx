@@ -22,6 +22,7 @@ class CreateGroup extends Component {
     this.state = {
       file: null,
       preview: "",
+      newFile: "",
       input_users: [],
       input_address: "",
       input_zip_code: "",
@@ -58,13 +59,18 @@ class CreateGroup extends Component {
     })
   }
 
+  onImageLoaded = image => {
+    this.imageRef = image;
+    this.setState({
+      newFile: this.imageRef
+    })
+  };
+
   onCropComplete = crop => {
     this.makeClientCrop(crop);
   };
 
-  onCropChange = (crop, percentCrop) => {
-    // You could also use percentCrop:
-    // this.setState({ crop: percentCrop });
+  onCropChange = (crop) => {
     this.setState({ crop });
   };
 
@@ -80,6 +86,7 @@ class CreateGroup extends Component {
   }
 
   getCroppedImg(image, crop, fileName) {
+    console.log("Creating Crop");
     const canvas = document.createElement('canvas');
     const scaleX = image.naturalWidth / image.width;
     const scaleY = image.naturalHeight / image.height;
@@ -106,11 +113,13 @@ class CreateGroup extends Component {
           console.error('Canvas is empty');
           return;
         }
-        blob.name = fileName;
         window.URL.revokeObjectURL(this.fileUrl);
         this.fileUrl = window.URL.createObjectURL(blob);
         resolve(this.fileUrl);
-      }, 'image/jpeg');
+        this.setState({
+          newFile: blob
+        })
+      });
     });
   }
 
@@ -147,7 +156,7 @@ class CreateGroup extends Component {
     if(this.state.preview !== "") { // check if preview empty rather then blob data
       // call uploadimage api to get object url
       let data = new FormData();
-      data.append('file', this.state.file);
+      data.append('file', this.state.newFile)
 
       const response = await fetch('/api/upload_image', {
         method: 'POST',
@@ -417,9 +426,9 @@ class CreateGroup extends Component {
                       onChange={this.onCropChange}
                     />
                   )}
-                  {this.state.croppedImageUrl && (
+                  {/* {this.state.croppedImageUrl && (
                     <img alt="Crop" style={{ maxWidth: '100%' }} src={this.state.croppedImageUrl} />
-                  )}
+                  )} */}
                 </div>
                 <br></br>
               <Button type="submit"> Submit form </Button>
