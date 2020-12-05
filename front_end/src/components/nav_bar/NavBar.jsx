@@ -20,15 +20,11 @@ const NavBar = (props) => {
     setPage("");
   }, [page]);
 
-
-
   if (page === "main") {
     return <Redirect to="/" />;
   } else if (page === "create") {
     return <Redirect to="/create_group" />;
-  } else if (page === "join") {
-    return <Redirect to="/join_group" />;
-  }
+  } 
 
   return (
     <header>
@@ -50,9 +46,6 @@ const NavBar = (props) => {
           </Link>
           <Button variant="dark" className={classes.btn_space} onClick={() => setPage("create")}>
             Create
-          </Button>
-          <Button variant="dark" className={classes.btn_space} onClick={() => setPage("join")}>
-            Join
           </Button>
         </Nav>
       </Navbar>
