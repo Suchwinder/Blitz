@@ -25,6 +25,7 @@ import Github from '../images/github.png';
 import MediaQuery from 'react-responsive';
 import Navbar from 'react-bootstrap/esm/Navbar';
 import './MainPage.css';
+import { Redirect } from 'react-router-dom';
 
 
 const styles = () => ({
@@ -122,7 +123,23 @@ const styles = () => ({
 
 
 class MainPage extends Component{
+  constructor(props) {
+    super(props)
+    this.state = {
+      redirect: false,
+    }
+  }
+
+  handleRedirect = () => {
+    this.setState ({
+      redirect: true
+    })
+  }
+
   render(){
+    if (this.state.redirect) {
+      return <Redirect to='/create_group'/>
+    }
     const { classes } = this.props;
     return(
       <div className={classes.root}>
@@ -141,7 +158,7 @@ class MainPage extends Component{
                 Click below to get started.
               </Typography>
               <p ></p>
-              <Button>Get Started</Button>
+              <Button onClick={this.handleRedirect}>Get Started</Button>
             </Grid>
             {/* Image */}
             <MediaQuery minWidth={600} >
@@ -194,11 +211,6 @@ class MainPage extends Component{
                   Blitz Github Link
                 </a>
               </Typography>
-              <Typography>                
-                <a href="https://blitz-cost-management.herokuapp.com/">
-                  Current deployment
-                </a>
-                </Typography>
             </Grid>
           </Grid>
 

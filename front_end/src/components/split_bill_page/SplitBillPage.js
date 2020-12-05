@@ -711,21 +711,22 @@ class SplitBillPage extends Component {
             <div style={{"width": "100%", "textAlign": "center", "paddingTop": "5px"}}>
               <QRCode className={classes.qr_code} value={this.state.full_url}></QRCode>  
             </div>
-            
+            <hr className={classes.hr}></hr>
             <Grid container alignItems="center" justify="center">
               <Grid item>
-                <Typography variant="h5" className={classes.text}>
+                <Typography variant="h5" className={classes.text} style={{'textAlign':"center"}}>
                   Inventory
                 </Typography>
-                <Typography className={classes.text}>
+                <Typography className={classes.text} style={{'textAlign':"center"}}>
                   Get started by adding items or assigning users to items.
                 </Typography>
-                <Typography className={classes.text}>
+                <Typography className={classes.text} style={{'textAlign':"center"}}>
                   Or if there is an error, remove or edit them by selecting the item.
                 </Typography>
               </Grid>              
             </Grid>
-            
+            <hr className={classes.hr}></hr>
+
             {/* Render item, item price, and user assignment that is modifyable
             should open a model to update for UI friendliness */}
             <Grid container>
@@ -840,14 +841,15 @@ class SplitBillPage extends Component {
             {/* Render total for each individual */}
             <Grid container justify="center">
               <Grid item>
-                <Typography variant="h5" className={classes.text}>
+                <Typography variant="h5" className={classes.text} style={{'textAlign':"center"}}>
                   Users
                 </Typography>
-                <Typography className={classes.text}>
+                <Typography className={classes.text} style={{'textAlign':"center"}}>
                   Allows you to add user(s) or remove user(s) with adjustments.
                 </Typography>
               </Grid>              
             </Grid>
+            <hr className={classes.hr}></hr>
 
             <Grid container>
                 <Modal
@@ -883,7 +885,7 @@ class SplitBillPage extends Component {
                 </div>
 
                 <br></br>
-                <hr className={classes.hr}></hr>
+                {/* <hr className={classes.hr}></hr> */}
             {
               this.state.users.map((user, index) => {
                 return (
@@ -967,16 +969,20 @@ class SplitBillPage extends Component {
             }
             </Grid>
             {/* Render group total */}
+            <hr className={classes.hr}></hr>
+
             <Grid container justify="center">
               <Grid item>
-                <Typography variant="h5" className={classes.text}>
+                <Typography variant="h5" className={classes.text} style={{'textAlign':"center"}}>
                   Total
                 </Typography>
-                <Typography className={classes.text}>
+                <Typography className={classes.text} style={{'textAlign':"center"}}>
                   Below displays the total cost and any additional adjustments.
                 </Typography>
               </Grid>              
             </Grid>
+            <hr className={classes.hr}></hr>
+
             <Grid container className={classes.border} styling={{"paddingBottom": "5px"}}>
               <Grid item xs>
                 <Paper className={classes.paper}>
