@@ -13,6 +13,8 @@ import Fade from '@material-ui/core/Fade';
 import Form from 'react-bootstrap/Form';
 import io from "socket.io-client";
 import {Typography} from "@material-ui/core";
+import MediaQuery from 'react-responsive';
+
 
 var QRCode = require('qrcode.react');
 // import QRCode from "qrcode.react";
@@ -62,7 +64,11 @@ const styles = (theme) => ({
       flex: "1",
       paddingLeft: "68.5%",
     },
-    
+
+    mobile_add_item_button: {
+      flex: "1",
+      paddingLeft: "60%",
+    },
     items_line: {
       textAlign: "center",
     },
@@ -754,11 +760,20 @@ class SplitBillPage extends Component {
                     </div>
                   </Fade>
                 </Modal>
+                <MediaQuery minWidth={430}>
                 <div className={classes.add_item_button}>
                 <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_item", "na", "na")}>
                   Add Item
                 </Button>
                 </div>
+                </MediaQuery>
+                <MediaQuery maxWidth={430}>
+                <div className={classes.mobile_add_item_button}>
+                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_item", "na", "na")}>
+                  Add Item
+                </Button>
+                </div>
+                </MediaQuery>
                 </div> 
                 {/* <ul className="innerList"> */}
                 {
@@ -822,7 +837,6 @@ class SplitBillPage extends Component {
             
             <br></br>
             <hr className={classes.hr}></hr>
-
             {/* Render total for each individual */}
             <Grid container justify="center">
               <Grid item>
