@@ -667,7 +667,7 @@ class SplitBillPage extends Component {
     // get access to the styling for our components to use
     const classes = this.props.classes;
     return (
-      <div>
+      <div className={classes.root}>
         <NavBar/>
         {
           this.state.redirect 
