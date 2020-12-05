@@ -74,12 +74,14 @@ const styles = (theme) => ({
     qr_code:{
       display: "inline",
     },
+
     btn:{
       paddingLeft: "15%",
     },
     // border:{
     //   borderStyle: "solid",
     // },
+
     text:{
       display: 'block',
       marginBlockStart: '0.83em',
@@ -87,8 +89,9 @@ const styles = (theme) => ({
       marginInlineStart: '0px',
       marginInlineEnd: '0px',
     },
+    
     modal_padding:{
-      paddingBottom:"5px",
+      paddingBottom:"10px",
     },
 });
 
@@ -780,7 +783,7 @@ class SplitBillPage extends Component {
                               <TextField id="outlined-basic" label="Change Item Name" variant="outlined" name="new_item_name" defaultValue={this.state.new_item_name} onChange={this.handleChange}/>
                               </div>
                               <TextField id="outlined-basic" label="Change Cost" variant="outlined" name="new_item_cost" defaultValue={this.state.new_item_cost} onChange={this.handleChange} type="number" step={0.01}/>
-                              <div className={classes.btn}>
+                              <div >
                               <Button onClick={this.handleDeleteItem}>Delete</Button>
                               <Button onClick={() => this.handleItemEdit(item.item_cost)}>Edit</Button>
                               <Button onClick={() => this.handleClose("item_modal")}>Cancel</Button>
@@ -889,7 +892,7 @@ class SplitBillPage extends Component {
                             <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_nickname" defaultValue={this.state.new_nickname} onChange={this.handleChange}/>
                             </div>
                             <TextField id="outlined-basic" label="Change Adjustment" variant="outlined" name="new_adjusted_amount" defaultValue={this.state.new_adjusted_amount} onChange={this.handleChange} type="number" step={0.01}/>
-                            <div className={classes.btn}>
+                            <div>
                             <Button onClick={this.handleDeleteUser}>Delete</Button>
                             <Button onClick={() => this.handleUserEdit(user.user_adjusted_amount)}>Edit</Button>
                             <Button onClick={() => this.handleClose("user_modal")}>Cancel</Button>
@@ -970,8 +973,10 @@ class SplitBillPage extends Component {
                     ?
                     <div style={{"textAlign": "center"}}>
                       <TextField id="outlined-basic" label="Tip" variant="outlined" name="new_tip_rate" onChange={this.handleChange} defaultValue={this.state.new_tip_rate} type="number"/>
+                      <div>
                       <Button onClick={this.handleTip}>Submit</Button>
                       <Button onClick={() => this.handleClose("edit_tip")}>Cancel</Button>
+                      </div>
                     </div>
                     :
                     <div className={classes.edit_flex_container}>

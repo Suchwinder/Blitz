@@ -26,6 +26,7 @@ import MediaQuery from 'react-responsive';
 import Navbar from 'react-bootstrap/esm/Navbar';
 import './MainPage.css';
 
+
 const styles = () => ({
   root:{
     
@@ -118,6 +119,7 @@ const styles = () => ({
     backgroundColor:"gray",
   },
 });
+
 
 class MainPage extends Component{
   render(){
