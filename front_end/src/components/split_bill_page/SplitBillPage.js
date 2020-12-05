@@ -87,6 +87,9 @@ const styles = (theme) => ({
       marginInlineStart: '0px',
       marginInlineEnd: '0px',
     },
+    modal_padding:{
+      paddingBottom:"5px",
+    },
 });
 
 class SplitBillPage extends Component {
@@ -737,7 +740,7 @@ class SplitBillPage extends Component {
                 >
                   <Fade in={this.state.add_item}>
                     <div className={classes.paper_modal}>
-                      <div>
+                      <div className={classes.modal_padding}>
                       <TextField id="outlined-basic" label="Item Name" variant="outlined" name="add_item_name" placeholder="name" onChange={this.handleChange}/>
                       </div>
                       <TextField id="outlined-basic" label="Item Cost" variant="outlined" name="add_item_cost" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
@@ -773,7 +776,7 @@ class SplitBillPage extends Component {
                         >
                           <Fade in={this.state.item_modal === item.item_name}>
                             <div className={classes.paper_modal}>
-                              <div>
+                            <div className={classes.modal_padding}>
                               <TextField id="outlined-basic" label="Change Item Name" variant="outlined" name="new_item_name" defaultValue={this.state.new_item_name} onChange={this.handleChange}/>
                               </div>
                               <TextField id="outlined-basic" label="Change Cost" variant="outlined" name="new_item_cost" defaultValue={this.state.new_item_cost} onChange={this.handleChange} type="number" step={0.01}/>
@@ -845,7 +848,7 @@ class SplitBillPage extends Component {
                 >
                   <Fade in={this.state.add_user}>
                     <div className={classes.paper_modal}>
-                      <div>
+                    <div className={classes.modal_padding}>
                       <TextField id="outlined-basic" label="Username" variant="outlined" name="add_user_name" placeholder="name" onChange={this.handleChange}/>
                       </div>
                       <TextField id="outlined-basic" label="Adjusted Amount" variant="outlined" name="add_user_adjusted_amount" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
@@ -882,7 +885,7 @@ class SplitBillPage extends Component {
                     >
                       <Fade in={this.state.user_modal === user.user_nickname}>
                         <div className={classes.paper_modal}>
-                          <div>
+                        <div className={classes.modal_padding}>
                             <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_nickname" defaultValue={this.state.new_nickname} onChange={this.handleChange}/>
                             </div>
                             <TextField id="outlined-basic" label="Change Adjustment" variant="outlined" name="new_adjusted_amount" defaultValue={this.state.new_adjusted_amount} onChange={this.handleChange} type="number" step={0.01}/>
