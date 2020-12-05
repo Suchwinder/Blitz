@@ -60,7 +60,7 @@ const styles = (theme) => ({
     },
     add_item_button: {
       flex: "1",
-      paddingLeft: "60%",
+      paddingLeft: "68.5%",
     },
     
     items_line: {
