@@ -3,13 +3,24 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Redirect } from "react-router-dom";
 import { Button } from "reactstrap";
+import { Link } from 'react-scroll';
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  btn_space:{
+    marginRight: "5px"
+  }
+});
 
 const NavBar = (props) => {
+  const classes = useStyles();
   const [page, setPage] = useState("");
 
   useEffect(() => {
     setPage("");
   }, [page]);
+
+
 
   if (page === "main") {
     return <Redirect to="/" />;
@@ -24,22 +35,25 @@ const NavBar = (props) => {
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand onClick={() => setPage("main")}>Blitz</Navbar.Brand>
         <Nav className="ml-auto">
-          <Button
-            className="button"
-            variant="dark"
-            onClick={() => setPage("main")}
-          >
-            {" "}Home{" "}
+          <Button variant="dark" className={classes.btn_space} onClick={() => setPage("main")}>
+            Home
           </Button>
-          <Button variant="dark" onClick={() => setPage("create")}>
-            {" "}Create{" "}
+          <Link activeClass= "active"
+            to ="about"
+            spy={true}
+            smooth={true}
+            offset ={-50}
+            duration={500}>
+          <Button variant="dark" className={classes.btn_space} onClick={() => setPage("main")}>
+            About
+          </Button> 
+          </Link>
+          <Button variant="dark" className={classes.btn_space} onClick={() => setPage("create")}>
+            Create
           </Button>
-          <Button variant="dark" onClick={() => setPage("join")}>
-            {" "}Join{" "}
+          <Button variant="dark" className={classes.btn_space} onClick={() => setPage("join")}>
+            Join
           </Button>
-          {/* <Nav.Link href="#home">Home</Nav.Link> */}
-          {/* <Nav.Link href="#create-group">Create Group</Nav.Link> */}
-          {/* <Nav.Link href="#join-group">Join Group</Nav.Link> */}
         </Nav>
       </Navbar>
     </header>
