@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import NavBar from '../nav_bar/NavBar'
-// need to use withStyles to combine Material UI design with react compnents at end of file when exporting
+import NavBar from '../nav_bar/NavBar';
 import { withStyles } from "@material-ui/core/styles";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import { FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
-import './SplitBill.css'
 import { Redirect } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -17,6 +14,9 @@ import Form from 'react-bootstrap/Form';
 import io from "socket.io-client";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
+import {Typography} from "@material-ui/core";
+import MediaQuery from 'react-responsive';
+
 
 var QRCode = require('qrcode.react');
 // import QRCode from "qrcode.react";
@@ -48,18 +48,60 @@ const styles = (theme) => ({
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
-});
+    hr:{
+      height:"3px",
+      width:"90%",
+      borderWidth:0,
+      color:"gray",
+      backgroundColor:"gray",
+    },
+    add_user_button:{
+      paddingLeft: "70%",
+      width: "100%",
+    },
+    items_flex_container: {
+      display: "flex",
+    },
+    add_item_button: {
+      flex: "1",
+      paddingLeft: "68.5%",
+    },
 
-const ColoredLine = ({ color }) => (
-    <hr
-        style={{
-            color: color,
-            backgroundColor: color,
-            height: 5,
-            margin: 5, 
-        }}
-    />
-);
+    mobile_add_item_button: {
+      flex: "1",
+      paddingLeft: "60%",
+    },
+    items_line: {
+      textAlign: "center",
+    },
+    
+    edit_flex_container: {
+      justifyContent: "center",
+      display: "flex",
+    },
+    qr_code:{
+      display: "inline",
+    },
+
+    btn:{
+      paddingLeft: "15%",
+    },
+    // border:{
+    //   borderStyle: "solid",
+    // },
+
+    text:{
+      display: 'block',
+      marginBlockStart: '0.83em',
+      marginBlockEnd: '0.83em',
+      marginInlineStart: '0px',
+      marginInlineEnd: '0px',
+    },
+    
+    modal_padding:{
+      paddingBottom:"10px",
+    },
+});
 
 class SplitBillPage extends Component {
   constructor(props) {
@@ -709,7 +751,7 @@ class SplitBillPage extends Component {
     // get access to the styling for our components to use
     const classes = this.props.classes;
     return (
-      <div>
+      <div className={classes.root}>
         <NavBar/>
         {
           this.state.redirect 
@@ -722,7 +764,7 @@ class SplitBillPage extends Component {
             <p style={{"textAlign": "center"}}> {this.state.address} </p>
             <div style={{"textAlign": "center"}}>
               <textarea
-                style={{"width": "250px"}}
+                style={{"width": "235px"}}
                 ref={(textarea) => this.textArea = textarea}
                 defaultValue={this.state.full_url}
               />
@@ -738,15 +780,33 @@ class SplitBillPage extends Component {
                 </div> : null
               }
             </div>
-            <QRCode value={this.state.full_url}></QRCode>  
+            <div style={{"width": "100%", "textAlign": "center", "paddingTop": "5px"}}>
+              <QRCode className={classes.qr_code} value={this.state.full_url}></QRCode>  
+            </div>
+            <hr className={classes.hr}></hr>
+            <Grid container alignItems="center" justify="center">
+              <Grid item>
+                <Typography variant="h5" className={classes.text} style={{'textAlign':"center"}}>
+                  Inventory
+                </Typography>
+                <Typography className={classes.text} style={{'textAlign':"center"}}>
+                  Get started by adding items or assigning users to items.
+                </Typography>
+                <Typography className={classes.text} style={{'textAlign':"center"}}>
+                  Or if there is an error, remove or edit them by selecting the item.
+                </Typography>
+              </Grid>              
+            </Grid>
+            <hr className={classes.hr}></hr>
+
             {/* Render item, item price, and user assignment that is modifyable
             should open a model to update for UI friendliness */}
-            <Grid container spacing={3}>
+            <Grid container>
               {/* Currently displaying item name and cost */}
-              <Grid item xs>
+              <Grid item xs className={classes.border}>
                 <Paper className={classes.paper}>
-                <div className="items_flex_container">
-                <div className="items_line" > Items </div>
+                <div className={classes.items_flex_container}>
+                <div className={classes.items_line} > Items </div>
                 <Modal
                   style={{"align": "right"}}
                   aria-labelledby="transition-modal-title"
@@ -762,20 +822,31 @@ class SplitBillPage extends Component {
                 >
                   <Fade in={this.state.add_item}>
                     <div className={classes.paper_modal}>
+                      <div className={classes.modal_padding}>
                       <TextField id="outlined-basic" label="Item Name" variant="outlined" name="add_item_name" placeholder="name" onChange={this.handleChange}/>
+                      </div>
                       <TextField id="outlined-basic" label="Item Cost" variant="outlined" name="add_item_cost" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
-                      <div>
+                      <div className={classes.btn}>
                       <Button onClick={this.handleAddItem}>Add</Button>
                       <Button onClick={() => this.handleClose("add_item")}>Cancel</Button>
                       </div>
                     </div>
                   </Fade>
                 </Modal>
-                <div className="add_item_button">
+                <MediaQuery minWidth={430}>
+                <div className={classes.add_item_button}>
                 <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_item", "na", "na")}>
                   Add Item
                 </Button>
                 </div>
+                </MediaQuery>
+                <MediaQuery maxWidth={430}>
+                <div className={classes.mobile_add_item_button}>
+                <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("add_item", "na", "na")}>
+                  Add Item
+                </Button>
+                </div>
+                </MediaQuery>
                 </div> 
                 {/* <ul className="innerList"> */}
                 {
@@ -796,9 +867,11 @@ class SplitBillPage extends Component {
                         >
                           <Fade in={this.state.item_modal === item.item_name}>
                             <div className={classes.paper_modal}>
+                            <div className={classes.modal_padding}>
                               <TextField id="outlined-basic" label="Change Item Name" variant="outlined" name="new_item_name" defaultValue={this.state.new_item_name} onChange={this.handleChange}/>
+                              </div>
                               <TextField id="outlined-basic" label="Change Cost" variant="outlined" name="new_item_cost" defaultValue={this.state.new_item_cost} onChange={this.handleChange} type="number" step={0.01}/>
-                              <div>
+                              <div >
                               <Button onClick={this.handleDeleteItem}>Delete</Button>
                               <Button onClick={() => this.handleItemEdit(item.item_cost)}>Edit</Button>
                               <Button onClick={() => this.handleClose("item_modal")}>Cancel</Button>
@@ -834,11 +907,23 @@ class SplitBillPage extends Component {
                 </Paper>
               </Grid>
             </Grid>
+            
             <br></br>
-            <ColoredLine color="black" />
-            <br></br>
+            <hr className={classes.hr}></hr>
             {/* Render total for each individual */}
-            <Grid container spacing={3}>
+            <Grid container justify="center">
+              <Grid item>
+                <Typography variant="h5" className={classes.text} style={{'textAlign':"center"}}>
+                  Users
+                </Typography>
+                <Typography className={classes.text} style={{'textAlign':"center"}}>
+                  Allows you to add user(s) or remove user(s) with adjustments.
+                </Typography>
+              </Grid>              
+            </Grid>
+            <hr className={classes.hr}></hr>
+
+            <Grid container>
                 <Modal
                   aria-labelledby="transition-modal-title"
                   aria-describedby="transition-modal-description"
@@ -854,20 +939,25 @@ class SplitBillPage extends Component {
                 >
                   <Fade in={this.state.add_user}>
                     <div className={classes.paper_modal}>
+                    <div className={classes.modal_padding}>
                       <TextField id="outlined-basic" label="Username" variant="outlined" name="add_user_name" placeholder="name" onChange={this.handleChange}/>
+                      </div>
                       <TextField id="outlined-basic" label="Adjusted Amount" variant="outlined" name="add_user_adjusted_amount" placeholder="0.00" onChange={this.handleChange} type="number" step={0.01}/>
-                      <div>
+                      <div className={classes.btn}>
                       <Button onClick={this.handleAddUser}>Add</Button>
                       <Button onClick={() => this.handleClose("add_user")}>Cancel</Button>
                       </div>
                     </div>
                   </Fade>
                 </Modal>
-                <div className="add_user_button">
+                <div className={classes.add_user_button}>
                 <Button variant="outlined" color="primary" className={classes.item_button} size='small'  display="inline"  onClick={() => this.handleOpen("add_user", "na", "na")}>
                   Add User
                 </Button>
                 </div>
+
+                <br></br>
+                {/* <hr className={classes.hr}></hr> */}
             {
               this.state.users.map((user, index) => {
                 return (
@@ -886,7 +976,9 @@ class SplitBillPage extends Component {
                     >
                       <Fade in={this.state.user_modal === user.user_nickname}>
                         <div className={classes.paper_modal}>
+                        <div className={classes.modal_padding}>
                             <TextField id="outlined-basic" label="Change User Name" variant="outlined" name="new_nickname" defaultValue={this.state.new_nickname} onChange={this.handleChange}/>
+                            </div>
                             <TextField id="outlined-basic" label="Change Adjustment" variant="outlined" name="new_adjusted_amount" defaultValue={this.state.new_adjusted_amount} onChange={this.handleChange} type="number" step={0.01}/>
                             <div>
                             <Button onClick={this.handleDeleteUser}>Delete</Button>
@@ -949,7 +1041,21 @@ class SplitBillPage extends Component {
             }
             </Grid>
             {/* Render group total */}
-            <Grid container spacing={3}>
+            <hr className={classes.hr}></hr>
+
+            <Grid container justify="center">
+              <Grid item>
+                <Typography variant="h5" className={classes.text} style={{'textAlign':"center"}}>
+                  Total
+                </Typography>
+                <Typography className={classes.text} style={{'textAlign':"center"}}>
+                  Below displays the total cost and any additional adjustments.
+                </Typography>
+              </Grid>              
+            </Grid>
+            <hr className={classes.hr}></hr>
+
+            <Grid container className={classes.border} styling={{"paddingBottom": "5px"}}>
               <Grid item xs>
                 <Paper className={classes.paper}>
                   {/* Grand Total */}
@@ -959,11 +1065,13 @@ class SplitBillPage extends Component {
                     ?
                     <div style={{"textAlign": "center"}}>
                       <TextField id="outlined-basic" label="Tip" variant="outlined" name="new_tip_rate" onChange={this.handleChange} defaultValue={this.state.new_tip_rate} type="number"/>
+                      <div>
                       <Button onClick={this.handleTip}>Submit</Button>
                       <Button onClick={() => this.handleClose("edit_tip")}>Cancel</Button>
+                      </div>
                     </div>
                     :
-                    <div className="edit_flex_container">
+                    <div className={classes.edit_flex_container}>
                       <div>Tip Rate: {this.state.tip_rate}%</div>
                       <Button variant="outlined" color="primary" className={classes.item_button} size='small' display="inline" onClick={() => this.handleOpen("edit_tip")}>Edit Tip</Button>
                       </div>
@@ -1012,6 +1120,7 @@ class SplitBillPage extends Component {
                 </Paper>
               </Grid>
             </Grid>  
+            
             <br></br>
           </div>
         }

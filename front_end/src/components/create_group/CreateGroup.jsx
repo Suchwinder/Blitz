@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Formik } from 'formik';
 import PlacesAutocomplete from '../places_autocomplete/PlacesAutocomplete';
-// import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
@@ -251,7 +250,6 @@ class CreateGroup extends Component {
             <div>Creating Your Group</div>
             <br></br>
             <Form className="form" onSubmit={this.handleSubmit}>
-              
               <Form.Group controlId="form.input_users">
                 <Form.Label>
                   Input name(s):
@@ -275,14 +273,6 @@ class CreateGroup extends Component {
                 <Form.Label>
                   Input location:
                 </Form.Label>
-              {/* <Form.Control 
-                placeholder="Location Name"
-                name="input_location"
-                onChange={this.handleChange}
-                value={this.state.input_location}
-                isValid={touched.input_location && !errors.input_location}
-                required = "Please enter your location"
-              />  */}
                 <br></br>
                 <TextField
                   fullWidth
@@ -298,24 +288,8 @@ class CreateGroup extends Component {
               
               <Form.Group controlId="form.input_address">
                 <Form.Label>Address:</Form.Label>
-                 {/* <Form.Control
-                  type="text"
-                  placeholder="Address"
-                  name="input_address"
-                  onChange={handleChange}
-                  value={values.input_address}
-                  as="textarea" rows="1" 
-                  required
-                />  */}
                 <PlacesAutocomplete
-                  // onChange={(event, value) => {
-                  //   this.handleParentFunc(value);
-                  // }}
                   handleParentFunc={(value)=> {
-                    // console.log("your value --> ", value);
-                    // this.setState({
-                    //   input_address: value
-                    // })
                     this.handleParentFunc(value);
                     }
                   }
@@ -388,26 +362,17 @@ class CreateGroup extends Component {
                 <Form.Label>
                   Input Tip here:
                 </Form.Label>
-              {/* <Form.Control 
-                type="text"
-                placeholder="Tip"
-                name="input_tip"
-                onChange={this.handleChange}
-                value={this.state.input_tip}
-                isValid={touched.input_tip && !errors.input_tip}
-                required = "Please enter your tip"
-              />  */}
-              <FormControl fullWidth variant="filled">
-                <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-                <FilledInput
-                  id="filled-adornment-amount"
-                  name="input_tip"
-                  // input type = {Number}
-                  value={this.state.input_tip}
-                  onChange={this.handleChange}
-                  endAdornment={<InputAdornment position="end">%</InputAdornment>}
-                />
-              </FormControl>
+                <FormControl fullWidth variant="filled">
+                  <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+                  <FilledInput
+                    id="filled-adornment-amount"
+                    name="input_tip"
+                    // input type = {Number}
+                    value={this.state.input_tip}
+                    onChange={this.handleChange}
+                    endAdornment={<InputAdornment position="end">%</InputAdornment>}
+                  />
+                </FormControl>
                 <Form.Control.Feedback></Form.Control.Feedback>
               </Form.Group>
                 <br></br>

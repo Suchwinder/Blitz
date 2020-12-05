@@ -10,7 +10,7 @@ function App() {
   const MainPageComponent = () => <MainPage/>
   const CreateGroupComponent = () => <CreateGroup/>
   const JoinGroupComponent = () => <JoinGroup/>
-  // const SplitBillComponent = () => <SplitBill/>
+  // const SplitBillComponent = () => <SplitBillPage/>
   // in react router to access the url we need to pass in a prop which will automatically contain the URL
   // other approach is use vanilla js in component and use "window.location.href"
   const SplitBillPageComponent = (group_url) => <SplitBillPage groupURL={group_url}/>
