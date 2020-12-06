@@ -143,6 +143,10 @@ class SplitBillPage extends Component {
       socket: "",
       file: null,
       preview: "",
+      total_tip: 0,
+      total_tax: 0,
+      individual_tip: 0,
+      individual_tax: 0.
     }
   }
 
@@ -168,7 +172,12 @@ class SplitBillPage extends Component {
           if(a.item_name > b.item_name) { return 1; }
           return 0;
         });
-
+        
+        let individual_tax = (result.sub_total*(result.tax_rate-1))/result.user_count;
+        let individual_tip = (result.sub_total*(result.tip_rate/100))/ result.user_count;
+        let total_tax = result.sub_total*(result.tax_rate-1);
+        let total_tip = result.sub_total*(result.tip_rate/100);
+        
         this.setState({
           city: result.city,
           image_url: result.image_url,
@@ -187,6 +196,10 @@ class SplitBillPage extends Component {
           user_count: result.user_count,
           zip_code: result.zip_code,
           address: result.street_address + ', ' + result.city + ', ' + result.state_name,
+          individual_tax: individual_tax,
+          individual_tip: individual_tip,
+          total_tip: total_tip,
+          total_tax: total_tax,
         })
       } else if (status >= 400) {
           this.setState({
@@ -937,8 +950,11 @@ class SplitBillPage extends Component {
                             this.state.user_assignments[user.user_nickname].length === 0
                             ?
                               <div>
-                                <div style={{"textAlign": "center"}}> no assignments </div>
-                                <div style={{"textAlign": "center"}}> adjustments: {user.user_adjusted_amount.toFixed(2)} </div>
+                                <div style={{"textAlign": "center"}}> No Items Assigned </div>
+                                <div style={{"textAlign": "center"}}> Adjustments: {user.user_adjusted_amount.toFixed(2)} </div>
+                                <div style={{"textAlign": "center"}}> Tip: {this.state.individual_tip.toFixed(2)} </div>
+                                <div style={{"textAlign": "center"}}> Tax: {this.state.individual_tax.toFixed(2)} </div>
+                                <div style={{"textAlign": "center"}}> Grand Total: {(parseFloat(user.user_adjusted_amount.toFixed(2)) + parseFloat(this.state.individual_tip.toFixed(2)) + parseFloat(this.state.individual_tax.toFixed(2))).toFixed(2)} </div>
                               </div>
                             : (
                               <div style={{"textAlign": "center"}}> 
@@ -953,9 +969,15 @@ class SplitBillPage extends Component {
                                 }
                                 <br/>
                                 <div>
-                                total: {user.user_amount_owed.toFixed(2)} 
+                                Total: {user.user_amount_owed.toFixed(2)} 
                                 <br/>
-                                adjustments: {user.user_adjusted_amount.toFixed(2)}
+                                Adjustments: {user.user_adjusted_amount.toFixed(2)}
+                                <br/>
+                                Tip: {this.state.individual_tip.toFixed(2)}
+                                <br/>
+                                Tax: {this.state.individual_tax.toFixed(2)}
+                                <br/>
+                                Grand Total: {(parseFloat(user.user_adjusted_amount.toFixed(2)) + parseFloat(user.user_amount_owed.toFixed(2)) + parseFloat(this.state.individual_tip.toFixed(2)) + parseFloat(this.state.individual_tax.toFixed(2))).toFixed(2)}
                                 </div>
                               </div>
                             )
@@ -1010,6 +1032,8 @@ class SplitBillPage extends Component {
                       : (this.state.tax_rate-1).toFixed(6) * 100
                     }% </div>
                     <div style={{"textAlign": "center"}}>SubTotal: ${this.state.sub_total.toFixed(2)}</div>
+                    <div style={{"textAlign": "center"}}>Tip: ${this.state.total_tip.toFixed(2)}</div>
+                    <div style={{"textAlign": "center"}}>Tax: ${this.state.total_tax.toFixed(2)}</div>
                     <div style={{"textAlign": "center"}}>Grand Total: ${this.state.total_cost.toFixed(2)}</div>
                     <div style={{"textAlign": "center"}}>Net Adjustments: ${this.state.total_adjustment.toFixed(2)}</div>
                   {/* </ul> */}
@@ -1019,11 +1043,11 @@ class SplitBillPage extends Component {
                       this.state.show_image 
                       ? 
                         <div>
-                          <Button onClick={this.handleImage}>Hide</Button>
+                          <Button style={{"justifyContent":"center"}} onClick={this.handleImage}>Hide</Button>
                           <img style={{width: 225}} src={this.state.image_url} alt={"None"}/>
                         </div>
                       :
-                        <Button onClick={this.handleImage}>Show</Button>
+                        <Button style={{"justifyContent":"center"}} onClick={this.handleImage}>Show</Button>
                     :
                   <p>No Receipt Uploaded</p>
                   }
