@@ -12,6 +12,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Form from 'react-bootstrap/Form';
 import io from "socket.io-client";
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 import {Typography} from "@material-ui/core";
 import MediaQuery from 'react-responsive';
 
@@ -146,7 +148,14 @@ class SplitBillPage extends Component {
       total_tip: 0,
       total_tax: 0,
       individual_tip: 0,
-      individual_tax: 0.
+      individual_tax: 0,
+      newFile: "",
+      crop: {
+        unit: '%',
+        width: 100,
+        height: 100,
+      },
+      croppedImageUrl: ""
     }
   }
 
@@ -616,10 +625,10 @@ class SplitBillPage extends Component {
       return alert("Please Choose a New Image to Upload");
     }
     let data = new FormData();
-    data.append('file', this.state.file);
-    for (var value of data.values()) {
-      console.log(value); 
-    }
+    data.append('file', this.state.newFile);
+    // for (var value of data.values()) {
+    //   console.log(value); 
+    // }
 
     const response = await fetch(`/api/reupload_image/?group_URL=${this.state.group_url}`, {
       method: 'POST',
@@ -658,6 +667,69 @@ class SplitBillPage extends Component {
       file: imageblob,
       preview: image,
     })
+  }
+
+  onImageLoaded = image => {
+    this.imageRef = image;
+    this.setState({
+      newFile: this.imageRef
+    })
+  };
+
+  onCropComplete = crop => {
+    this.makeClientCrop(crop);
+  };
+
+  onCropChange = (crop) => {
+    this.setState({ crop });
+  };
+
+  async makeClientCrop(crop) {
+    if (this.imageRef && crop.width && crop.height) {
+      const croppedImageUrl = await this.getCroppedImg(
+        this.imageRef,
+        crop,
+        'newFile.jpeg'
+      );
+      this.setState({ croppedImageUrl: croppedImageUrl });
+    }
+  }
+
+  getCroppedImg(image, crop, fileName) {
+    const canvas = document.createElement('canvas');
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(
+      image,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    );
+
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(blob => {
+        if (!blob) {
+          //reject(new Error('Canvas is empty'));
+          console.error('Canvas is empty');
+          return;
+        }
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+        this.setState({
+          newFile: blob
+        })
+      });
+    });
   }
 
   componentDidMount = async () => {
@@ -1055,7 +1127,17 @@ class SplitBillPage extends Component {
                     <div>
                       <input type="file" name="file" accept="image/png, image/jpeg" onChange={this.handleImagePreview}/>
                       <br></br>
-                      <img style={{width: 225}} src={this.state.preview} alt={""}/>
+                      {/* <img style={{width: 225}} src={this.state.preview} alt={""}/> */}
+                      {this.state.preview && (
+                        <ReactCrop
+                          src={this.state.preview}
+                          crop={this.state.crop}
+                          ruleOfThirds
+                          onImageLoaded={this.onImageLoaded}
+                          onComplete={this.onCropComplete}
+                          onChange={this.onCropChange}
+                        />
+                      )}
                     </div>
                     <Button type='submit'>New Upload</Button>
                   </Form>

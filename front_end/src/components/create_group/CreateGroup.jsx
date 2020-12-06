@@ -12,6 +12,8 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import FilledInput from '@material-ui/core/FilledInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 
 class CreateGroup extends Component {
   constructor(props){
@@ -19,6 +21,7 @@ class CreateGroup extends Component {
     this.state = {
       file: null,
       preview: "",
+      newFile: "",
       input_users: [],
       input_address: "",
       input_zip_code: "",
@@ -29,6 +32,12 @@ class CreateGroup extends Component {
       redirect: false,
       group_url: "",
       image_s3url: "",
+      crop: {
+        unit: '%',
+        width: 100,
+        height: 100,
+      },
+      croppedImageUrl: ""
     }
     this.inputFileRef = React.createRef();
   }
@@ -47,6 +56,69 @@ class CreateGroup extends Component {
       file: imageblob,
       preview: image
     })
+  }
+
+  onImageLoaded = image => {
+    this.imageRef = image;
+    this.setState({
+      newFile: this.imageRef
+    })
+  };
+
+  onCropComplete = crop => {
+    this.makeClientCrop(crop);
+  };
+
+  onCropChange = (crop) => {
+    this.setState({ crop });
+  };
+
+  async makeClientCrop(crop) {
+    if (this.imageRef && crop.width && crop.height) {
+      const croppedImageUrl = await this.getCroppedImg(
+        this.imageRef,
+        crop,
+        'newFile.jpeg'
+      );
+      this.setState({ croppedImageUrl: croppedImageUrl });
+    }
+  }
+
+  getCroppedImg(image, crop, fileName) {
+    const canvas = document.createElement('canvas');
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(
+      image,
+      crop.x * scaleX,
+      crop.y * scaleY,
+      crop.width * scaleX,
+      crop.height * scaleY,
+      0,
+      0,
+      crop.width,
+      crop.height
+    );
+
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(blob => {
+        if (!blob) {
+          //reject(new Error('Canvas is empty'));
+          console.error('Canvas is empty');
+          return;
+        }
+        window.URL.revokeObjectURL(this.fileUrl);
+        this.fileUrl = window.URL.createObjectURL(blob);
+        resolve(this.fileUrl);
+        this.setState({
+          newFile: blob
+        })
+      });
+    });
   }
 
   handleUsers = (event, value, type) => {
@@ -82,7 +154,7 @@ class CreateGroup extends Component {
     if(this.state.preview !== "") { // check if preview empty rather then blob data
       // call uploadimage api to get object url
       let data = new FormData();
-      data.append('file', this.state.file);
+      data.append('file', this.state.newFile)
 
       const response = await fetch('/api/upload_image', {
         method: 'POST',
@@ -138,7 +210,7 @@ class CreateGroup extends Component {
     } catch (error) {
       console.log(error);
     }
-  } 
+  }
 
   //Handles Google API address field
   handleParentFunc = (value) =>{
@@ -307,7 +379,20 @@ class CreateGroup extends Component {
                 <div>
                   <input type="file" name="file" accept="image/png, image/jpeg" ref={this.inputFileRef} onChange={this.handleImage}/>
                   <br></br>
-                  <img style={{width: 225}} src={this.state.preview} alt={""}/>
+                  {/* <img style={{width: 225}} src={this.state.preview} alt={""}/> */}
+                  {this.state.preview && (
+                    <ReactCrop
+                      src={this.state.preview}
+                      crop={this.state.crop}
+                      ruleOfThirds
+                      onImageLoaded={this.onImageLoaded}
+                      onComplete={this.onCropComplete}
+                      onChange={this.onCropChange}
+                    />
+                  )}
+                  {/* {this.state.croppedImageUrl && (
+                    <img alt="Crop" style={{ maxWidth: '100%' }} src={this.state.croppedImageUrl} />
+                  )} */}
                 </div>
                 <br></br>
               <Button type="submit"> Submit form </Button>
