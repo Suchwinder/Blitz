@@ -24,7 +24,6 @@ import PSQL from '../images/psql.png';
 import Github from '../images/github.png';
 import MediaQuery from 'react-responsive';
 import Navbar from 'react-bootstrap/esm/Navbar';
-import './MainPage.css';
 import { Redirect } from 'react-router-dom';
 
 
