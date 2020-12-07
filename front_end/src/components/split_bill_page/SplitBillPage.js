@@ -27,7 +27,6 @@ const styles = (theme) => ({
     },
     paper: {
       padding: theme.spacing(2),
-      // textAlign: 'center',
       color: theme.palette.text.secondary,
       margin: '1%'
     },
@@ -66,7 +65,6 @@ const styles = (theme) => ({
       flex: "1",
       paddingLeft: "68.5%",
     },
-
     mobile_add_item_button: {
       flex: "1",
       paddingLeft: "60%",
@@ -74,7 +72,6 @@ const styles = (theme) => ({
     items_line: {
       textAlign: "center",
     },
-    
     edit_flex_container: {
       justifyContent: "center",
       display: "flex",
@@ -82,14 +79,9 @@ const styles = (theme) => ({
     qr_code:{
       display: "inline",
     },
-
     btn:{
       paddingLeft: "15%",
     },
-    // border:{
-    //   borderStyle: "solid",
-    // },
-
     text:{
       display: 'block',
       marginBlockStart: '0.83em',
@@ -97,9 +89,21 @@ const styles = (theme) => ({
       marginInlineStart: '0px',
       marginInlineEnd: '0px',
     },
-    
     modal_padding:{
       paddingBottom:"10px",
+    },
+    receipt_btn:{
+      display: "block",
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
+    receipt_desc:{
+      textAlign: "center", 
+    },
+    receipt_img:{
+      display: "block",
+      marginLeft: "auto",
+      marginRight: "auto",
     },
 });
 
@@ -1115,13 +1119,15 @@ class SplitBillPage extends Component {
                       this.state.show_image 
                       ? 
                         <div>
-                          <Button style={{"justifyContent":"center"}} onClick={this.handleImage}>Hide</Button>
-                          <img style={{width: 225}} src={this.state.image_url} alt={"None"}/>
+                          <Button className={classes.receipt_btn} onClick={this.handleImage}>Hide</Button>
+                            <div className={classes.receipt_img}>
+                              <img style={{width: 225}} src={this.state.image_url} alt={"None"}/>
+                            </div>
                         </div>
                       :
-                        <Button style={{"justifyContent":"center"}} onClick={this.handleImage}>Show</Button>
+                        <Button className={classes.receipt_btn} onClick={this.handleImage}>Show</Button>
                     :
-                  <p>No Receipt Uploaded</p>
+                  <p className={classes.receipt_desc}>No Receipt Uploaded</p>
                   }
                   <Form className="form" onSubmit={this.handleReupload}>
                     <div>
